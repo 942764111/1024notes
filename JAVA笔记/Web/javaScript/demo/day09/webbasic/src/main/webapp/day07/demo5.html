@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//onload是页面加载事件，它在页面加载完成后
+	//自动触发，触发时调用后面绑定的匿名函数。
+	window.onload = function(){
+		//alert(1);
+		//1.读取节点的名称和类型
+		var p1 = document.getElementById("p1");
+		console.log(p1.nodeName);
+		console.log(p1.nodeType);
+		//2.读写节点的内容
+		//<p>双标签中间的文本就是内容</p>
+		//1)innerHTML(带标签)
+		console.log(p1.innerHTML);
+		p1.innerHTML = "1.DOM操作支持<u>读写</u>节点";
+		//2)innerText(不带标签)
+		var p2 = document.getElementById("p2");
+		console.log(p2.innerText);
+		p2.innerText = "2.DOM操作支持<u>查询</u>节点";
+		//3.读写节点的值
+		//如下的表单控件有值:
+		//input、select、textarea
+		//即: 除了label之外的表单控件都有值。
+		//读: input.value
+		//改: input.value = "";
+		//4.读写节点的属性
+		//1)通过方法读写(对任意属性有效)
+		var img = document.getElementById("i1");
+		console.log(img.getAttribute("src"));
+		img.setAttribute("src","../images/02.jpg");
+		img.removeAttribute("src");
+		//2)通过标准属性名读写(只有几个标准属性名)
+		//w3schoole手册上有的属性名就是标准的，
+		//常用的有：className,style,id
+		//读：span.className
+		//写：span.className = "ok"
+		var p5 = document.getElementById("p5");
+		console.log(p5.style.color);
+		p5.style.color = "blue";
+		//3)通过非标属性名读写(低版本浏览器不支持)
+		//w3schoole上没有的属性名就是非标属性。
+		//如：img.src, a.href
+	}
+</script>
+</head>
+<body>
+	<p id="p1">1.DOM操作支持<b>读写</b>节点</p>
+	<p id="p2">2.DOM操作支持<b>查询</b>节点</p>
+	<p id="p3">3.DOM操作支持<b>增删</b>节点</p>
+	<p>
+		<img src="../images/01.jpg" id="i1"/>
+	</p>
+	<p id="p5" style="color:red;">
+		标准的属性很少
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+

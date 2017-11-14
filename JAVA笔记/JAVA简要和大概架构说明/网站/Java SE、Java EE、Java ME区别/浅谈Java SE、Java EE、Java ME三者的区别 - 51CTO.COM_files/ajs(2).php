@@ -1,0 +1,3 @@
+var OX_ef75ac34 = '';
+OX_ef75ac34 += "<"+"a href=\'//gg1.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=467f260250__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F111%3Fxiaoshou\' target=\'_blank\'><"+"font color=\'red\'>Windows工程师成长路线图<"+"/font><"+"/a><"+"div id=\'beacon_467f260250\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg2.51cto.com/www/delivery/lg.php?bannerid=3717&amp;campaignid=779&amp;zoneid=594&amp;loc=1&amp;referer=http%3A%2F%2Fdeveloper.51cto.com%2Fart%2F200906%2F130215.htm&amp;cb=467f260250\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_ef75ac34);

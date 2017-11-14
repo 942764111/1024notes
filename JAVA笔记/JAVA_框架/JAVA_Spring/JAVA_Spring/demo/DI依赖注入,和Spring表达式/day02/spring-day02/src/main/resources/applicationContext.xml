@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<bean id="sb1" class="value.SpelBean">
+		<property name="name" 
+			value="#{vb1.name}"/>
+		<property name="interest" 
+			value="#{vb1.interest[1]}"/>
+		<property name="score" 
+			value="#{vb1.score['英语']}"/>
+		<property name="pageSize"
+			value="#{config.pagesize}"/>
+	</bean>
+	
+	
+	<!-- 注入基本类型的值 -->
+	<bean id="vb1" class="value.ValueBean">
+		<property name="name" value="苍松"/>
+		<property name="age" value="18"/>
+		<property name="interest">
+			<list>
+				<value>编程</value>
+				<value>游戏</value>
+				<value>足球</value>
+				<value>足球</value>
+			</list>
+		</property>
+		<property name="city">
+			<set>
+				<value>北京</value>
+				<value>南京</value>
+				<value>东京</value>
+				<value>东京</value>
+			</set>
+		</property>
+		<property name="score">
+			<map>
+				<entry key="英语" value="59.5"/>
+				<entry key="math" value="80"/>
+			</map>
+		</property>
+		<property name="db">
+			<props>
+				<prop key="username">tiger</prop>
+				<prop key="password">1234</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 以引用的方式注入集合类型的值 -->
+	<!-- 
+		命名空间:为了区分同名的元素，而在元素前添加的
+				限定。
+	 -->
+	 <!-- 将list配置成一个bean -->
+	<util:list id="interestBean">
+		<value>钓鱼</value>
+		<value>做饭</value>
+		<value>看电视</value>
+	</util:list>
+	<util:set id="cityBean">
+		<value>长沙</value>
+		<value>岳阳</value>
+		<value>华容</value>
+	</util:set>
+	<util:map id="scoreBean">
+		<entry key="english" value="80"/>
+		<entry key="math" value="90"/>
+	</util:map>
+	<util:properties id="dbBean">
+		<prop key="username">Sally</prop>
+		<prop key="password">1234</prop>
+	</util:properties>
+	<!-- 以引用的方式注入集合类型的值 -->
+	<bean id="vb2" class="value.ValueBean">
+		<property name="interest" 
+		ref="interestBean"/>
+		<property name="city"
+		ref="cityBean"/>
+		<property name="score"
+		ref="scoreBean"/>
+		<property name="db"
+		ref="dbBean"/>
+	</bean>
+	
+	<!-- 读取properties文件的内容  -->
+	<!-- 
+		注:
+			classpath:让spring容器依据类路径
+			查找properties文件。
+	 -->
+	<util:properties id="config" 
+	location="classpath:config.properties"/>
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

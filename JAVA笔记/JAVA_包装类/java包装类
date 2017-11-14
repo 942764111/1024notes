@@ -1,0 +1,132 @@
+package Main;
+
+public class main {
+
+	public static void main(String[] args) {
+	}
+	
+	/* 包装类
+	 * 
+	 * 在java中不能定义基本类型对象，为了能将基本类型视为对象进行处理，并能链接相应方法,
+	 * 
+	 * java为每个基本类型都提供了包装类。
+	 * 
+	 * 1、integer->int
+	 * 
+	 * 2、Long->long
+	 * 
+	 * 3、Short->short
+	 * 
+	 * 4、Boolean->boolean
+	 * 
+	 * 5、Byte->byte
+	 * 
+	 * 6、Character->char
+	 * 
+	 * 7、Double->doubel
+	 * 
+	 * 8、Float->float
+	 *   
+	 *   
+	 *   【Integer】常用方法
+	 *   
+	 *  1、 byteValue()   intValue()  shortValue()
+	 *   
+	 *  2、compareTo(c)
+	 *  在数字上比较俩个 Integer 对象。
+	 *  如果这俩个值相等返回 0，
+	 *  如果调用对象的数值小于 C 的数值,则返回负数，
+	 *  如果调用对象的数值大于 C 的数值,则返回正数。
+	 *  例：
+	 *  		Integer b = 2;
+				int c = 1;
+				int a = b.compareTo(c);
+				System.out.println(a);
+				
+		3、valueOf(string str) 
+		返回保存指定的 String 值的 Integer 对象		
+		
+		4、parseInt(String str)
+		返回包含在由str指定的字符串中的数字的等价整数值 
+		例：
+			String str[] = {"50","80"};
+			for (String string : str) {
+				int b = Integer.parseInt(string);
+				System.out.println(b);	
+			}
+			
+		5、toString(int i) //获取数字十进制表示
+		6、toBinaryString(int i)//获取数字的二进制表示
+		7、toHexString(int i)//获取数字十六进制表示
+		8、toOctalString(int i)//获取数字的八进制表示
+		
+		常量 Byte、short 同理：
+		 MAX_VALUE
+		  获取int类型可取的最大值
+		 MIN_VALUE
+		  获取int类型可取的最小值
+		 SIZE
+		  用来以二进制补码形式表示int值的位数
+		 TYPE
+		  表示基本类型int的Class实例
+		  
+		  【Boolean】常用方法
+		  1、 booleanValue()  equals(Object obj) toString()
+		  
+		  2、paseBoolean(String s)
+		   将字符串参数解析为boolean值
+		   
+		  3、valueOf(string str) 
+			返回保存指定的 String 值的 Boolean 对象		
+			
+			常量
+			TRUE
+			对应基值 true 的 Boolean 对象
+			FALSE
+			对应基值 false 的 Boolean 对象
+			TYPE
+			基本类型 boolean 的Class 对象
+			
+			【Byte】常用方法
+			1、byteValue()  doubleValue()  intValue() toString()  valueOf（）
+			
+			2、compareTo(c)
+	 *  	在数字上比较俩个 Byte 对象 返回值int。
+	 *  
+	 *     
+	 *    3、paseByte(String a)
+	 *      将String型参数解析成等价的字节 byte 形式
+	 *      
+	 *    【Character】常用方法
+	 *      1、charvalue()   compareTo(c)//返回值int  toString()
+	 *         
+	 *      2、toUpperCase(char a)   isUpperCase(char a)
+	 *         转为大写
+	 *      3、toLowerCase(char a)   isLowerCase(char a)
+	 *         转为小写
+	 *         
+	 *        
+	 *      【Double】常用方法
+	 *         1、byteValue()  compareTo(Double a)//返回int型  intValue() 
+	 *         		  toString() valueOf(String a)  doubleValue() longValue()
+	 *             
+	 *         2、isNaN()
+	 *             如果此double值是非数字(NaN)值,则返回true;否则返回false
+	 *             
+	 *          常量
+	 *          MAX_EXPONENT 
+	 *          double最大值
+	 *          
+	 *          MIN_EXPONENT
+	 *          double最小值
+	 *          
+	 *          NEGATIVE_INFINITY 
+	 *              返回double值表示保存double类型的负无穷大值常量  
+	 *                
+	 *          POSITIVE_INFINITY
+	 *              返回double值表示保存double类型的正无穷大值常量  
+	 *         
+	 * */
+	
+}
+

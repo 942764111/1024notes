@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.dao.UserDao">
+	<insert id="save" 
+			  parameterType="cn.tedu.User">
+		insert into user(id,name) values(#{id},#{name})
+	</insert>
+	<select id="findByName"
+			  parameterType="string"
+			  resultType="cn.tedu.UserPwd">
+		select * from user_pwd
+				 where name=#{name}
+			  
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

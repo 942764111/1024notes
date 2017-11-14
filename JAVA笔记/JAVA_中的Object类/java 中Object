@@ -1,0 +1,16 @@
+Object: 在java中，所有的类都直接或间接的继承了java.lang.Object 类。Object类是比较特殊的类，他是所有类的父类，是java底层中的最高的层类。当创建一格类时，总是在继承，除非某个类已经指定要从其他类继承，否则他就是从java.long.Object类继承而来的，由于所有类都是Object子类所以在定义类时，省略了 extends Object 关键字 
+
+Class A{} = Class B extends Object{}
+
+
+在Object类中主要包括 clone()、finalize()、equals()、toString()、等方法，其中常用的俩个方法为 equals()和toString()方法。 由于所有类都是继承Object()类的子类，所以任何类都可以重写Object类中的方法。
+
+Object 类中的 getClass()、notify()、notifyAll()、wait()等方法不能被重写，因为这些方法被定义为final类型。
+
+Object常用的几个方法：
+
+1. getClass()方法是Object类定义的方法，他会返回对象执行的Class实例
+
+2. toString();
+
+3.  equals();

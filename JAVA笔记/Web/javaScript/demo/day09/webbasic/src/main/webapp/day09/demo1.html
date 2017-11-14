@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//1.采用直接量的方式创建对象
+	function f1() {
+		var student = {
+			"name":"zhangsan",
+			"age":25,
+			"work":function(){
+				alert("我学Java");
+			}
+		};
+		alert(student.name);
+		alert(student.age);
+		student.work();
+	}
+	//2.采用内置构造器创建对象
+	function f2() {
+		var teacher = new Object();
+		teacher.name = "苍老师";
+		teacher.age = 18;
+		teacher.work = function(){
+			alert("我教Java");
+		};
+		alert(teacher.name);
+		alert(teacher.age);
+		teacher.work();
+	}
+	//3.采用自定义构造器创建对象
+	function Coder(name,age,work) {
+		this.name = name;
+		this.age = age;
+		//this指代当前对象
+		//this.job是给当前对象加一个job属性
+		//=work是将参数赋值给这个属性
+		this.job = work;
+	}
+	function f3() {
+		var coder = new Coder(
+			"lisi", 28, 
+			function(){
+				alert("我写Java");
+			}
+		);
+		alert(coder.name);
+		alert(coder.age);
+		coder.job();
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="按钮1"
+		onclick="f1();"/>
+	<input type="button" value="按钮2"
+		onclick="f2();"/>
+	<input type="button" value="按钮3"
+		onclick="f3();"/>
+</body>
+</html>
+
+
+
+
+
+
+

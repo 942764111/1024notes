@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div {
+		width: 800px;
+		height: 500px;
+		margin: 20px auto;
+		background-color: #066;
+		/*用来给子元素做绝对定位*/
+		position: relative;
+	}
+	img {
+		position: absolute;
+	}
+	#i1 {
+		left: 200px;
+		top: 100px;
+	}
+	#i2 {
+		left: 150px;
+		top: 150px;
+	}
+	#i3 {
+		left: 250px;
+		top: 50px;
+	}
+	/*设置堆叠顺序*/
+	img:hover {
+		z-index: 999;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<img src="../images/1.jpg" id="i1"/>
+		<img src="../images/2.jpg" id="i2"/>
+		<img src="../images/3.jpg" id="i3"/>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div {
+		border: 1px solid red;
+		width: 300px;
+		padding: 30px;
+	}
+	p {
+		border: 1px solid blue;
+		padding: 30px;
+	}
+</style>
+<script>
+	//e={"stopPropagation":function(){}}
+	//e={"cancelBubble":false}
+	function f1(e) {
+		alert("button");
+		//停止冒泡
+		if(e.stopPropagation) {
+			e.stopPropagation();
+		} else {
+			e.cancelBubble = true;
+		}
+	}
+</script>
+</head>
+<body>
+	<div onclick="alert('div');">
+		<p onclick="alert('p');">
+			<input type="button" value="按钮"
+				onclick="f1(event);"/>
+		</p>
+	</div>
+</body>
+</html>
+
+
+
+

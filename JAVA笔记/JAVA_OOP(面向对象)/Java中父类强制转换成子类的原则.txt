@@ -1,0 +1,13 @@
+Java中父类强制转换成子类的原则：父类型的引用指向的是哪个子类的实例，就能转换成哪个子类的引用。
+
+例：
+
+public class Test {
+
+ public static void main(String[] args) {
+  Person person = new Boy();
+  Boy boy = (Boy) person;
+  boy.eat();
+ }
+
+}

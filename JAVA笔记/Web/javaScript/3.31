@@ -1,0 +1,3 @@
+<a href="javascript:document.forms[0].submit();"><img src="images/login_btn.png" /></a>
+
+javascript:告诉浏览器后面是js语句

@@ -1,0 +1,41 @@
+对象类型转换
+
+1、向上转型（子类对象转换父类对象）：
+Class A{
+	int aa;
+	void aaa(){
+	}
+}
+
+Class B extends A{
+	int bb;
+	void bbb(){
+	}
+}
+
+B b = new B();
+main(b)
+
+void main(A a){
+
+}
+
+2、向下转型（父类对象转换子类对象）：
+Class A{
+	int aa;
+	void aaa(){
+	}
+}
+
+Class B extends A{
+	int bb;
+	void bbb(){
+	}
+}
+
+B b = new B();
+main(b)
+
+void main(A a){
+
+}

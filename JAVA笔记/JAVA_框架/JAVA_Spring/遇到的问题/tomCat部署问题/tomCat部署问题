@@ -1,0 +1,108 @@
+四月 09, 2017 10:22:31 下午 org.apache.tomcat.util.digester.SetPropertiesRule begin
+警告: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.jee.server:SpringAJAX' did not find a matching property.
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Server version:        Apache Tomcat/7.0.67
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Server built:          Dec 7 2015 13:07:11 UTC
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Server number:         7.0.67.0
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: OS Name:               Linux
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: OS Version:            2.6.32-431.el6.i686
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Architecture:          i386
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Java Home:             /home/soft01/tts9/jdk1.7.0_80/jre
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: JVM Version:           1.7.0_80-b15
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: JVM Vendor:            Oracle Corporation
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: CATALINA_BASE:         /home/soft01/tts9/apache-tomcat-7.0.67
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: CATALINA_HOME:         /home/soft01/tts9/apache-tomcat-7.0.67
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Command line argument: -Dcatalina.base=/home/soft01/tts9/apache-tomcat-7.0.67
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Command line argument: -Dcatalina.home=/home/soft01/tts9/apache-tomcat-7.0.67
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Command line argument: -Dwtp.deploy=/home/soft01/tts9/apache-tomcat-7.0.67/wtpwebapps
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Command line argument: -Djava.endorsed.dirs=/home/soft01/tts9/apache-tomcat-7.0.67/endorsed
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.VersionLoggerListener log
+信息: Command line argument: -Dfile.encoding=UTF-8
+四月 09, 2017 10:22:31 下午 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+信息: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /home/soft01/tts9/jdk1.7.0_80/jre/lib/i386/server:/home/soft01/tts9/jdk1.7.0_80/jre/lib/i386:/home/soft01/tts9/jdk1.7.0_80/jre/../lib/i386:/home/soft01/tts9/jdk1.7.0_80/jre/lib/i386/client:/home/soft01/tts9/jdk1.7.0_80/jre/lib/i386::/usr/java/packages/lib/i386:/lib:/usr/lib
+四月 09, 2017 10:22:31 下午 org.apache.coyote.AbstractProtocol init
+信息: Initializing ProtocolHandler ["http-bio-8080"]
+四月 09, 2017 10:22:31 下午 org.apache.coyote.AbstractProtocol init
+信息: Initializing ProtocolHandler ["ajp-bio-8009"]
+四月 09, 2017 10:22:31 下午 org.apache.catalina.startup.Catalina load
+信息: Initialization processed in 629 ms
+四月 09, 2017 10:22:31 下午 org.apache.catalina.core.StandardService startInternal
+信息: Starting service Catalina
+四月 09, 2017 10:22:31 下午 org.apache.catalina.core.StandardEngine startInternal
+信息: Starting Servlet Engine: Apache Tomcat/7.0.67
+四月 09, 2017 10:22:32 下午 org.apache.catalina.startup.TldConfig execute
+信息: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+四月 09, 2017 10:22:32 下午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+四月 09, 2017 10:22:32 下午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'DispatcherServlet'
+四月 09, 2017 10:22:32 下午 org.springframework.web.servlet.DispatcherServlet initServletBean
+信息: FrameworkServlet 'DispatcherServlet': initialization started
+四月 09, 2017 10:22:32 下午 org.springframework.web.context.support.XmlWebApplicationContext prepareRefresh
+信息: Refreshing WebApplicationContext for namespace 'DispatcherServlet-servlet': startup date [Sun Apr 09 22:22:32 EDT 2017]; root of context hierarchy
+四月 09, 2017 10:22:32 下午 org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+信息: Loading XML bean definitions from file [/home/soft01/tts9/apache-tomcat-7.0.67/wtpwebapps/SpringAJAX/WEB-INF/classes/conf/spring-mvc.xml]
+四月 09, 2017 10:22:33 下午 org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+信息: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1df228e: defining beans [demoController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,mvcContentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+四月 09, 2017 10:22:33 下午 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping registerHandlerMethod
+信息: Mapped "{[/demo/hello],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public cn.tedu.web.DemoBean cn.tedu.web.DemoController.hello()
+四月 09, 2017 10:22:33 下午 org.springframework.web.servlet.DispatcherServlet initServletBean
+信息: FrameworkServlet 'DispatcherServlet': initialization completed in 998 ms
+四月 09, 2017 10:22:33 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/ROOT
+四月 09, 2017 10:22:33 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deployment of web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/ROOT has finished in 31 ms
+四月 09, 2017 10:22:33 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/examples
+四月 09, 2017 10:22:34 下午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+四月 09, 2017 10:22:34 下午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+四月 09, 2017 10:22:34 下午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@c9dd49')
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deployment of web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/examples has finished in 233 ms
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/manager
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deployment of web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/manager has finished in 63 ms
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/docs
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deployment of web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/docs has finished in 32 ms
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deploying web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/host-manager
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.HostConfig deployDirectory
+信息: Deployment of web application directory /home/soft01/tts9/apache-tomcat-7.0.67/webapps/host-manager has finished in 34 ms
+四月 09, 2017 10:22:34 下午 org.apache.coyote.AbstractProtocol start
+信息: Starting ProtocolHandler ["http-bio-8080"]
+四月 09, 2017 10:22:34 下午 org.apache.coyote.AbstractProtocol start
+信息: Starting ProtocolHandler ["ajp-bio-8009"]
+四月 09, 2017 10:22:34 下午 org.apache.catalina.startup.Catalina start
+信息: Server startup in 2743 ms
+
+
+
+
+
+---------------------------------
+tomCat部署时如果返回类似的此信息表示部署成功   Mapped "{[/demo/hello]}"  此信息是自己设置的URL地址
+反之
+失败：1、查看引用相关的配置文件是否配置有误  2、如果没有报错的话清理以下 projevt->Clean  TomCatServer->Clean 
+
+四月 09, 2017 10:22:33 下午 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping registerHandlerMethod
+信息: Mapped "{[/demo/hello],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public cn.tedu.web.DemoBean

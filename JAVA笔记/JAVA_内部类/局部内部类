@@ -1,0 +1,30 @@
+package oo.day04;
+
+interface D{}
+class A{
+	public D initB(final String s){
+		final String aa = "aa";
+		class B implements D{
+			B(){
+				System.out.println(aa);
+			}
+		}
+		return new B();
+	}
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+      A a = new A();
+		D d = a.initB("Helloword");
+	}
+}
+/*
+ * 局部内部类
+ * initB（final String s） 方法的参数设置为final类型，
+ * 
+ * 如果需要在方法体(局部内部类)中使用局部变量，该局部变量需要设置为final类型，
+ * 
+ * 在方法中定义的内部类只能访问方法中final类型的局部变量，
+ * 
+ * 这是因为在方法中定义的局部变量相当于一个常量，它的生命周期超出方法运行生命周期
+ * */

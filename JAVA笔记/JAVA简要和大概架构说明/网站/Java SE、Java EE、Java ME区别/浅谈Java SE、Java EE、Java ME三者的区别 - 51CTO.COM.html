@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://developer.51cto.com/art/200906/130215.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<title>浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM</title>
+<meta name="description" content="本文把JAVA SE、JAVA EE、JAVA ME拿来做下区别，同时也分享一下作者的一些成果。目前的Java平台根据软件开发人员、服务提供商和设备生产商可以针对特定的市场可以分为三个版本JAVA SE、JAVA EE、JAVA ME。">
+<meta name="keywords" content="Java SE,Java EE,Java ME">
+<!--<base target="_blank">--><base href="." target="_blank">
+<link href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/grid.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/art_master_top.css">
+<link href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/css3.css" rel="stylesheet" type="text/css">
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/hm.js.下载"></script><script language="javaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/base_art.js.下载"></script>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/index_1_down.js.下载"></script>
+<style type="text/css">
+.bds_tools a{ padding:0; margin:0;}
+</style>
+<style type="text/css"></style><link href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/logger.js.下载"></script><link rel="stylesheet" type="text/css" href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/layout_51cto.css"></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe frameborder="0" style="display: none;" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/saved_resource.html"></iframe><div id="bdshare_s" style="display: block;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/saved_resource(1).html"></iframe><div id="bdshare_l" style="display: none;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_renren rrw">人人网</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_douban db">豆瓣网</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_thx thx">和讯微博</a></li><li><a href="http://developer.51cto.com/art/200906/130215.htm#" class="bds_more">更多...</a></li></ul><p><a href="http://developer.51cto.com/art/200906/130215.htm#" class="goWebsite">百度分享</a></p></div></div></div>
+<!-- 导航 开始-->
+<script id="allmobilize" charset="utf-8" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/allmobilize.min.js.下载"></script><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://developer.51cto.com/art/200906/130215.htm#">
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com/" target="_blank">51CTO旗下网站<img align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/top_shequ.gif"><a href="http://wot.51cto.com/" target="_blank" style="color:#CC0000">WOT</a><a href="http://edu.51cto.com/" target="_blank" style="color:#CC0000">学院</a><a href="http://down.51cto.com/" target="_blank">下载</a><a href="http://bbs.51cto.com/" target="_blank">论坛</a><a href="http://blog.51cto.com/" target="_blank">博客</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index?reback=http://developer.51cto.com/art/200906/130215.htm" target="_self">登录</a><a href="http://home.51cto.com/user/register?reback=http://developer.51cto.com/art/200906/130215.htm" target="_self">注册</a></div></span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com/" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com/" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com/" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com/" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com/" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com/" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com/" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com/" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com/" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://cio.51cto.com/" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank" title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank" title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+</ul>
+</div>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/jquery-1.8.3.min.js.下载"></script>
+<script>
+$(function(){
+	$(".bann").height(265);	 
+	$(".bann").css("background-color","white");
+	var s=window.location.toString();
+	var s1=s.substr(7,s.length);
+	var s2=s1.indexOf(".");
+	s=s.substr(7,s2);
+	if (s == 'cloud') {
+	     $(".hot").css("top","1200px");
+		$(".g_13").find(".focus").css("height","1390px");
+	}else{
+		$(".hot").css("top","450px");
+
+	}
+	//$(".fixfloat").css("height","640px");
+	$(".g_13").find(".focus").css("height","640px");
+	var url = window.location.host;
+	if (url.indexOf('developer.51cto.com/col')) {
+		$('.banner_r').css('position', 'relative');
+		$('.banner_r').children().append('<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div>');
+	}
+});
+var edunum=2;
+$(function(){
+	$("#change").click(function(){
+		$("#edu > ul").css("display","none");
+		var eduid='edu'+edunum;
+		$("#" + eduid).css("display","block");	
+		if(edunum<4){
+			edunum++;	
+		}else{
+			edunum=1;	
+		}							
+	});  
+});
+</script>
+
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/head_art_more1.js.下载"></script><div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()" style="z-index:9999;position: absolute;">
+<ul>
+<li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://gaozhao.51cto.com/" target="_blank" style="color:red;">招聘</a></li>
+<li><a href="http://wot.51cto.com/" target="_blank">WOT</a></li>
+<li><a href="http://edu.51cto.com/" target="_blank">学院</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+<li><a href="http://selftest.51cto.com/" target="_blank">自测</a></li>
+<li><a href="http://doctor.51cto.com/" target="_blank">门诊</a></li>
+<li><a href="http://blog.51cto.com/newsletter/" target="_blank">周刊</a></li>
+<li><a href="http://book.51cto.com/" target="_blank">读书</a></li>
+<li><a href="http://t.51cto.com/" target="_blank" style="color:red;">题库</a></li>
+</ul>
+</div>
+
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"><script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/developer.html" align="center"></iframe></div>
+	<div id="list4" class="fr" style="position: relative;">
+		<ul>
+			<li id="wordlinkad1"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink1.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs.php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=4ecb7fb752__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_4ecb7fb752" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad2"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink2.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3546__zoneid=631__cb=090d661455__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-44.html%3Fxiaoshou" target="_blank"><font color="red">助你4个月成为大数据工程师</font></a><div id="beacon_090d661455" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad3"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink3.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg1.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=467f260250__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F111%3Fxiaoshou" target="_blank"><font color="red">Windows工程师成长路线图</font></a><div id="beacon_467f260250" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad4"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink4.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=df75fcf16a__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_df75fcf16a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+		<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div></ul>
+	</div>
+<br class="dle">
+</div>
+
+<div class="g_39 menu">
+<div class="subNav_logo"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/kaifa_logo.gif"></div>
+<div class="subNav_l"><a href="http://developer.51cto.com/">首页</a> | <a href="http://developer.51cto.com/java/">Java</a> | <a href="http://developer.51cto.com/net/">.NET</a> | <a href="http://developer.51cto.com/web/">Web</a> | <a href="http://developer.51cto.com/col/585/">语言工具</a> | <a href="http://developer.51cto.com/col/1312/">测试</a> | <a href="http://developer.51cto.com/col/583/" target="_blank">移动</a> | <a href="http://developer.51cto.com/col/1308/">架构</a> | <a href="http://developer.51cto.com/col/586/">项目管理</a> | <a href="http://developer.51cto.com/col/577/">大数据</a> | <a href="http://publish.51cto.com/list/460/">全部文章</a></div>
+  
+<div class="search fr">
+<dl>
+<form name="searchform" action="http://www.51cto.com/php/search.php" target="_blank" method="post" style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, &#39;请输入关键字&#39;);" onblur="doempty(this, &#39;请输入关键字&#39;);"></dt>
+<dd class="fl"><input type="image" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/search.gif"></dd></form>
+</dl>
+</div>
+<br class="dle">
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href="http://developer.51cto.com/">开发</a> &gt; <a href="http://developer.51cto.com/java/">Java</a> &gt; <a href="http://developer.51cto.com/col/1005/">Java基础</a> &gt;  <b>浅谈Java SE、Java EE、Java ME三者的区别</b> </p>
+<h1>浅谈Java SE、Java EE、Java ME三者的区别</h1>
+<div class="msg">
+<div>2009-06-18 15:27    中国IT实验室  字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class="artHd" id="books" style="padding:5px 25px;display:none;"><script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/getBookData.php"></script></div>
+<div class="fav"><a href="javascript:favorBox(&#39;open&#39;);" title="一键收藏，随时查看，分享好友！" target="_self"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0"></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">本文把JAVA SE、JAVA EE、JAVA ME拿来做下区别，同时也分享一下作者的一些成果。目前的Java平台根据软件开发人员、服务提供商和设备生产商可以针对特定的市场可以分为三个版本JAVA SE、JAVA EE、JAVA ME。</p>
+<p class="ad">AD：<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/keywords_ad_new.js.下载"></script><a href="http://mobile.51cto.com/mobile/mdsa12/" target="_blank" style="text-decoration: none;color:red">51CTO 网+ 第十二期沙龙：大话数据之美_如何用数据驱动用户体验</a>
+</p>
+</div>
+<!--  <div style="border-left:5px solid #4065aa;height:25px; line-height:25px;margin-top:10px;background:#eef7ff;padding-left:10px;">
+<a style="text-decoration: none;color:red" target="_blank" href="http://server.51cto.com/exp/OpenPower/">IBM POWER8通过一年充分融入了“开放”基因，现在有哪些成效？快来注册观看直播，一起拥抱开源的力量。</a>
+</div> -->
+
+
+
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle">
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p></p><p>现在一个个来分析</p>
+<p>1. Java SE（Java Platform，Standard Edition）。Java SE 以前称为 J2SE。它允许开发和部署在桌面、服务器、嵌入式环境和实时环境中使用的 Java 应用程序。Java SE 包含了支持 Java Web 服务开发的类，并为 Java Platform，Enterprise Edition（Java EE）提供基础。</p>
+<p>2. Java EE（Java Platform，Enterprise Edition）。这个版本以前称为 J2EE。企业版本帮助开发和部署可移植、健壮、可伸缩且安全的服务器端 Java 应用程序。Java EE 是在 Java SE 的基础上构建的，它提供 Web 服务、组件模型、管理和通信 API，可以用来实现企业级的面向服务体系结构（service-oriented architecture，SOA）和 Web 2.0 应用程序。</p>
+<p>3. Java ME（Java Platform，Micro Edition）。这个版本以前称为 J2ME。Java ME 为在移动设备和嵌入式设备（比如手机、PDA、电视机顶盒和打印机）上运行的应用程序提供一个健壮且灵活的环境。Java ME 包括灵活的用户界面、健壮的安全模型、许多内置的网络协议以及对可以动态下载的连网和离线应用程序的丰富支持。基于 Java ME 规范的应用程序只需编写一次，就可以用于许多设备，而且可以利用每个设备的本机功能。</p>
+<p>说得更简单点</p>
+<p>Java SE 是做电脑上运行的软件。</p>
+<p>Java EE 是用来做网站的-（我们常见的JSP技术）</p>
+<p>Java ME 是做手机软件的。</p>
+<p>【编辑推荐】</p>
+<ol>
+<li><a href="http://developer.51cto.com/art/200611/35314.htm">Java EE 5能让Java“平民化”吗？</a></li>
+<li><a href="http://developer.51cto.com/art/200704/46202.htm">Java EE 6草案提交 新特性一览</a></li>
+<li><a href="http://developer.51cto.com/art/200805/72391.htm">SpringSource新应用服务器发布 摒弃Java EE</a></li>
+<li><a href="http://developer.51cto.com/art/200801/64695.htm">Java EE 6的可扩展性、使用偏好以及修剪</a></li>
+<li><a href="http://developer.51cto.com/art/200805/73463.htm">甲骨文规划设计Eclipse Java EE插件套件</a></li></ol>
+<div align="right">【责任编辑：<a class="ln" href="mailto:pengfan@51cto.com">彭凡</a> TEL：（010）68476606】</div><br> 
+<p class="blank10"></p> 
+ 
+ 
+
+
+<div class="f12"> <span class="fl">原文：<a href="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM.html" class="blue"><b>浅谈Java SE、Java EE、Java ME三者的区别</b></a></span> <span class="fr"><a href="http://developer.51cto.com/">返回开发首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<hr style="border-top: #555555 1px solid; height: 1px; border-right: medium none; border-bottom: medium none; border-left: medium none">
+<div style="width: 600px; background: #ffffff"><img width="600" height="140" alt="" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1ZOwrbDjDqxAABJOr5GFjU021.png" border="0"></div>
+<hr style="border-top: #555555 1px solid; height: 1px; border-right: medium none; border-bottom: medium none; border-left: medium none">
+<iframe width="600" height="239" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/bulkfollow.html" frameborder="0" scrolling="no"></iframe>
+<div class="tips">
+<div style="float:left;">
+<span style="float:left; margin-top:4px;">分享到：</span>
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-right:5px; float:left;">
+        <a class="bds_qzone" title="分享到QQ空间" href="http://developer.51cto.com/art/200906/130215.htm#"></a>
+        <a class="bds_tsina" title="分享到新浪微博" href="http://developer.51cto.com/art/200906/130215.htm#"></a>
+        <a class="bds_tqq" title="分享到腾讯微博" href="http://developer.51cto.com/art/200906/130215.htm#"></a>
+        <a class="bds_renren" title="分享到人人网" href="http://developer.51cto.com/art/200906/130215.htm#"></a>
+        <a class="bds_t163" title="分享到网易微博" href="http://developer.51cto.com/art/200906/130215.htm#"></a>
+        <span class="bds_more"></span>
+		<a class="shareCount" href="http://developer.51cto.com/art/200906/130215.htm#" title="累计分享17次">17</a>
+
+</div>
+<!--<div class="fl"> 
+    </div>
+--><script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=585532" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+
+
+
+</div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<p class="blank10"></p>
+<div class="comment center">
+	<div class="inner center" id="cmscmt_iframe"><div class="title"><span class="word">内容点评</span><p class="con">已有<span class="total" id="cmt_num">4</span>条评论,<span class="total" id="zan_num">1</span>次赞</p><p style="float:right; margin-top: 17px;">还可以输入<span id="uyan_tts">500</span>字</p></div><div class="frame center"><textarea value="" id="comment" onblur="window.CMSCMT.shoIntro(this);" onfocus="window.CMSCMT.hidIntro(this);" onkeydown="window.CMSCMT.checkTxt(this, 140);" onkeyup="window.CMSCMT.checkTxt(this, 140);" style="color:#7c7c7c; font-family:Microsoft Yahei;">请输入你的评论</textarea></div><div class="user"><a id="uyan_cmt_btn" onclick="window.CMSCMT.addCmt(this);" class="submit" data-track="submit">提交</a><dl><dt class="icon"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/duface.png" alt=""></dt><dd class="btn"><span>您还没有登录！</span><span class="note">请先</span>&nbsp;<a href="http://home.51cto.com/index.php?s=/Index/index/reback/http%253A%252F%252Fdeveloper.51cto.com%252Fart%252F200906%252F130215.htm" style="color:red;">登录</a>&nbsp;<span class="note">或</span>&nbsp;<a href="http://home.51cto.com/user/register?reback=http%253A%252F%252Fdeveloper.51cto.com%252Fart%252F200906%252F130215.htm" style="color:red;">注册</a>&nbsp;</dd></dl></div><ul class="list center first" id="uyan_cmt_list"><li class="element" id="cmt_7090"><dl class=""><dt class="head"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11820939.html"><img onerror="CMSCMT.noUface(this, &#39;/static/images/duface.png&#39;);" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/avatar.php" onload="CMSCMT.loadUface(this, &#39;http://ucenter.51cto.com/avatar.php?uid=11820939&#39;);" style="border: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); border-radius: 4px; width: 50px; height: 50px;"></a></dt><dd><div class="name"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11820939.html" id="cmt_uname_7090">snk苗苗</a></div><p class="con">javaee包括se吗</p><div class="tool line one"><div class="date">发表于:2016-07-25 10:38:55</div><div class="btn"><div class="shareBox"><div class="jiathis_style_24x24"><a class="jiathis_button_tsina" onclick="CMSCMT.cmtShare(&#39;sina&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1SsonugeKo0AAAGlF6KMqM876.png" alt=""></a><a class="jiathis_button_qzone" onclick="CMSCMT.cmtShare(&#39;qzone&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuxdEMvAAAF92NU77A112.png" alt=""></a><a class="jiathis_button_tqq" onclick="CMSCMT.cmtShare(&#39;tqq&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuDEp5ZAAAGB9ePTKU216.png" alt=""></a></div></div><a class="reply self" style="cursor: pointer;" onclick="CMSCMT.addRpyBox(7090,7090,&#39;one&#39;);" id="cmt_rpy_7090">回&nbsp;&nbsp;复 </a><a class="support self" style="cursor: pointer; " onclick="CMSCMT.cmtUD(7090);">顶(<span id="zan_7090">1</span>)</a><a class="share self">分享 </a></div></div><ul class="list center second" id="cmt_reply_list_7090"></ul></dd></dl></li><li><div id="uyan_more_rpy_7090"></div></li><li class="element" id="cmt_7089"><dl class=""><dt class="head"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11820939.html"><img onerror="CMSCMT.noUface(this, &#39;/static/images/duface.png&#39;);" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/avatar.php" onload="CMSCMT.loadUface(this, &#39;http://ucenter.51cto.com/avatar.php?uid=11820939&#39;);" style="border: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); border-radius: 4px; width: 50px; height: 50px;"></a></dt><dd><div class="name"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11820939.html" id="cmt_uname_7089">snk苗苗</a></div><p class="con">javaee包括se吗</p><div class="tool line one"><div class="date">发表于:2016-07-25 10:38:55</div><div class="btn"><div class="shareBox"><div class="jiathis_style_24x24"><a class="jiathis_button_tsina" onclick="CMSCMT.cmtShare(&#39;sina&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1SsonugeKo0AAAGlF6KMqM876.png" alt=""></a><a class="jiathis_button_qzone" onclick="CMSCMT.cmtShare(&#39;qzone&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuxdEMvAAAF92NU77A112.png" alt=""></a><a class="jiathis_button_tqq" onclick="CMSCMT.cmtShare(&#39;tqq&#39;,&#39;javaee包括se吗&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuDEp5ZAAAGB9ePTKU216.png" alt=""></a></div></div><a class="reply self" style="cursor: pointer;" onclick="CMSCMT.addRpyBox(7089,7089,&#39;one&#39;);" id="cmt_rpy_7089">回&nbsp;&nbsp;复 </a><a class="support self" style="cursor: pointer; " onclick="CMSCMT.cmtUD(7089);">顶(<span id="zan_7089">0</span>)</a><a class="share self">分享 </a></div></div><ul class="list center second" id="cmt_reply_list_7089"></ul></dd></dl></li><li><div id="uyan_more_rpy_7089"></div></li><li class="element" id="cmt_6984"><dl class=""><dt class="head"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/6414380.html"><img onerror="CMSCMT.noUface(this, &#39;/static/images/duface.png&#39;);" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/avatar(1).php" onload="CMSCMT.loadUface(this, &#39;http://ucenter.51cto.com/avatar.php?uid=6414380&#39;);" style="border: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); border-radius: 4px; width: 50px; height: 50px;"></a></dt><dd><div class="name"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/6414380.html" id="cmt_uname_6984">sunsunkid</a></div><p class="con">能不能一上来就说简单点，哈哈</p><div class="tool line one"><div class="date">发表于:2016-07-17 12:25:39</div><div class="btn"><div class="shareBox"><div class="jiathis_style_24x24"><a class="jiathis_button_tsina" onclick="CMSCMT.cmtShare(&#39;sina&#39;,&#39;能不能一上来就说简单点，哈哈&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1SsonugeKo0AAAGlF6KMqM876.png" alt=""></a><a class="jiathis_button_qzone" onclick="CMSCMT.cmtShare(&#39;qzone&#39;,&#39;能不能一上来就说简单点，哈哈&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuxdEMvAAAF92NU77A112.png" alt=""></a><a class="jiathis_button_tqq" onclick="CMSCMT.cmtShare(&#39;tqq&#39;,&#39;能不能一上来就说简单点，哈哈&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuDEp5ZAAAGB9ePTKU216.png" alt=""></a></div></div><a class="reply self" style="cursor: pointer;" onclick="CMSCMT.addRpyBox(6984,6984,&#39;one&#39;);" id="cmt_rpy_6984">回&nbsp;&nbsp;复 </a><a class="support self" style="cursor: pointer; " onclick="CMSCMT.cmtUD(6984);">顶(<span id="zan_6984">0</span>)</a><a class="share self">分享 </a></div></div><ul class="list center second" id="cmt_reply_list_6984"></ul></dd></dl></li><li><div id="uyan_more_rpy_6984"></div></li><li class="element" id="cmt_5205"><dl class=""><dt class="head"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11206883.html"><img onerror="CMSCMT.noUface(this, &#39;/static/images/duface.png&#39;);" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/avatar(2).php" onload="CMSCMT.loadUface(this, &#39;http://ucenter.51cto.com/avatar.php?uid=11206883&#39;);" style="border: 0 none; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); border-radius: 4px; width: 50px; height: 50px;"></a></dt><dd><div class="name"><a target="_blank" href="http://home.51cto.com/index.php?s=/space/11206883.html" id="cmt_uname_5205">程序何</a></div><p class="con">很不错，左后三个</p><div class="tool line one"><div class="date">发表于:2016-03-14 17:41:21</div><div class="btn"><div class="shareBox"><div class="jiathis_style_24x24"><a class="jiathis_button_tsina" onclick="CMSCMT.cmtShare(&#39;sina&#39;,&#39;很不错，左后三个&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1SsonugeKo0AAAGlF6KMqM876.png" alt=""></a><a class="jiathis_button_qzone" onclick="CMSCMT.cmtShare(&#39;qzone&#39;,&#39;很不错，左后三个&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuxdEMvAAAF92NU77A112.png" alt=""></a><a class="jiathis_button_tqq" onclick="CMSCMT.cmtShare(&#39;tqq&#39;,&#39;很不错，左后三个&#39;);"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1SsobuDEp5ZAAAGB9ePTKU216.png" alt=""></a></div></div><a class="reply self" style="cursor: pointer;" onclick="CMSCMT.addRpyBox(5205,5205,&#39;one&#39;);" id="cmt_rpy_5205">回&nbsp;&nbsp;复 </a><a class="support self" style="cursor: pointer; " onclick="CMSCMT.cmtUD(5205);">顶(<span id="zan_5205">0</span>)</a><a class="share self">分享 </a></div></div><ul class="list center second" id="cmt_reply_list_5205"></ul></dd></dl></li><li><div id="uyan_more_rpy_5205"></div></li></ul><div class="more line" id="uyan_more_cmt"></div></div>
+</div>
+<script type="text/javascript" id="UYScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/iframe_cmt.js.下载" async=""></script>
+
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg pl15">关于<a href="http://www.51cto.com/php/search.php?keyword=Java%20SE" target="_blank" class="underline">Java SE</a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=Java%20EE" target="_blank" class="underline">Java EE</a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=Java%20ME" target="_blank" class="underline">Java ME</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://developer.51cto.com/art/201509/492577.htm" title="一个牛人给java初学者的建议">一个牛人给java初学者的建议</a></li><li><a href="http://developer.51cto.com/art/201509/492091.htm" title="Java 8 动态代理的新技巧：为什么使用动态代理？">Java 8 动态代理的新技巧：为什么使用动态</a></li><li><a href="http://developer.51cto.com/art/201508/488264.htm" title="Java 9 新功能解读之 HTTP2 和 REPL">Java 9 新功能解读之 HTTP2 和 REPL</a></li><li><a href="http://developer.51cto.com/art/201505/477005.htm" title="Java二十周年：辉煌、低谷与未来">Java二十周年：辉煌、低谷与未来</a></li><li><a href="http://developer.51cto.com/art/201505/476230.htm" title="为什么要学习Java EE">为什么要学习Java EE</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://book.51cto.com/art/201502/464912.htm" title="Java EE 7 &amp; HTML5应用开发"><b>Java EE 7 &amp; HTML5应用开发</b></a></div>
+<a href="http://book.51cto.com/art/201502/464912.htm" title="Java EE 7 &amp; HTML5应用开发"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1TRomTTX8AKAAAnsFe2-zs087.gif" alt="Java EE 7 &amp; HTML5应用开发" width="100" height="80" border="0"></a>
+<p class="c666">在这本精品书籍的指引下创建和发布同时适用于桌面和移动设备的企<a class="blue" href="http://book.51cto.com/art/201502/464912.htm" title="Java EE 7 &amp; HTML5应用开发">[详细]</a></p>
+</div>
+</div>
+<!--reltag end-->
+</div>
+<p class="blank10"></p>
+<div class="bor" style="width:633px;height:90px;">
+<script type="text/javascript">
+    /*633*90 创建于 2015-11-05文章页广告（评论下方）*/
+    var cpro_id = "u2386935";
+</script>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/c.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2386935_0"><iframe id="iframeu2386935_0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ocym.html" width="633" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+</div>
+<!--box end-->
+<p class="blank10"></p>
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="http://developer.51cto.com/click/1005" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://developer.51cto.com/art/201510/495254.htm" title="深受Java程序员欢迎的10款Java IDE">深受Java程序员欢迎的10款Java IDE</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201510/495439.htm" title="Java 重写方法与初始化的隐患">Java 重写方法与初始化的隐患</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201504/473474.htm" title="100多道经典的JAVA面试题及答案解析">100多道经典的JAVA面试题及答案解析</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201511/496263.htm" title="35 个 Java 代码性能优化总结">35 个 Java 代码性能优化总结</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201511/496570.htm" title="如何使用Java、Servlet创建二维码">如何使用Java、Servlet创建二维码</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="http://developer.51cto.com/col/1005" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://developer.51cto.com/art/200906/130148.htm" title="Java虚拟机内部构成浅析">Java虚拟机内部构成浅析</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/200906/130139.htm" title="浅谈Java线程的生命周期">浅谈Java线程的生命周期</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/200906/130130.htm" title="浅谈Java编程语言中创建和使用日期">浅谈Java编程语言中创建和使用日期</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/200906/130129.htm" title="浅谈如何提升JavaScript中DOM的运行速度">浅谈如何提升JavaScript中DOM的运行速度</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/200906/130128.htm" title="对Javascript indexOf函数使用的简单说明">对Javascript indexOf函数使用的简单说明</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://developer.51cto.com/">开发</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">Java</span>
+<div><a href="http://developer.51cto.com/java/">Java开发</a>|<a href="http://developer.51cto.com/col/1005/">Java基础</a>|<a href="http://developer.51cto.com/col/1014/">Java EE开发</a>|<a href="http://developer.51cto.com/col/1004/">Java框架</a>|<a href="http://developer.51cto.com/col/1007/">设计模式</a></div>
+</li>
+<li><span class="tit">WEB开发</span>
+<div><a href="http://developer.51cto.com/col/1441/">PHP开发</a>|<a href="http://developer.51cto.com/col/1455/">Python</a>|<a href="http://developer.51cto.com/col/1552/">Ruby</a>|<a href="http://developer.51cto.com/col/1552/">JSP</a>|<a href="http://developer.51cto.com/art/200907/133407.htm">HTML 5</a>|<a href="http://developer.51cto.com/col/1450/">DIV+CSS</a></div>
+</li>
+<li class="last"><span class="tit">综合</span>
+<div><a href="http://developer.51cto.com/net/">.NET开发</a>|<a href="http://developer.51cto.com/embed/">嵌入式开发</a>|<a href="http://developer.51cto.com/col/586/">项目管理</a>|<a href="http://developer.51cto.com/col/1308/">架构设计</a></div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<p class="blank10"></p>
+<div class="leftbotcon">
+<div class="bor jdlist">
+<div class="titbg">
+<h3 class="t2">热点推荐</h3></div>
+<ul>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/153546162.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</a></div></li>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/133620622.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</a></div></li>
+<li><a href="http://developer.51cto.com/art/200907/133407.htm"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/134217922.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</a></div></li>
+<li><a href="http://developer.51cto.com/art/201104/257581.htm"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/123123954.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</a></div></li>
+<li><a href="http://os.51cto.com/art/200706/49181.htm"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/195816929.jpg"></a> 
+<div class="name"><a href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</a></div></li></ul></div>
+<p class="blank10"></p>
+<div class="bor hotTag"><strong>热门标签：</strong> <a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/">移动开发</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://cloud.51cto.com/">云计算</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/mobile/objc/">objective-c</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://developer.51cto.com/art/200907/133407.htm">html5</a> </div></div>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat" style="height: 640px;"> 
+ <img width="298" style="border: 1px solid #CCCCCC; margin:5px 0px 5px;" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/weixin.jpg"><div class="hot" style="top: 450px;">
+<ul>
+<li class="tit"><em>原创</em> <a href="http://zhuanlan.51cto.com/art/201701/528372.htm">基于React与Vue后，移动开源项目Weex如何定义未来</a> </li>
+<li class="con"><dl><dt><a href="http://zhuanlan.51cto.com/art/201701/528372.htm"><img border="0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM.html"></a></dt>
+<dd> </dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://news.51cto.com/art/201701/528144.htm">Go 1.8再升级，效率性与便捷性成关注重点</a></li><li><a href="http://developer.51cto.com/art/201701/527667.htm">2017年九大DevOps发展趋势预测</a></li></ol></div>
+<p>
+<script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad.js(1).下载" type="text/javascript"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad(1).php"></script><iframe width="300" height="260" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/4.html" align="left"></iframe>
+</p>
+</div>
+<div class="bor vlist" style="width:305px;height:250px;padding-left:5px;">
+<script type="text/javascript">
+    /*300*250 创建于 2015-12-16文章页右侧视频课程上方*/
+    var cpro_id = "u2452179";
+</script>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/c.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2452179_0"><iframe id="iframeu2452179_0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ocym(1).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+</div>
+<div class="bor vlist" id="edu">
+	<div class="titbg">
+    <h3 class="fl t1"><a href="http://edu.51cto.com/" target="_blank">视频课程</a></h3>
+    <a class="tmore" id="change" style="cursor:pointer">换一换</a>
+    </div>
+    
+    	<ul class="plist01" id="edu1"><li><a class="ico" href="http://edu.51cto.com/course/course_id-5258.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5258.html" target="_blank"><img title="手机APP测试从零开始视频教程（专项测试篇）【小强出品】" alt="手机APP测试从零开始视频教程（专项测试篇）【小强出品】" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/a1e0c28324826f1770209146b3b8ae22d0d1af.jpg" height="80" width="100"></a><h5><a title="手机APP测试从零开始视频教程（专项测试篇）【小强出品】" href="http://edu.51cto.com/course/course_id-5258.html" target="_blank">手机APP测试从零开始视频教程（专项测试篇）</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-4626073.html" target="_blank">小强（赵强）</a></p><p> 38人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-5257.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5257.html" target="_blank"><img title="2016最新Linux运维必会22道Shell编程面试题精彩讲解视频课程" alt="2016最新Linux运维必会22道Shell编程面试题精彩讲解视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/140de71089aee000e50428d871a81d03474e41.png" height="80" width="100"></a><h5><a title="2016最新Linux运维必会22道Shell编程面试题精彩讲解视频课程" href="http://edu.51cto.com/course/course_id-5257.html" target="_blank">2016最新Linux运维必会22道Shell编程面试题精</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-2561410.html" target="_blank">老男孩</a></p><p> 1472人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-5254.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5254.html" target="_blank"><img title="爱享读书之《金字塔原理》解决问题逻辑视频课程" alt="爱享读书之《金字塔原理》解决问题逻辑视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/82b6ac8431e605bfcca208cd392afd327978f6.jpg" height="80" width="100"></a><h5><a title="爱享读书之《金字塔原理》解决问题逻辑视频课程" href="http://edu.51cto.com/course/course_id-5254.html" target="_blank">爱享读书之《金字塔原理》解决问题逻辑视频课</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-10822498.html" target="_blank">何勇</a></p><p> 19人学习过</p></div></li></ul><ul class="plist01" id="edu2" style="display:none"><li><a class="ico" href="http://edu.51cto.com/course/course_id-5252.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5252.html" target="_blank"><img title="vSphere基础概念与构建视频课程" alt="vSphere基础概念与构建视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/a33323b78f69a295faf355b8c85c1162c3874a.jpg" height="80" width="100"></a><h5><a title="vSphere基础概念与构建视频课程" href="http://edu.51cto.com/course/course_id-5252.html" target="_blank">vSphere基础概念与构建视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-11088707.html" target="_blank">吴秋林</a></p><p> 18人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-5247.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5247.html" target="_blank"><img title="Android App 开发环境搭建和配置视频课程" alt="Android App 开发环境搭建和配置视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/36489d1275fd660e6d78886876d34e46451fdd.png" height="80" width="100"></a><h5><a title="Android App 开发环境搭建和配置视频课程" href="http://edu.51cto.com/course/course_id-5247.html" target="_blank">Android App 开发环境搭建和配置视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-7649454.html" target="_blank">张凌华</a></p><p> 120人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-5246.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5246.html" target="_blank"><img title="教你一款3000万次点击的H5实战视频课程" alt="教你一款3000万次点击的H5实战视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/e3fc585910b69122260071752427a695c2ea8a.jpeg" height="80" width="100"></a><h5><a title="教你一款3000万次点击的H5实战视频课程" href="http://edu.51cto.com/course/course_id-5246.html" target="_blank">教你一款3000万次点击的H5实战视频课程</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-10924228.html" target="_blank">岑远科</a></p><p> 25人学习过</p></div></li></ul><ul class="plist01" id="edu3" style="display:none"><li><a class="ico" href="http://edu.51cto.com/course/course_id-5245.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5245.html" target="_blank"><img title="CCNP交换部分-从零基础到CCIE系列之中级视频课程" alt="CCNP交换部分-从零基础到CCIE系列之中级视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/14a2d8b64c2d455dde201611cdc44a7d262139.png" height="80" width="100"></a><h5><a title="CCNP交换部分-从零基础到CCIE系列之中级视频课程" href="http://edu.51cto.com/course/course_id-5245.html" target="_blank">CCNP交换部分-从零基础到CCIE系列之中级视频</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-2687102.html" target="_blank">苏函</a></p><p> 91人学习过</p></div></li><li><a class="ico" href="http://edu.51cto.com/course/course_id-5243.html" target="_blank"></a><a href="http://edu.51cto.com/course/course_id-5243.html" target="_blank"><img title="2016软考信息系统监理师-基础知识软考培训视频课程" alt="2016软考信息系统监理师-基础知识软考培训视频课程" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/58fb6f9269af22dfdc8033c23f108a74b5a7c5.jpg" height="80" width="100"></a><h5><a title="2016软考信息系统监理师-基础知识软考培训视频课程" href="http://edu.51cto.com/course/course_id-5243.html" target="_blank">2016软考信息系统监理师-基础知识软考培训视</a></h5><div class="c666"><p>讲师：<a href="http://edu.51cto.com/lecturer/user_id-8371666.html" target="_blank">小任老师</a></p><p> 59人学习过</p></div></li></ul>
+	
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201607/514778.htm" target="_blank" title="为什么这么多技术专家为WOT2016移动互">为什么这么多技术专家为WOT2016移动互</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514009.htm" target="_blank" title="高能预警！各路大神正火速奔赴8月WOT20">高能预警！各路大神正火速奔赴8月WOT20</a>
+</li><li><a href="http://developer.51cto.com/art/201604/509622.htm" target="_blank" title="阿里肖冰：如何实现分钟级别的HBase宕">阿里肖冰：如何实现分钟级别的HBase宕</a>
+</li><li><a href="http://developer.51cto.com/art/201411/457423.htm" target="_blank" title="5个强大的Java分布式缓存框架推荐">5个强大的Java分布式缓存框架推荐</a>
+</li><li><a href="http://developer.51cto.com/art/201203/321042.htm" target="_blank" title="Java中Runnable和Thread的区别">Java中Runnable和Thread的区别</a>
+</li><li><a href="http://developer.51cto.com/art/201601/503403.htm" target="_blank" title="HTML5游戏开发5条建议及开发工具分享">HTML5游戏开发5条建议及开发工具分享</a>
+</li><li><a href="http://developer.51cto.com/art/201604/509961.htm" target="_blank" title="圣剑游戏CEO袁健博：VR游戏与传统游戏">圣剑游戏CEO袁健博：VR游戏与传统游戏</a>
+</li><li><a href="http://developer.51cto.com/art/201403/433999.htm" target="_blank" title="C#开发微信公众平台-就这么简单(附Demo">C#开发微信公众平台-就这么简单(附Demo</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514514.htm" target="_blank" title="2016年那些永远离我们而去的技术产品">2016年那些永远离我们而去的技术产品</a>
+</li><li><a href="http://developer.51cto.com/art/201006/205212.htm" target="_blank" title="多图详解Spring框架的设计理念与设计模">多图详解Spring框架的设计理念与设计模</a>
+</li></ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201607/515086.htm" target="_blank" title="IEEE Spectrum公布编程语言最新排行：">IEEE Spectrum公布编程语言最新排行：</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514981.htm" target="_blank" title="出版商统计出最受欢迎的编程语言：Pyth">出版商统计出最受欢迎的编程语言：Pyth</a>
+</li><li><a href="http://developer.51cto.com/art/201607/515070.htm" target="_blank" title="使用 Python 创建你自己的 Shell （上">使用 Python 创建你自己的 Shell （上</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514988.htm" target="_blank" title="菜鸟才需要GUI：Linux终端生存指南">菜鸟才需要GUI：Linux终端生存指南</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514983.htm" target="_blank" title="浅谈程序员的英语学习">浅谈程序员的英语学习</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514976.htm" target="_blank" title="R与TypeScript在RedMonk语言人气榜上迎">R与TypeScript在RedMonk语言人气榜上迎</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514959.htm" target="_blank" title="作为一个新手程序员该如何成长？">作为一个新手程序员该如何成长？</a>
+</li><li><a href="http://developer.51cto.com/art/201608/515436.htm" target="_blank" title="ES6新式集合类解析——Map、Set、WeakM">ES6新式集合类解析——Map、Set、WeakM</a>
+</li><li><a href="http://developer.51cto.com/art/201607/515100.htm" target="_blank" title="甲骨文设下的Java EE困局：我们要细节">甲骨文设下的Java EE困局：我们要细节</a>
+</li><li><a href="http://developer.51cto.com/art/201608/515449.htm" target="_blank" title="微软向其它JavaScript引擎开放Node.js">微软向其它JavaScript引擎开放Node.js</a>
+</li></ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201607/514778.htm" target="_blank" title="为什么这么多技术专家为WOT2016移动互">为什么这么多技术专家为WOT2016移动互</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514009.htm" target="_blank" title="高能预警！各路大神正火速奔赴8月WOT20">高能预警！各路大神正火速奔赴8月WOT20</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514514.htm" target="_blank" title="2016年那些永远离我们而去的技术产品">2016年那些永远离我们而去的技术产品</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514464.htm" target="_blank" title="颠覆多因素验证技术的五大发展趋势">颠覆多因素验证技术的五大发展趋势</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514491.htm" target="_blank" title="达沃时代阳立堂：超融合的未来不只是改">达沃时代阳立堂：超融合的未来不只是改</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514383.htm" target="_blank" title="汇聚创新 共创未来---记2016华为开发者">汇聚创新 共创未来---记2016华为开发者</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514510.htm" target="_blank" title="无服务器计算的真正含义究竟是什么？">无服务器计算的真正含义究竟是什么？</a>
+</li><li><a href="http://developer.51cto.com/art/201607/514790.htm" target="_blank" title="基于Angular 2 CLI开发CRUD应用程序">基于Angular 2 CLI开发CRUD应用程序</a>
+</li><li><a href="http://developer.51cto.com/art/201607/515086.htm" target="_blank" title="IEEE Spectrum公布编程语言最新排行：">IEEE Spectrum公布编程语言最新排行：</a>
+</li><li><a href="http://developer.51cto.com/art/201607/513999.htm" target="_blank" title="十款最佳免费Web设计软件一览">十款最佳免费Web设计软件一览</a>
+</li></ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+<div class="bor vlist" style="width:305px;height:250px;padding-left:5px;">
+<script type="text/javascript">
+    /*300*250 创建于 2015-12-16文章页右侧热点职位上方*/
+    var cpro_id = "u2452183";
+</script>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/c.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2452183_0"><iframe id="iframeu2452183_0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ocym(2).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点职位</h3>
+<a href="http://gaozhao.51cto.com/job-search/list" class="tmore">更多&gt;&gt;</a></div>
+	<div class="rmzwn_xx"><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-974.html" target="_blank"> 高级Java工程师 </a></dt><dd><h2>全职/3-5年/大专</h2><span>10k-20k</span><a href="http://gaozhao.51cto.com/company/view/id-132.html" target="_blank">高达软件</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-2767.html" target="_blank"> PHP开发工程师 </a></dt><dd><h2>全职/1-3年/大专</h2><span>8k-16k</span><a href="http://gaozhao.51cto.com/company/view/id-548.html" target="_blank">中建网络</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-5586.html" target="_blank"> web前端工程师 </a></dt><dd><h2>全职/3-5年/本科</h2><span>15k-30k</span><a href="http://gaozhao.51cto.com/company/view/id-260.html" target="_blank">瓜子二手车</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-4528.html" target="_blank"> 招聘Python兼职讲师 </a></dt><dd><h2>兼职/3-5年/硕士</h2><span>20k-30k</span><a href="http://gaozhao.51cto.com/company/view/id-839.html" target="_blank">中科信软</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-5166.html" target="_blank"> Java服务器工程师 </a></dt><dd><h2>全职/3-5年/本科</h2><span>12k-20k</span><a href="http://gaozhao.51cto.com/company/view/id-759.html" target="_blank">DataHunter</a></dd></dl></div>
+</div>
+<div class="blank10"></div>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/51cto_sha1.js.下载"></script>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://developer.51cto.com/speclist/1005" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://developer.51cto.com/art/201410/455968.htm" title="八年艰辛努力 HTML5标准规范最终制定完成"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1RR4XmgGdHeAAAV0pCRhkg807.gif" alt="八年艰辛努力 HTML5标准规范最终制定完成" width="100" height="80"></a>
+<h5><a href="http://developer.51cto.com/art/201410/455968.htm" title="八年艰辛努力 HTML5标准规范最终制定完成">八年艰辛努力 HTML5标</a></h5>
+<div class="c666">在此之前的几年时间里，已经有很多开发者陆续使用了HT</div>
+</li><li><a href="http://developer.51cto.com/art/201405/437602.htm" title="2014四大开发技术点评 给你那些不知道的"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKioL1Nl096yalTOAAAYEJ2fi1E706.jpg" alt="2014四大开发技术点评 给你那些不知道的" width="100" height="80"></a>
+<h5><a href="http://developer.51cto.com/art/201405/437602.htm" title="2014四大开发技术点评 给你那些不知道的">2014四大开发技术点评</a></h5>
+<div class="c666">编程领域在这几年里迎来了翻天覆地的变化，如果说C、C</div>
+</li><li><a href="http://developer.51cto.com/art/201404/436647.htm" title="创业，你不知道的那些事"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1NWlFSQvyKVAAAYpf9k_nQ093.jpg" alt="创业，你不知道的那些事" width="100" height="80"></a>
+<h5><a href="http://developer.51cto.com/art/201404/436647.htm" title="创业，你不知道的那些事">创业，你不知道的那些</a></h5>
+<div class="c666">我们都知道在20世纪90年代是多元文化和多媒体时代，而</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><a title="编程语言排行榜" href="http://developer.51cto.com/art/200911/165281.htm">编程语言排行榜</a> <a title="敏捷开发" href="http://developer.51cto.com/art/200803/68222.htm">敏捷开发</a> <a title="Eclipse" href="http://developer.51cto.com/art/201006/207407.htm">Eclipse 3.6</a> <a title="PHP设计模式" href="http://developer.51cto.com/art/201004/195765.htm">PHP设计模式</a> <a title="NetBeans7" href="http://developer.51cto.com/art/201105/259431.htm">NetBeans 7</a> <a title="Java7" href="http://developer.51cto.com/art/201001/175830.htm">Java7</a> <a title="Scala编程语言" href="http://developer.51cto.com/art/200906/127830.htm">Scala编程语言</a> <a title="Python编程世界" href="http://developer.51cto.com/art/201011/234347.htm">Python编程世界</a> <a title="Ruby" on="" rails开发="" href="http://developer.51cto.com/art/201007/215101.htm">Ruby On Rails开发</a> <a class="imp" title="LINQ" href="http://developer.51cto.com/art/200911/165090.htm">LINQ</a> <a title="ASP.NET视频教程" href="http://developer.51cto.com/art/200904/120314.htm">ASP.NET视频教程</a> <a title="Visual Studio" href="http://developer.51cto.com/art/201004/194262.htm">Visual Studio</a> <a title="智能手机" href="http://p.linkphone.cn/">智能手机</a> <a title="软件下载" href="http://download.linkphone.cn/">软件下载</a></div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/dingy.gif"></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://os.51cto.com/art/201511/495922.htm" title="Ubuntu 15.10值得了解的九大新特性"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1ZBTq_T-y3CAABj1ewSKjY830.jpg"></a>
+  <div><a href="http://os.51cto.com/art/201511/495922.htm" title="Ubuntu 15.10值得了解的九大新特性">Ubuntu 15.10值得了解的九大新特性</a></div>
+</li>
+
+<li>
+  <a href="http://os.51cto.com/art/201510/494546.htm" title="你需要了解的Linux实用命令大全"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wKiom1Y8CUSB913-AAAsC7_1LY8579.jpg"></a>
+  <div><a href="http://os.51cto.com/art/201510/494546.htm" title="你需要了解的Linux实用命令大全">你需要了解的Linux实用命令大全</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://os.51cto.com/art/201512/502949.htm" title="Windows 10装机量突破2亿！加速替代Windows 7">Windows 10装机量突破2亿！加速替代W</a></li>
+
+<li><a href="http://mobile.51cto.com/ahot-502948.htm" title="iOS 视图---动画渲染机制探究">iOS 视图---动画渲染机制探究</a></li>
+
+<li><a href="http://os.51cto.com/art/201512/502946.htm" title="外媒不解中国人为啥这么爱Windows XP">外媒不解中国人为啥这么爱Windows XP</a></li>
+
+<li><a href="http://cloud.51cto.com/art/201512/502944.htm" title="私有云是真正的云吗">私有云是真正的云吗</a></li>
+
+<li><a href="http://network.51cto.com/art/201512/502943.htm" title="提高SDN控制器的拓扑发现性能">提高SDN控制器的拓扑发现性能</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+<div class="catbook"><a href="http://book.51cto.com/art/200704/46224.htm" title="数据库系统概念"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/143447447.jpg" width="66" height="98" border="0"></a>
+<h5><a href="http://book.51cto.com/art/200704/46224.htm">数据库系统概念</a></h5>
+<div class="c666 text">本书是数据库系统方面的经典教材之一。国际上许多著名大学包括斯坦福大学、耶鲁大学、得克萨斯大学、康奈尔大学、伊利诺伊大学、</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200704/45784.htm" title="程序员面试宝典">程序员面试宝典</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45819.htm" title="计算机网络原理与实践标准教程">计算机网络原理与实践标准教程</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45820.htm" title="网络工程师教程(第2版)">网络工程师教程(第2版)</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45821.htm" title="Java网络编程精解">Java网络编程精解</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+
+<ul class="list03">
+ <li><a href="http://yejunsheng.blog.51cto.com/793131/161167/" target="_blank" title="ISA Server 2006部署最佳实践">ISA Server 2006部署最佳实践</a></li><li><a href="http://mimos.blog.51cto.com/798949/161165/" target="_blank" title="GOOGLE隐身力挺 暗战手机百度">GOOGLE隐身力挺 暗战手机百度</a></li><li><a href="http://296525818.blog.51cto.com/19860/161150/" target="_blank" title="在此记录几点不成熟的个人体会">在此记录几点不成熟的个人体会</a></li><li><a href="http://rickyfang.blog.51cto.com/1213/161147/" target="_blank" title="端午节之西湖林-老龙窝-千军台一日穿越活动">端午节之西湖林-老龙窝-千军台一日穿</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-969755-1.html" target="_blank" title="【面试题】大智慧网站运维工程师面试题">【面试题】大智慧网站运维工程师面试</a></li><li><a href="http://bbs.51cto.com/thread-796264-1.html" target="_blank" title="2011届IT专业大学生专场！">2011届IT专业大学生专场！</a></li><li><a href="http://bbs.51cto.com/thread-609530-1.html" target="_blank" title="一次RAID0崩溃的思考">一次RAID0崩溃的思考</a></li><li><a href="http://bbs.51cto.com/thread-537384-1.html" target="_blank" title="打字">打字</a></li><li><a href="http://bbs.51cto.com/thread-537319-1.html" target="_blank" title="实习生">实习生</a></li>
+</ul>
+</div>
+<div class="picAD">
+<iframe class="bann" frameborder="0" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/baidu.html" scrolling="no" style="background-color: white; height: 265px; width: 300px; padding: 0px; margin: 0px; overflow: hidden;"></iframe>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+<div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://cio.51cto.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/copy_right.js.下载"></script>Copyright&#169;2005-2017 <a href="http://www.51cto.com/">51CTO.COM</a> 版权所有 未经许可 请勿转载<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/bc20b099e054d5e648120c44d7a94173" type="text/javascript"></script></div></div>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/count.js.下载"></script><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/count.php"></script>
+<script type="text/javascript">
+	$("#uyan_cmt_list").next().remove();	
+	$("#uyan_cmt_list").next().css("display","none");	
+</script>
+<!-- 悬浮广告 -->
+
+<!--end-->
+
+<style>
+.Nfloat { position: fixed; right: 2%; top: 35%; z-index: 801; }
+</style>
+
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="display: none; height: 2px;">
+<span id="wordlink_1"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink1.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs.php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=4ecb7fb752__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_4ecb7fb752" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_2"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink2.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3546__zoneid=631__cb=090d661455__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-44.html%3Fxiaoshou" target="_blank"><font color="red">助你4个月成为大数据工程师</font></a><div id="beacon_090d661455" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_3"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink3.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg1.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=467f260250__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F111%3Fxiaoshou" target="_blank"><font color="red">Windows工程师成长路线图</font></a><div id="beacon_467f260250" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_4"><script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/wordlink4.js.下载"></script><script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=df75fcf16a__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_df75fcf16a" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="pinglun"><script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/getArtCount.php"></script>1</span>
+<span id="tonglan"></span>
+<span id="wordlink"><script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad.js(2).下载"></script></span>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/ad.js(2).下载"></script>
+<span id="bookss"><script language="JavaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/getBookData.php"></script></span>
+</div>   
+<script language="javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/favorite.js.下载"></script>
+
+<script language="javaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/dialog_utf8.js.下载"></script>
+<script language="javaScript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/mail.js.下载"></script>  
+<script type="text/javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/favorbox.js.下载"></script>
+<script language="javascript" src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/clipboard.js.下载"></script>
+<script language="javaScript"> 
+	var thistid=130215; 
+	
+	//收藏按钮
+	var favor_url = 'http://developer.51cto.com/art/200906/130215.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = '浅谈Java SE、Java EE、Java ME三者的区别';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://developer.51cto.com/art/200906/130215.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://developer.51cto.com/art/200906/130215.htm][u]浅谈Java SE、Java EE、Java ME三者的区别[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script><div style="position: absolute; left: 1061px; top: 1707px; width: 34px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://images.51cto.com/images/art/newart1012/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="34" height="12" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=34&amp;height=12" wmode="transparent"></div> 
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/index.php" charset="utf-8"></script>
+<script src="./浅谈Java SE、Java EE、Java ME三者的区别 - 51CTO.COM_files/count(1).php" language="javascript"></script>
+<script language="javascript">
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,27 @@
+package oo.day04;
+
+class C {//外部类：不可以访问内部类成员
+	C(){	
+	}
+	void test(){
+		System.out.println("123");
+	}
+	//实例化内部类对象
+	A initA(){
+	return new A();	
+	}
+	class A{//内部类：可以访问任意外部类成员
+		int a;
+		A(){
+			test();
+		}
+	}
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+		C c = new C();
+		//内部类对象,必须使用外部类对象,来创建内部类对象。
+		c.initA();
+		C.A a = c.new A();//实例化内部类对象
+	}
+}

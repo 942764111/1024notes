@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//演示window对象的方法，调用它的方法或属性时，
+	//可以省略对象名。
+	//confirm()
+	function f1() {
+		var b = confirm("您确定要删除此数据吗？");
+		console.log(b);
+	}
+	//周期性定时器
+	function f2() {
+		//启动周期性定时器:
+		//让浏览器每隔1000ms调用一次函数。
+		//该方法返回定时器的ID，用来停止此定时器。
+		var n = 5;
+		var id = setInterval(function(){
+			console.log(n--);
+			if(n==0) {
+				//停止定时器
+				clearInterval(id);
+				console.log("BOOM");
+			}
+		},1000);
+		//定时器相当于线程一样。当前方法f2()相当于
+		//主线程，启动的定时器相当于支线程，二者并发
+		//执行，不互相等待。因此duang立刻输出，而
+		//倒数的数字从1秒后才开始输出。
+		console.log("duang");
+	}
+	//一次性定时器
+	var id;
+	function f3() {
+		//启动一次性定时器：
+		//让浏览器在5000ms后调用函数，完成后自动停止。
+		//该方法返回定时器的ID，用于在时间未到之前，
+		//提前关闭定时器。
+		id = setTimeout(function(){
+			console.log("叮叮叮叮叮");
+		},5000);
+	}
+	function f4() {
+		clearTimeout(id);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="删除"
+		onclick="f1();"/>
+	<input type="button" value="倒数"
+		onclick="f2();"/>
+	<input type="button" value="定闹钟"
+		onclick="f3();"/>
+	<input type="button" value="取消"
+		onclick="f4();"/>
+</body>
+</html>
+
+
+
+
+
+
+
+

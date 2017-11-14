@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>消息摘要MD5加密</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h2>密码安全问题</h2>
+<p>利用MD5进行加密是常见的方法.</p>
+<p>MD5 工作原理:</p>
+<p><img src="2.png" /></p>
+<p>利用 Commons-codec 实现MD5:</p>
+<ol>
+<li>
+<p>导入相关的包:</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;commons-codec&lt;/groupId&gt;
+  &lt;artifactId&gt;commons-codec&lt;/artifactId&gt;
+  &lt;version&gt;1.10&lt;/version&gt;
+&lt;/dependency&gt;   
+</code></pre>
+
+</li>
+<li>
+<p>测试MD5算法:</p>
+<pre><code>public class UtilTestCase {
+
+    @Test
+    public void testMD5(){
+        String str = &quot;123&quot;;
+        String salt = &quot;您好中国&quot;;
+        //计算123的摘要
+        String md5=DigestUtils.md5Hex(str);
+        //计算123加盐的摘要
+        String md=DigestUtils.md5Hex(str+salt);
+        System.out.println(md5);
+        System.out.println(md);
+    }
+}
+</code></pre>
+
+</li>
+</ol>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

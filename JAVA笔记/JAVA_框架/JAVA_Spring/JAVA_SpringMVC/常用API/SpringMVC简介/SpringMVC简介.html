@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SpringMVC简介</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>一、SpringMVC介绍</h1>
+<h2>(1)SpringMVC是什么?</h2>
+<hr />
+<ul>
+<li>Spring框架当中的一个核心模块，</li>
+<li>是一个用来简化基于MVC架构的 </li>
+<li>web应用程序开发的框架。</li>
+</ul>
+<hr />
+<h2>(2)五大组件</h2>
+<ul>
+<li>
+<h2>DispatcherServlet (前端控制器)</h2>
+</li>
+<li>
+<h2>HandlerMapping	(映射处理器)</h2>
+</li>
+<li>
+<h2>Controller (处理器)</h2>
+</li>
+<li>
+<h2>ModelAndView</h2>
+</li>
+<li>
+<h2>ViewResovler　（视图解析器）</h2>
+</li>
+</ul>
+<div class="bg-blue">注:
+
+<li>1、DispatcherServlet收到请求之后，依据HandlerMapping的配置， 调用对应的Controller来处理。</li>
+
+<li>2、Controller将处理结果封装成ModelAndView,返回给DispatcherServlet。 </li>
+
+<li>3、DispatcherServlet依据ViewResolver的解析，调用对应的视图 对象(比如某个jsp)来生成相应的页面。 </li>
+
+</div>
+<ul>
+<li><img src="springmvc.png" /></li>
+</ul>
+<hr />
+<h1>二、SpringMVC编程步骤</h1>
+<h2>1、导包。</h2>
+<ul>
+<li>spring-webmvc。</li>
+</ul>
+<h2>2、添加spring配置文件。</h2>
+<ul>
+<li><div class="bg-blue">例：</div>
+<a href="demo/SpringMVC编程步骤/applicationContext.xml">点击查看</a></li>
+</ul>
+<h2>3、配置DispatcherServlet。</h2>
+<ul>
+<li>在web.xml中的配置</li>
+<li><div class="bg-blue">例：</div>
+<a href="demo/SpringMVC编程步骤/web.xml">点击查看</a></li>
+</ul>
+<h2>4、写Controller。</h2>
+<ul>
+<li>注：Controller负责处理业务逻辑。</li>
+<li><div class="bg-blue">例：</div>
+<a href="demo/SpringMVC编程步骤/HelloController.java">点击查看</a></li>
+</ul>
+<h2>5、写jsp。</h2>
+<ul>
+<li><div class="bg-blue">例：</div>
+<a href="demo/SpringMVC编程步骤/hello.jsp">点击查看</a></li>
+</ul>
+<h2>6、配置HandlerMapping和ViewResolver。</h2>
+<ul>
+<li><div class="bg-blue">例：</div>
+<a href="demo/SpringMVC编程步骤/applicationContext.xml">点击查看</a></li>
+<li><div class="bg-blue">例：</div></li>
+<li><img src="s1.png" /></li>
+<li><img src="s2.png" /></li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

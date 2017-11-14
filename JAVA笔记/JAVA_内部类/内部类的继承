@@ -1,0 +1,40 @@
+package oo.day04;
+
+class C extends A.B{
+	public C(A a){
+		a.super();
+	}
+	public void test(){
+		System.out.println("888");
+	}
+}
+class A{
+	int x = 100;
+	 class B{
+		public void test(){
+			System.out.println(x);
+		}
+	}
+	B initB(){
+		return new B(); 
+	}
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+		A a = new A();
+		A.B b = new C(a);
+		b.test();
+	}
+}
+/*
+ * 内部类的继承
+ * 
+ * 在某个类继承内部类时,必须硬性给予这个类一格带参数的构造方法，
+ * 
+ * 并且该构造方法的参数为需要继承内部类的外部类的引用，
+ * 
+ * 同时在构造方法体中使用 		a.super();语句，这才为继承提供了必要的对象引用。
+ * 
+ * 
+ * 
+ * */

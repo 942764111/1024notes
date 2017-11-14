@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>property</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<pre><code>    &lt;!-- 注入基本类型的值 
+        &lt;property name=&quot;name&quot; value=&quot;仓松&quot;/&gt;
+        参数：
+        name：调用 class中 set方法
+        value：给set方法赋值
+    --&gt;
+ &lt;bean id=&quot;vb1&quot; class=&quot;Value.ValueBean&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;仓松&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+    &lt;property name=&quot;list&quot; &gt;
+        &lt;list&gt;
+            &lt;value&gt;^_^&lt;/value&gt;
+            &lt;value&gt;o(∩∩)o...哈哈&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+
+    &lt;property name=&quot;city&quot; &gt;
+        &lt;set&gt;
+            &lt;value&gt;gg&lt;/value&gt;
+            &lt;value&gt;hh&lt;/value&gt;
+            &lt;value&gt;hh&lt;/value&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+
+    &lt;property name=&quot;score&quot; &gt;
+        &lt;map&gt;
+            &lt;entry key =&quot;english&quot; value=&quot;59.5&quot; /&gt;
+            &lt;entry key =&quot;null&quot; value=&quot;2.0&quot; /&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+
+
+    &lt;property name=&quot;db&quot; &gt;
+        &lt;props&gt;
+            &lt;prop key =&quot;null&quot;&gt;www&lt;/prop&gt;
+            &lt;prop key =&quot;uuu&quot;&gt;qqq&lt;/prop&gt; 
+        &lt;/props&gt;
+    &lt;/property&gt;
+
+ &lt;/bean&gt;    
+
+ &lt;!-- 以引用的方式注入集合的值 
+      赋值和注入类似
+
+ util:XXX
+ --&gt;
+ &lt;util:list id=&quot;list2&quot;&gt;
+    &lt;value&gt;仍然&lt;/value&gt;
+    &lt;value&gt;童童&lt;/value&gt;
+    &lt;value&gt;应用&lt;/value&gt;
+ &lt;/util:list&gt;
+
+ &lt;bean id=&quot;vb2&quot; class=&quot;Value.ValueBean&quot; &gt;
+    &lt;property name=&quot;list&quot; ref=&quot;list2&quot;&gt;&lt;/property&gt;
+ &lt;/bean&gt;
+
+
+ &lt;!-- 读取properties文件内容 --&gt;
+ &lt;util:properties id=&quot;config&quot; location=&quot;classpath:config.properties&quot;/&gt;
+
+ &lt;!-- spring表达式 
+    &lt;property name = &quot;name&quot; value=&quot;#{vb1.Name}&quot; /&gt;
+    参数：
+    value：获取其他bean对象中的Get属性方法
+ --&gt;
+ &lt;bean id =&quot;sb1&quot; class=&quot;Value.SpelBean&quot;&gt;
+    &lt;property name = &quot;name&quot; value=&quot;#{vb1.name}&quot; /&gt;
+    &lt;property name = &quot;interest&quot; value=&quot;#{vb1.list[0]}&quot; /&gt;
+
+    &lt;!-- 如果访问的map属性中key是中文用
+        #{vb1.score['key']}
+        因为spring容器只支持 ASCII码
+    --&gt;
+    &lt;property name = &quot;score&quot; value=&quot;#{vb1.score['english']}&quot; /&gt;
+    &lt;property name = &quot;pageSize&quot; value=&quot;#{config.id}&quot; /&gt;
+ &lt;/bean&gt;
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,49 @@
+package oo.day04;
+
+interface D{
+	String getValue();
+}
+class A{
+	
+	public D initB(final String s){
+		//test 1：
+		return new D(){
+			String str = s;
+			public String getValue(){
+				System.out.println(s);
+				return str;
+			}
+		};
+	}
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+      A a = new A();
+		D d = a.initB("Helloword");
+		d.getValue();
+		
+		//test 2：
+		D name = new D() {
+			
+			public String getValue() {
+				String str = "^_^";
+				System.out.println(str);	
+				return "^_^";
+			}
+		};
+		name.getValue();
+	}
+}
+/*
+ * 匿名内部类
+ * 
+ * 在return语句中插入一格定义内部类的代码,由于这个类没有名称,
+ * 
+ * 所以这里将该内部类称为匿名内部类，
+ * 
+ * 实质上这种类的作用就是创建一个实现于 D 接口的实例
+ * 
+ * 说明：匿名内部类编译后,会产生以“外部类名$序号 .class 文件”,序号以 1～n排列，分别代表 1～n 个匿名内部类
+ * 
+ * */
+

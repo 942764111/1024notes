@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>constructor-arg</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>手动装配构造器注入</h1>
+<h2>一、XML中配置</h2>
+<pre><code>    &lt;bean id = &quot;wt&quot; class = &quot;ioc.Waiter&quot; /&gt;
+    &lt;bean id = &quot;rest&quot; class = &quot;ioc.Restaurant&quot;&gt;
+        &lt;constructor-arg index=&quot;0&quot; ref=&quot;wt&quot; /&gt;
+    &lt;/bean&gt;
+</code></pre>
+
+<hr />
+<h2>二、JAVA代码</h2>
+<pre><code>package ioc;
+
+public class Restaurant {
+    private Waiter wt;
+    public Restaurant() {
+        System.out.println(this.getClass().getName()+&quot;::Restaurant()&quot;);
+    }
+    public Restaurant(Waiter wt) {
+        this.wt=wt;
+        System.out.println(this.getClass().getName()+&quot;::Restaurant(Waiter wt)&quot;);
+    }
+    @Override
+    public String toString() {
+        return &quot;Restaurant [wt=&quot; + wt + &quot;]&quot;;
+    }
+
+}
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tedu.entity.Student"
+			 table="student" >
+		<!-- 主键映射 -->
+		<id name="id" column="id" type="int">
+			<!-- 表中采用自增类型定义了id列 -->
+			<generator class="identity" />
+			
+		</id>
+		<!-- 非主键映射 -->
+		<property name="name" column="name" 
+					 type="string" />
+	</class>
+</hibernate-mapping>
+
+
+
+

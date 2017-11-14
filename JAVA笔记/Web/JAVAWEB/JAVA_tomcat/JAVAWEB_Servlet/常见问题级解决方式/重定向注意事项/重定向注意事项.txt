@@ -1,0 +1,6 @@
+重定向注意事项:
+/*
+			 * 重定向采用绝对路径重定向！避免错误
+			 * */
+			String url=req.getContextPath()+"/log_in.html";
+			res.sendRedirect(url);

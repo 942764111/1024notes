@@ -1,0 +1,14 @@
+
+JDK "1.8.0_112"
+//STL:
+//  Java容器类包含【Collection】->【List】->【ArrayList】、
+											【Vector】->【Stack】
+											
+								  【Set】->	【Hashset】	
+											【TreeSet】
+											
+					【map】->【HashTable】、
+							 【HashMap】
+							 【TreeMap】
+							 
+java中可以排序的工具类和接口共有五个 接口： SortedMap 、SortedSet、工具类：TreeMap 、TreeSet、Collections							 

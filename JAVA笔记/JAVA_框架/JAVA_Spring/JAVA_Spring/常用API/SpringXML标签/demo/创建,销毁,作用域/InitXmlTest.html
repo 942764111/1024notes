@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>InitXmlTest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>一、XML配置</h1>
+<pre><code>&lt;bean id=&quot;mb1&quot; class=&quot;basic.messagebean&quot; 
+    init-method=&quot;init&quot; 
+    destroy-method=&quot;destroy&quot;
+    scope=&quot;prototype&quot;&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<hr />
+<h1>二、JAVA代码</h1>
+<ul>
+<li>
+<p>一、定义测试类
+package basic;</p>
+<p>public class MessageBean {</p>
+<pre><code>public MessageBean() {
+    System.out.println(&quot;MessageBean()&quot;);
+}
+
+public void init(){
+    System.out.println(&quot;init()&quot;);
+}
+
+public void sendMsg(){
+    System.out.println(&quot;sendMsg()&quot;);
+}
+
+public void destroy(){
+    System.out.println(&quot;destroy()&quot;);
+}
+</code></pre>
+
+<p>}</p>
+</li>
+<li>
+<p>二、调用测试类</p>
+<p>//测试 生命周期</p>
+<p>public void test1(){</p>
+<pre><code>String config = &quot;basic.xml&quot;;
+
+//启动spring容器
+/*
+ * ApplicationContext接口没有提供close
+ * 方法,AbstractApplicationContext
+ * 是一个抽象类，实现了ApplicationContext
+ * 接口,并且提供了close方法。
+ */
+AbstractApplicationContext ac = 
+new ClassPathXmlApplicationContext(
+            config);
+//调用容器提供的getBean方法获得对象
+MessageBean mb1 = 
+        ac.getBean(&quot;mb1&quot;,
+                MessageBean.class);
+mb1.sendMsg();
+//关闭容器此时调用销毁方法
+ac.close();
+</code></pre>
+
+<p>}</p>
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

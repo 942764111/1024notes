@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SpringXMLLabel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>一、指定初始化方法和销毁方法：</h1>
+<h2>1、init-method</h2>
+<ul>
+<li>属性：指定初始化方法。</li>
+<li>参数：init-method=&quot;init&quot; (init为类中的方法名)</li>
+<li>容器在创建好对象之后，会立即调用初始化方法。</li>
+</ul>
+<h2>2、destroy-method</h2>
+<ul>
+<li>属性：指定销毁方法。</li>
+<li>参数：destroy-method=&quot;destroy&quot; (destroy为类中的方法名)</li>
+<li>容器在关闭之前，会销毁它所管理的对象,此时，会调用 销毁方法。</li>
+<li><div class="bg-blue">销毁方法只有在作用域为单例时有效。</li>
+</ul>
+<h2>3、lazy-init=&quot;boolean&quot;。</h2>
+<ul>
+<li>属性：延时加载</li>
+<li>
+<p>参数：boolean值</p>
+<ul>
+<li>
+<p>a. 默认情况下，容器启动之后，会将所有作用域为单例的bean先创建 出来。</p>
+</li>
+<li>
+<p>b. 延迟加载指的是，容器启动之后，对于这些作用域为单例的bean 不再创建了。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><div class="bg-blue">注:直到调用getBean方法时才会创建。</p>
+</li>
+</ul>
+<h2>4、scope=&quot;prototype&quot;</h2>
+<ul>
+<li>
+属性：
+<ul>
+<li>指定作用域默认是单例</li>
+</ul>
+</li>
+<li>
+参数：
+<ul>
+<li>scope属性的缺省值是&quot;singleton&quot;(单例),prototype(多例)</li>
+</ul>
+</li>
+</ul>
+<div class="bg-blue">例：</div>
+<p><a href="demo/创建,销毁,作用域/InitXmlTest.html">点击查看</a>‘</p>
+<hr />
+<h1>二、依赖注入</h1>
+<h2>1、property name=&quot;b&quot; ref=&quot;b1&quot;</h2>
+<ul>
+<li>
+属性：(手动装配)
+<ul>
+<li>property注入set方法</li>
+</ul>
+</li>
+<li>
+参数：
+<ul>
+<li>name----set后的方法名容器会自动调用此类中set方法（set属性名）</li>
+<li>ref----调用有依赖关系的类 参数为beanID	</li>
+</ul>
+</li>
+</ul>
+<div class="bg-blue">例：</div>
+<p><a href="../Spring简介/demo/DIDemo/DIDemo.html">点击查看</a></p>
+<h2>2、constructor-arg  index = &quot;0&quot; ref=&quot;beanID&quot;</h2>
+<ul>
+<li>
+属性：(手动装配)
+<ul>
+<li>(手动装配)就是让容器手动建立依赖关系</li>
+<li>使用constructor-arg元素配置构造器注入</li>
+</ul>
+</li>
+<li>
+参数：
+<ul>
+<li>index----构造器中参数位置的下标</li>
+<li>ref----调用有依赖关系的类 参数为beanID		   
+</li>
+</ul>
+</li>
+</ul>
+<div class="bg-blue">例：</div>
+<p><a href="demo/constructor-arg/constructor-arg.html">点击查看</a>			   </p>
+<h2>3、autowire =&quot;byName&quot; 或 byType</h2>
+<ul>
+<li>
+属性：(自动装配)就是让容器自动建立依赖关系
+<ul>
+<li>1. 默认情况下，容器不会自动装配(即不会自动建立依赖关系)。</li>
+<li>2. 通过指定autowire属性值，让容器依据某些规则，自动建立 依赖关系。</li>
+</ul>
+</li>
+<li>注意：底层依然使用set方法或者构造器来建立依赖关系。</li>
+<li>参数：</li>
+<li>
+byName : 
+<ul>
+<li>1、容器依据属性名查找对应的bean id,</li>
+<li>2、找到之后,会调用对应的set方法,</li>
+<li>3、如果byName找不到容器中对应的set方法返回null.</li>
+</ul>
+</li>
+<li>
+byType:
+<ul>
+<li>1、容器依据属性类型查找对应的bean class类型</li>
+<li>2、找到之后,会调用对应的set方法</li>
+<li>3、如果byType找不到容器中beam 对应的属性class类型为返回null.</li>
+<li>4、如果找到多个,报错因为byType找的class类型对象只能唯一.</li>
+</ul>
+</li>
+<li>constructor:类似于byType,</li>
+</ul>
+<div class="bg-blue">例：</div>
+<p><a href="demo/autowire/autowire.html">点击查看</a></p>
+<hr />
+<h1>三、注入基本类型的值</h1>
+<h2>1、property name=&quot;name&quot; value=&quot;仓松&quot;</h2>
+<ul>
+<li>
+属性：
+<ul>
+<li>注入基本类型的值 </li>
+</ul>
+</li>
+<li>
+<p>参数：</p>
+<ul>
+<li>name：调用 class中 set方法</li>
+<li>value：给set方法赋值</li>
+</ul>
+</li>
+<li>
+<h1>3.1、注入集合类型的值</h1>
+</li>
+</ul>
+<h2>1、List</h2>
+<pre><code>    &lt;property name=&quot;list&quot; &gt;
+        &lt;list&gt;
+            &lt;value&gt;^_^&lt;/value&gt;
+            &lt;value&gt;o(∩∩)o...哈哈&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+</code></pre>
+
+<h2>2、Set</h2>
+<pre><code>    &lt;property name=&quot;city&quot; &gt;
+        &lt;set&gt;
+            &lt;value&gt;gg&lt;/value&gt;
+            &lt;value&gt;hh&lt;/value&gt;
+            &lt;value&gt;hh&lt;/value&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+</code></pre>
+
+<h2>3、Map</h2>
+<pre><code>    &lt;property name=&quot;score&quot; &gt;
+        &lt;map&gt;
+            &lt;entry key =&quot;english&quot; value=&quot;59.5&quot; /&gt;
+            &lt;entry key =&quot;null&quot; value=&quot;2.0&quot; /&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+</code></pre>
+
+<h2>4、props</h2>
+<pre><code>    &lt;property name=&quot;db&quot; &gt;
+        &lt;props&gt;
+            &lt;prop key =&quot;null&quot;&gt;www&lt;/prop&gt;
+            &lt;prop key =&quot;uuu&quot;&gt;qqq&lt;/prop&gt; 
+        &lt;/props&gt;
+    &lt;/property&gt;
+</code></pre>
+
+<ul>
+<li>
+<h1>3.2、引用集合的值(赋值和注入类似)</h1>
+<pre><code>     &lt;util:list id=&quot;list2&quot;&gt;
+        &lt;value&gt;仍然&lt;/value&gt;
+        &lt;value&gt;童童&lt;/value&gt;
+        &lt;value&gt;应用&lt;/value&gt;
+     &lt;/util:list&gt;
+
+     &lt;bean id=&quot;vb2&quot; class=&quot;Value.ValueBean&quot; &gt;
+        &lt;property name=&quot;list&quot; ref=&quot;list2&quot;&gt;&lt;/property&gt;
+     &lt;/bean&gt;
+</code></pre>
+
+</li>
+</ul>
+<div class="bg-blue">例：</div>
+<p><a href="demo/property/property.html">点击查看</a></p>
+<hr />
+<h1>四、读取文件</h1>
+<h2>1、读取properties文件</h2>
+<ul>
+<li>
+属性：
+<ul>
+<li>加载文件内容：&lt;util:properties id=&quot;config&quot; location=&quot;classpath:config.properties&quot;/&gt;</li>
+<li>读取内容属性：&quot;#{config.id}&quot; </li>
+</ul>
+</li>
+<li>
+参数：
+<ul>
+<li>classpath：让spring容器依据类路径来查找properties文件</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1>五、Spring表达式</h1>
+<ul>
+<li>(1)作用：</li>
+</ul>
+<div class="bg-blue">使用Spring表达式去读取bean的属性值。语法类似于el表达式.</div>
+<h2>1、#{beanid.getXX()}</h2>
+<ul>
+<li>
+参数：
+<ul>
+<li>beanid：要读取的beanid</li>
+<li>getXX()：要读取的属性名(beanid中应该有对应的getXX()方法)</li>
+</ul>
+</li>
+</ul>
+<h2>2、List</h2>
+<ul>
+<li>属性：#{vb1.list[0]}</li>
+</ul>
+<h2>3、Map</h2>
+<ul>
+<li>属性：#{vb1.list[0]}</li>
+<li>
+说明：
+<ul>
+<li>如果访问的map属性中key是中文用</li>
+<li>#{vb1.score['key']}</li>
+<li>因为spring容器只支持 ASCII码</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

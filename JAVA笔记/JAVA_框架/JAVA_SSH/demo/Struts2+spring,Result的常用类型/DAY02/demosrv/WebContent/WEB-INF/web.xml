@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>demosrv</display-name>
+  <servlet>
+    <servlet-name>demo-servlet</servlet-name>
+    <servlet-class>cn.tedu.DemoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>demo-servlet</servlet-name>
+    <url-pattern>/servlet</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>demo-filter</filter-name>
+    <filter-class>cn.tedu.DemoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>demo-filter</filter-name>
+    <url-pattern>/filter</url-pattern>
+  </filter-mapping>
+</web-app>

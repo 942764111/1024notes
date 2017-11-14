@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 1.表单元素：就是表单的边界，用来圈定
+		一个范围，此范围内的数据才能提交给服务器
+		action：用来声明表单数据提交的目标
+		method/enctype：将来再讲 -->
+	<form action="http://www.tmooc.cn">
+		<!-- 2.表单控件：用来输入数据 -->
+		<!-- 2.1 input元素(9)：这9个元素的
+			标签名一样，但他们的type属性不同 -->
+		<!-- 文本框：
+			value：设置默认值
+			maxlength：设置最大长度
+			readonly：设置只读 -->
+		<p>
+			账号:<input type="text" value="请输入账号"
+				maxlength="10" readonly/>
+		</p>
+		<!-- 密码框：属性同上 -->
+		<p>
+			密码:<input type="password"/>
+		</p>
+		<!-- 单选框：
+			name：组名，同一组radio自动互斥
+			checked：设置默认选中
+			value：将来再讲 -->
+		<p>
+			性别:
+			<input type="radio" name="sex" checked/>男
+			<input type="radio" name="sex"/>女
+		</p>
+		<!-- 多选框：
+		 	checked：设置默认选中
+		 	name/value：将来再讲	-->
+		<p>
+			兴趣:
+			<input type="checkbox" checked/>竞技
+			<input type="checkbox" checked/>美食
+			<input type="checkbox"/>社交
+		</p>
+		<!-- 文件框 -->
+		<p>
+			头像:<input type="file"/>
+		</p>
+		<!-- 隐藏框 -->
+		<p>
+			<input type="hidden" value="love"/>
+		</p>
+		<!-- submit按钮、reset按钮、button按钮，
+			他们的名字都是通过value进行定义的。
+			button按钮默认无功能，需通过js进行定义。
+		 -->
+		<p>
+			<input type="submit" value="注册"/>
+			<input type="reset" value="重填"/>
+			<input type="button" value="测试"/>
+		</p>
+		<!-- 2.2 其他元素(3)：这3个元素的标签名不同 -->
+		<!-- label(了解)
+			该标签不是用来输出数据的，仅仅是用来管理
+			表单中的文本的，它可以将文本与框绑定到一起，
+			从而增加框的点击范围，提高易用性。 -->
+		<p>
+			<!-- id是元素的唯一标识，任何元素都可以有id。 -->
+			<input type="checkbox" id="c1"/>
+			<label for="c1">我已阅读并自愿遵守此协议！</label>
+		</p>
+		<!-- 下拉选：
+			selected：设置默认选中
+			value：将来再讲 -->
+		<p>
+			城市:
+			<select>
+				<option>请选择</option>
+				<option>佳木斯</option>
+				<option>廊坊</option>
+				<option>北京</option>
+				<option selected>沈阳</option>
+			</select>
+		</p>
+		<!-- 文本域：
+			cols：设置宽度
+			rows：设置高度 -->
+		<p>
+			描述:
+			<textarea cols="30" rows="8"></textarea>
+		</p>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

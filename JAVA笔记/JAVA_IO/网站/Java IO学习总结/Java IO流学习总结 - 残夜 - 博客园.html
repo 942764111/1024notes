@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Java IO流学习总结 - 残夜 - 博客园_files/ca-pub-4210569241504288.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java IO流学习总结 - 残夜 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Java IO流学习总结 - 残夜 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Java IO流学习总结 - 残夜 - 博客园_files/bundle-MountainInk.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Java IO流学习总结 - 残夜 - 博客园_files/bundle-MountainInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/oubo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/oubo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/oubo/wlwmanifest.xml">
+<script src="./Java IO流学习总结 - 残夜 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'oubo', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Java IO流学习总结 - 残夜 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/oubo/"><img id="blogLogo" src="./Java IO流学习总结 - 残夜 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/oubo/">Oubo的博客</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/oubo/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/oubo/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/oubo/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 143&nbsp; </span>
+<span id="stats_article_count">文章 - 23&nbsp; </span>
+<span id="stats-comment_count">评论 - 93</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html">Java IO流学习总结</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>Java流操作有关的类或接口：</p>
+<p><img src="./Java IO流学习总结 - 残夜 - 博客园_files/2012031413371190.png" alt=""></p>
+<p>Java流类图结构：</p>
+<p><img src="./Java IO流学习总结 - 残夜 - 博客园_files/2012031413373126.jpg" alt=""></p>
+<p>&nbsp;</p>
+<h2><strong>流的概念和作用</strong></h2>
+<p>流是一组有顺序的，有起点和终点的字节集合，是对数据传输的总称或抽象。即数据在两设备间的传输称为流，<strong>流的本质是数据传输，根据数据传输特性将流抽象为各种类，方便更直观的进行数据操作。</strong>&nbsp;</p>
+<h2><strong><br></strong></h2>
+<h2><strong>IO流的分类</strong></h2>
+<ul>
+<li>根据处理数据类型的不同分为：字符流和字节流</li>
+<li>根据数据流向不同分为：输入流和输出流</li>
+</ul>
+<div>&nbsp;</div>
+<h3>字符流和字节流</h3>
+<p>字符流的由来： 因为数据编码的不同，而有了对字符进行高效操作的流对象。本质其实就是基于字节流读取时，去查了指定的码表。 字节流和字符流的区别：</p>
+<ul>
+<li>读写单位不同：字节流以字节（8bit）为单位，字符流以字符为单位，根据码表映射字符，一次可能读多个字节。</li>
+<li>处理对象不同：字节流能处理所有类型的数据（如图片、avi等），而字符流只能处理字符类型的数据。</li>
+</ul>
+<p>结论：只要是处理纯文本数据，就优先考虑使用字符流。 除此之外都使用字节流。</p>
+<h3>&nbsp;</h3>
+<h3>输入流和输出流</h3>
+<p>对输入流只能进行读操作，对输出流只能进行写操作，程序中需要根据待传输数据的不同特性而使用不同的流。 &nbsp;</p>
+<h2><strong><br></strong></h2>
+<h2><strong>Java IO流对象</strong></h2>
+<p><span style="font-size: 15px; font-weight: bold;">1.输入字节流InputStream</span>IO 中输入字节流的继承图可见上图，可以看出：</p>
+<ol>
+<li>InputStream 是所有的输入字节流的父类，它是一个抽象类。</li>
+<li>ByteArrayInputStream、StringBufferInputStream、FileInputStream 是三种基本的介质流，它们分别从Byte 数组、StringBuffer、和本地文件中读取数据。PipedInputStream 是从与其它线程共用的管道中读取数据，与Piped 相关的知识后续单独介绍。</li>
+<li>ObjectInputStream 和所有FilterInputStream 的子类都是装饰流（装饰器模式的主角）。</li>
+</ol>
+<h3>&nbsp;</h3>
+<h3>2.输出字节流OutputStream</h3>
+<p>IO 中输出字节流的继承图可见上图，可以看出：</p>
+<ol>
+<li>OutputStream 是所有的输出字节流的父类，它是一个抽象类。</li>
+<li>ByteArrayOutputStream、FileOutputStream 是两种基本的介质流，它们分别向Byte 数组、和本地文件中写入数据。PipedOutputStream 是向与其它线程共用的管道中写入数据，</li>
+<li>ObjectOutputStream 和所有FilterOutputStream 的子类都是装饰流。</li>
+</ol>
+<h3>&nbsp;</h3>
+<h3>3.字节流的输入与输出的对应</h3>
+<p><img src="./Java IO流学习总结 - 残夜 - 博客园_files/2012031413383430.png" alt=""></p>
+<p>&nbsp;</p>
+<p>图中蓝色的为主要的对应部分，红色的部分就是不对应部分。<em>紫色的虚线部分代表这些流一般要搭配使用</em>。从上面的图中可以看出Java IO 中的字节流是极其对称的。“存在及合理”我们看看这些字节流中不太对称的几个类吧！</p>
+<ol>
+<li>LineNumberInputStream 主要完成从流中读取数据时，会得到相应的行号，至于什么时候分行、在哪里分行是由改类主动确定的，并不是在原始中有这样一个行号。在输出部分没有对应的部分，我们完全可以自己建立一个LineNumberOutputStream，在最初写入时会有一个基准的行号，以后每次遇到换行时会在下一行添加一个行号，看起来也是可以的。好像更不入流了。</li>
+<li>PushbackInputStream 的功能是查看最后一个字节，不满意就放入缓冲区。主要用在编译器的语法、词法分析部分。输出部分的BufferedOutputStream 几乎实现相近的功能。</li>
+<li>StringBufferInputStream 已经被Deprecated，本身就不应该出现在InputStream 部分，主要因为String 应该属于字符流的范围。已经被废弃了，当然输出部分也没有必要需要它了！还允许它存在只是为了保持版本的向下兼容而已。</li>
+<li>SequenceInputStream 可以认为是一个工具类，将两个或者多个输入流当成一个输入流依次读取。完全可以从IO 包中去除，还完全不影响IO 包的结构，却让其更“纯洁”――纯洁的Decorator 模式。</li>
+<li>PrintStream 也可以认为是一个辅助工具。主要可以向其他输出流，或者FileInputStream 写入数据，本身内部实现还是带缓冲的。本质上是对其它流的综合运用的一个工具而已。一样可以踢出IO 包！System.out 和System.out 就是PrintStream 的实例！</li>
+</ol>
+<h3>&nbsp;</h3>
+<h3>4.字符输入流Reader</h3>
+<p>在上面的继承关系图中可以看出：</p>
+<ol>
+<li>Reader 是所有的输入字符流的父类，它是一个抽象类。</li>
+<li>CharReader、StringReader 是两种基本的介质流，它们分别将Char 数组、String中读取数据。PipedReader 是从与其它线程共用的管道中读取数据。</li>
+<li>BufferedReader 很明显就是一个装饰器，它和其子类负责装饰其它Reader 对象。</li>
+<li>FilterReader 是所有自定义具体装饰流的父类，其子类PushbackReader 对Reader 对象进行装饰，会增加一个行号。</li>
+<li>InputStreamReader 是一个连接字节流和字符流的桥梁，它将字节流转变为字符流。FileReader 可以说是一个达到此功能、常用的工具类，在其源代码中明显使用了将FileInputStream 转变为Reader 的方法。我们可以从这个类中得到一定的技巧。Reader 中各个类的用途和使用方法基本和InputStream 中的类使用一致。后面会有Reader 与InputStream 的对应关系。</li>
+</ol>
+<h3>&nbsp;</h3>
+<h3>5.字符输出流Writer</h3>
+<p>在上面的关系图中可以看出：</p>
+<ol>
+<li>Writer 是所有的输出字符流的父类，它是一个抽象类。</li>
+<li>CharArrayWriter、StringWriter 是两种基本的介质流，它们分别向Char 数组、String 中写入数据。PipedWriter 是向与其它线程共用的管道中写入数据，</li>
+<li>BufferedWriter 是一个装饰器为Writer 提供缓冲功能。</li>
+<li>PrintWriter 和PrintStream 极其类似，功能和使用也非常相似。</li>
+<li>OutputStreamWriter 是OutputStream 到Writer 转换的桥梁，它的子类FileWriter 其实就是一个实现此功能的具体类（具体可以研究一SourceCode）。功能和使用和OutputStream 极其类似，后面会有它们的对应图。</li>
+</ol>
+<h3>&nbsp;</h3>
+<h3>6.<span style="font-size: 15px; font-weight: bold;">字符流的输入与输出的对应</span></h3>
+<p><img src="./Java IO流学习总结 - 残夜 - 博客园_files/2012031413390861.png" alt=""></p>
+<p>&nbsp;</p>
+<h3>7.字符流与字节流转换</h3>
+<p>转换流的特点：</p>
+<ol>
+<li>其是字符流和字节流之间的桥梁</li>
+<li>可对读取到的字节数据经过指定编码转换成字符</li>
+<li>可对读取到的字符数据经过指定编码转换成字节</li>
+</ol>
+<p>何时使用转换流？</p>
+<ol>
+<li>当字节和字符之间有转换动作时；</li>
+<li>流操作的数据需要编码或解码时。</li>
+</ol>
+<p>具体的对象体现：</p>
+<ol>
+<li>InputStreamReader:<em>字节到字符的桥梁</em></li>
+<li>OutputStreamWriter:<em>字符到字节的桥梁</em></li>
+</ol>
+<p>这两个流对象是字符体系中的成员，它们有转换作用，本身又是字符流，所以在构造的时候需要传入字节流对象进来。</p>
+<h2>&nbsp;</h2>
+<h3>8.File类</h3>
+<p>File类是对文件系统中文件以及文件夹进行封装的对象，可以通过对象的思想来操作文件和文件夹。 File类保存文件或目录的各种元数据信息，包括文件名、文件长度、最后修改时间、是否可读、获取当前文件的路径名，判断指定文件是否存在、获得当前目录中的文件列表，创建、删除文件和目录等方法。 &nbsp;</p>
+<h3>9.RandomAccessFile类</h3>
+<p>该对象并不是流体系中的一员，其封装了字节流，同时还封装了一个缓冲区（字符数组），通过内部的指针来操作字符数组中的数据。 该对象特点：</p>
+<ol>
+<li>该对象只能操作文件，所以构造函数接收两种类型的参数：a.字符串文件路径；b.File对象。</li>
+<li>该对象既可以对文件进行读操作，也能进行写操作，在进行对象实例化时可指定操作模式(r,rw)</li>
+</ol>
+<p><strong><em>注意：该对象在实例化时，如果要操作的文件不存在，会自动创建；如果文件存在，写数据未指定位置，会从头开始写，即覆盖原有的内容。</em></strong> 可以用于多线程下载或多个线程同时写数据到文件。</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/oubo/tag/Java/">Java</a>, <a href="http://www.cnblogs.com/oubo/tag/IO%E6%B5%81/">IO流</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2394638,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;8b4ffb3c-136c-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Java IO流学习总结 - 残夜 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Java IO流学习总结 - 残夜 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/oubo/" target="_blank"><img src="./Java IO流学习总结 - 残夜 - 博客园_files/20141009174324.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/oubo/">残夜</a><br>
+            <a href="http://home.cnblogs.com/u/oubo/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/oubo/followers">粉丝 - 242</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;8b4ffb3c-136c-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2394638,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">72</span>
+    </div>
+    <div class="buryit" onclick="votePost(2394638,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/oubo/archive/2012/01/05/2394637.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/oubo/archive/2012/01/05/2394637.html" title="发布于2012-01-05 12:36">多线程编程学习总结</a><br><a href="http://www.cnblogs.com/oubo/archive/2012/01/07/2394639.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/oubo/archive/2012/01/07/2394639.html" title="发布于2012-01-07 11:52">Java集合框架学习总结</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-01-06 12:28</span> <a href="http://www.cnblogs.com/oubo/">残夜</a> 阅读(<span id="post_view_count">104912</span>) 评论(<span id="post_comment_count">40</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2394638" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#" onclick="AddToWz(2394638);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=111378,cb_entryId=2394638,cb_blogApp=currentBlogApp,cb_blogUserGuid='8b4ffb3c-136c-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/1/6 12:28:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2458752" class="layer">#1楼</a><a name="2458752" id="comment_anchor_2458752"></a>  <span class="comment_date">2012-08-29 10:49</span> <a id="a_comment_author_2458752" href="http://www.cnblogs.com/lyq-beat-it/" target="_blank">beat-it</a> <a href="http://msg.cnblogs.com/send/beat-it" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2458752" class="blog_comment_body">很好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2458752,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2458752,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2458752_avatar" style="display:none;">http://pic.cnblogs.com/face/332085/20160529220235.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2498275" class="layer">#2楼</a><a name="2498275" id="comment_anchor_2498275"></a>  <span class="comment_date">2012-10-22 09:59</span> <a id="a_comment_author_2498275" href="http://www.cnblogs.com/jaisok/" target="_blank">jaisok</a> <a href="http://msg.cnblogs.com/send/jaisok" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2498275" class="blog_comment_body">讲的非常好啊，呵呵，受益匪浅</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2498275,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2498275,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2596756" class="layer">#3楼</a><a name="2596756" id="comment_anchor_2596756"></a>  <span class="comment_date">2013-01-10 10:07</span> <a id="a_comment_author_2596756" href="http://www.cnblogs.com/ryan-droid/" target="_blank">ryan_droid</a> <a href="http://msg.cnblogs.com/send/ryan_droid" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2596756" class="blog_comment_body">讲得很好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2596756,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2596756,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2606173" class="layer">#4楼</a><a name="2606173" id="comment_anchor_2606173"></a>  <span class="comment_date">2013-01-23 23:14</span> <a id="a_comment_author_2606173" href="http://www.cnblogs.com/moher/" target="_blank">Monn</a> <a href="http://msg.cnblogs.com/send/Monn" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2606173" class="blog_comment_body">收藏了。。。。。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2606173,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2606173,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2650738" class="layer">#5楼</a><a name="2650738" id="comment_anchor_2650738"></a>  <span class="comment_date">2013-04-06 20:35</span> <a id="a_comment_author_2650738" href="http://www.cnblogs.com/explorerlgp/" target="_blank">天空之镜</a> <a href="http://msg.cnblogs.com/send/%E5%A4%A9%E7%A9%BA%E4%B9%8B%E9%95%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2650738" class="blog_comment_body">感谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2650738,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2650738,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2726004" class="layer">#6楼</a><a name="2726004" id="comment_anchor_2726004"></a>  <span class="comment_date">2013-07-12 16:47</span> <a id="a_comment_author_2726004" href="http://www.cnblogs.com/wumingcong/" target="_blank">Code_lover</a> <a href="http://msg.cnblogs.com/send/Code_lover" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2726004" class="blog_comment_body">果断收藏了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2726004,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2726004,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2730595" class="layer">#7楼</a><a name="2730595" id="comment_anchor_2730595"></a>  <span class="comment_date">2013-07-19 10:18</span> <a id="a_comment_author_2730595" href="http://www.cnblogs.com/weishaohua/" target="_blank">□华子</a> <a href="http://msg.cnblogs.com/send/%E2%96%A1%E5%8D%8E%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2730595" class="blog_comment_body">果断收藏到印象笔记了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2730595,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2730595,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2732855" class="layer">#8楼</a><a name="2732855" id="comment_anchor_2732855"></a>  <span class="comment_date">2013-07-22 20:01</span> <a id="a_comment_author_2732855" href="http://home.cnblogs.com/u/550480/" target="_blank">紫涩薰衣草</a> <a href="http://msg.cnblogs.com/send/%E7%B4%AB%E6%B6%A9%E8%96%B0%E8%A1%A3%E8%8D%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2732855" class="blog_comment_body">很好的总结</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2732855,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2732855,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2747918" class="layer">#9楼</a><a name="2747918" id="comment_anchor_2747918"></a>  <span class="comment_date">2013-08-10 12:05</span> <a id="a_comment_author_2747918" href="http://home.cnblogs.com/u/556625/" target="_blank">左茶右笔</a> <a href="http://msg.cnblogs.com/send/%E5%B7%A6%E8%8C%B6%E5%8F%B3%E7%AC%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2747918" class="blog_comment_body">很好 条理清晰 对新手很有帮助 收藏了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2747918,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2747918,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2795622" class="layer">#10楼</a><a name="2795622" id="comment_anchor_2795622"></a>  <span class="comment_date">2013-10-17 16:42</span> <a id="a_comment_author_2795622" href="http://home.cnblogs.com/u/575055/" target="_blank">skyfull</a> <a href="http://msg.cnblogs.com/send/skyfull" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2795622" class="blog_comment_body">感谢总结出JAVA IO相关的类，看了这篇文章之后对输入输出流有了更加清晰的认识。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2795622,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2795622,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2924625" class="layer">#11楼</a><a name="2924625" id="comment_anchor_2924625"></a>  <span class="comment_date">2014-04-24 15:44</span> <a id="a_comment_author_2924625" href="http://www.cnblogs.com/beyondchina/" target="_blank">beyondchina</a> <a href="http://msg.cnblogs.com/send/beyondchina" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2924625" class="blog_comment_body">mark. 写得不错。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2924625,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2924625,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2924625_avatar" style="display:none;">http://pic.cnblogs.com/face/507671/20130326144957.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2964314" class="layer">#12楼</a><a name="2964314" id="comment_anchor_2964314"></a>  <span class="comment_date">2014-06-15 10:26</span> <a id="a_comment_author_2964314" href="http://home.cnblogs.com/u/642788/" target="_blank">alongsky</a> <a href="http://msg.cnblogs.com/send/alongsky" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2964314" class="blog_comment_body">收藏了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2964314,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2964314,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#2965012" class="layer">#13楼</a><a name="2965012" id="comment_anchor_2965012"></a>  <span class="comment_date">2014-06-16 12:52</span> <a id="a_comment_author_2965012" href="http://home.cnblogs.com/u/618250/" target="_blank">小塔-皂荚花</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%A1%94-%E7%9A%82%E8%8D%9A%E8%8A%B1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2965012" class="blog_comment_body">写的不错，给大家推荐一篇<a href="http://www.zaojiahua.com/1453.html" target="_blank">http://www.zaojiahua.com/1453.html</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2965012,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2965012,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3027884" class="layer">#14楼</a><a name="3027884" id="comment_anchor_3027884"></a>  <span class="comment_date">2014-09-14 11:13</span> <a id="a_comment_author_3027884" href="http://home.cnblogs.com/u/672365/" target="_blank">乡下老曹</a> <a href="http://msg.cnblogs.com/send/%E4%B9%A1%E4%B8%8B%E8%80%81%E6%9B%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3027884" class="blog_comment_body">谢谢楼主的分享，条理很清晰。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3027884,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3027884,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3090807" class="layer">#15楼</a><a name="3090807" id="comment_anchor_3090807"></a>  <span class="comment_date">2014-12-21 17:04</span> <a id="a_comment_author_3090807" href="http://home.cnblogs.com/u/705856/" target="_blank">|▍遥远</a> <a href="http://msg.cnblogs.com/send/%7C%E2%96%8D%E9%81%A5%E8%BF%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3090807" class="blog_comment_body">有种大神即视感</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3090807,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3090807,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3091193" class="layer">#16楼</a><a name="3091193" id="comment_anchor_3091193"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-12-22 11:11</span> <a id="a_comment_author_3091193" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3091193" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3090807" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3090807);">@</a>
+|▍遥远<br>共同学习</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3091193,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3091193,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3091193_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3099463" class="layer">#17楼</a><a name="3099463" id="comment_anchor_3099463"></a>  <span class="comment_date">2015-01-04 13:56</span> <a id="a_comment_author_3099463" href="http://home.cnblogs.com/u/710116/" target="_blank">leellun</a> <a href="http://msg.cnblogs.com/send/leellun" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3099463" class="blog_comment_body">总结的非常不错</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3099463,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3099463,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3140373" class="layer">#18楼</a><a name="3140373" id="comment_anchor_3140373"></a>  <span class="comment_date">2015-03-13 15:59</span> <a id="a_comment_author_3140373" href="http://www.cnblogs.com/linlin-meimei/" target="_blank">伊魔朵酱</a> <a href="http://msg.cnblogs.com/send/%E4%BC%8A%E9%AD%94%E6%9C%B5%E9%85%B1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3140373" class="blog_comment_body">很好</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3140373,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3140373,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3140373_avatar" style="display:none;">http://pic.cnblogs.com/face/730778/20150313160728.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3142959" class="layer">#19楼</a><a name="3142959" id="comment_anchor_3142959"></a>  <span class="comment_date">2015-03-17 17:16</span> <a id="a_comment_author_3142959" href="http://www.cnblogs.com/my129go/" target="_blank">this梦，不朽不止</a> <a href="http://msg.cnblogs.com/send/this%E6%A2%A6%EF%BC%8C%E4%B8%8D%E6%9C%BD%E4%B8%8D%E6%AD%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3142959" class="blog_comment_body">太好了    ，怎么转摘？？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3142959,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3142959,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3142959_avatar" style="display:none;">http://pic.cnblogs.com/face/723619/20150213190132.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3144125" class="layer">#20楼</a><a name="3144125" id="comment_anchor_3144125"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-03-19 09:42</span> <a id="a_comment_author_3144125" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3144125" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3142959" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3142959);">@</a>
+this梦，不朽不止<br>Ctrl+c, Ctrl+v，哈</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3144125,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3144125,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3144125_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3144129" class="layer">#21楼</a><a name="3144129" id="comment_anchor_3144129"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-03-19 09:43</span> <a id="a_comment_author_3144129" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3144129" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3140373" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3140373);">@</a>
+伊魔朵酱<br>还是12年的总结~N久没在博客园写总结了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3144129,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3144129,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3144129_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3171380" class="layer">#22楼</a><a name="3171380" id="comment_anchor_3171380"></a>  <span class="comment_date">2015-04-27 17:15</span> <a id="a_comment_author_3171380" href="http://www.cnblogs.com/selene/" target="_blank">阿赫瓦里</a> <a href="http://msg.cnblogs.com/send/%E9%98%BF%E8%B5%AB%E7%93%A6%E9%87%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3171380" class="blog_comment_body">言简意赅，清晰明了。感谢楼主分享！！！收藏了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3171380,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3171380,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3171380_avatar" style="display:none;">http://pic.cnblogs.com/face/712052/20150513224832.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3189851" class="layer">#23楼</a><a name="3189851" id="comment_anchor_3189851"></a>  <span class="comment_date">2015-05-21 21:27</span> <a id="a_comment_author_3189851" href="http://www.cnblogs.com/yaozihuan/" target="_blank">genericyzh</a> <a href="http://msg.cnblogs.com/send/genericyzh" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3189851" class="blog_comment_body">请问这个图用什么软件画的？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3189851,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3189851,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3189851_avatar" style="display:none;">http://pic.cnblogs.com/face/u450521.jpg?id=21230435</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3192246" class="layer">#24楼</a><a name="3192246" id="comment_anchor_3192246"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-05-25 10:35</span> <a id="a_comment_author_3192246" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3192246" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3189851" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3189851);">@</a>
+Evilsorrow<br>visio就行</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3192246,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3192246,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3192246_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3192248" class="layer">#25楼</a><a name="3192248" id="comment_anchor_3192248"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-05-25 10:36</span> <a id="a_comment_author_3192248" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3192248" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3189851" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3189851);">@</a>
+Evilsorrow<br>第二个图很多脑图工具都行，如Xmind</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3192248,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3192248,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3192248_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3201654" class="layer">#26楼</a><a name="3201654" id="comment_anchor_3201654"></a>  <span class="comment_date">2015-06-05 19:28</span> <a id="a_comment_author_3201654" href="http://www.cnblogs.com/0xcafebaby/" target="_blank">0xcafebaby</a> <a href="http://msg.cnblogs.com/send/0xcafebaby" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3201654" class="blog_comment_body">很不错，感谢博主，收藏啦～</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3201654,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3201654,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3201654_avatar" style="display:none;">http://pic.cnblogs.com/face/720608/20161115153521.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3296308" class="layer">#27楼</a><a name="3296308" id="comment_anchor_3296308"></a>  <span class="comment_date">2015-11-01 13:57</span> <a id="a_comment_author_3296308" href="http://home.cnblogs.com/u/805940/" target="_blank">往昔之记忆</a> <a href="http://msg.cnblogs.com/send/%E5%BE%80%E6%98%94%E4%B9%8B%E8%AE%B0%E5%BF%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3296308" class="blog_comment_body">叫好连天</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3296308,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3296308,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3312403" class="layer">#28楼</a><a name="3312403" id="comment_anchor_3312403"></a>  <span class="comment_date">2015-11-23 20:09</span> <a id="a_comment_author_3312403" href="http://home.cnblogs.com/u/843410/" target="_blank">wanminyan</a> <a href="http://msg.cnblogs.com/send/wanminyan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3312403" class="blog_comment_body">现在是2015 年了。跟书上的类容是一样的，归纳了一下，比较直观了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3312403,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3312403,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3332776" class="layer">#29楼</a><a name="3332776" id="comment_anchor_3332776"></a>  <span class="comment_date">2015-12-23 13:33</span> <a id="a_comment_author_3332776" href="http://www.cnblogs.com/LUA123/" target="_blank">小LUA</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8FLUA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3332776" class="blog_comment_body">666666666翻了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3332776,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3332776,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3332776_avatar" style="display:none;">http://pic.cnblogs.com/face/813478/20150919150319.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3353237" class="layer">#30楼</a><a name="3353237" id="comment_anchor_3353237"></a>  <span class="comment_date">2016-01-24 10:32</span> <a id="a_comment_author_3353237" href="http://home.cnblogs.com/u/702150/" target="_blank">muziazheng</a> <a href="http://msg.cnblogs.com/send/muziazheng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3353237" class="blog_comment_body">这篇文章解决了哦看官方api的某些疑惑,非常感谢...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3353237,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3353237,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3363914" class="layer">#31楼</a><a name="3363914" id="comment_anchor_3363914"></a>  <span class="comment_date">2016-02-19 17:39</span> <a id="a_comment_author_3363914" href="http://www.cnblogs.com/lynnminmay/" target="_blank">lynnminmay</a> <a href="http://msg.cnblogs.com/send/lynnminmay" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3363914" class="blog_comment_body">请教一下:<br>这个:Java流类图结构<br>那个图是用什么工具画的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3363914,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3363914,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3365283" class="layer">#32楼</a><a name="3365283" id="comment_anchor_3365283"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2016-02-23 09:45</span> <a id="a_comment_author_3365283" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3365283" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3363914" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3363914);">@</a>
+lynnminmay<br>xmind之类的思维导图工具都可以。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3365283,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3365283,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3365283_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3420814" class="layer">#33楼</a><a name="3420814" id="comment_anchor_3420814"></a>  <span class="comment_date">2016-05-01 11:11</span> <a id="a_comment_author_3420814" href="http://www.cnblogs.com/codebug/" target="_blank">吃不了兜着走</a> <a href="http://msg.cnblogs.com/send/%E5%90%83%E4%B8%8D%E4%BA%86%E5%85%9C%E7%9D%80%E8%B5%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3420814" class="blog_comment_body">博主好用心</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3420814,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3420814,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3420814_avatar" style="display:none;">http://pic.cnblogs.com/face/946528/20161001230930.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3431434" class="layer">#34楼</a><a name="3431434" id="comment_anchor_3431434"></a>  <span class="comment_date">2016-05-15 13:18</span> <a id="a_comment_author_3431434" href="http://www.cnblogs.com/higherPurpose/" target="_blank">不羁阿怪的流浪</a> <a href="http://msg.cnblogs.com/send/%E4%B8%8D%E7%BE%81%E9%98%BF%E6%80%AA%E7%9A%84%E6%B5%81%E6%B5%AA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3431434" class="blog_comment_body">我要炸了，不懂写，今天会明天又不会了  :(</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3431434,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3431434,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3431434_avatar" style="display:none;">http://pic.cnblogs.com/face/929290/20160409134901.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3445619" class="layer">#35楼</a><a name="3445619" id="comment_anchor_3445619"></a>  <span class="comment_date">2016-06-03 23:03</span> <a id="a_comment_author_3445619" href="http://www.cnblogs.com/yuefenghui/" target="_blank">红院才子</a> <a href="http://msg.cnblogs.com/send/%E7%BA%A2%E9%99%A2%E6%89%8D%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3445619" class="blog_comment_body">看到Java流类图结构这就感觉是一篇好文！！！！！！！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3445619,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3445619,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3445619_avatar" style="display:none;">http://pic.cnblogs.com/face/963244/20160602154143.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3455063" class="layer">#36楼</a><a name="3455063" id="comment_anchor_3455063"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2016-06-19 19:27</span> <a id="a_comment_author_3455063" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3455063" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3420814" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3420814);">@</a>
+吃不了兜着走 谢谢，好久不写博客了，哈</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3455063,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3455063,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3455063_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3455064" class="layer">#37楼</a><a name="3455064" id="comment_anchor_3455064"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2016-06-19 19:28</span> <a id="a_comment_author_3455064" href="http://www.cnblogs.com/oubo/" target="_blank">残夜</a> <a href="http://msg.cnblogs.com/send/%E6%AE%8B%E5%A4%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3455064" class="blog_comment_body"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3431434" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3431434);">@</a>
+不羁阿怪的流浪 实践是最好的记忆方式</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3455064,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3455064,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3455064_avatar" style="display:none;">http://pic.cnblogs.com/face/384764/20141009174324.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3564208" class="layer">#38楼</a><a name="3564208" id="comment_anchor_3564208"></a>  <span class="comment_date">2016-11-24 15:17</span> <a id="a_comment_author_3564208" href="http://home.cnblogs.com/u/1069326/" target="_blank">wangkyy</a> <a href="http://msg.cnblogs.com/send/wangkyy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3564208" class="blog_comment_body">好知识，果断收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3564208,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3564208,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3583837" class="layer">#39楼</a><a name="3583837" id="comment_anchor_3583837"></a>  <span class="comment_date">2016-12-18 19:27</span> <a id="a_comment_author_3583837" href="http://www.cnblogs.com/Dreamer-1/" target="_blank">Dreamer-1</a> <a href="http://msg.cnblogs.com/send/Dreamer-1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3583837" class="blog_comment_body">总结的很好  条理清晰  简单易懂</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3583837,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3583837,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3583837_avatar" style="display:none;">http://pic.cnblogs.com/face/946400/20170116113328.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3607741" class="layer">#40楼</a><a name="3607741" id="comment_anchor_3607741"></a><span id="comment-maxId" style="display:none;">3607741</span><span id="comment-maxDate" style="display:none;">2017/1/20 16:49:07</span>  <span class="comment_date">2017-01-20 16:49</span> <a id="a_comment_author_3607741" href="http://home.cnblogs.com/u/1098226/" target="_blank">lalala0</a> <a href="http://msg.cnblogs.com/send/lalala0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3607741" class="blog_comment_body">第一张图中有错。。。PushbakInputStream出错 应该是 PushbackInputStream</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3607741,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3607741,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank">【推荐】自开发 零实施的BPM</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block">     <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-4210569241504288" data-ad-slot="5457903683" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./Java IO流学习总结 - 残夜 - 博客园_files/saved_resource.html"></iframe></ins></ins></ins></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/562154/" target="_blank">微软发布“点击进化史”图片 称大多数人仍生活在90年代</a><br> ·  <a href="http://news.cnblogs.com/n/562153/" target="_blank">小米手环2：再次斩获iF设计奖</a><br> ·  <a href="http://news.cnblogs.com/n/562152/" target="_blank">任性！刘强东：5年以上员工每人一部iPhone 7</a><br> ·  <a href="http://news.cnblogs.com/n/562151/" target="_blank">因担心黑客纂改荷兰政府宣布用手工计票</a><br> ·  <a href="http://news.cnblogs.com/n/562150/" target="_blank">知识经济这一年，内容开始赚钱了，但它是一门持续的生意吗？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./Java IO流学习总结 - 残夜 - 博客园_files/24442-20170118152220281-363324784.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/554260/" target="_blank">「代码家」的学习过程和学习经验分享</a><br> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/oubo/">残夜</a><br>园龄：<a href="http://home.cnblogs.com/u/oubo/" title="入园时间：2012-03-12">4年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/oubo/followers/">242</a><br>关注：<a href="http://home.cnblogs.com/u/oubo/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8b4ffb3c-136c-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2011/12/01&#39;);return false;">&lt;</a></td><td align="center">2012年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/05.html"><u>5</u></a></td><td align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06.html"><u>6</u></a></td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/07.html"><u>7</u></a></td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/13.html"><u>13</u></a></td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/16.html"><u>16</u></a></td><td align="center"><a href="http://www.cnblogs.com/oubo/archive/2012/01/17.html"><u>17</u></a></td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/oubo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/oubo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/oubo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/oubo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/oubo/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/oubo/tag/Python/">Python</a>(36)</li><li><a href="http://www.cnblogs.com/oubo/tag/Linux/">Linux</a>(22)</li><li><a href="http://www.cnblogs.com/oubo/tag/Java/">Java</a>(10)</li><li><a href="http://www.cnblogs.com/oubo/tag/GlusterFS/">GlusterFS</a>(10)</li><li><a href="http://www.cnblogs.com/oubo/tag/Nosql/">Nosql</a>(10)</li><li><a href="http://www.cnblogs.com/oubo/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(10)</li><li><a href="http://www.cnblogs.com/oubo/tag/%E7%AE%A1%E7%90%86%E4%B9%8B%E9%81%93/">管理之道</a>(9)</li><li><a href="http://www.cnblogs.com/oubo/tag/Nginx/">Nginx</a>(8)</li><li><a href="http://www.cnblogs.com/oubo/tag/scribe/">scribe</a>(7)</li><li><a href="http://www.cnblogs.com/oubo/tag/Android/">Android</a>(7)</li><li><a href="http://www.cnblogs.com/oubo/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(162)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/oubo/category/363112.html">Android(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/oubo/category/362834.html">C/C++(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/oubo/category/369738.html">Django(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/oubo/category/362837.html">GlusterFS(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/oubo/category/362832.html">Java(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/oubo/category/363090.html">Linux(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/oubo/category/362835.html">MongoDB(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/oubo/category/377582.html">MooseFS(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/oubo/category/362836.html">Mysql(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/oubo/category/363095.html">Nagios(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/oubo/category/363096.html">Nginx(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/oubo/category/362844.html">Nosql(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/oubo/category/362833.html">Python(35)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/oubo/category/363202.html">Redis(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/oubo/category/363127.html">Scribe(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/oubo/category/363088.html">Shell(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/oubo/category/363166.html">Thrift(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/oubo/category/363087.html">VIM(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/oubo/category/363077.html">八卦生活(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/oubo/category/362851.html">管理</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/oubo/category/362852.html">设计模式(4)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links363247" class="catList sidebar-block">
+<h3 class="catListTitle">好友链接</h3>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	140658
+	</li>
+	<li class="liRank">
+		排名 -	1489
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3607741">1. Re:Java IO流学习总结</a></li>
+        <li class="recent_comment_body">第一张图中有错。。。PushbakInputStream出错 应该是 PushbackInputStream</li>
+        <li class="recent_comment_author">--lalala0</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3583837">2. Re:Java IO流学习总结</a></li>
+        <li class="recent_comment_body">总结的很好  条理清晰  简单易懂</li>
+        <li class="recent_comment_author">--Dreamer-1</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/oubo/archive/2012/01/16/2394641.html#3579756">3. Re:Java网络编程总结</a></li>
+        <li class="recent_comment_body">GOOD</li>
+        <li class="recent_comment_author">--CrescentHU</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3564208">4. Re:Java IO流学习总结</a></li>
+        <li class="recent_comment_body">好知识，果断收藏</li>
+        <li class="recent_comment_author">--wangkyy</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html#3455064">5. Re:Java IO流学习总结</a></li>
+        <li class="recent_comment_body">@不羁阿怪的流浪 实践是最好的记忆方式...</li>
+        <li class="recent_comment_author">--残夜</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html">1. Java IO流学习总结(104913)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/09/07/2394568.html">2. Redis命令总结(58135)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/11/14/2394618.html">3. Android开发人员必备的10 个开发工具(47057)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/25/2517751.html">4. Flume日志收集(46492)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/04/06/2434961.html">5. Apache上部署Django(9489)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/07/24/2607034.html">6. python cx_Oracle模块的安装和使用(9470)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/04/2482893.html">7. MFS学习总结(7497)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/10/13/2394599.html">8. Nginx 禁止IP访问(6924)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/16/2394641.html">9. Java网络编程总结(5543)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/07/2394639.html">10. Java集合框架学习总结(4714)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html">1. Java IO流学习总结(40)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/11/14/2394618.html">2. Android开发人员必备的10 个开发工具(9)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/25/2517751.html">3. Flume日志收集(7)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/21/2511726.html">4. Apache vs Lighttpd vs Nginx对比(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/12/30/2394635.html">5. VI配置成多语言IDE(带完整附件)(5)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/06/2394638.html">1. Java IO流学习总结(72)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/25/2517751.html">2. Flume日志收集(6)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/07/2394639.html">3. Java集合框架学习总结(6)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/16/2394641.html">4. Java网络编程总结(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/13/2394640.html">5. Java基础知识总结(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/04/2482893.html">6. MFS学习总结(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/09/07/2394568.html">7. Redis命令总结(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2011/11/14/2394618.html">8. Android开发人员必备的10 个开发工具(5)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/01/05/2394637.html">9. 多线程编程学习总结(4)</a></li><li><a href="http://www.cnblogs.com/oubo/archive/2012/05/21/2511726.html">10. Apache vs Lighttpd vs Nginx对比(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 残夜
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

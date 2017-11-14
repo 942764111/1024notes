@@ -1,0 +1,15 @@
+	<!-- 配置SqlSessionFactoryBean
+	 	注：该Bean作用是替代原来的MyBatis配置文件
+	 -->
+	<bean id="ssfb" 
+	class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入连接池 -->
+		<property name="dataSource" ref="ds"/>
+		<!-- 注入映射文件的位置信息 -->
+		<property name="mapperLocations" 
+			value="classpath:entity/*.xml"/>
+	</bean>
+	
+	
+	classpath:如果不加classpath关键字tomecat默认会在webapp目录下查找
+	如果加上classpath关键字会在javaresources目录下查找

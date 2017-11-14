@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://pengcqu.iteye.com/blog/502676 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ca-pub-8990951720398508.js.下载"></script><script type="text/javascript" async="" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ncom"></script><script type="text/javascript" async="" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ncom(1)"></script>
+    
+    <title>Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站</title>
+    <meta name="description" content="一般大家都知道ArrayList和LinkedList的大致区别：      1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。      2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。      3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayL ...">
+    <meta name="keywords" content="Java, 数据结构, 算法, Access Java中ArrayList和LinkedList区别">
+    <link rel="shortcut icon" href="http://pengcqu.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://pengcqu.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://pengcqu.iteye.com/rss" rel="alternate" title="Peng的技术博客" type="application/rss+xml">
+    <link href="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/orange.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ga.js.下载"></script><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/hm.js.下载"></script><script type="text/javascript" async="" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ga.js.下载"></script><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/application.js.下载" type="text/javascript"></script>    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/shCoreCommon.js.下载" type="text/javascript"></script>
+<script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/hotkey.js.下载" type="text/javascript"></script>
+  <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/code_favorites.js.下载" type="text/javascript"></script>
+<script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/weiboshare.js.下载" type="text/javascript"></script>
+  <script>
+		var _hmt = _hmt || [];
+		(function() {
+		 var hm = document.createElement("script");
+		 hm.src = "//hm.baidu.com/hm.js?e19a8b00cf63f716d774540875007664";
+		 var s = document.getElementsByTagName("script")[0]; 
+		 s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+    
+  <style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/get_ads.php" type="text/javascript"></script></head>
+  <body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+    <div id="header">
+	      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://pengcqu.iteye.com/blog/502676#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+	      <div id="user_nav">
+      <a href="http://pengcqu.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://pengcqu.iteye.com/login">登录</a>
+    <a href="http://pengcqu.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+	    
+    </div>
+
+    <div id="page">
+        <div id="branding" class="clearfix" style="overflow: hidden;background: none;padding:0 0 2px;">
+        	<div class="J_adv" data-view="true" data-mod="ad_popu_184" data-mtp="34" data-order="92" data-con="ad_content_1127" style="width: 960px; height: 90px;"><!-- 广告占位容器 --><div id="cpro_u2720131"><iframe id="iframeu2720131_0" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ncom.html" width="960" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">   /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({        id: 'u2720131'      });  </script>  <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/c.js.下载" type="text/javascript"></script></div>
+        </div>
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://pengcqu.iteye.com/">Peng的技术博客</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://pengcqu.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://pengcqu.iteye.com/weibo">微博</a></li>
+            <li><a href="http://pengcqu.iteye.com/album">相册</a></li>
+            <li><a href="http://pengcqu.iteye.com/link">收藏</a></li>
+            <li><a href="http://pengcqu.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://pengcqu.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://pengcqu.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://pengcqu.iteye.com/" class="p-author" target="_blank">pengcqu</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="http://pengcqu.iteye.com/blog/502676">Java中ArrayList和LinkedList区别</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://pengcqu.iteye.com/category/82032">Java知识点</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/Java">Java</a><a href="http://www.iteye.com/blogs/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a><a href="http://www.iteye.com/blogs/tag/%E7%AE%97%E6%B3%95">算法</a><a href="http://www.iteye.com/blogs/tag/Access">Access</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    <p>一般大家都知道ArrayList和LinkedList的大致区别： <br><span style="font-size: small; line-height: 1.5em;">&nbsp;&nbsp;&nbsp;&nbsp; 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。</span> <br><span style="font-size: small; line-height: 1.5em;">&nbsp;&nbsp;&nbsp;&nbsp; 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。</span> <br><span style="font-size: small; line-height: 1.5em;">&nbsp;&nbsp;&nbsp;&nbsp; 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。</span> <br><br><span style="font-size: small; line-height: 1.5em;">ArrayList和LinkedList是两个集合类，用于存储一系列的对象引用(references)。例如我们可以用ArrayList来存储一系列的String或者Integer。那么ArrayList和LinkedList在性能上有什么差别呢？什么时候应该用ArrayList什么时候又该用LinkedList呢？</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;"><strong>一．时间复杂度</strong></span> <br><span style="font-size: small; line-height: 1.5em;">首先一点关键的是，ArrayList的内部实现是基于基础的对象数组的，因此，它使用get方法访问列表中的任意一个元素时(random access)，它的速度要比LinkedList快。LinkedList中的get方法是按照顺序从列表的一端开始检查，直到另外一端。对LinkedList而言，访问列表中的某个指定元素没有更快的方法了。</span> <br><span style="font-size: small; line-height: 1.5em;">假设我们有一个很大的列表，它里面的元素已经排好序了，这个列表可能是ArrayList类型的也可能是LinkedList类型的，现在我们对这个列表来进行二分查找(binary search)，比较列表是ArrayList和LinkedList时的查询速度，看下面的程序：</span> <br></p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=package%20com.mangocity.test%3B%20%0Aimport%20java.util.LinkedList%3B%20%0Aimport%20java.util.List%3B%20%0Aimport%20java.util.Random%3B%20%0Aimport%20java.util.ArrayList%3B%20%0Aimport%20java.util.Arrays%3B%20%0Aimport%20java.util.Collections%3B%20%0Apublic%20class%20TestList%20...%7B%20%0A%20%20%20%20%20public%20static%20final%20int%20N%3D50000%3B%20%0A%0A%20%20%20%20%20public%20static%20List%20values%3B%20%0A%0A%20%20%20%20%20static...%7B%20%0A%20%20%20%20%20%20%20%20%20Integer%20vals%5B%5D%3Dnew%20Integer%5BN%5D%3B%20%0A%0A%20%20%20%20%20%20%20%20%20Random%20r%3Dnew%20Random()%3B%20%0A%0A%20%20%20%20%20%20%20%20%20for(int%20i%3D0%2Ccurrval%3D0%3Bi%3CN%3Bi%2B%2B)...%7B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20vals%3Dnew%20Integer(currval)%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20currval%2B%3Dr.nextInt(100)%2B1%3B%20%0A%20%20%20%20%20%20%20%20%20%7D%20%0A%0A%20%20%20%20%20%20%20%20%20values%3DArrays.asList(vals)%3B%20%0A%20%20%20%20%20%7D%20%0A%0A%20%20%20%20%20static%20long%20timeList(List%20lst)...%7B%20%0A%20%20%20%20%20%20%20%20%20long%20start%3DSystem.currentTimeMillis()%3B%20%0A%20%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3CN%3Bi%2B%2B)...%7B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20int%20index%3DCollections.binarySearch(lst%2C%20values.get(i))%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20if(index!%3Di)%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22***%E9%94%99%E8%AF%AF***%22)%3B%20%0A%20%20%20%20%20%20%20%20%20%7D%20%0A%20%20%20%20%20%20%20%20%20return%20System.currentTimeMillis()-start%3B%20%0A%20%20%20%20%20%7D%20%0A%20%20%20%20%20public%20static%20void%20main(String%20args%5B%5D)...%7B%20%0A%20%20%20%20%20%20%20%20%20System.out.println(%22ArrayList%E6%B6%88%E8%80%97%E6%97%B6%E9%97%B4%EF%BC%9A%22%2BtimeList(new%20ArrayList(values)))%3B%20%0A%20%20%20%20%20%20%20%20%20System.out.println(%22LinkedList%E6%B6%88%E8%80%97%E6%97%B6%E9%97%B4%EF%BC%9A%22%2BtimeList(new%20LinkedList(values)))%3B%20%0A%20%20%20%20%20%7D%20%0A%7D%20%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">package</span><span>&nbsp;com.mangocity.test;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.LinkedList;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Random;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.ArrayList;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Arrays;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Collections;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;TestList&nbsp;...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;N=</span><span class="number">50000</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;List&nbsp;values;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer&nbsp;vals[]=<span class="keyword">new</span><span>&nbsp;Integer[N];&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Random&nbsp;r=<span class="keyword">new</span><span>&nbsp;Random();&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>,currval=</span><span class="number">0</span><span>;i&lt;N;i++)...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vals=<span class="keyword">new</span><span>&nbsp;Integer(currval);&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currval+=r.nextInt(<span class="number">100</span><span>)+</span><span class="number">1</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values=Arrays.asList(vals);&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;timeList(List&nbsp;lst)...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;start=System.currentTimeMillis();&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;N;i++)...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;index=Collections.binarySearch(lst,&nbsp;values.get(i));&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(index!=i)&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"***错误***"</span><span>);&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-start;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[])...{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"ArrayList消耗时间："</span><span>+timeList(</span><span class="keyword">new</span><span>&nbsp;ArrayList(values)));&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"LinkedList消耗时间："</span><span>+timeList(</span><span class="keyword">new</span><span>&nbsp;LinkedList(values)));&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#" pre_index="0" title="Java中ArrayList和LinkedList区别" style="display: none;">package com.mangocity.test; 
+import java.util.LinkedList; 
+import java.util.List; 
+import java.util.Random; 
+import java.util.ArrayList; 
+import java.util.Arrays; 
+import java.util.Collections; 
+public class TestList ...{ 
+     public static final int N=50000; 
+
+     public static List values; 
+
+     static...{ 
+         Integer vals[]=new Integer[N]; 
+
+         Random r=new Random(); 
+
+         for(int i=0,currval=0;i&lt;N;i++)...{ 
+             vals=new Integer(currval); 
+             currval+=r.nextInt(100)+1; 
+         } 
+
+         values=Arrays.asList(vals); 
+     } 
+
+     static long timeList(List lst)...{ 
+         long start=System.currentTimeMillis(); 
+         for(int i=0;i&lt;N;i++)...{ 
+             int index=Collections.binarySearch(lst, values.get(i)); 
+             if(index!=i) 
+                 System.out.println("***错误***"); 
+         } 
+         return System.currentTimeMillis()-start; 
+     } 
+     public static void main(String args[])...{ 
+         System.out.println("ArrayList消耗时间："+timeList(new ArrayList(values))); 
+         System.out.println("LinkedList消耗时间："+timeList(new LinkedList(values))); 
+     } 
+} 
+</pre>
+<p>&nbsp;<br><span style="font-size: small; line-height: 1.5em;">我得到的输出是：ArrayList消耗时间：15 </span><br><span style="font-size: small; line-height: 1.5em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedList消耗时间：2596 </span><br><span style="font-size: small; line-height: 1.5em;">这个结果不是固定的，但是基本上ArrayList的时间要明显小于LinkedList的时间。因此在这种情况下不宜用LinkedList。二分查找法使用的随机访问(random access)策略，而LinkedList是不支持快速的随机访问的。对一个LinkedList做随机访问所消耗的时间与这个list的大小是成比例的。而相应的，在ArrayList中进行随机访问所消耗的时间是固定的。 </span><br><span style="font-size: small; line-height: 1.5em;">这是否表明ArrayList总是比LinkedList性能要好呢？这并不一定，在某些情况下LinkedList的表现要优于ArrayList，有些算法在LinkedList中实现时效率更高。比方说，利用Collections.reverse方法对列表进行反转时，其性能就要好些。 </span><br><span style="font-size: small; line-height: 1.5em;"><span style="font-size: small; line-height: 1.5em;">看这样一个例子，加入我们有一个列表，要对其进行大量的插入和删除操作，在这种情况下LinkedList就是一个较好的选择。请看如下一个极端的例子，我们重复的在一个列表的开端插入一个元素：</span> </span><br><span style="font-size: small; line-height: 1.5em;">
+</span></p><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=package%20com.mangocity.test%3B%20%0A%0Aimport%20java.util.*%3B%20%0Apublic%20class%20ListDemo%20%7B%20%0A%20%20%20%20%20static%20final%20int%20N%3D50000%3B%20%0A%20%20%20%20%20static%20long%20timeList(List%20list)%7B%20%0A%20%20%20%20%20long%20start%3DSystem.currentTimeMillis()%3B%20%0A%20%20%20%20%20Object%20o%20%3D%20new%20Object()%3B%20%0A%20%20%20%20%20for(int%20i%3D0%3Bi%3CN%3Bi%2B%2B)%20%0A%20%20%20%20%20%20%20%20%20list.add(0%2C%20o)%3B%20%0A%20%20%20%20%20return%20System.currentTimeMillis()-start%3B%20%0A%20%20%20%20%20%7D%20%0A%20%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%20%0A%20%20%20%20%20%20%20%20%20System.out.println(%22ArrayList%E8%80%97%E6%97%B6%EF%BC%9A%22%2BtimeList(new%20ArrayList()))%3B%20%0A%20%20%20%20%20%20%20%20%20System.out.println(%22LinkedList%E8%80%97%E6%97%B6%EF%BC%9A%22%2BtimeList(new%20LinkedList()))%3B%20%0A%20%20%20%20%20%7D%20%0A%7D%20%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">package</span><span>&nbsp;com.mangocity.test;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ListDemo&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;N=</span><span class="number">50000</span><span>;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;timeList(List&nbsp;list){&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;start=System.currentTimeMillis();&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;o&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Object();&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;N;i++)&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(<span class="number">0</span><span>,&nbsp;o);&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-start;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"ArrayList耗时："</span><span>+timeList(</span><span class="keyword">new</span><span>&nbsp;ArrayList()));&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"LinkedList耗时："</span><span>+timeList(</span><span class="keyword">new</span><span>&nbsp;LinkedList()));&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#" pre_index="1" title="Java中ArrayList和LinkedList区别" style="display: none;">package com.mangocity.test; 
+
+import java.util.*; 
+public class ListDemo { 
+     static final int N=50000; 
+     static long timeList(List list){ 
+     long start=System.currentTimeMillis(); 
+     Object o = new Object(); 
+     for(int i=0;i&lt;N;i++) 
+         list.add(0, o); 
+     return System.currentTimeMillis()-start; 
+     } 
+     public static void main(String[] args) { 
+         System.out.println("ArrayList耗时："+timeList(new ArrayList())); 
+         System.out.println("LinkedList耗时："+timeList(new LinkedList())); 
+     } 
+} 
+</pre>
+
+<p>&nbsp;这时我的输出结果是：ArrayList耗时：2463 </p>
+<p></p>
+<p><br><span style="font-size: small; line-height: 1.5em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LinkedList耗时：15</span> <br><span style="font-size: small; line-height: 1.5em;">这和前面一个例子的结果截然相反，当一个元素被加到ArrayList的最开端时，所有已经存在的元素都会后移，这就意味着数据移动和复制上的开销。相反的，将一个元素加到LinkedList的最开端只是简单的未这个元素分配一个记录，然后调整两个连接。在LinkedList的开端增加一个元素的开销是固定的，而在ArrayList的开端增加一个元素的开销是与ArrayList的大小成比例的。</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;"><strong>二．空间复杂度</strong></span> <br><span style="font-size: small; line-height: 1.5em;">在LinkedList中有一个私有的内部类，定义如下：</span></p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=private%20static%20class%20Entry%20%7B%20%0A%20%20%20%20%20%20%20%20%20Object%20element%3B%20%0A%20%20%20%20%20%20%20%20%20Entry%20next%3B%20%0A%20%20%20%20%20%20%20%20%20Entry%20previous%3B%20%0A%20%20%20%20%20%7D%20" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Entry&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object&nbsp;element;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entry&nbsp;next;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entry&nbsp;previous;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#" pre_index="2" title="Java中ArrayList和LinkedList区别" style="display: none;">private static class Entry { 
+         Object element; 
+         Entry next; 
+         Entry previous; 
+     } </pre>
+<p>&nbsp;<br><span style="font-size: small; line-height: 1.5em;">每个Entry对象reference列表中的一个元素，同时还有在LinkedList中它的上一个元素和下一个元素。一个有1000个元素的LinkedList对象将有1000个链接在一起的Entry对象，每个对象都对应于列表中的一个元素。这样的话，在一个LinkedList结构中将有一个很大的空间开销，因为它要存储这1000个Entity对象的相关信息。</span> <br><span style="font-size: small; line-height: 1.5em;">ArrayList使用一个内置的数组来存储元素，这个数组的起始容量是10.当数组需要增长时，新的容量按如下公式获得：新容量=(旧容量*3)/2+1，也就是说每一次容量大概会增长50%。这就意味着，如果你有一个包含大量元素的ArrayList对象，那么最终将有很大的空间会被浪费掉，这个浪费是由ArrayList的工作方式本身造成的。如果没有足够的空间来存放新的元素，数组将不得不被重新进行分配以便能够增加新的元素。对数组进行重新分配，将会导致性能急剧下降。如果我们知道一个ArrayList将会有多少个元素，我们可以通过构造方法来指定容量。我们还可以通过trimToSize方法在ArrayList分配完毕之后去掉浪费掉的空间。</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;">三．总结</span> <br><span style="font-size: small; line-height: 1.5em;">ArrayList和LinkedList在性能上各有优缺点，都有各自所适用的地方，总的说来可以描述如下：</span> <br><span style="font-size: small; line-height: 1.5em;">1．对ArrayList和LinkedList而言，在列表末尾增加一个元素所花的开销都是固定的。对ArrayList而言，主要是在内部数组中增加一项，指向所添加的元素，偶尔可能会导致对数组重新进行分配；而对LinkedList而言，这个开销是统一的，分配一个内部Entry对象。</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;">2．在ArrayList的中间插入或删除一个元素意味着这个列表中剩余的元素都会被移动；而在LinkedList的中间插入或删除一个元素的开销是固定的。</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;">3．LinkedList不支持高效的随机元素访问。</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;">4．ArrayList的空间浪费主要体现在在list列表的结尾预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗相当的空间</span> </p>
+<p><br><span style="font-size: small; line-height: 1.5em;">可以这样说：当操作是在一列数据的后面添加数据而不是在前面或中间,并且需要随机地访问其中的元素时,使用ArrayList会提供比较好的性能；当你的操作是在一列数据的前面或中间添加或删除数据,并且按照顺序访问其中的元素时,就应该使用LinkedList了。</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: medium; color: #ff0000;"><strong>相关链接:</strong></span></p>
+<p><span style="color: #0000ff;"><span style="font-size: medium; color: #0066cc;"><strong>★ &nbsp;</strong></span><a href="http://pengcqu.iteye.com/blog/497107" target="_self"><span style="font-size: medium;"><strong>Java知识点汇总</strong></span></a></span><span style="font-size: small;">&nbsp;</span></p>
+<p>&nbsp;</p>
+  </div>
+
+  
+
+  
+  <div class="J_adv" data-view="true" data-mod="ad_popu_201" data-mtp="43" data-order="93" data-con="ad_content_1811" style="width: 728px; height: 90px;"><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/adsbygoogle.js.下载"></script><ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8990951720398508" data-ad-slot="8267689356/1918544322" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/saved_resource.html"></iframe></ins></ins></ins><script>(adsbygoogle=window.adsbygoogle || []).push({});</script></div>
+  
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://pengcqu.iteye.com/blog/503209" class="next" title="Java中抽象类和接口的区别">Java中抽象类和接口的区别</a>
+      |
+      <a href="http://pengcqu.iteye.com/blog/499749" class="pre" title="Java 1.6 新特性">Java 1.6 新特性</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2009-10-23 14:52</li>
+      <li>浏览 134033</li>
+      <li><a href="http://pengcqu.iteye.com/blog/502676#comments">评论(15)</a></li>
+      
+      
+            
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/502676" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javase"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1453169124297_297.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javase" classs="title">Java SE知识库</a>
+              <span>
+                 <em>19761</em>&nbsp;&nbsp;关注 <i>|</i> <em>468</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/java"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1453701371636_636.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/java" classs="title">Java 知识库</a>
+              <span>
+                 <em>21610</em>&nbsp;&nbsp;关注 <i>|</i> <em>1436</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javaee"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1456818035722_722.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javaee" classs="title">Java EE知识库</a>
+              <span>
+                 <em>13371</em>&nbsp;&nbsp;关注 <i>|</i> <em>1215</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javascript"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1458106113412_412.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javascript" classs="title">JavaScript知识库</a>
+              <span>
+                 <em>11391</em>&nbsp;&nbsp;关注 <i>|</i> <em>1324</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/jquery"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1459143634568_568.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/jquery" classs="title">jQuery知识库</a>
+              <span>
+                 <em>6848</em>&nbsp;&nbsp;关注 <i>|</i> <em>934</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/angularjs"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/1458526868366_366.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/angularjs" classs="title">AngularJS知识库</a>
+              <span>
+                 <em>3806</em>&nbsp;&nbsp;关注 <i>|</i> <em>488</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2388475">
+  <div class="comment_title">
+    15 楼
+    <a href="http://ys344155411.iteye.com/" target="_blank" title="ys344155411">ys344155411</a>
+    2016-04-18&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">yayaaihuanghui 写道</div><div class="quote_div">当需要插入数据的时候，如果是在集合的前段（大概集合容量的前1/10）处插入数据时，linkedlist性能明显优于arraylist，但是！！！！当在集合的中部甚至靠后的位置插入大量数据时，arraylist的性能反而远远优于linkedlist，所以，linkedlist相较于arraylist的唯一优势在于集合前段的数据的插入。代码为证：<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%0Aimport%20java.util.ArrayList%3B%0Aimport%20java.util.Collections%3B%0Aimport%20java.util.LinkedList%3B%0Aimport%20java.util.List%3B%0A%0Apublic%20class%20ArrayOrLinked%20%7B%0A%09static%20List%3CInteger%3E%20array%3Dnew%20ArrayList%3CInteger%3E()%3B%0A%09static%20List%3CInteger%3E%20linked%3Dnew%20LinkedList%3CInteger%3E()%3B%0A%0A%09public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%0A%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%20%20%20%20%20%20%20%20array.add(i)%3B%0A%09%20%20%20%20%20%20%20%20linked.add(i)%3B%0A%09%09%7D%0A%09%09System.out.println(%22array%20time%3A%22%2BgetTime(array))%3B%0A%09%09System.out.println(%22linked%20time%3A%22%2BgetTime(linked))%3B%0A%09%09System.out.println(%22array%20insert%20time%3A%22%2BinsertTime(array))%3B%0A%09%09System.out.println(%22linked%20insert%20time%3A%22%2BinsertTime(linked))%3B%0A%0A%09%7D%0A%09public%20static%20long%20getTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09int%20index%3DCollections.binarySearch(list%2C%20list.get(i))%3B%0A%09%09%09if(index!%3Di)%7B%0A%09%09%09%09System.out.println(%22ERROR!%22)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%7D%0A%09public%20static%20long%20insertTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D100%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09list.add(5000%2Ci)%3B%09%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%09%0A%09%7D%0A%0A%7D%0A%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">import</span><span>&nbsp;java.util.ArrayList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Collections;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.LinkedList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ArrayOrLinked&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;array=</span><span class="keyword">new</span><span>&nbsp;ArrayList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;linked=</span><span class="keyword">new</span><span>&nbsp;LinkedList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linked.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;time:"</span><span>+getTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;time:"</span><span>+getTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;insert&nbsp;time:"</span><span>+insertTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;insert&nbsp;time:"</span><span>+insertTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;getTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;index=Collections.binarySearch(list,&nbsp;list.get(i));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(index!=i){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"ERROR!"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;insertTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">100</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(<span class="number">5000</span><span>,i);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="2388475" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#bc2388475" pre_index="0" title="Java中ArrayList和LinkedList区别" style="display: none;">
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ArrayOrLinked {
+	static List&lt;Integer&gt; array=new ArrayList&lt;Integer&gt;();
+	static List&lt;Integer&gt; linked=new LinkedList&lt;Integer&gt;();
+
+	public static void main(String[] args) {
+
+
+		for(int i=0;i&lt;10000;i++){
+	        array.add(i);
+	        linked.add(i);
+		}
+		System.out.println("array time:"+getTime(array));
+		System.out.println("linked time:"+getTime(linked));
+		System.out.println("array insert time:"+insertTime(array));
+		System.out.println("linked insert time:"+insertTime(linked));
+
+	}
+	public static long getTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=0;i&lt;10000;i++){
+			int index=Collections.binarySearch(list, list.get(i));
+			if(index!=i){
+				System.out.println("ERROR!");
+			}
+		}
+		return System.currentTimeMillis()-time;
+	}
+	public static long insertTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=100;i&lt;10000;i++){
+			list.add(5000,i);	
+		}
+		return System.currentTimeMillis()-time;
+		
+	}
+
+}
+
+</pre></div><br>你的测试充分吗，我的结果和你完全不一样，中间随机插入，linkedlist的效率都大于arraylist，arraylist中间插入会引起插入位置后面的所有元素的位移，效率必然低于linkedlist<br></div>
+</div>
+
+<div id="bc2378449">
+  <div class="comment_title">
+    14 楼
+    <a href="http://ruyi0127.iteye.com/" target="_blank" title="ruyi0127">ruyi0127</a>
+    2015-09-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">6楼的兄弟又给我们普及了知识 3q</div>
+</div>
+
+<div id="bc2378447">
+  <div class="comment_title">
+    13 楼
+    <a href="http://ruyi0127.iteye.com/" target="_blank" title="ruyi0127">ruyi0127</a>
+    2015-09-23&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">ruijin5566 写道</div><div class="quote_div"><div class="quote_title">lovecy1202 写道</div><div class="quote_div">楼主你好，你的这篇文章写得挺好的，但是小弟针对你开头说的那个<br>" 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。 "<br>特地做了实验，结果却恰好是相反的</div><br><br>我做了实验，ArrayList,LinkedList各有100万数据，在下标50万的地方add，remove，set，都是ArrayList性能高，而且差别不止是一个数量级的，可见LinkedList从头往后遍历效率是很低的。</div><br> <br>把你的实验贴出来共享一下可否？</div>
+</div>
+
+<div id="bc2374415">
+  <div class="comment_title">
+    12 楼
+    <a href="http://1299020954.iteye.com/" target="_blank" title="多线程程序员">多线程程序员</a>
+    2015-07-03&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">曾老师 写道</div><div class="quote_div"> vals=new Integer(currval);&nbsp;&nbsp; 哥们 不是我说你，这个居然出现这种错误？<br><br>还发帖，？<br><br>把一个数值 赋给一个数组变量？<br><br>你开玩笑呢吗？<br><br>作为程序员 思路严谨 你行不行啊哥们？？？</div><br><br>这B装得可以。学习不是叫你一直去看，自己动手做试验，有问题指出来就可以了，还行不行？说句不好听的，素质和能力挂钩，就你这样的想法，能力也高不到哪里去。<br>我觉得楼主可以把arrayList和linkedList的源码发出来解析，这样更能让别人清楚知道为什么会有这样效率的分别。</div>
+</div>
+
+<div id="bc2362859">
+  <div class="comment_title">
+    11 楼
+    <a href="http://1055592535.iteye.com/" target="_blank" title="曾老师">曾老师</a>
+    2014-11-15&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"> vals=new Integer(currval);&nbsp;&nbsp; 哥们 不是我说你，这个居然出现这种错误？<br><br>还发帖，？<br><br>把一个数值 赋给一个数组变量？<br><br>你开玩笑呢吗？<br><br>作为程序员 思路严谨 你行不行啊哥们？？？</div>
+</div>
+
+<div id="bc2357348">
+  <div class="comment_title">
+    10 楼
+    <a href="http://ruijin5566.iteye.com/" target="_blank" title="ruijin5566">ruijin5566</a>
+    2014-08-29&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">lovecy1202 写道</div><div class="quote_div">楼主你好，你的这篇文章写得挺好的，但是小弟针对你开头说的那个<br>" 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。 "<br>特地做了实验，结果却恰好是相反的</div><br><br>我做了实验，ArrayList,LinkedList各有100万数据，在下标50万的地方add，remove，set，都是ArrayList性能高，而且差别不止是一个数量级的，可见LinkedList从头往后遍历效率是很低的。</div>
+</div>
+
+<div id="bc2356689">
+  <div class="comment_title">
+    9 楼
+    <a href="http://shouhouhuakai.iteye.com/" target="_blank" title="shouhouhuakai">shouhouhuakai</a>
+    2014-08-20&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2345692">
+  <div class="comment_title">
+    8 楼
+    <a href="http://thematrix.iteye.com/" target="_blank" title="TheMatrix">TheMatrix</a>
+    2014-04-18&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">写的挺好的！~</div>
+</div>
+
+<div id="bc2340324">
+  <div class="comment_title">
+    7 楼
+    <a href="http://shuishoujushi.iteye.com/" target="_blank" title="shuishoujushi">shuishoujushi</a>
+    2014-02-22&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">yayaaihuanghui 写道</div><div class="quote_div">当需要插入数据的时候，如果是在集合的前段（大概集合容量的前1/10）处插入数据时，linkedlist性能明显优于arraylist，但是！！！！当在集合的中部甚至靠后的位置插入大量数据时，arraylist的性能反而远远优于linkedlist，所以，linkedlist相较于arraylist的唯一优势在于集合前段的数据的插入。代码为证：<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%0Aimport%20java.util.ArrayList%3B%0Aimport%20java.util.Collections%3B%0Aimport%20java.util.LinkedList%3B%0Aimport%20java.util.List%3B%0A%0Apublic%20class%20ArrayOrLinked%20%7B%0A%09static%20List%3CInteger%3E%20array%3Dnew%20ArrayList%3CInteger%3E()%3B%0A%09static%20List%3CInteger%3E%20linked%3Dnew%20LinkedList%3CInteger%3E()%3B%0A%0A%09public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%0A%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%20%20%20%20%20%20%20%20array.add(i)%3B%0A%09%20%20%20%20%20%20%20%20linked.add(i)%3B%0A%09%09%7D%0A%09%09System.out.println(%22array%20time%3A%22%2BgetTime(array))%3B%0A%09%09System.out.println(%22linked%20time%3A%22%2BgetTime(linked))%3B%0A%09%09System.out.println(%22array%20insert%20time%3A%22%2BinsertTime(array))%3B%0A%09%09System.out.println(%22linked%20insert%20time%3A%22%2BinsertTime(linked))%3B%0A%0A%09%7D%0A%09public%20static%20long%20getTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09int%20index%3DCollections.binarySearch(list%2C%20list.get(i))%3B%0A%09%09%09if(index!%3Di)%7B%0A%09%09%09%09System.out.println(%22ERROR!%22)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%7D%0A%09public%20static%20long%20insertTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D100%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09list.add(5000%2Ci)%3B%09%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%09%0A%09%7D%0A%0A%7D%0A%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">import</span><span>&nbsp;java.util.ArrayList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Collections;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.LinkedList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ArrayOrLinked&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;array=</span><span class="keyword">new</span><span>&nbsp;ArrayList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;linked=</span><span class="keyword">new</span><span>&nbsp;LinkedList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linked.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;time:"</span><span>+getTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;time:"</span><span>+getTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;insert&nbsp;time:"</span><span>+insertTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;insert&nbsp;time:"</span><span>+insertTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;getTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;index=Collections.binarySearch(list,&nbsp;list.get(i));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(index!=i){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"ERROR!"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;insertTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">100</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(<span class="number">5000</span><span>,i);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="2340324" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#bc2340324" pre_index="0" title="Java中ArrayList和LinkedList区别" style="display: none;">
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ArrayOrLinked {
+	static List&lt;Integer&gt; array=new ArrayList&lt;Integer&gt;();
+	static List&lt;Integer&gt; linked=new LinkedList&lt;Integer&gt;();
+
+	public static void main(String[] args) {
+
+
+		for(int i=0;i&lt;10000;i++){
+	        array.add(i);
+	        linked.add(i);
+		}
+		System.out.println("array time:"+getTime(array));
+		System.out.println("linked time:"+getTime(linked));
+		System.out.println("array insert time:"+insertTime(array));
+		System.out.println("linked insert time:"+insertTime(linked));
+
+	}
+	public static long getTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=0;i&lt;10000;i++){
+			int index=Collections.binarySearch(list, list.get(i));
+			if(index!=i){
+				System.out.println("ERROR!");
+			}
+		}
+		return System.currentTimeMillis()-time;
+	}
+	public static long insertTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=100;i&lt;10000;i++){
+			list.add(5000,i);	
+		}
+		return System.currentTimeMillis()-time;
+		
+	}
+
+}
+
+</pre></div><br><br>顶你，确实是这样；很多例子还是需要自己动手实践才能清楚</div>
+</div>
+
+<div id="bc2329691">
+  <div class="comment_title">
+    6 楼
+    <a href="http://yayaaihuanghui.iteye.com/" target="_blank" title="yayaaihuanghui">yayaaihuanghui</a>
+    2013-10-30&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">当需要插入数据的时候，如果是在集合的前段（大概集合容量的前1/10）处插入数据时，linkedlist性能明显优于arraylist，但是！！！！当在集合的中部甚至靠后的位置插入大量数据时，arraylist的性能反而远远优于linkedlist，所以，linkedlist相较于arraylist的唯一优势在于集合前段的数据的插入。代码为证：
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%0Aimport%20java.util.ArrayList%3B%0Aimport%20java.util.Collections%3B%0Aimport%20java.util.LinkedList%3B%0Aimport%20java.util.List%3B%0A%0Apublic%20class%20ArrayOrLinked%20%7B%0A%09static%20List%3CInteger%3E%20array%3Dnew%20ArrayList%3CInteger%3E()%3B%0A%09static%20List%3CInteger%3E%20linked%3Dnew%20LinkedList%3CInteger%3E()%3B%0A%0A%09public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%0A%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%20%20%20%20%20%20%20%20array.add(i)%3B%0A%09%20%20%20%20%20%20%20%20linked.add(i)%3B%0A%09%09%7D%0A%09%09System.out.println(%22array%20time%3A%22%2BgetTime(array))%3B%0A%09%09System.out.println(%22linked%20time%3A%22%2BgetTime(linked))%3B%0A%09%09System.out.println(%22array%20insert%20time%3A%22%2BinsertTime(array))%3B%0A%09%09System.out.println(%22linked%20insert%20time%3A%22%2BinsertTime(linked))%3B%0A%0A%09%7D%0A%09public%20static%20long%20getTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D0%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09int%20index%3DCollections.binarySearch(list%2C%20list.get(i))%3B%0A%09%09%09if(index!%3Di)%7B%0A%09%09%09%09System.out.println(%22ERROR!%22)%3B%0A%09%09%09%7D%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%7D%0A%09public%20static%20long%20insertTime(List%20list)%7B%0A%09%09long%20time%3DSystem.currentTimeMillis()%3B%0A%09%09for(int%20i%3D100%3Bi%3C10000%3Bi%2B%2B)%7B%0A%09%09%09list.add(5000%2Ci)%3B%09%0A%09%09%7D%0A%09%09return%20System.currentTimeMillis()-time%3B%0A%09%09%0A%09%7D%0A%0A%7D%0A%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">import</span><span>&nbsp;java.util.ArrayList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.Collections;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.LinkedList;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ArrayOrLinked&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;array=</span><span class="keyword">new</span><span>&nbsp;ArrayList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;List&lt;Integer&gt;&nbsp;linked=</span><span class="keyword">new</span><span>&nbsp;LinkedList&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linked.add(i);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;time:"</span><span>+getTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;time:"</span><span>+getTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"array&nbsp;insert&nbsp;time:"</span><span>+insertTime(array));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"linked&nbsp;insert&nbsp;time:"</span><span>+insertTime(linked));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;getTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">0</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;index=Collections.binarySearch(list,&nbsp;list.get(i));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(index!=i){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"ERROR!"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;insertTime(List&nbsp;list){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">long</span><span>&nbsp;time=System.currentTimeMillis();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(</span><span class="keyword">int</span><span>&nbsp;i=</span><span class="number">100</span><span>;i&lt;</span><span class="number">10000</span><span>;i++){&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(<span class="number">5000</span><span>,i);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;System.currentTimeMillis()-time;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="2329691" codeable_type="BlogComment" source_url="http://pengcqu.iteye.com/blog/502676#bc2329691" pre_index="0" title="Java中ArrayList和LinkedList区别" style="display: none;">
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ArrayOrLinked {
+	static List&lt;Integer&gt; array=new ArrayList&lt;Integer&gt;();
+	static List&lt;Integer&gt; linked=new LinkedList&lt;Integer&gt;();
+
+	public static void main(String[] args) {
+
+
+		for(int i=0;i&lt;10000;i++){
+	        array.add(i);
+	        linked.add(i);
+		}
+		System.out.println("array time:"+getTime(array));
+		System.out.println("linked time:"+getTime(linked));
+		System.out.println("array insert time:"+insertTime(array));
+		System.out.println("linked insert time:"+insertTime(linked));
+
+	}
+	public static long getTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=0;i&lt;10000;i++){
+			int index=Collections.binarySearch(list, list.get(i));
+			if(index!=i){
+				System.out.println("ERROR!");
+			}
+		}
+		return System.currentTimeMillis()-time;
+	}
+	public static long insertTime(List list){
+		long time=System.currentTimeMillis();
+		for(int i=100;i&lt;10000;i++){
+			list.add(5000,i);	
+		}
+		return System.currentTimeMillis()-time;
+		
+	}
+
+}
+
+</pre></div>
+</div>
+
+<div id="bc2313213">
+  <div class="comment_title">
+    5 楼
+    <a href="http://pimkle.iteye.com/" target="_blank" title="pimkle">pimkle</a>
+    2013-05-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主 你的头像的胸是p的吧, 感觉有点长太上面了...<br><br>还有 谢谢分享</div>
+</div>
+
+<div id="bc2312592">
+  <div class="comment_title">
+    4 楼
+    <a href="http://sure.iteye.com/" target="_blank" title="sure">sure</a>
+    2013-05-24&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">写得不错。<br>二者都顺序插入元素，性能相当。<br><br></div>
+</div>
+
+<div id="bc2309278">
+  <div class="comment_title">
+    3 楼
+    <a href="http://lovecy1202.iteye.com/" target="_blank" title="lovecy1202">lovecy1202</a>
+    2013-04-26&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主你好，你的这篇文章写得挺好的，但是小弟针对你开头说的那个<br>" 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。 "<br>特地做了实验，结果却恰好是相反的</div>
+</div>
+
+<div id="bc2306555">
+  <div class="comment_title">
+    2 楼
+    <a href="http://jadymrhu.iteye.com/" target="_blank" title="jadymrhu">jadymrhu</a>
+    2013-04-06&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">写得很详细的说。<img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2303547">
+  <div class="comment_title">
+    1 楼
+    <a href="http://kingcs.iteye.com/" target="_blank" title="kingcs">kingcs</a>
+    2013-03-12&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><strong><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_smile.gif"> [b][b][b][b][b][b][b][b][b]<em>[i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i][i]</em>[/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i][/i]</strong>[/b][/b][/b][/b][/b][/b][/b][/b][/b]</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://pengcqu.iteye.com/login" style="background-color:white;"> <img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://pengcqu.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 502676;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Java中ArrayList和LinkedList区别');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Java中ArrayList和LinkedList区别');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://pengcqu.iteye.com/"><img alt="pengcqu的博客" class="logo" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/b906c397-ecce-393c-818e-f34552fb69df.jpg" title="pengcqu的博客: Peng的技术博客" width=""></a></div>
+  <div id="blog_owner_name">pengcqu</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 430426 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 未来</li>
+              <li><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://pengcqu.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://506422186-qq-com.iteye.com/" target="_blank"><img alt="付勇峰的博客" class="logo" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/user-logo-thumb.gif" title="付勇峰的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://506422186-qq-com.iteye.com/" target="_blank" title="付勇峰">付勇峰</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://sh-changwei19.iteye.com/" target="_blank"><img alt="sh-changwei19的博客" class="logo" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/user-logo-thumb.gif" title="sh-changwei19的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://sh-changwei19.iteye.com/" target="_blank" title="sh-changwei19">sh-changwei19</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://1181731633.iteye.com/" target="_blank"><img alt="IT小鑫的博客" class="logo" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/user-logo-thumb.gif" title="IT小鑫的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://1181731633.iteye.com/" target="_blank" title="IT小鑫">IT小鑫</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://ruizlake.iteye.com/" target="_blank"><img alt="ruizlake的博客" class="logo" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/user-logo-thumb.gif" title="ruizlake的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://ruizlake.iteye.com/" target="_blank" title="ruizlake">ruizlake</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://pengcqu.iteye.com/">全部博客 (57)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/82032">Java知识点 (30)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/82772">乱七八糟 (16)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/82870">职场 (4)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/82911">XML技术 (2)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/82917">算法学习 (0)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/83833">趣味 (1)</a></li>
+                
+                  <li><a href="http://pengcqu.iteye.com/category/83861">读书 (4)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://pengcqu.iteye.com/blog/news">我的资讯</a> (1)</li>
+                <li>
+                  <a href="http://pengcqu.iteye.com/blog/post">我的论坛</a> (16)
+                </li>
+                <li><a href="http://pengcqu.iteye.com/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://pengcqu.iteye.com/blog/monthblog/2010-03">2010-03</a> (6)</li>
+                
+                  <li><a href="http://pengcqu.iteye.com/blog/monthblog/2009-11">2009-11</a> (2)</li>
+                
+                  <li><a href="http://pengcqu.iteye.com/blog/monthblog/2009-10">2009-10</a> (49)</li>
+                
+                <li><a href="http://pengcqu.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://nabulio.iteye.com/" target="_blank" title="Nabulio">Nabulio</a>： 
+                  Mark太少了<br>
+                  <a href="http://pengcqu.iteye.com/blog/492196#bc2392279">Java中Collection和Collections的区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://ys344155411.iteye.com/" target="_blank" title="ys344155411">ys344155411</a>： 
+                  &lt;div class="quote_title ...<br>
+                  <a href="http://pengcqu.iteye.com/blog/502676#bc2388475">Java中ArrayList和LinkedList区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://ruyi0127.iteye.com/" target="_blank" title="ruyi0127">ruyi0127</a>： 
+                  6楼的兄弟又给我们普及了知识 3q<br>
+                  <a href="http://pengcqu.iteye.com/blog/502676#bc2378449">Java中ArrayList和LinkedList区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://ruyi0127.iteye.com/" target="_blank" title="ruyi0127">ruyi0127</a>： 
+                  &lt;div class="quote_title ...<br>
+                  <a href="http://pengcqu.iteye.com/blog/502676#bc2378447">Java中ArrayList和LinkedList区别</a>
+                </li>
+                
+                <li>
+                  <a href="http://1299020954.iteye.com/" target="_blank" title="多线程程序员">多线程程序员</a>： 
+                  &lt;div class="quote_title ...<br>
+                  <a href="http://pengcqu.iteye.com/blog/502676#bc2374415">Java中ArrayList和LinkedList区别</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+        <div style="margin-top: 10px;float: left;clear: left;">
+					<div class="J_adv" data-view="true" data-mod="ad_popu_185" data-mtp="36" data-order="92" data-con="ad_content_1129" style="width: 200px; height: 200px;"><!-- 广告占位容器 --><div id="cpro_u2720202"><iframe id="iframeu2720202_0" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/ncom(2).html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] ||{})['u2720202']={at:'3',rsi0:'200',rsi1:'200',pat:'6',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0',ptbg:'90',piw:'0',pih:'0',ptp:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2720202'});  </script>  <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/c.js.下载" type="text/javascript"></script></div>
+				</div>
+      </div>    
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2017 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+        <div class="J_adv" data-view="true" data-mod="ad_popu_186" data-mtp="61" data-order="93" data-con="ad_content_1933"><script id="popuLayer_js_q" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/popuLayer.js.下载" defer="" type="text/javascript"></script><div id="location_parent_google"></div><script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/adsbygoogle.js.下载"></script><div id="layerd_google" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000"><div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-8990951720398508" data-ad-slot="8267689356/5752063962" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/saved_resource(1).html"></iframe></ins></ins></ins></div><script>(adsbygoogle=window.adsbygoogle || []).push({});</script><script>  document.getElementById('popuLayer_js_q').onload=function(){      var styObjd=styObj={width:'302px',height:'275px'};window.CSDN.Layer.PopuLayer('#layerd_google',{storageName:'layerd',styleObj:styObjd,total:50,expoire:1000*60});  }</script></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/tracking.js.下载" type="text/javascript"></script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-11341181-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+      
+    
+    <script language="javascript" type="text/javascript" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/async_new.js.下载"></script>
+<script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/jquery-1.11.1.min.js.下载" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/tracking.js(1).下载" type="text/javascript"></script>
+    
+	    
+	    <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/web-storage-cache.min.js.下载" type="text/javascript"></script>
+	    <script src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/replace.min.js.下载" type="text/javascript"></script>
+    
+    
+  
+
+<iframe id="google_osd_static_frame_5787043413096" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./Java中ArrayList和LinkedList区别 - Peng的技术博客 - ITeye技术网站_files/saved_resource(2).html"></iframe></body></html>

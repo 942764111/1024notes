@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/duange/p/6136782.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java中String、StringBuffer、StringBuilder区别与理解 - 静若飘絮 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JAVA的String 类【转】 - 火之光 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./JAVA的String 类【转】 - 火之光 - 博客园_files/bundle-newyear2009.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./JAVA的String 类【转】 - 火之光 - 博客园_files/bundle-newyear2009-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/duange/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/duange/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/duange/wlwmanifest.xml">
+<script type="text/javascript" src="./JAVA的String 类【转】 - 火之光 - 博客园_files/encoder.js.下载"></script><script src="./JAVA的String 类【转】 - 火之光 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'duange', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./JAVA的String 类【转】 - 火之光 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home" class="hui-d-custom"> 
+<div id="header" class="hui-d3">
+	<div id="blogTitle">
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/duange/">静若飘絮</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+
+	<div id="navigator">
+	<div class="hui-d2"> 
+		
+<!--done-->
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/duange/">首页</a></li>
+	<li><a href="http://space.cnblogs.com/" cssclass="menu">社区</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9D%99%E8%8B%A5%E9%A3%98%E7%B5%AE">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/duange/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/duange/rss"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔- 24&nbsp;
+文章- 0&nbsp;
+评论- 2&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div>
+</div><!--end: navigator 博客导航栏 -->
+
+</div><!--end: header -->
+
+
+<div class="hui-d3 hui-t5" id="body">
+	<div class="hui-main"> 
+		<div class="hui-b"> 
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="h1PostTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/duange/p/6136782.html">Java中String、StringBuffer、StringBuilder区别与理解</a>
+		</h1>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>一、先比较String、StringBuffer、StringBuilder变量的HashCode值</p>
+<p>使用System.out.println(obj.hashcode())输出的时对象的哈希码，<br> 而非内存地址。在Java中是不可能得到对象真正的内存地址的，因为Java中堆是由JVM管理的不能直接操作。 <br>只能说此时打印出的Hash码表示了该对象在JAVA虚拟机中的内存位置，<br>Java虚拟机会根据该hash码最终在真正的的堆空间中给该对象分配一个地址. <br>但是该地址 是不能通过java提供的api获取的</p>
+<p>String变量连接新字符串会改变hashCode值，变量是在JVM中“连接——断开”；<br>StringBuffer变量连接新字符串不会改变hashCode值，因为变量的堆地址不变。<br>StringBuilder变量连接新字符串不会改变hashCode值，因为变量的堆地址不变。</p>
+<p>小结：哈希码相同的变量，其内容不一定相同；内容向同变量，哈希码不一定相同；</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Buffer_HashCode01 {
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span><span style="color: #000000"> main(String[] args) {
+    String str1</span>="学海无涯苦作舟"<span style="color: #000000">;
+    System.out.println(</span>"String 的 str1的hascode"+<span style="color: #000000">str1.hashCode());
+    str1</span>=str1+"人间正道是沧桑";      <span style="color: #008000">//</span><span style="color: #008000">注意此str1的存储地址已发生变化</span>
+     System.out.println("String 的 str1的hascode"+<span style="color: #000000">str1.hashCode());
+    System.out.println(str1);
+    StringBuffer sb1</span>=<span style="color: #0000ff">new</span> StringBuffer("弟子规"<span style="color: #000000">);
+      System.out.println(</span>"原来               StringBuffer 的 hascode:"+<span style="color: #000000">sb1.hashCode());
+    StringBuffer sb2</span>=sb1.append("圣人教");    <span style="color: #008000">//</span><span style="color: #008000">注意sb1和sb2指向同一个地址</span>
+       System.out.println("添加字符串后StringBuffer 的 hascode:"+<span style="color: #000000">sb2.hashCode());
+    sb2.insert(</span>6,"海纳百川"<span style="color: #000000">);
+    StringBuilder sb</span>=<span style="color: #0000ff">new</span> StringBuilder("这显然是上半年"<span style="color: #000000">);
+    System.out.println(</span>"改变前StringBuilder变量的hashCode值"+<span style="color: #000000">sb.hashCode());
+    sb.append(</span>"哦是的啊"<span style="color: #000000">);
+    System.out.println(</span>"改变后StringBuilder变量的hashCode值"+<span style="color: #000000">sb.hashCode());
+    
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果：</p>
+<p>String 的 str1的hascode-2054942391<br>String 的 str1的hascode895667206<br>学海无涯苦作舟人间正道是沧桑<br>原来               StringBuffer 的 hascode:1311053135<br>添加字符串后StringBuffer 的 hascode:1311053135<br>改变前StringBuilder变量的hashCode值118352462<br>改变后StringBuilder变量的hashCode值118352462</p>
+<p>&nbsp;</p>
+<p>二、比较String、StringBuffer、StringBuilder性能（仅在繁复操作）</p>
+<p>String类由于Java中的共享设计，在修改变量值时使其反复改变栈中的对于堆的引用地址，所以性能低。</p>
+<p>StringBuffer和StringBuilder类设计时改变其值，其堆内存的地址不变，避免了反复修改栈引用的地址，其性能高。</p>
+<p>其中StringBuilder是专门类似于StringBuffer类的非线性安全类，即StringBuffer是线性安全的，适合于多线程操作；</p>
+<p>StringBuilder是线性不安全的，适合于单线程操作，其性能比StringBuffer略高。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Xing_Neng_SSS01 {
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span><span style="color: #000000"> main(String[] args) {
+    </span><span style="color: #0000ff">long</span> begin1 =<span style="color: #000000"> System.currentTimeMillis();
+    String str </span>= ""<span style="color: #000000">;
+     </span><span style="color: #0000ff">for</span>(<span style="color: #0000ff">int</span> i=0;i&lt;10000;i++<span style="color: #000000">){
+          str </span>= str+<span style="color: #000000">i;
+     }
+     </span><span style="color: #0000ff">long</span> end1 =<span style="color: #000000"> System.currentTimeMillis();
+     </span><span style="color: #0000ff">long</span> time1 = end1 -<span style="color: #000000"> begin1;
+     System.out.println(</span>"1、String + time="+<span style="color: #000000">time1);
+     
+     </span><span style="color: #0000ff">long</span> begin2 =<span style="color: #000000"> System.currentTimeMillis();
+     String str2 </span>= ""<span style="color: #000000">;
+      </span><span style="color: #0000ff">for</span>(<span style="color: #0000ff">int</span> i=0;i&lt;10000;i++<span style="color: #000000">){
+           str2 </span>= str2.concat(i+""<span style="color: #000000">);
+      }
+      </span><span style="color: #0000ff">long</span> end2 =<span style="color: #000000"> System.currentTimeMillis();
+      </span><span style="color: #0000ff">long</span> time2 = end2 -<span style="color: #000000"> begin2;
+      System.out.println(</span>"2、String concat time="+<span style="color: #000000">time2);
+      
+      </span><span style="color: #0000ff">long</span> begin3 =<span style="color: #000000"> System.currentTimeMillis();
+      StringBuffer str3 </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> StringBuffer();
+       </span><span style="color: #0000ff">for</span>(<span style="color: #0000ff">int</span> i=0;i&lt;10000;i++<span style="color: #000000">){
+            str3.append(</span>""+<span style="color: #000000">i);
+       }
+       </span><span style="color: #0000ff">long</span> end3 =<span style="color: #000000"> System.currentTimeMillis();
+       </span><span style="color: #0000ff">long</span> time3 = end3 -<span style="color: #000000"> begin3;
+       System.out.println(</span>"3、StringBuffer time="+<span style="color: #000000">time3);
+       
+       </span><span style="color: #0000ff">long</span> begin4 =<span style="color: #000000"> System.currentTimeMillis();
+       StringBuilder str4 </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> StringBuilder();
+        </span><span style="color: #0000ff">for</span>(<span style="color: #0000ff">int</span> i=0;i&lt;10000;i++<span style="color: #000000">){
+             str4.append(</span>""+<span style="color: #000000">i);
+        }
+        </span><span style="color: #0000ff">long</span> end4 =<span style="color: #000000"> System.currentTimeMillis();
+        </span><span style="color: #0000ff">long</span> time4 = end4 -<span style="color: #000000"> begin4;
+        System.out.println(</span>"4、StringBuilder time="+<span style="color: #000000">time4);
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果：</p>
+<p>1、String + time=241<br>2、String concat time=92<br>3、StringBuffer time=4<br>4、StringBuilder time=2</p>
+<p>&nbsp;</p>
+<p>三、String共享设计</p>
+<p>当String使用引号创建字符串时，会先去字符串池中找，找到了就返回，找不到就在字符串池中增加一个然后返回，这样由于共享提高了性能。</p>
+<p>&nbsp;而new String()无论内容是否已经存在，都会开辟新的堆空间，栈中的堆内存也会改变。</p>
+<p>下面是==来比较地址是否相等。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> String_Equals01 {
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span><span style="color: #000000"> main(String[] args) {
+    String str1</span>="学海无涯苦作舟人间正道是沧桑"<span style="color: #000000">;
+    String str11</span>=<span style="color: #000000">str1;
+    String str12</span>="学海无涯苦作舟人间正道是沧桑"<span style="color: #000000">;
+    String str13</span>=<span style="color: #0000ff">new</span> String("学海无涯苦作舟人间正道是沧桑"<span style="color: #000000">);
+   
+     System.out.println(</span>"String 的 str1 的hascode"+<span style="color: #000000">str1.hashCode());
+     System.out.println(</span>"String 的 str11的hascode"+<span style="color: #000000">str11.hashCode());
+     System.out.println(</span>"String 的 str12的hascode"+<span style="color: #000000">str12.hashCode());
+     System.out.println(</span>"String 的 str13的hascode"+<span style="color: #000000">str13.hashCode());
+     System.out.println(</span>"str1==str11  "+(str1==<span style="color: #000000">str11));
+     System.out.println(</span>"str1==str12  "+(str1==<span style="color: #000000">str12));
+     System.out.println(</span>"str1==str13  "+(str1==<span style="color: #000000">str13));
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>结果：</p>
+<p>String 的 str1 的hascode895667206<br>String 的 str11的hascode895667206<br>String 的 str12的hascode895667206<br>String 的 str13的hascode895667206<br>str1==str11  true<br>str1==str12  true<br>str1==str13  false</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/duange/tag/%E7%B1%BB%E5%BA%93%E4%B8%8E%E7%B1%BB%E9%9B%86/">类库与类集</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6136782,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;b76e7258-c98d-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/duange/" target="_blank"><img src="./JAVA的String 类【转】 - 火之光 - 博客园_files/20161014164842.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/duange/">静若飘絮</a><br>
+            <a href="http://home.cnblogs.com/u/duange/followees">关注 - 11</a><br>
+            <a href="http://home.cnblogs.com/u/duange/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;b76e7258-c98d-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6136782,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6136782,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/duange/p/6136198.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/duange/p/6136198.html" title="发布于2016-12-06 08:55">Java中Comparable和Comparator接口区别分析</a><br><a href="http://www.cnblogs.com/duange/p/6139651.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/duange/p/6139651.html" title="发布于2016-12-06 23:43">Java被忽略的基本知识（一）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-12-06 11:03</span> <a href="http://www.cnblogs.com/duange/">静若飘絮</a> 阅读(<span id="post_view_count">71</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6136782" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/duange/p/6136782.html#" onclick="AddToWz(6136782);return false;">收藏</a> </div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=309826,cb_entryId=6136782,cb_blogApp=currentBlogApp,cb_blogUserGuid='b76e7258-c98d-e611-845c-ac853d9f53ac',cb_entryCreatedDate='2016/12/6 11:03:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/duange/p/6136782.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/duange/p/6136782.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank">【推荐】自开发 零实施的BPM</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/android-developer-nanodegree--nd801/?utm_source=cnblog&amp;utm_medium=referral&amp;utm_campaign=1219AND" target="_blank"><img width="300" height="250" src="./JAVA的String 类【转】 - 火之光 - 博客园_files/24442-20161219230232244-1464220893.png" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/562154/" target="_blank">微软发布“点击进化史”图片 称大多数人仍生活在90年代</a><br> ·  <a href="http://news.cnblogs.com/n/562153/" target="_blank">小米手环2：再次斩获iF设计奖</a><br> ·  <a href="http://news.cnblogs.com/n/562152/" target="_blank">任性！刘强东：5年以上员工每人一部iPhone 7</a><br> ·  <a href="http://news.cnblogs.com/n/562151/" target="_blank">因担心黑客纂改荷兰政府宣布用手工计票</a><br> ·  <a href="http://news.cnblogs.com/n/562150/" target="_blank">知识经济这一年，内容开始赚钱了，但它是一门持续的生意吗？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./JAVA的String 类【转】 - 火之光 - 博客园_files/24442-20170118152220281-363324784.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/554260/" target="_blank">「代码家」的学习过程和学习经验分享</a><br> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+		</div><!--end: hui-main hui-b -->
+	</div><!--end: hui-main -->
+	<div class="hui-b"> 
+	<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/duange/">静若飘絮</a><br>园龄：<a href="http://home.cnblogs.com/u/duange/" title="入园时间：2016-10-09">3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/duange/followers/">1</a><br>关注：<a href="http://home.cnblogs.com/u/duange/followees/">11</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;b76e7258-c98d-e611-845c-ac853d9f53ac&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/01/01&#39;);return false;">&lt;</a></td><td align="center">2017年2月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/03/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalTodayDay" align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr><tr><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td><td class="CalOtherMonthDay" align="center">11</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/duange/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/duange/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/duange/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/duange/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/duange/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/duange/p/6136782.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/duange/tag/Java%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">Java基本知识</a>(7)</li><li><a href="http://www.cnblogs.com/duange/tag/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>(3)</li><li><a href="http://www.cnblogs.com/duange/tag/%E9%87%91%E5%B8%81%E6%94%B6%E9%9B%86/">金币收集</a>(3)</li><li><a href="http://www.cnblogs.com/duange/tag/%E7%B1%BB%E5%BA%93%E4%B8%8E%E7%B1%BB%E9%9B%86/">类库与类集</a>(3)</li><li><a href="http://www.cnblogs.com/duange/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>(2)</li><li><a href="http://www.cnblogs.com/duange/tag/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>(2)</li><li><a href="http://www.cnblogs.com/duange/tag/%E5%A4%A7%E6%95%B4%E6%95%B0/">大整数</a>(2)</li><li><a href="http://www.cnblogs.com/duange/tag/%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E9%99%A4/">大整数相除</a>(1)</li><li><a href="http://www.cnblogs.com/duange/tag/%E5%8A%A0%E5%87%8F/">加减</a>(1)</li><li><a href="http://www.cnblogs.com/duange/tag/%E9%95%BF%E6%95%B0%E5%AD%97%E5%AD%97%E7%AC%A6%E4%B8%B2/">长数字字符串</a>(1)</li><li><a href="http://www.cnblogs.com/duange/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/duange/archive/2016/12.html">2016年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/duange/archive/2016/11.html">2016年11月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/duange/archive/2016/10.html">2016年10月 (6)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duange/p/6049715.html#3552575">1. Re:大学生面试时最漂亮的回答</a></li>
+        <li class="recent_comment_body">就一点要注意，人家只要问你期望薪资，才说明想要你，如果不问，基本没戏。</li>
+        <li class="recent_comment_author">--Flaming丶淡蓝</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duange/p/5999254.html#3541050">2. Re:两个长数字（非负数，大整数）相除，计算只取整数位，小数位舍去。</a></li>
+        <li class="recent_comment_body">上面的核心代码有改进之处，变量st初始值为"",补位操作中的变量ii可以去掉，if中++i作为判断条件。代码如下：/*已经判断出s1对于s2,s1大于等于s2*/public static Strin......</li>
+        <li class="recent_comment_author">--静若飘絮</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/duange/p/6036499.html">1. 多线程操作实例——生产者与消费者(354)</a></li><li><a href="http://www.cnblogs.com/duange/p/6049715.html">2. 大学生面试时最漂亮的回答(177)</a></li><li><a href="http://www.cnblogs.com/duange/p/6139651.html">3. Java被忽略的基本知识（一）(110)</a></li><li><a href="http://www.cnblogs.com/duange/p/6135943.html">4. 比较器：Compare接口与Comparator接口区别与理解(107)</a></li><li><a href="http://www.cnblogs.com/duange/p/5941431.html">5. 数据库连接池的高效性之时间提升(76)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/duange/p/5999254.html">1. 两个长数字（非负数，大整数）相除，计算只取整数位，小数位舍去。(1)</a></li><li><a href="http://www.cnblogs.com/duange/p/6049715.html">2. 大学生面试时最漂亮的回答(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: hui-b -->
+	<div class="clear"></div>
+</div>
+
+<div id="footer" class="hui-d3">
+		
+<!--done-->
+Copyright ©2017 静若飘絮
+</div><!--end: footer -->
+
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

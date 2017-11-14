@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>autowire</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>让容器自动建立依赖关系</h1>
+<h1>byName</h1>
+<ul>
+<li>通过在XML中所有配置的bean id  </li>
+<li>查找匹配的setXX调用set方法若没有返回null</li>
+</ul>
+<h2>一、XML中配置</h2>
+<pre><code>    &lt;bean id=&quot;wa&quot; class=&quot;ioc.Waiter&quot; /&gt;
+    &lt;bean id = &quot;mg&quot; class = &quot;autowire.Manager&quot; autowire=&quot;byName&quot;&gt;
+</code></pre>
+
+<h2>二、JAVA代码</h2>
+<pre><code>public class Manager {
+    private Waiter wa;
+    public Waiter getWa() {
+        Main.log(&quot;getWa()&quot;, this);
+        return wa;
+    }
+    public void setWa(Waiter wa) {
+        Main.log(&quot;setWa()&quot;, this);
+        this.wa = wa;
+    }
+    @Override
+    public String toString() {
+        return &quot;Manager [wa=&quot; + wa + &quot;]&quot;;
+    }
+
+}
+</code></pre>
+
+<h1>byType</h1>
+<ul>
+<li>通过在XML中所有配置的bean class对应的类型  </li>
+<li>查找匹配的class类型调用set方法若没有返回null</li>
+<li>如果找到多个,报错因为byType找的class类型对象只能唯一.</li>
+</ul>
+<h2>一、XML中配置</h2>
+<pre><code>    &lt;bean id=&quot;wa&quot; class=&quot;ioc.Waiter&quot; /&gt;
+    &lt;bean id = &quot;mg&quot; class = &quot;autowire.Manager&quot; autowire=&quot;byType&quot;&gt;
+</code></pre>
+
+<h2>二、JAVA代码</h2>
+<pre><code>public class Manager {
+    private Waiter wa;
+    public Waiter getWa() {
+        Main.log(&quot;getWa()&quot;, this);
+        return wa;
+    }
+    public void setWa(Waiter wa) {
+        Main.log(&quot;setWa()&quot;, this);
+        this.wa = wa;
+    }
+    @Override
+    public String toString() {
+        return &quot;Manager [wa=&quot; + wa + &quot;]&quot;;
+    }
+
+}
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>注解介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>１.利用注解简化配置</h1>
+<h2>(1)什么是组件扫描?</h2>
+<ul>
+<li>Spring容器在启动之后，会扫描指定的包及其子包下面所有的类， </li>
+<li>如果类前面有一些特定的注解（比如 @Component）,</li>
+<li>则容器会将这个 类纳入容器进行管理（相当于以前在配置文件当中有一个bean元素）。 </li>
+</ul>
+<h2>(2)如何进行组件扫描?</h2>
+<ul>
+<li>step1. 在类前面添加一些特定的注解，比如 @Component。</li>
+<li><img src="t1.png" /></li>
+<li><img src="t2.png" /></li>
+<li>step2. 在配置文件当中，配置组件扫描。</li>
+<li><img src="t3.png" /></li>
+</ul>
+<h2>(3)自动扫描的注解标记</h2>
+<ul>
+<li><img src="1.png" /></li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

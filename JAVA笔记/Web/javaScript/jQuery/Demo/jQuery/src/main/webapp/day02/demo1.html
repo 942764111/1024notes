@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-1.11.1.js"></script>
+<script>
+	$(function(){
+		//读写节点
+		//1.html() == innerHTML
+		console.log($("p:first").html());
+		$("p:first").html("1.jQuery支持<u>读写</u>节点");
+		//2.text() == innerText
+		//3.val() == value
+		console.log($(":button:first").val());
+		$(":button:first").val("按钮一");
+		//4.attr() == getAttribute()+setAttribute()
+		console.log($("img:first").attr("src"));
+		$("img:first").attr("src","../images/02.jpg");
+	});
+	//追加节点
+	function f1() {
+		var li = $("<li>沈阳</li>");
+		console.log(li);
+		$("ul").prepend(li);
+	}
+	//插入节点
+	function f2() {
+		var li = $("<li>天津</li>");
+		$("#gz").after(li);
+	}
+	//删除节点
+	function f3() {
+		$("#gz").remove();
+	}
+	$(function(){
+		//假设调用者给我传入了一个对象
+		var obj = $("#gz");
+		//先对obj做出某些处理...
+		//再处理obj的亲属
+		console.log(obj.parent());
+		console.log(obj.prev());
+		console.log(obj.siblings());
+		console.log($("ul").find("li:contains('州')"));
+	});
+</script>
+</head>
+<body>
+	<p>1.jQuery支持<b>读写</b>节点</p>
+	<p>2.jQuery支持<b>增删</b>节点</p>
+	<p><input type="button" value="按钮1"/></p>
+	<p><img src="../images/01.jpg"/></p>
+	<ul>
+		<li>北京</li>
+		<li>上海</li>
+		<li id="gz">广州</li>
+		<li>深圳</li>
+		<li>杭州</li>
+		<li style="display:none;">石家庄</li>
+	</ul>
+	<p>
+		<input type="button" value="追加"
+			onclick="f1();"/>
+		<input type="button" value="插入"
+			onclick="f2();"/>
+		<input type="button" value="删除"
+			onclick="f3();"/>
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+

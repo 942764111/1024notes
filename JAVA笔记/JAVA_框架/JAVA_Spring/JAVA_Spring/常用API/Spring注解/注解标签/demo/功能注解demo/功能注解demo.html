@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>功能注解demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>功能注解demo</h1>
+<ul>
+<li>
+<p>package annotations;</p>
+</li>
+<li>
+<p>import javax.annotation.PostConstruct;</p>
+</li>
+<li>
+<p>import javax.annotation.PreDestroy;</p>
+</li>
+<li>
+<p>import org.springframework.context.annotation.Lazy;</p>
+</li>
+<li>import org.springframework.context.annotation.Scope;</li>
+<li>
+<p>import org.springframework.stereotype.Component;</p>
+</li>
+<li>
+<p>@Component(&quot;stu1&quot;)//默认beanid为小写开头的类名</p>
+</li>
+<li>@Scope(&quot;prototype&quot;)//默认作用域是 单例：&quot;singlenton&quot;</li>
+<li>@Lazy(true)</li>
+</ul>
+<p>public class Student {  </p>
+<pre><code>public Student() {
+    System.out.println(&quot;Student()&quot;);
+}
+
+@PostConstruct
+public void init(){
+    System.out.println(&quot;init()&quot;);
+}
+
+@PreDestroy
+public void destroy(){
+    System.out.println(&quot;destroy()&quot;);
+}
+</code></pre>
+
+<p>}</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

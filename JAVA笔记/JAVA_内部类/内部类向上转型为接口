@@ -1,0 +1,37 @@
+package oo.day04;
+
+interface D{
+  void f();
+}
+class A{
+	private class B implements D{
+	  public	void f(){
+			System.out.println("123");
+		}
+	}
+	B initB(){
+		return new B();
+	}
+	
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+      A a = new A();
+		D d = a.initB();
+		d.f();
+	}
+}
+/*非内部类不能被声明为 private 或 protected 访问类型
+ * 
+ * 内部类向上转型为接口 
+ * 
+ * 如果将一格权限修饰符为private的内部类向上转型为其父类对象,或者直接向上转型为一格接口，
+ * 
+ * 在程序中就可以完全隐藏内部类的具体实现过程。可以在外部提供一个接口，在接口中声明一个方法
+ * 
+ * 如果在实现该接口的内部类中实现该接口方法，就可以定义多个内部类以不同的方式实现该接口方法，
+ * 
+ * 这种技巧通常被应用在Swing编程中，可以在一个类中做出不同的响应事件，
+ * 
+ * */
+

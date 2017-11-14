@@ -1,0 +1,70 @@
+package oo.day06;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+class MyJDialog extends JDialog{
+	public MyJDialog(catchDemo fram){
+		super(fram,"MyJDialog",true);
+		Container container = getContentPane();
+		container.add(new JLabel("asdas"));
+		setBounds(120,120,100,100);		
+	}
+}
+
+public class catchDemo extends JFrame{
+	 void CreateJFrame(String title){
+			JFrame jf = new JFrame(title);
+			Container container =jf.getContentPane();//获取一个容器
+			container.setLayout(null);
+			JLabel jl = new JLabel("asda");
+			jl.setHorizontalAlignment(SwingConstants.CENTER);//使标签上的文字剧中
+			container.add(jl);
+		//	container.setBackground(Color.BLACK);//设置容器颜色
+			jf.setVisible(true);
+			jf.setSize(300, 250);
+			
+			JButton  btn = new JButton("弹出对话框！！");
+			btn.setBounds(10,10,100,21);
+			btn.setAlignmentX(CENTER_ALIGNMENT);
+			btn.setAlignmentY(CENTER_ALIGNMENT);
+			btn.setLocation(jf.getLocation().x/2+jf.getWidth()/2,jf.getLocation().y/2+jf.getHeight()/2);
+			btn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new MyJDialog(catchDemo.this).setVisible(true);
+				}
+			});
+			container.add(btn);
+	}
+	public static void main(String[] args) {
+		new catchDemo().CreateJFrame("aaa");
+	}
+}
+/*
+ *java GUI
+ *
+ * AWT组建(抽象窗口工具箱)特点  java.awt包
+ * 1、无法在所有平台上运行,原来的AWT组件的java应用程序在不同的平台上执行时,每个平台的GUI组件的显示会有所不同
+ * 
+ * 2、依赖于本地平台的组件被称为 "重量级组建" ,如 AWT组件就算依赖本地平台的窗口系统来决定组件功能、外观和风格。
+ * 
+ * 
+ *  Swing 特点
+ *  
+ *  1、AWT的增强版 在不同平台上开发的应用程序时,就可以统一GUI组建的显示风格,
+ *  	 因为Swing组件允许编程人员在跨平台时指定统一外观的风格。
+ *   
+ *  2、Swing 组件通常被称为 "轻量级组件"，因为它完全由java语言编写,而java是不依赖于操作系统的语言,
+ *  	 它可以运行在不同的平台。
+ *  
+ *    3、轻量级组件
+ *    
+ *    4、可插入外观组件
+ *    
+ *    它是AWT组件的增强组件,但是它并不代表完全替代AWT组件,这俩中组件需要同时出现在一个图形用户界面中。
+ * 
+ * 
+ * */

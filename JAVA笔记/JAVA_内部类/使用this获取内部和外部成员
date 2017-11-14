@@ -1,0 +1,26 @@
+package oo.day04;
+
+interface D{
+  void f();
+}
+class A{
+	int x = 0;
+	private class B implements D{
+		int x = 1;
+	  public	void f(){
+			System.out.println(getClass().getName()+"::f()::"+(++this.x));
+			System.out.println(A.this.getClass().getName()+"::f()::"+(++A.this.x));
+		}
+	}
+	B initB(){
+		return new B();
+	}
+	
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+      A a = new A();
+		D d = a.initB();
+		d.f();
+	}
+}

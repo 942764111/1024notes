@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>setMaxInactiveInterval</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>如何修改Session的超时时间</h1>
+<p>有两种方式可以修改Session的缺省时间限制，编程式和声明式。</p>
+<ul>
+<li>编程式：</li>
+</ul>
+<div class = "bg-blue">例:</div>
+<p>void  setMaxInactiveInterval（int seconds）</p>
+<hr />
+<ul>
+<li>声明式：在web中配置</li>
+</ul>
+<div class = "bg-blue">例:</div>
+<p>&lt;session-config&gt;
+        &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+&lt;/session-config&gt;</p>
+<hr />
+<ul>
+<li>使用声明式来修改缺省时间，那么该应用创建的所有Session对象的生命周期都会应用这个规定的时间，单位为分钟。</li>
+<li>使用编程式来修改缺省时间只会针对调用该方法的Session对象应用这一原则，</li>
+<li>不会影响到其他对象，所以更灵活。</li>
+<li>通常在需要特殊设置时使用这种方式。</li>
+<li>时间单位是秒，与声明式的时间单位不同。 </li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

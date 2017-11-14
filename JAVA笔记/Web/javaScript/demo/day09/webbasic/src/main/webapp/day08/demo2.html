@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function() {
+		//查询节点
+		//1.根据ID查询
+		//document.getElementById("id值")
+		//2.根据标签名查询
+		//document.getElementsByTagName("标签名")
+		//3.根据name查询
+		var radios = 
+			document.getElementsByName("sex");
+		console.log(radios);
+		//4.查询某节点的亲属
+		//1)查询父亲
+		var gz = document.getElementById("gz");
+		var ul = gz.parentNode;
+		console.log(ul);
+		//2)查询孩子
+		//带文本
+		var lis = ul.childNodes;
+		console.log(lis);
+		//只要元素
+		lis = ul.getElementsByTagName("li");
+		console.log(lis);
+		//3)查询兄弟
+		//节点.父亲.孩子们[i]
+		var sh = 
+			gz.parentNode.getElementsByTagName("li")[1];
+		console.log(sh);
+	}
+	function f1() {
+		//创建新节点
+		var li = document.createElement("li");
+		//给新节点设置内容
+		li.innerHTML = "石家庄";
+		//将新节点追加到ul下
+		var ul = document.getElementById("city");
+		ul.appendChild(li);
+	}
+	function f2() {
+		//创建新节点
+		var li = document.createElement("li");
+		//给新节点设置内容
+		li.innerHTML = "沈阳";
+		//将新节点插入到广州前
+		var ul = document.getElementById("city");
+		var gz = document.getElementById("gz");
+		ul.insertBefore(li,gz);
+	}
+	function f3() {
+		//获取被删除节点的父亲
+		var ul = document.getElementById("city");
+		//获取被删除的节点
+		var gz = document.getElementById("gz");
+		//通过父亲删除孩子
+		ul.removeChild(gz);
+	}
+</script>
+</head>
+<body>
+	<p>
+		<input type="radio" name="sex"/>男
+		<input type="radio" name="sex"/>女
+	</p>
+	<ul id="city">
+		<li>北京</li>
+		<li>上海</li>
+		<li id="gz">广州</li>
+		<li>深圳</li>
+		<li>杭州</li>
+	</ul>
+	<p>
+		<input type="button" value="追加"
+			onclick="f1();"/>
+		<input type="button" value="插入"
+			onclick="f2();"/>
+		<input type="button" value="删除"
+			onclick="f3();"/>
+	</p>
+</body>
+</html>
+
+
+
+
+

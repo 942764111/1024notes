@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HttpServletRequest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<p>javax.servlet.http</p>
+<h2>HttpServletRequest接口</h2>
+<h2>所有它的超接口:</h2>
+<p>ServletRequest (Servlet请求)</p>
+<h2>所有已知实现类:</h2>
+<p>HttpServletRequestWrapper(Http ServletRequest包装)</p>
+<h2>公共接口HttpServletRequest</h2>
+<ul>
+<li>扩展ServletRequest</li>
+<li>扩展了ServletRequest接口提供HTTP servlet的请求信息。</li>
+<li>servlet容器创建一个HttpServletRequest对象并将它作为参数传递给servlet的服务方法(doGet、doPost等)。</li>
+</ul>
+<h2>与javax . servlet . servletrequest继承接口的方法</h2>
+<p>getAsyncContext, getAttribute, getAttributeNames, getCharacterEncoding, getContentLength, getContentType, getDispatcherType, getInputStream, getLocalAddr, getLocale, getLocales, getLocalName, getLocalPort, getParameter, getParameterMap, getParameterNames, getParameterValues, getProtocol, getReader, getRealPath, getRemoteAddr, getRemoteHost, getRemotePort, getRequestDispatcher, getScheme, getServerName, getServerPort, getServletContext, isAsyncStarted, isAsyncSupported, isSecure, removeAttribute, setAttribute, setCharacterEncoding, startAsync, startAsync</p>
+<h2>字段汇总</h2>
+<h2>1、static java.lang.String	BASIC_AUTH</h2>
+<p>字符串标识符基本身份验证。字符串标识符基本身份验证。</p>
+<h2>2、static java.lang.String	CLIENT<em>CERT</em>AUTH</h2>
+<p>客户端证书身份验证字符串标识符。</p>
+<h2>3、static java.lang.String	DIGEST_AUTH</h2>
+<p>摘要式身份验证字符串标识符。</p>
+<h2>4、static java.lang.String	FORM_AUTH0</h2>
+<p>字符串标识符形式认证。</p>
+<h2>方法总结</h2>
+<h2>1、boolean	authenticate(HttpServletResponse response)</h2>
+<p>触发身份验证过程一样会被触发,如果请求是一个安全约束保护的资源。</p>
+<h2>2、java.lang.String	getAuthType()</h2>
+<p>返回验证方案的名称用于保护servlet。</p>
+<h2>3、java.lang.String	getContextPath()</h2>
+<p>返回请求URI的一部分,表示请求的上下文。</p>
+<h2><div class="bg-blue">例：</div></h2>
+<hr />
+<p>http://localhost:8080 /servlet3 /*.duang</p>
+<ul>
+<li>输出：</li>
+</ul>
+<h2>/servlet3</h2>
+<h2>4、Cookie[]	getCookies()</h2>
+<p>返回一个数组,其中包含所有的Cookie对象的客户端发送请求。</p>
+<h2>5、long	getDateHeader(java.lang.String name)</h2>
+<p>返回值指定请求头的长值代表一个约会对象.</p>
+<h2>6、java.lang.String	getHeader(java.lang.String name)</h2>
+<p>返回指定的请求头的值为字符串。</p>
+<h2>7、java.util.Enumeration&lt;java.lang.String&gt; 	getHeaderNames()</h2>
+<p>返回一个枚举所有的这个请求包含标题名称。</p>
+<h2><div class="bg-blue">例：</div></h2>
+<hr />
+<ul>
+<li>//1.2消息头(key-value)</li>
+<li>//Enumeration是比Iterator更早的迭代器</li>
+<li>Enumeration<String> e = req.getHeaderNames();</li>
+<li>while(e.hasMoreElements()) {</li>
+<li>String key = e.nextElement();</li>
+<li>String value = req.getHeader(key);</li>
+<li>System.out.println(</li>
+<li>key + &quot;:&quot; + value);</li>
+<li>}</li>
+</ul>
+<h2>8、java.util.Enumeration&lt;java.lang.String&gt; 	getHeaders(java.lang.String name)</h2>
+<p>返回所有指定的请求头的值作为字符串对象的枚举。</p>
+<h2>9、int	 getIntHeader(java.lang.String name)</h2>
+<p>返回指定的请求头的值作为一个int。</p>
+<h2>10、java.lang.String	getMethod()</h2>
+<p>请求方式:返回的HTTP方法的名称,与此请求例如,GET、POST、或PUT。</p>
+<h2>11、Part	getPart(java.lang.String name)</h2>
+<p>被指定的部分或null如果部分并不存在。返回:
+指定的部分或null如果部分并不存</p>
+<h2>12、java.util.Collection<Part>	getParts()</h2>
+<p>返回所有上传部分的集合。</p>
+<h2>13、java.lang.String	getPathInfo()</h2>
+<p>返回与URL相关联的任何额外的路径信息时客户端发送此请求。</p>
+<h2>14、java.lang.String	getPathTranslated()</h2>
+<ul>
+<li>返回任何额外的路径信息后,servlet名称但在查询字符串,并将它真正的路径。CGI变量的值PATH_TRANSLATED一样。</li>
+<li>如果URL没有任何额外的路径信息,该方法返回null或servlet容器不能翻译真正的虚拟路径路径由于任何原因(如web应用程序执行时从存档)。</li>
+<li>web容器不解码该字符串。</li>
+<li>返回:</li>
+<li>字符串指定的路径,或者零如果没有任何额外的路径信息的URL</li>
+</ul>
+<h2>15、java.lang.String	getQueryString()</h2>
+<ul>
+<li>返回一个布尔值表示身份验证的用户是否包含在指定的逻辑“角色”。</li>
+<li>角色和角色从属关系可以定义使用部署描述符。</li>
+<li>如果用户还没有经过身份验证,方法返回false。</li>
+<li>参数：</li>
+<li>角色——一个字符串指定角色的名称</li>
+<li>返回：</li>
+<li>一个布尔提出这种请求指示用户是否属于一个给定角色;假如果用户没有被验证</li>
+</ul>
+<h2>16、java.security.Principal getUserPrincipal()</h2>
+<p>返回一个java.security。主要对象包含当前身份验证的用户的名称。如果用户没有通过身份验证,方法返回null。</p>
+<h2>17、java.lang.String getRequestedSessionId()</h2>
+<ul>
+<li>返回会话ID指定的客户端。这可能不是相同的ID的当前有效的会话请求。如果客户没有指定一个会话ID,该方法返回null。</li>
+<li>返回：</li>
+<li>一个字符串指定会话ID,或null如果请求没有指定一个会话ID</li>
+<li>参见：</li>
+<li>isRequestedSessionIdValid()</li>
+</ul>
+<h2>18、java.lang.String getRequestURI()</h2>
+<ul>
+<li>返回请求的URL协议的一部分的名字查询字符串的第一行的HTTP请求。web容器不解码该字符串。例如:</li>
+<li>第一行的HTTP请求返回值</li>
+<li>POST /some/path.html HTTP/1.1	 /some/path.html</li>
+<li>GET http://foo.bar/a.html HTTP/1.0	 /a.html</li>
+<li>HEAD /xyz?a=b HTTP/1.1	 /xyz</li>
+<li>重建一个URL方案和主机,使用getRequestURL()。</li>
+<li>返回:</li>
+<li>一个字符串包含URL的一部分从协议名称查询字符串</li>
+<li>参见:</li>
+<li>getRequestURL()</li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<hr />
+<p>http://localhost:8080/servlet3/*.duang</p>
+<ul>
+<li>输出：</li>
+</ul>
+<h2>/servlet3/*.duang</h2>
+<h2>19、java.lang.StringBuffer getRequestURL()</h2>
+<ul>
+<li>塑造URL所使用的客户端请求。返回的URL包含一个协议,服务器名称、端口号和服务器的路径,但它不包含查询字符串参数。</li>
+<li>因为这个方法返回一个StringBuffer,而不是一个字符串,您可以修改URL,例如,添加查询参数。</li>
+<li>这个方法是非常有用的用于创建重定向消息和错误报告。</li>
+<li>返回：</li>
+<li>StringBuffer对象包含重建的URL</li>
+<li>返回:</li>
+<li>一个字符串包含URL的一部分从协议名称查询字符串</li>
+<li>参见:</li>
+<li>getRequestURL()</li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<hr />
+<p>输出：</p>
+<h2>http://localhost:8080/servlet3/*.duang</h2>
+<h2>20、java.lang.String getServletPath()</h2>
+<p>-返回访问路径
+- 返回此请求调用servlet的URL的一部分。这条路开始于一个“/”字符,包括servlet servlet名称或路径,但不包括任何额外的路径信息或查询字- - 符串。一样的值SCRIPT_NAME CGI变量。
+- 这个方法将返回空字符串(&quot; &quot;)如果servlet用于处理这个请求匹配使用“/ *”模式。
+- 返回:
+- 一个字符串包含被调用servlet的名称或路径,在请求URL中指定,解码,或空字符串如果用来处理请求的servlet使用“/ *”模式相匹配。</p>
+<h2><div class="bg-blue">例：</div></h2>
+<hr />
+<p>http://localhost:8080/servlet3/*.duang</p>
+<ul>
+<li>输出：</li>
+</ul>
+<h2>/*.duang</h2>
+<h2>21、HttpSession getSession(boolean create)</h2>
+<ul>
+<li>参数:</li>
+<li>创造——真正为这个请求创建一个新的会话如果必要;假返回null如果没有当前会话</li>
+<li>返回:</li>
+<li>与此请求相关联的HttpSession或null如果创建是假的,没有有效的会话的请求</li>
+<li>参见:</li>
+<li>getSession()</li>
+</ul>
+<h2>22、HttpSession getSession()</h2>
+<ul>
+<li>返回与此相关的当前会话请求,或者如果没有一个会话的请求,创建一个。</li>
+<li>返回:</li>
+<li>HttpSession与此相关的请求</li>
+<li>参见:</li>
+<li>getSession(布尔)</li>
+</ul>
+<h2>23、boolean isRequestedSessionIdValid()</h2>
+<p>检查请求的会话ID是否仍然有效。</p>
+<h2>24、boolean isRequestedSessionIdFromCookie()</h2>
+<ul>
+<li>检查是否请求的会话ID是一个cookie。</li>
+<li>返回:</li>
+<li>如果会话ID是一个cookie;否则,假的</li>
+<li>参见:</li>
+<li>getSession(布尔)</li>
+</ul>
+<h2>25、boolean isRequestedSessionIdFromURL()</h2>
+<ul>
+<li>检查是否请求的会话ID作为请求URL的一部分。</li>
+<li>返回:</li>
+<li>如果会话ID进来作为URL的一部分;否则,假的</li>
+<li>参见:</li>
+<li>getSession(布尔)</li>
+</ul>
+<h2>26、boolean isRequestedSessionIdFromUrl()</h2>
+<p>弃用。java servlet api的2.1版本,使用isrequestedsessionidfromurl()。</p>
+<h2>27、boolean authenticate(HttpServletResponse response)</h2>
+<pre><code>                    throws java.io.IOException,
+                        ServletException
+</code></pre>
+
+<ul>
+<li>如果用户成功地验证,如果不是假的</li>
+<li>抛出:</li>
+<li>java.io.IOException</li>
+<li>ServletException</li>
+<li>自:</li>
+<li>Servlet 3.0</li>
+</ul>
+<h2>28、void login(java.lang.String username,java.lang.String password)</h2>
+<pre><code>       throws ServletException
+</code></pre>
+
+<ul>
+<li>提供的用户名和密码进行身份验证,然后相关的身份验证的用户请求。</li>
+<li>参数:</li>
+<li>用户名 ----用户名进行身份验证</li>
+<li>密码----密码使用对用户进行身份验证</li>
+<li>抛出:</li>
+<li>ServletException——如果任何getRemoteUser(),getUserPrincipal()或getAuthType()非空,如果配置的身份验证不支持用户名和密码认证       或认证失败</li>
+<li>自:</li>
+<li>Servlet 3.0</li>
+</ul>
+<h2>29、void logout()</h2>
+<pre><code>        throws ServletException
+</code></pre>
+
+<ul>
+<li>删除任何身份验证的用户的请求。</li>
+<li>抛出:</li>
+<li>ServletException——如果注销失败</li>
+<li>自:</li>
+<li>Servlet 3.0</li>
+</ul>
+<h2>30、java.util.Collection<Part> getParts()</h2>
+<pre><code>                                throws java.io.IOException,
+                                       java.lang.IllegalStateException,
+                                       ServletException
+</code></pre>
+
+<ul>
+<li>返回所有上传部分的集合。</li>
+<li>返回:</li>
+<li>所有上传部分的集合。</li>
+<li>抛出:</li>
+<li>. io .IOException——如果发生I / O错误</li>
+<li>. lang。IllegalStateException——如果超过大小限制</li>
+<li>ServletException——如果请求不是多部分/格式</li>
+<li>自:</li>
+<li>Servlet 3.0</li>
+</ul>
+<h2>31、Part getPart(java.lang.String name)</h2>
+<pre><code>         throws java.io.IOException,
+                java.lang.IllegalStateException,
+                ServletException
+</code></pre>
+
+<ul>
+<li>被指定的部分或null如果部分并不存在。触发上传的所有部分。</li>
+<li>参数:</li>
+<li>名字,</li>
+<li>返回:</li>
+<li>指定的部分或null如果部分并不存在</li>
+<li>抛出:</li>
+<li>. io .IOException——如果发生I / O错误</li>
+<li>. lang。IllegalStateException——如果超过大小限制</li>
+<li>ServletException——如果请求不是多部分/格式</li>
+<li>自:</li>
+<li>Servlet 3.0</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

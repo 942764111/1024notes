@@ -1,0 +1,13 @@
+
+	javaee api-5
+
+Àý£º
+
+	
+  <dependencies>
+	  <dependency>
+	  <groupId>javaee</groupId>
+	  <artifactId>javaee-api</artifactId>
+	  <version>5</version>
+	  </dependency>
+  </dependencies>

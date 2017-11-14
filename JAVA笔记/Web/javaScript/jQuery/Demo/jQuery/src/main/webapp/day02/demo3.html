@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-1.11.1.js"></script>
+<script>
+	//1.这样的写法效果等价于
+	//  window.onload = function(){}
+	//2.window.onload若写多次，则后者覆盖前者
+	//3.$(function(){})若写多次，代码会叠加
+	$(function(){
+		//给按钮1绑定单击事件
+		$(":button:eq(0)").click(function(e){
+			console.log(1);
+			console.log(e);
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="按钮1"/>
+</body>
+</html>
+
+
+
+
+
+
+

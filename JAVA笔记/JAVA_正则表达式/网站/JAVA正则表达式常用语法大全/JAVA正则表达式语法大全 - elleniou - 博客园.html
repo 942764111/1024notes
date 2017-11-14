@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAVA正则表达式语法大全 - elleniou - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./JAVA正则表达式语法大全 - elleniou - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./JAVA正则表达式语法大全 - elleniou - 博客园_files/bundle-ClearScreen01.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./JAVA正则表达式语法大全 - elleniou - 博客园_files/bundle-ClearScreen01-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/elleniou/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/elleniou/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/elleniou/wlwmanifest.xml">
+<script type="text/javascript" src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/encoder.js.下载"></script><script src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'elleniou', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/elleniou/">elleniou</a><br>
+		一枚默默的开发学习者
+	</div>
+</div>
+
+</div>
+<div id="mylinks">
+<!--done-->
+&nbsp;&nbsp;::&nbsp;
+&nbsp;&nbsp;::&nbsp;
+<a id="blog_nav_newpost" class="listitem" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;::&nbsp;
+&nbsp;&nbsp;::&nbsp;
+&nbsp;&nbsp;&nbsp;::&nbsp;
+<a id="blog_nav_admin" class="listitem" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+<div id="mytopmenu">
+	
+		<div id="mystats">
+			</div>
+	
+</div>
+<div id="main">
+    <div id="leftcontent">
+	    
+		    <div id="leftcontentcontainer">
+			    
+			    <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/01/01&#39;);return false;">&lt;</a></td><td align="center">2017年2月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/03/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalTodayDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr><tr><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td><td class="CalOtherMonthDay" align="center">11</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			    <div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/elleniou/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/elleniou/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/elleniou/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/elleniou/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/elleniou/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/elleniou/category/375361.html">Android (21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/elleniou/category/527074.html">Hadoop(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/elleniou/category/434114.html">Hibernate(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/elleniou/category/406497.html">HTML(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/elleniou/category/486583.html">ibatis(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/elleniou/category/375823.html">Java(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/elleniou/category/397722.html">JAVA WEB(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/elleniou/category/414812.html">JAVABEAN(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/elleniou/category/507978.html">JAVA多线程</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/elleniou/category/507963.html">JAVA基础复习与总结</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/elleniou/category/480183.html">Jquery(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/elleniou/category/470539.html">JS(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/elleniou/category/412125.html">JSP(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/elleniou/category/478659.html">Linux</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/elleniou/category/415478.html">mysql(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/elleniou/category/402059.html">Oracle(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="http://www.cnblogs.com/elleniou/category/473466.html">php(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="http://www.cnblogs.com/elleniou/category/494445.html">python(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_18" class="listitem" href="http://www.cnblogs.com/elleniou/category/415955.html">Servlet(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_19" class="listitem" href="http://www.cnblogs.com/elleniou/category/494390.html">Spring(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_20" class="listitem" href="http://www.cnblogs.com/elleniou/category/420093.html">Struts2(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_21" class="listitem" href="http://www.cnblogs.com/elleniou/category/469087.html">XML(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_22" class="listitem" href="http://www.cnblogs.com/elleniou/category/471356.html">笔试面试(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_23" class="listitem" href="http://www.cnblogs.com/elleniou/category/511985.html">简单算法(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_24" class="listitem" href="http://www.cnblogs.com/elleniou/category/483116.html">排序算法总结(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_25" class="listitem" href="http://www.cnblogs.com/elleniou/category/564791.html">数据仓库</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_26" class="listitem" href="http://www.cnblogs.com/elleniou/category/377105.html">数据结构(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_27" class="listitem" href="http://www.cnblogs.com/elleniou/category/560176.html">数据挖掘</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2014/02.html">2014年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/09.html">2013年9月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/08.html">2013年8月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/07.html">2013年7月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/06.html">2013年6月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/05.html">2013年5月 (21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/04.html">2013年4月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2013/01.html">2013年1月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/12.html">2012年12月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/10.html">2012年10月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/09.html">2012年9月 (20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/08.html">2012年8月 (25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/07.html">2012年7月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/05.html">2012年5月 (20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/elleniou/archive/2012/04.html">2012年4月 (8)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章档案</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/elleniou/archives/2013/04.html" rel="nofollow">2013年4月 (1)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/elleniou/archive/2012/04/27/2473050.html#3565794">1. Re:java中的foreach循环</a></li>
+        <li class="recent_comment_body">写的很好。搜到你的博客。之前我还以为有个foreach关键词了。</li>
+        <li class="recent_comment_author">--lucifer2014</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/elleniou/archive/2012/10/24/2736726.html#3534641">2. Re:学习数据库必须掌握的54条SQL查询语句</a></li>
+        <li class="recent_comment_body">我靠，没有数据库表，写这么多有屌用</li>
+        <li class="recent_comment_author">--huoguodong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/elleniou/p/3334886.html#3528494">3. Re:java产生随机数的几种方式</a></li>
+        <li class="recent_comment_body">奥，那Random r = new Random()其实就是Random r = new Random(System.currentTimeMillis())了？不是有种说法叫做“随机数不随机”吗，您......</li>
+        <li class="recent_comment_author">--CN_Simo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/elleniou/archive/2012/09/24/2700583.html#3525082">4. Re:SmartUpload使用和简介</a></li>
+        <li class="recent_comment_body">一看就是老李的学生！哈哈哈</li>
+        <li class="recent_comment_author">--麦牧嘉禾</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/elleniou/archive/2012/05/21/2511071.html#3505494">5. Re:android回调函数总结</a></li>
+        <li class="recent_comment_body">终于懂了</li>
+        <li class="recent_comment_author">--OneXway</li>
+</ul>
+</div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	    
+    </div>
+    <div id="centercontent">
+	    
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html">JAVA正则表达式语法大全</a>
+	</div>
+	<div id="cnblogs_post_body"><div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;">  1</span> <span style="color: #000000;">[正则表达式]文本框输入内容控制
+</span><span style="color: #008080;">  2</span> 整数或者小数：^[0-9]+\.{0,1}[0-9]{0,2<span style="color: #000000;">}$
+</span><span style="color: #008080;">  3</span> 只能输入数字："^[0-9]*$"<span style="color: #000000;">。
+</span><span style="color: #008080;">  4</span> 只能输入n位的数字："^\d{n}$"<span style="color: #000000;">。
+</span><span style="color: #008080;">  5</span> 只能输入至少n位的数字："^\d{n,}$"<span style="color: #000000;">。
+</span><span style="color: #008080;">  6</span> 只能输入m~n位的数字：。"^\d{m,n}$"
+<span style="color: #008080;">  7</span> 只能输入零和非零开头的数字："^(0|[1-9][0-9]*)$"<span style="color: #000000;">。
+</span><span style="color: #008080;">  8</span> 只能输入有两位小数的正实数："^[0-9]+(.[0-9]{2})?$"<span style="color: #000000;">。
+</span><span style="color: #008080;">  9</span> 只能输入有1~3位小数的正实数："^[0-9]+(.[0-9]{1,3})?$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 10</span> 只能输入非零的正整数："^\+?[1-9][0-9]*$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 11</span> 只能输入非零的负整数："^\-[1-9][]0-9"*<span style="color: #000000;">$。
+</span><span style="color: #008080;"> 12</span> 只能输入长度为3的字符："^.{3}$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 13</span> 只能输入由26个英文字母组成的字符串："^[A-Za-z]+$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 14</span> 只能输入由26个大写英文字母组成的字符串："^[A-Z]+$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 15</span> 只能输入由26个小写英文字母组成的字符串："^[a-z]+$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 16</span> 只能输入由数字和26个英文字母组成的字符串："^[A-Za-z0-9]+$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 17</span> 只能输入由数字、26个英文字母或者下划线组成的字符串："^\w+$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 18</span> 验证用户密码："^[a-zA-Z]\w{5,17}$"正确格式为：以字母开头，长度在6~<span style="color: #000000;">18之间，只能包含字符、数字和下划线。
+</span><span style="color: #008080;"> 19</span> 验证是否含有^%&amp;',;=?$\"等字符："[^%&amp;',;=?$\x22]+"。
+<span style="color: #008080;"> 20</span> 只能输入汉字："^[\u4e00-\u9fa5]{0,}$"
+<span style="color: #008080;"> 21</span> 验证Email地址："^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 22</span> 验证InternetURL："^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 23</span> 验证电话号码："^(\(\d{3,4}-)|\d{3.4}-)?\d{7,8}$"正确格式为："XXX-XXXXXXX"、"XXXX-XXXXXXXX"、"XXX-XXXXXXX"、"XXX-XXXXXXXX"、"XXXXXXX"和"XXXXXXXX"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 24</span> 验证身份证号（15位或18位数字）："^\d{15}|\d{18}$"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 25</span> 验证一年的12个月："^(0?[1-9]|1[0-2])$"正确格式为："01"～"09"和"1"～"12"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 26</span> 验证一个月的31天："^((0?[1-9])|((1|2)[0-9])|30|31)$"正确格式为；"01"～"09"和"1"～"31"<span style="color: #000000;">。
+</span><span style="color: #008080;"> 27</span> 匹配中文字符的正则表达式： [\u4e00-<span style="color: #000000;">\u9fa5]
+</span><span style="color: #008080;"> 28</span> 匹配双字节字符(包括汉字在内)：[^\x00-<span style="color: #000000;">\xff]
+</span><span style="color: #008080;"> 29</span> <span style="color: #000000;">应用：计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+</span><span style="color: #008080;"> 30</span> String.prototype.len=function(){<span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.replace(/[^\x00-\xff]/g,"aa"<span style="color: #000000;">).length;}
+</span><span style="color: #008080;"> 31</span> 匹配空行的正则表达式：\n[\s| ]*<span style="color: #000000;">\r
+</span><span style="color: #008080;"> 32</span> 匹配html标签的正则表达式：&lt;(.*)&gt;(.*)&lt;\/(.*)&gt;|&lt;(.*)\/&gt;
+<span style="color: #008080;"> 33</span> 匹配首尾空格的正则表达式：(^\s*)|(\s*<span style="color: #000000;">$)
+</span><span style="color: #008080;"> 34</span> <span style="color: #000000;">应用：javascript中没有像vbscript那样的trim函数，我们就可以利用这个表达式来实现，如下：
+</span><span style="color: #008080;"> 35</span> String.prototype.trim =<span style="color: #000000;"> function()
+</span><span style="color: #008080;"> 36</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 37</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.replace(/(^\s*)|(\s*$)/g, ""<span style="color: #000000;">);
+</span><span style="color: #008080;"> 38</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 39</span> <span style="color: #000000;">利用正则表达式分解和转换IP地址：
+</span><span style="color: #008080;"> 40</span> <span style="color: #000000;">下面是利用正则表达式匹配IP地址，并将IP地址转换成对应数值的Javascript程序：
+</span><span style="color: #008080;"> 41</span> <span style="color: #000000;">function IP2V(ip)
+</span><span style="color: #008080;"> 42</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 43</span> re=/(\d+)\.(\d+)\.(\d+)\.(\d+)/g <span style="color: #008000;">//</span><span style="color: #008000;">匹配IP地址的正则表达式</span>
+<span style="color: #008080;"> 44</span> <span style="color: #0000ff;">if</span><span style="color: #000000;">(re.test(ip))
+</span><span style="color: #008080;"> 45</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 46</span> <span style="color: #0000ff;">return</span> RegExp.$1*Math.pow(255,3))+RegExp.$2*Math.pow(255,2))+RegExp.$3*255+RegExp.$4*1
+<span style="color: #008080;"> 47</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 48</span> <span style="color: #0000ff;">else</span>
+<span style="color: #008080;"> 49</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 50</span> <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> Error("Not a valid IP address!"<span style="color: #000000;">)
+</span><span style="color: #008080;"> 51</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 52</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 53</span> <span style="color: #000000;">不过上面的程序如果不用正则表达式，而直接用split函数来分解可能更简单，程序如下：
+</span><span style="color: #008080;"> 54</span> var ip="10.100.20.168"
+<span style="color: #008080;"> 55</span> ip=ip.split("."<span style="color: #000000;">)
+</span><span style="color: #008080;"> 56</span> alert("IP值是："+(ip[0]*255*255*255+ip[1]*255*255+ip[2]*255+ip[3]*1<span style="color: #000000;">))
+</span><span style="color: #008080;"> 57</span> 匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*
+<span style="color: #008080;"> 58</span> 匹配网址URL的正则表达式：http:<span style="color: #008000;">//</span><span style="color: #008000;">([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?</span>
+<span style="color: #008080;"> 59</span> 
+<span style="color: #008080;"> 60</span> <span style="color: #000000;">利用正则表达式限制网页表单里的文本框输入内容：
+</span><span style="color: #008080;"> 61</span> 用正则表达式限制只能输入中文：onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
+<span style="color: #008080;"> 62</span> 用正则表达式限制只能输入全角字符： onkeyup="value=value.replace(/[^\uFF00-\uFFFF]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\uFF00-\uFFFF]/g,''))"
+<span style="color: #008080;"> 63</span> 用正则表达式限制只能输入数字：onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+<span style="color: #008080;"> 64</span> 用正则表达式限制只能输入数字和英文：onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+<span style="color: #008080;"> 65</span> &lt;input onkeyup="value=value.replace(/[^\u4E00-\u9FA5\w]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5\w]/g,''))" value="允许下划线,数字字母和汉字"&gt;
+<span style="color: #008080;"> 66</span> &lt;script language="javascript"&gt;
+<span style="color: #008080;"> 67</span> <span style="color: #0000ff;">if</span> (document.layers)<span style="color: #008000;">//</span><span style="color: #008000;">触发键盘事件</span>
+<span style="color: #008080;"> 68</span> <span style="color: #000000;">document.captureEvents(Event.KEYPRESS)
+</span><span style="color: #008080;"> 69</span> <span style="color: #000000;">function xz(thsv,nob){
+</span><span style="color: #008080;"> 70</span> <span style="color: #0000ff;">if</span>(nob=="2"<span style="color: #000000;">){
+</span><span style="color: #008080;"> 71</span> window.clipboardData.setData("text",""<span style="color: #000000;">)
+</span><span style="color: #008080;"> 72</span> alert("避免非法字符输入,请勿复制字符"<span style="color: #000000;">);
+</span><span style="color: #008080;"> 73</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 74</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 75</span> <span style="color: #0000ff;">if</span> (event.keyCode!=8 &amp;&amp; event.keyCode!=16 &amp;&amp; event.keyCode!=37 &amp;&amp; event.keyCode!=38 &amp;&amp; event.keyCode!=39 &amp;&amp; event.keyCode!=40<span style="color: #000000;">){
+</span><span style="color: #008080;"> 76</span> thsvv=thsv.value;<span style="color: #008000;">//</span><span style="color: #008000;">输入的值</span>
+<span style="color: #008080;"> 77</span> thsvs=thsvv.substring(thsvv.length-1);<span style="color: #008000;">//</span><span style="color: #008000;">输入的最后一个字符
+</span><span style="color: #008080;"> 78</span> <span style="color: #008000;">//</span><span style="color: #008000;">thsvss=thsvv.substring(0,thsvv.length-1);</span><span style="color: #008000;">//</span><span style="color: #008000;">去掉最后一个错误字符</span>
+<span style="color: #008080;"> 79</span> <span style="color: #0000ff;">if</span> (!thsvs.replace(/[^\u4E00-\u9FA5\w]/g,'') || event.keyCode==189){<span style="color: #008000;">//</span><span style="color: #008000;">正则除去符号和下划线 key</span>
+<span style="color: #008080;"> 80</span> thsv.value='请勿输入非法符号 ['+thsvs+']'<span style="color: #000000;">;
+</span><span style="color: #008080;"> 81</span> alert('请勿输入非法符号 ['+thsvs+']'<span style="color: #000000;">);
+</span><span style="color: #008080;"> 82</span> thsv.value=""<span style="color: #000000;">;
+</span><span style="color: #008080;"> 83</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 84</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 85</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 86</span> <span style="color: #000000;">}
+</span><span style="color: #008080;"> 87</span> &lt;/script&gt;
+<span style="color: #008080;"> 88</span> &lt;input onkeyup="xz(this,1)" onPaste="xz(this,2)" value=""&gt;<span style="color: #000000;">允许数字字母和汉字
+</span><span style="color: #008080;"> 89</span> &lt;script language="javascript"&gt;
+<span style="color: #008080;"> 90</span> &lt;!--
+<span style="color: #008080;"> 91</span> <span style="color: #000000;">function MaxLength(field,maxlimit){
+</span><span style="color: #008080;"> 92</span> var j = field.value.replace(/[^\x00-\xff]/g,"**"<span style="color: #000000;">).length;
+</span><span style="color: #008080;"> 93</span> <span style="color: #008000;">//</span><span style="color: #008000;">alert(j);</span>
+<span style="color: #008080;"> 94</span> var tempString=<span style="color: #000000;">field.value;
+</span><span style="color: #008080;"> 95</span> var tt=""<span style="color: #000000;">;
+</span><span style="color: #008080;"> 96</span> <span style="color: #0000ff;">if</span>(j &gt;<span style="color: #000000;"> maxlimit){
+</span><span style="color: #008080;"> 97</span> <span style="color: #0000ff;">for</span>(var i=0;i&lt;maxlimit;i++<span style="color: #000000;">){
+</span><span style="color: #008080;"> 98</span> <span style="color: #0000ff;">if</span>(tt.replace(/[^\x00-\xff]/g,"**").length &lt;<span style="color: #000000;"> maxlimit)
+</span><span style="color: #008080;"> 99</span> tt = tempString.substr(0,i+1<span style="color: #000000;">);
+</span><span style="color: #008080;">100</span> <span style="color: #0000ff;">else</span>
+<span style="color: #008080;">101</span> <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">102</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">103</span> <span style="color: #0000ff;">if</span>(tt.replace(/[^\x00-\xff]/g,"**").length &gt;<span style="color: #000000;"> maxlimit)
+</span><span style="color: #008080;">104</span> tt=tt.substr(0,tt.length-1<span style="color: #000000;">);
+</span><span style="color: #008080;">105</span> field.value =<span style="color: #000000;"> tt;
+</span><span style="color: #008080;">106</span> }<span style="color: #0000ff;">else</span><span style="color: #000000;">{
+</span><span style="color: #008080;">107</span> <span style="color: #000000;">;
+</span><span style="color: #008080;">108</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">109</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">110</span> &lt;/script&gt;
+<span style="color: #008080;">111</span> 单行文本框控制&lt;br /&gt;
+<span style="color: #008080;">112</span> &lt;INPUT type="text" id="Text1" name="Text1" onpropertychange="MaxLength(this, 5)"&gt;&lt;br /&gt;
+<span style="color: #008080;">113</span> 多行文本框控制:&lt;br /&gt;
+<span style="color: #008080;">114</span> &lt;TEXTAREA rows="14"
+<span style="color: #008080;">115</span> cols="39" id="Textarea1" name="Textarea1" onpropertychange="MaxLength(this, 15)"&gt;&lt;/TEXTAREA&gt;&lt;br /&gt;
+<span style="color: #008080;">116</span> <span style="color: #000000;">控制表单内容只能输入数字,中文....
+</span><span style="color: #008080;">117</span> &lt;script&gt;
+<span style="color: #008080;">118</span> <span style="color: #000000;">function test()  
+</span><span style="color: #008080;">119</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">120</span> <span style="color: #0000ff;">if</span>(document.a.b.value.length&gt;50<span style="color: #000000;">)
+</span><span style="color: #008080;">121</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">122</span> alert("不能超过50个字符！"<span style="color: #000000;">);
+</span><span style="color: #008080;">123</span> <span style="color: #000000;">document.a.b.focus();
+</span><span style="color: #008080;">124</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;">125</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">126</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">127</span> &lt;/script&gt;
+<span style="color: #008080;">128</span> &lt;form name=a onsubmit="return test()"&gt;
+<span style="color: #008080;">129</span> &lt;textarea name="b" cols="40" wrap="VIRTUAL" rows="6"&gt;&lt;/textarea&gt;
+<span style="color: #008080;">130</span> &lt;input type="submit" name="Submit" value="check"&gt;
+<span style="color: #008080;">131</span> &lt;/form&gt;
+<span style="color: #008080;">132</span> <span style="color: #000000;">只能是汉字
+</span><span style="color: #008080;">133</span> &lt;input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"&gt;
+<span style="color: #008080;">134</span> <span style="color: #000000;">只能是英文字符
+</span><span style="color: #008080;">135</span> &lt;script language=javascript&gt;
+<span style="color: #008080;">136</span> <span style="color: #000000;">function onlyEng()
+</span><span style="color: #008080;">137</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">138</span> <span style="color: #0000ff;">if</span>(!(event.keyCode&gt;=65&amp;&amp;event.keyCode&lt;=90<span style="color: #000000;">))
+</span><span style="color: #008080;">139</span>     event.returnValue=<span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;">140</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">141</span> &lt;/script&gt;
+<span style="color: #008080;">142</span> &lt;input onkeydown="onlyEng();"&gt;
+<span style="color: #008080;">143</span> &lt;input name="coname" type="text" size="50" maxlength="35" <span style="color: #0000ff;">class</span>="input2" onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"&gt;
+<span style="color: #008080;">144</span> <span style="color: #000000;">只能是数字
+</span><span style="color: #008080;">145</span> &lt;script language=javascript&gt;
+<span style="color: #008080;">146</span> <span style="color: #000000;">function onlyNum()
+</span><span style="color: #008080;">147</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">148</span> <span style="color: #0000ff;">if</span>(!((event.keyCode&gt;=48&amp;&amp;event.keyCode&lt;=57)||(event.keyCode&gt;=96&amp;&amp;event.keyCode&lt;=105<span style="color: #000000;">)))
+</span><span style="color: #008080;">149</span> <span style="color: #008000;">//</span><span style="color: #008000;">考虑小键盘上的数字键</span>
+<span style="color: #008080;">150</span>     event.returnValue=<span style="color: #0000ff;">false</span><span style="color: #000000;">;
+</span><span style="color: #008080;">151</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">152</span> &lt;/script&gt;
+<span style="color: #008080;">153</span> &lt;input onkeydown="onlyNum();"&gt;
+<span style="color: #008080;">154</span> <span style="color: #000000;">只能是英文字符和数字
+</span><span style="color: #008080;">155</span> &lt;input onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"&gt;
+<span style="color: #008080;">156</span> <span style="color: #000000;">验证为email格式
+</span><span style="color: #008080;">157</span> &lt;SCRIPT LANGUAGE=Javascript RUNAT=Server&gt;
+<span style="color: #008080;">158</span> <span style="color: #000000;">function isEmail(strEmail) {
+</span><span style="color: #008080;">159</span> <span style="color: #0000ff;">if</span> (strEmail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1<span style="color: #000000;">)
+</span><span style="color: #008080;">160</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+</span><span style="color: #008080;">161</span> <span style="color: #0000ff;">else</span>
+<span style="color: #008080;">162</span> alert("oh"<span style="color: #000000;">);
+</span><span style="color: #008080;">163</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">164</span> &lt;/SCRIPT&gt;
+<span style="color: #008080;">165</span> &lt;input type=text onblur=isEmail(<span style="color: #0000ff;">this</span>.value)&gt;
+<span style="color: #008080;">166</span> 屏蔽关键字(sex , fuck) -<span style="color: #000000;"> 已修改
+</span><span style="color: #008080;">167</span> &lt;script language="JavaScript1.2"&gt;
+<span style="color: #008080;">168</span> <span style="color: #000000;">function test() {
+</span><span style="color: #008080;">169</span> <span style="color: #0000ff;">if</span>((a.b.value.indexOf ("sex") == 0)||(a.b.value.indexOf ("fuck") == 0<span style="color: #000000;">)){
+</span><span style="color: #008080;">170</span>     alert("五讲四美三热爱"<span style="color: #000000;">);
+</span><span style="color: #008080;">171</span> <span style="color: #000000;">    a.b.focus();
+</span><span style="color: #008080;">172</span>     <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;}
+</span><span style="color: #008080;">173</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">174</span> &lt;/script&gt;
+<span style="color: #008080;">175</span> &lt;form name=a onsubmit="return test()"&gt;
+<span style="color: #008080;">176</span> &lt;input type=text name=b&gt;
+<span style="color: #008080;">177</span> &lt;input type="submit" name="Submit" value="check"&gt;
+<span style="color: #008080;">178</span> &lt;/form&gt;
+<span style="color: #008080;">179</span> 
+<span style="color: #008080;">180</span> <span style="color: #000000;">限制文本框里只能输入数字
+</span><span style="color: #008080;">181</span> &lt;input onkeyup="if(event.keyCode !=37 &amp;&amp; event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"&gt; 
+<span style="color: #008080;">182</span> &lt;PIXTEL_MMI_EBOOK_2005&gt;2                                                           &lt;/PIXTEL_MMI_EBOOK_2005&gt;
+<span style="color: #008080;">183</span> 
+<span style="color: #008080;">184</span> <span style="color: #000000;">JAVA正则表达式语法（转）
+</span><span style="color: #008080;">185</span> <span style="color: #000000;">正则表达式语法
+</span><span style="color: #008080;">186</span> 
+<span style="color: #008080;">187</span> <span style="color: #000000;">正则表达式是一种文本模式，包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为“元字符”）。模式描述在搜索文本时要匹配的一个或多个字符串。
+</span><span style="color: #008080;">188</span> 
+<span style="color: #008080;">189</span> <span style="color: #000000;">正则表达式示例
+</span><span style="color: #008080;">190</span> 
+<span style="color: #008080;">191</span> <span style="color: #000000;">表达式 匹配 
+</span><span style="color: #008080;">192</span> /^\s*$/
+<span style="color: #008080;">193</span> <span style="color: #000000;">匹配空行。
+</span><span style="color: #008080;">194</span> 
+<span style="color: #008080;">195</span> /\d{2}-\d{5}/
+<span style="color: #008080;">196</span> 验证由两位数字、一个连字符再加 5<span style="color: #000000;"> 位数字组成的 ID 号。
+</span><span style="color: #008080;">197</span> 
+<span style="color: #008080;">198</span> /&lt;\s*(\S+)(\s[^&gt;]*)?&gt;[\s\S]*&lt;\s*\/\1\s*&gt;/
+<span style="color: #008080;">199</span> <span style="color: #000000;">匹配 HTML 标记。
+</span><span style="color: #008080;">200</span> 
+<span style="color: #008080;">201</span> <span style="color: #000000;">下表包含了元字符的完整列表以及它们在正则表达式上下文中的行为：
+</span><span style="color: #008080;">202</span> 
+<span style="color: #008080;">203</span> 
+<span style="color: #008080;">204</span> <span style="color: #000000;">字符 说明 
+</span><span style="color: #008080;">205</span> <span style="color: #000000;">\
+</span><span style="color: #008080;">206</span> <span style="color: #000000;">将下一字符标记为特殊字符、文本、反向引用或八进制转义符。例如，“n”匹配字符“n”。“\n”匹配换行符。序列“\\”匹配“\”，“\(”匹配“(”。
+</span><span style="color: #008080;">207</span> 
+<span style="color: #008080;">208</span> ^
+<span style="color: #008080;">209</span> 匹配输入字符串开始的位置。如果设置了 RegExp 对象的 Multiline 属性，^<span style="color: #000000;"> 还会与“\n”或“\r”之后的位置匹配。
+</span><span style="color: #008080;">210</span> 
+<span style="color: #008080;">211</span> <span style="color: #000000;">$
+</span><span style="color: #008080;">212</span> <span style="color: #000000;">匹配输入字符串结尾的位置。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与“\n”或“\r”之前的位置匹配。
+</span><span style="color: #008080;">213</span> 
+<span style="color: #008080;">214</span> *
+<span style="color: #008080;">215</span> 零次或多次匹配前面的字符或子表达式。例如，zo* 匹配“z”和“zoo”。* 等效于 {0<span style="color: #000000;">,}。
+</span><span style="color: #008080;">216</span> 
+<span style="color: #008080;">217</span> +
+<span style="color: #008080;">218</span> 一次或多次匹配前面的字符或子表达式。例如，“zo+”与“zo”和“zoo”匹配，但与“z”不匹配。+ 等效于 {1<span style="color: #000000;">,}。
+</span><span style="color: #008080;">219</span> 
+<span style="color: #008080;">220</span> ?
+<span style="color: #008080;">221</span> 零次或一次匹配前面的字符或子表达式。例如，“<span style="color: #0000ff;">do</span>(es)?”匹配“<span style="color: #0000ff;">do</span>”或“does”中的“<span style="color: #0000ff;">do</span>”。? 等效于 {0,1<span style="color: #000000;">}。
+</span><span style="color: #008080;">222</span> 
+<span style="color: #008080;">223</span> <span style="color: #000000;">{n}
+</span><span style="color: #008080;">224</span> n 是非负整数。正好匹配 n 次。例如，“o{2<span style="color: #000000;">}”与“Bob”中的“o”不匹配，但与“food”中的两个“o”匹配。
+</span><span style="color: #008080;">225</span> 
+<span style="color: #008080;">226</span> <span style="color: #000000;">{n,}
+</span><span style="color: #008080;">227</span> n 是非负整数。至少匹配 n 次。例如，“o{2,}”不匹配“Bob”中的“o”，而匹配“foooood”中的所有 o。“o{1,}”等效于“o+”。“o{0,}”等效于“o*<span style="color: #000000;">”。
+</span><span style="color: #008080;">228</span> 
+<span style="color: #008080;">229</span> <span style="color: #000000;">{n,m}
+</span><span style="color: #008080;">230</span> M 和 n 是非负整数，其中 n &lt;= m。匹配至少 n 次，至多 m 次。例如，“o{1,3}”匹配“fooooood”中的头三个 o。'o{0,1}' 等效于 'o?'<span style="color: #000000;">。注意：您不能将空格插入逗号和数字之间。
+</span><span style="color: #008080;">231</span> 
+<span style="color: #008080;">232</span> ?
+<span style="color: #008080;">233</span> 当此字符紧随任何其他限定符（*、+、?、{n}、{n,}、{n,m}）之后时，匹配模式是“非贪心的”。“非贪心的”模式匹配搜索到的、尽可能短的字符串，而默认的“贪心的”模式匹配搜索到的、尽可能长的字符串。例如，在字符串“oooo”中，“o+?”只匹配单个“o”，而“o+<span style="color: #000000;">”匹配所有“o”。
+</span><span style="color: #008080;">234</span> 
+<span style="color: #008080;">235</span> <span style="color: #000000;">.
+</span><span style="color: #008080;">236</span> <span style="color: #000000;">匹配除“\n”之外的任何单个字符。若要匹配包括“\n”在内的任意字符，请使用诸如“[\s\S]”之类的模式。
+</span><span style="color: #008080;">237</span> 
+<span style="color: #008080;">238</span> <span style="color: #000000;">(pattern)
+</span><span style="color: #008080;">239</span> 匹配 pattern 并捕获该匹配的子表达式。可以使用 $0…$9<span style="color: #000000;"> 属性从结果“匹配”集合中检索捕获的匹配。若要匹配括号字符 ( )，请使用“\(”或者“\)”。
+</span><span style="color: #008080;">240</span> 
+<span style="color: #008080;">241</span> (?<span style="color: #000000;">:pattern)
+</span><span style="color: #008080;">242</span> 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配。这对于用“or”字符 (|) 组合模式部件的情况很有用。例如，'industr(?:y|ies) 是比 'industry|industries' 更经济的表达式。
+<span style="color: #008080;">243</span> 
+<span style="color: #008080;">244</span> (?=<span style="color: #000000;">pattern)
+</span><span style="color: #008080;">245</span> 执行正向预测先行搜索的子表达式，该表达式匹配处于匹配 pattern 的字符串的起始点的字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，'Windows (?=95|98|NT|2000)' 匹配“Windows 2000”中的“Windows”，但不匹配“Windows 3.1<span style="color: #000000;">”中的“Windows”。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。
+</span><span style="color: #008080;">246</span> 
+<span style="color: #008080;">247</span> (?!<span style="color: #000000;">pattern)
+</span><span style="color: #008080;">248</span> 执行反向预测先行搜索的子表达式，该表达式匹配不处于匹配 pattern 的字符串的起始点的搜索字符串。它是一个非捕获匹配，即不能捕获供以后使用的匹配。例如，'Windows (?!95|98|NT|2000)' 匹配“Windows 3.1”中的 “Windows”，但不匹配“Windows 2000<span style="color: #000000;">”中的“Windows”。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。
+</span><span style="color: #008080;">249</span> 
+<span style="color: #008080;">250</span> x|<span style="color: #000000;">y
+</span><span style="color: #008080;">251</span> 匹配 x 或 y。例如，'z|food' 匹配“z”或“food”。'(z|f)ood'<span style="color: #000000;"> 匹配“zood”或“food”。
+</span><span style="color: #008080;">252</span> 
+<span style="color: #008080;">253</span> <span style="color: #000000;">[xyz]
+</span><span style="color: #008080;">254</span> <span style="color: #000000;">字符集。匹配包含的任一字符。例如，“[abc]”匹配“plain”中的“a”。
+</span><span style="color: #008080;">255</span> 
+<span style="color: #008080;">256</span> [^<span style="color: #000000;">xyz]
+</span><span style="color: #008080;">257</span> 反向字符集。匹配未包含的任何字符。例如，“[^<span style="color: #000000;">abc]”匹配“plain”中的“p”。
+</span><span style="color: #008080;">258</span> 
+<span style="color: #008080;">259</span> [a-<span style="color: #000000;">z]
+</span><span style="color: #008080;">260</span> 字符范围。匹配指定范围内的任何字符。例如，“[a-<span style="color: #000000;">z]”匹配“a”到“z”范围内的任何小写字母。
+</span><span style="color: #008080;">261</span> 
+<span style="color: #008080;">262</span> [^a-<span style="color: #000000;">z]
+</span><span style="color: #008080;">263</span> 反向范围字符。匹配不在指定的范围内的任何字符。例如，“[^a-<span style="color: #000000;">z]”匹配任何不在“a”到“z”范围内的任何字符。
+</span><span style="color: #008080;">264</span> 
+<span style="color: #008080;">265</span> <span style="color: #000000;">\b
+</span><span style="color: #008080;">266</span> <span style="color: #000000;">匹配一个字边界，即字与空格间的位置。例如，“er\b”匹配“never”中的“er”，但不匹配“verb”中的“er”。
+</span><span style="color: #008080;">267</span> 
+<span style="color: #008080;">268</span> <span style="color: #000000;">\B
+</span><span style="color: #008080;">269</span> <span style="color: #000000;">非字边界匹配。“er\B”匹配“verb”中的“er”，但不匹配“never”中的“er”。
+</span><span style="color: #008080;">270</span> 
+<span style="color: #008080;">271</span> <span style="color: #000000;">\cx
+</span><span style="color: #008080;">272</span> 匹配 x 指示的控制字符。例如，\cM 匹配 Control-M 或回车符。x 的值必须在 A-Z 或 a-<span style="color: #000000;">z 之间。如果不是这样，则假定 c 就是“c”字符本身。
+</span><span style="color: #008080;">273</span> 
+<span style="color: #008080;">274</span> <span style="color: #000000;">\d
+</span><span style="color: #008080;">275</span> 数字字符匹配。等效于 [0-9<span style="color: #000000;">]。
+</span><span style="color: #008080;">276</span> 
+<span style="color: #008080;">277</span> <span style="color: #000000;">\D
+</span><span style="color: #008080;">278</span> 非数字字符匹配。等效于 [^0-9<span style="color: #000000;">]。
+</span><span style="color: #008080;">279</span> 
+<span style="color: #008080;">280</span> <span style="color: #000000;">\f
+</span><span style="color: #008080;">281</span> <span style="color: #000000;">换页符匹配。等效于 \x0c 和 \cL。
+</span><span style="color: #008080;">282</span> 
+<span style="color: #008080;">283</span> <span style="color: #000000;">\n
+</span><span style="color: #008080;">284</span> <span style="color: #000000;">换行符匹配。等效于 \x0a 和 \cJ。
+</span><span style="color: #008080;">285</span> 
+<span style="color: #008080;">286</span> <span style="color: #000000;">\r
+</span><span style="color: #008080;">287</span> <span style="color: #000000;">匹配一个回车符。等效于 \x0d 和 \cM。
+</span><span style="color: #008080;">288</span> 
+<span style="color: #008080;">289</span> <span style="color: #000000;">\s
+</span><span style="color: #008080;">290</span> <span style="color: #000000;">匹配任何空白字符，包括空格、制表符、换页符等。与 [ \f\n\r\t\v] 等效。
+</span><span style="color: #008080;">291</span> 
+<span style="color: #008080;">292</span> <span style="color: #000000;">\S
+</span><span style="color: #008080;">293</span> 匹配任何非空白字符。与 [^<span style="color: #000000;"> \f\n\r\t\v] 等效。
+</span><span style="color: #008080;">294</span> 
+<span style="color: #008080;">295</span> <span style="color: #000000;">\t
+</span><span style="color: #008080;">296</span> <span style="color: #000000;">制表符匹配。与 \x09 和 \cI 等效。
+</span><span style="color: #008080;">297</span> 
+<span style="color: #008080;">298</span> <span style="color: #000000;">\v
+</span><span style="color: #008080;">299</span> <span style="color: #000000;">垂直制表符匹配。与 \x0b 和 \cK 等效。
+</span><span style="color: #008080;">300</span> 
+<span style="color: #008080;">301</span> <span style="color: #000000;">\w
+</span><span style="color: #008080;">302</span> 匹配任何字类字符，包括下划线。与“[A-Za-z0-<span style="color: #000000;">9_]”等效。
+</span><span style="color: #008080;">303</span> 
+<span style="color: #008080;">304</span> <span style="color: #000000;">\W
+</span><span style="color: #008080;">305</span> 与任何非单词字符匹配。与“[^A-Za-z0-<span style="color: #000000;">9_]”等效。
+</span><span style="color: #008080;">306</span> 
+<span style="color: #008080;">307</span> <span style="color: #000000;">\xn
+</span><span style="color: #008080;">308</span> 匹配 n，此处的 n 是一个十六进制转义码。十六进制转义码必须正好是两位数长。例如，“\x41”匹配“A”。“\x041”与“\x04”&amp;“1<span style="color: #000000;">”等效。允许在正则表达式中使用 ASCII 代码。
+</span><span style="color: #008080;">309</span> 
+<span style="color: #008080;">310</span> <span style="color: #000000;">\num
+</span><span style="color: #008080;">311</span> 匹配 num，此处的 num 是一个正整数。到捕获匹配的反向引用。例如，“(.)\1<span style="color: #000000;">”匹配两个连续的相同字符。
+</span><span style="color: #008080;">312</span> 
+<span style="color: #008080;">313</span> <span style="color: #000000;">\n
+</span><span style="color: #008080;">314</span> 标识一个八进制转义码或反向引用。如果 \n 前面至少有 n 个捕获子表达式，那么 n 是反向引用。否则，如果 n 是八进制数 (0-7<span style="color: #000000;">)，那么 n 是八进制转义码。
+</span><span style="color: #008080;">315</span> 
+<span style="color: #008080;">316</span> <span style="color: #000000;">\nm
+</span><span style="color: #008080;">317</span> 标识一个八进制转义码或反向引用。如果 \nm 前面至少有 nm 个捕获子表达式，那么 nm 是反向引用。如果 \nm 前面至少有 n 个捕获，则 n 是反向引用，后面跟有字符 m。如果两种前面的情况都不存在，则 \nm 匹配八进制值 nm，其中 n 和 m 是八进制数字 (0-7<span style="color: #000000;">)。
+</span><span style="color: #008080;">318</span> 
+<span style="color: #008080;">319</span> <span style="color: #000000;">\nml
+</span><span style="color: #008080;">320</span> 当 n 是八进制数 (0-3)，m 和 l 是八进制数 (0-7<span style="color: #000000;">) 时，匹配八进制转义码 nml。
+</span><span style="color: #008080;">321</span> 
+<span style="color: #008080;">322</span> <span style="color: #000000;">\un
+</span><span style="color: #008080;">323</span> 匹配 n，其中 n 是以四位十六进制数表示的 Unicode 字符。例如，\u00A9 匹配版权符号 (?)。</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/elleniou/category/375823.html" target="_blank">Java</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2617312,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;3b866c71-7e8e-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/elleniou/" target="_blank"><img src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/20130524123730.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/elleniou/">elleniou</a><br>
+            <a href="http://home.cnblogs.com/u/elleniou/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/elleniou/followers">粉丝 - 106</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;3b866c71-7e8e-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2617312,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">11</span>
+    </div>
+    <div class="buryit" onclick="votePost(2617312,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/29/2614228.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/elleniou/archive/2012/07/29/2614228.html" title="发布于2012-07-29 19:34">J2SE之网络编程</a><br><a href="http://www.cnblogs.com/elleniou/archive/2012/08/02/2619910.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/elleniou/archive/2012/08/02/2619910.html" title="发布于2012-08-02 14:25">MetaCharacters--正则表达式</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2012-07-31 20:06</span> <a href="http://www.cnblogs.com/elleniou/">elleniou</a> 阅读(<span id="post_view_count">171847</span>) 评论(<span id="post_comment_count">8</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2617312" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#" onclick="AddToWz(2617312);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=115879,cb_entryId=2617312,cb_blogApp=currentBlogApp,cb_blogUserGuid='3b866c71-7e8e-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/7/31 20:06:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<a name="feedback"></a>
+<div class="feedback">
+	<div class="feedbackTitle">
+		Feedback
+	</div>
+	<div class="feedbackNoItems"></div>
+	
+	
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2677272" class="layer">#1楼</a><a name="2677272" id="comment_anchor_2677272"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2013-05-10 09:40</span> | <a id="a_comment_author_2677272" href="http://www.cnblogs.com/zhangzhonghuan/" target="_blank">恋上初恋的你</a> <a href="http://msg.cnblogs.com/send/%E6%81%8B%E4%B8%8A%E5%88%9D%E6%81%8B%E7%9A%84%E4%BD%A0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2677272" class="blog_comment_body">挺有帮助的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2677272,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2677272,&#39;Bury&#39;,this)">反对(0)</a></div>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2704374" class="layer">#2楼</a><a name="2704374" id="comment_anchor_2704374"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2013-06-13 22:49</span> | <a id="a_comment_author_2704374" href="http://www.cnblogs.com/FirePhoenixs/" target="_blank">火凤凰Phoenix</a> <a href="http://msg.cnblogs.com/send/%E7%81%AB%E5%87%A4%E5%87%B0Phoenix" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2704374" class="blog_comment_body">支持，太有用了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2704374,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2704374,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2704374_avatar" style="display:none;">http://pic.cnblogs.com/face/537721/20130611105306.png</span>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2734079" class="layer">#3楼</a><a name="2734079" id="comment_anchor_2734079"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2013-07-24 10:38</span> | <a id="a_comment_author_2734079" href="http://home.cnblogs.com/u/528710/" target="_blank">白天</a> <a href="http://msg.cnblogs.com/send/%E7%99%BD%E5%A4%A9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2734079" class="blog_comment_body">只能输入非零的正整数："^\+?[1-9][0-9]*$"。这里面的\+？是啥意思啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2734079,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2734079,&#39;Bury&#39;,this)">反对(0)</a></div>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2740161" class="layer">#4楼</a><a name="2740161" id="comment_anchor_2740161"></a>[<span class="louzhu">楼主</span>]</div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2013-07-31 16:39</span> | <a id="a_comment_author_2740161" href="http://www.cnblogs.com/elleniou/" target="_blank">elleniou</a> <a href="http://msg.cnblogs.com/send/elleniou" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2740161" class="blog_comment_body"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2734079" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2734079);">@</a>
+白天<br>正号阿</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2740161,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2740161,&#39;Bury&#39;,this)">反对(1)</a></div><span id="comment_2740161_avatar" style="display:none;">http://pic.cnblogs.com/face/402577/20130524123730.png</span>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2947693" class="layer">#5楼</a><a name="2947693" id="comment_anchor_2947693"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2014-05-25 22:30</span> | <a id="a_comment_author_2947693" href="http://home.cnblogs.com/u/632617/" target="_blank">springmvc168</a> <a href="http://msg.cnblogs.com/send/springmvc168" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2947693" class="blog_comment_body">java正则代码下载：zuidaima.com/share/search.htm?key=%E6%AD%A3%E5%88%99%0A</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2947693,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2947693,&#39;Bury&#39;,this)">反对(1)</a></div>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#2998667" class="layer">#6楼</a><a name="2998667" id="comment_anchor_2998667"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2014-08-01 11:38</span> | <a id="a_comment_author_2998667" href="http://home.cnblogs.com/u/632617/" target="_blank">springmvc168</a> <a href="http://msg.cnblogs.com/send/springmvc168" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_2998667" class="blog_comment_body">java正则代码demo下载：<a href="http://zuidaima.com/share/k%E6%AD%A3%E5%88%99-p1-s1.htm" target="_blank">http://zuidaima.com/share/k%E6%AD%A3%E5%88%99-p1-s1.htm</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2998667,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2998667,&#39;Bury&#39;,this)">反对(1)</a></div>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#3290842" class="layer">#7楼</a><a name="3290842" id="comment_anchor_3290842"></a></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2015-10-23 15:56</span> | <a id="a_comment_author_3290842" href="http://home.cnblogs.com/u/826844/" target="_blank">HBhuolei</a> <a href="http://msg.cnblogs.com/send/HBhuolei" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_3290842" class="blog_comment_body">感谢楼主分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3290842,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3290842,&#39;Bury&#39;,this)">反对(0)</a></div>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+			<div class="feedbackItem">
+				<div class="feedbackListTitle"><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#3333694" class="layer">#8楼</a><a name="3333694" id="comment_anchor_3333694"></a><span id="comment-maxId" style="display:none;">3333694</span><span id="comment-maxDate" style="display:none;">2015/12/24 14:58:39</span></div>
+				<div class="feedbackListSubtitle">
+					 <span class="comment_date">2015-12-24 14:58</span> | <a id="a_comment_author_3333694" href="http://www.cnblogs.com/shamoyuu/" target="_blank">静茹♂鱼</a> <a href="http://msg.cnblogs.com/send/%E9%9D%99%E8%8C%B9%E2%99%82%E9%B1%BC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+				</div>
+				<div id="comment_body_3333694" class="blog_comment_body">乱。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3333694,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3333694,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3333694_avatar" style="display:none;">http://pic.cnblogs.com/face/669149/20140902160709.png</span>
+				&nbsp;&nbsp;<span class="comment_actions"></span>
+			</div>
+		
+</div>
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/elleniou/archive/2012/07/31/2617312.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://click.aliyun.com/m/10467/" target="_blank">【秘密】藏在春节红包里的技术秘密</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－豆果美食、Faceu等亿级APP都在用</a><br><a href="https://group.cnblogs.com/topic/76017.html" target="_blank">【活动】一元专享1500元微软智能云Azure</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/10467/" target="_blank"><img width="300" height="250" src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/24442-20170215141525175-203290624.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/563223/" target="_blank">李开复：不接受AI+概念就会被颠覆，非常血腥</a><br> ·  <a href="http://news.cnblogs.com/n/563222/" target="_blank">发射在倒计时13秒被叫停 SpaceX启用新发射台出状况</a><br> ·  <a href="http://news.cnblogs.com/n/563221/" target="_blank">姑娘和投资人喜欢的是同一种创业者</a><br> ·  <a href="http://news.cnblogs.com/n/563220/" target="_blank">美移动运营商AT&amp;T重新面向全部用户推出无限流量套餐</a><br> ·  <a href="http://news.cnblogs.com/n/563219/" target="_blank">法拉第未来重大转机：工厂建设将重启 已进入竞标阶段</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./JAVA正则表达式语法大全 - elleniou - 博客园_files/24442-20170118152220281-363324784.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/554260/" target="_blank">「代码家」的学习过程和学习经验分享</a><br> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+    </div>
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright ©2017 elleniou
+</div>
+
+
+
+
+</body></html>

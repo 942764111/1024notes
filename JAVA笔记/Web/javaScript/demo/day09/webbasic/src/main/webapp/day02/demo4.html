@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*1.元素选择器*/
+	/*2.类选择器:根据class属性选择一组元素*/
+	.female {
+		color: pink;
+	}
+	/*3.ID选择器:根据id属性选择唯一的元素*/
+	#p4 {
+		color: red;
+	}
+	/*4.选择器组:写出一组选择器，选中每个
+		选择器所对应的目标的并集(和) */
+	.female,#p4 {
+		font-weight: bold;
+	}
+	/*5.派生选择器:选择某元素的后代*/
+	/*5.1选择某元素的子孙*/
+	#p5 b {
+		color: red;
+	}
+	/*5.2选择某元素的儿子*/
+	#p5>b {
+		font-size: 30px;
+	}
+	/*6.伪类选择器:根据状态选择元素*/
+	/*6.1未访问过的超链接*/
+	a:link {
+		color: green;
+	}
+	/*6.2访问过的超链接*/
+	a:visited {
+		color: red;
+	}
+	/*6.3选择激活态(正在点击)的按钮*/
+	#b1:active {
+		background-color: yellow;
+	}
+	/*6.4选择有焦点(光标)的文本框*/
+	#t1:focus {
+		background-color: green;
+	}
+	/*6.5选择悬停态(鼠标正在上方)的图片*/
+	img:hover {
+		width: 250px;
+		height: 250px;
+	}
+</style>
+</head>
+<body>
+	<p class="female">苍老师呀苍老师</p>
+	<p>范传奇呀范传奇</p>
+	<p class="female">王克晶呀王克晶</p>
+	<p id="p4">瞧你们那点破事</p>
+	<p id="p5">
+		北京市<u>海淀区<b>北三环</b>西路</u>甲18号<b>中鼎大厦</b>B座8层
+	</p>
+	<p>
+		<a href="http://www.tmooc.cn">达内</a>
+		<a href="http://www.xb.com">瞎编</a>
+	</p>
+	<p>
+		<input type="button" value="试试" id="b1"/>
+	</p>
+	<p>
+		<input type="text" id="t1"/>
+	</p>
+	<p>
+		<img src="../images/01.jpg"/>
+		<img src="../images/02.jpg"/>
+		<img src="../images/03.jpg"/>
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

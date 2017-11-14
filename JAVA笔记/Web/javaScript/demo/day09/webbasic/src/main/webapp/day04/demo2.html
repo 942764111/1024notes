@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	body {
+		background-color: #066;
+	}
+	ul {
+		width: 780px;
+		/*border: 1px solid red;*/
+		margin: 20px auto;
+		/*去掉左侧的符号*/
+		list-style-type: none;
+		/*去掉左侧自带的内边距*/
+		padding-left: 0;
+	}
+	li {
+		padding: 10px;
+		margin: 10px;
+		border: 1px solid #ccc;
+		float: left;
+		background-color: #FFF;
+	}
+	p {
+		text-align: center;
+	}
+	/*采用相对定位实现抖动效果*/
+	li:hover {
+		position: relative;
+		left: 2px;
+		top: -2px;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<img src="../images/01.jpg"/>
+			<p>啊,Teacher苍!</p>
+		</li>
+		<li>
+			<img src="../images/02.jpg"/>
+			<p>你在何方?</p>
+		</li>
+		<li>
+			<img src="../images/03.jpg"/>
+			<p>难道去了东洋?</p>
+		</li>
+		<li>
+			<img src="../images/04.jpg"/>
+			<p>那边的痴汉很多很多,</p>
+		</li>
+		<li>
+			<img src="../images/05.jpg"/>
+			<p>你一定要穿好衣裳,</p>
+		</li>
+		<li>
+			<img src="../images/06.jpg"/>
+			<p>别走光!</p>
+		</li>
+	</ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

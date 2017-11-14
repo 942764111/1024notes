@@ -1,0 +1,35 @@
+package oo.day06;
+
+class MyException extends Exception{
+	public MyException(String Error) {
+	  super(Error);
+	}
+}
+public class catchDemo {
+   static void pop()throws NegativeArraySizeException{
+	   	//定义方法并抛出  Error->NegativeArraySizeException 异常
+	   int[] arr = new int[-3];
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try{
+				pop();
+		}catch(NegativeArraySizeException e){
+			System.out.println("pop()方法抛出异常:"+e);
+		}
+		finally{
+		}
+		System.out.println("Over");
+	}
+}
+/**
+ * 在方法中抛出异常
+ * 
+ * throws 关键字通常被应用在声明方法时,用来指定方法可能抛出的异常对象,多个异常对象可以使用逗号分隔,
+ *  
+ *  如果是 Error、RuntimeException 或它们的子类，可以不使用throws关键字来声明要抛出的异常，
+ *  
+ *  编译仍然能通过，但在运行时会被系统抛出
+ * 
+ * */
+

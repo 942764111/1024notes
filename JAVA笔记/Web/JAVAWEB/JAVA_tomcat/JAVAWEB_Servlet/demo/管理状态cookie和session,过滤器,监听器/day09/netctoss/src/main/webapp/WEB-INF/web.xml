@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>netctoss</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>main</servlet-name>
+  	<servlet-class>web.MainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>main</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 
+  	tomcat底层对异常的默认处理方式,
+  	即它捕获到异常后自动转发到某错误页面:
+  	try {
+  		new Servlet().service();
+  	} catch(ex) {
+  	   forward("/500.jsp");
+  	}
+  	我们可以通过配置告诉tomcat在捕获到哪个异常时,
+  	转发到哪个错误页面,则它会按照我们的声明来处理异常.
+   -->
+  <error-page>
+  	<!-- 异常类型 -->
+  	<exception-type>java.lang.Exception</exception-type>
+  	<!-- 异常编号 -->
+  	<!-- <error-code>500</error-code> -->
+  	<!-- 转发的jsp,此处是绝对路径,但不能写
+  		/项目名,因为tomcat会自动帮我们追加项目名. -->
+  	<location>/WEB-INF/error.jsp</location>
+  </error-page>
+  
+  <filter>
+  	<filter-name>login</filter-name>
+  	<filter-class>web.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>login</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
+</web-app>
+
+
+
+
+
+
+
+
+
+

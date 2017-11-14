@@ -1,0 +1,55 @@
+package oo.day06;
+
+public class catchDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try{
+			String str = "yyyy";
+			System.out.println(str+"tttt：");
+			int res = 3/0;
+			System.out.println(res+"899");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			System.out.println("finally");
+		}
+		System.out.println("Over");
+	}
+	/**
+	 * 捕捉异常
+	 * try->catch->finally语句
+	 * 
+	 *  java中异常捕获结构由 try->catch->finally 3部分组成。
+	 *  
+	 *   其中,try语句块存放的是可能发生异常的java语句;
+	 *   
+	 *  catch 程序块在try语句块之后，用来激发被捕获的异常;
+	 *  
+	 *  catch:
+	 *   Exception是try代码块传递给catch代码的变量类型,e是变量名。
+	 *     通常,异常处理常用以下3个函数来获取异常的有关信息，
+	 *    一、getMessage() :输出错误性质
+	 *    二、toString():给出异常的类型与性质
+	 *    三、printStackTrace():指出异常的类型、性质、栈层次及出现在程序中的位置 
+	 *     注意：
+	 *     		有时为了编程简单会忽略catch语句后的代码，这样 try->catch语句就成了一种摆设,
+	 *     		一旦程序在运行过程中出现了异常,就会导致最终运行结果与期望的不一致,而错误发生的原因很难查找。
+	 *     		因此要养成良好的编程习惯,最好在catch代码块中写入处理异常的代码！
+	 *     
+	 *  finally 语句块是异常处理结构的最后执行部分
+	 *   完整的异常处理语句一定要包含finally语句，,
+	 *   无论try语句块中的代码如何退出,都将执行finally语句块
+	 *   在以下4种情况下,finally块不会被执行：
+	 *   
+	 *   一、在finally语句块中发生异常。
+	 *   二、在前面的代码中使用了Systeam().exit()退出程序
+	 *   三、程序所在的线程死亡
+	 *   四、关闭cpu
+	 *    
+	 *   
+	 * 
+	 * */
+}
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.big {
+		width: 250px;
+		height: 250px;
+	}
+</style>
+<script src="../js/jquery-1.11.1.js"></script>
+<script>
+	$(function(){
+		//给图片绑定事件
+		$("img").hover(
+			function(){
+				//obj.width(250).height(250)
+				//obj.toggleClass("big")
+				//obj.css("width","250")
+				$(this).addClass("big");
+			},//悬停时
+			function(){
+				$(this).removeClass("big");
+			} //离开时
+		);
+	});
+	//切换事件:让元素在显示与隐藏间切换
+	function chg() {
+		$("img").toggle();
+	}
+</script>
+</head>
+<body>
+	<p>
+		<img src="../images/01.jpg" />
+	</p>
+	<p>
+		<input type="button" value="切换"
+			onclick="chg();"/>
+	</p>
+</body>
+</html>
+
+
+
+
+
+

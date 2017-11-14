@@ -1,0 +1,3 @@
+缓存：			
+			//设置HTTP协议头，避免浏览器缓存html页面
+			res.addHeader("Cache-Control", "no-cache");

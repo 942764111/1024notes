@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>1. Spring是什么?</h1>
+<p>是一个轻量级的、开源的用来简化企业级应用开发的框架。<br/></p>
+<h2>特点:</h2>
+<p>(1)简化开发:
+Spring框架对常用的api做了简化（比如，直接使用jdbc访问数据库，
+需要写很多重复性的代码，而使用SpringJdbc，则不需要写这些重复
+性的代码了）。<br/>
+(2)管理对象:
+Spring框架提供了一个容器，帮我们管理对象之间的依赖关系。这样
+一来，对象之间的耦合度大大降低，方便代码的维护。<br/>
+(3)集成其它框架：
+Spring可以集成其它的一些小的框架（比如用于任务调度的Quartz）。
+<br/></p>
+<h1>2. Spring容器</h1>
+<h2>(1)Spring容器是什么?</h2>
+<p>Spring框架当中的一个核心模块，用来管理对象。<br/></p>
+<h2>(2)如何启动Spring容器?</h2>
+<p>step1. 导包。<br/>
+step2. 添加一个配置文件。<br/>
+step3. 启动Spring容器。<br/></p>
+<h2>(3)如何创建对象?</h2>
+<p><img src="spring01.png" /></p>
+<h3>方式一  使用无参构造器。</h3>
+<p>step1. 给类添加无参构造器（或者缺省构造器）。<br/>
+step2. 在配置文件当中，添加一个bean元素。<br/>
+step3. 启动容器，调用容器提供的getBean方法。<br/>
+注：被Spring容器所管理的对象，称之为一个bean。<br/></p>
+<h3>方式二  使用静态工厂方法。(了解)</h3>
+<h3>方式三  使用实例工厂方法。(了解)</h3>
+<h2>(4)生命周期</h2>
+<h3>初始化方法 (分配资源)</h3>
+<p>a.容器在创建好对象之后，会立即调用初始化方法。<br/>
+b.使用init-method属性指定初始化方法名。<br/></p>
+<h3>销毁方法 （释放资源）</h3>
+<p>a.容器在关闭之前，会销毁它所管理的对象,此时，会调用
+销毁方法。<br/>
+b.使用destroy-method属性指定销毁方法。<br/>
+注：销毁方法只有在作用域为单例时有效。<br/></p>
+<h2>(5)作用域</h2>
+<p>a. 默认情况下，对于一个bean的配置，容器只会创建一个实例。<br/>
+b. 如果指定scope属性值为&quot;prototype&quot;,则容器会创建多个实例。<br/></p>
+<h2>(6)延迟加载 (了解)</h2>
+<p>a. 默认情况下，容器启动之后，会将所有作用域为单例的bean先创建
+出来。<br/>
+b. 延迟加载指的是，容器启动之后，对于这些作用域为单例的bean
+不再创建了。<br/>
+注:直到调用getBean方法时才会创建。<br/></p>
+<h1>3. IOC (Inversion Of Controll) 控制反转</h1>
+<h2>(1)什么是IOC ?</h2>
+<p>对象之间的依赖关系由容器来管理（或者说由容器来创建）。<br/></p>
+<h2>(2)什么是DI ? (Dependency Injection)  依赖注入</h2>
+<p>容器通过调用set方法或者构造器来建立对象之间的依赖关系。<br/>
+注：<br/>
+IOC是目标，DI是手段。<br/>
+<img src="set2.png" /></p>
+<h2>(3)set方法注入</h2>
+<p>step1. 添加相应的set方法。<br/>
+<img src="set3.png" />
+step2. 使用property元素配置set方法注入。<br/>
+<img src="set.png" /></p>
+<p><img src="exec.png" /></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

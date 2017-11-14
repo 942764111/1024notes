@@ -1,0 +1,5 @@
+Spring配置文件中没有加
+
+
+		<!-- SpringMVC的 @RequestMapping 注解驱动 -->
+<!--<mvc:annotation-driven/>  -->	

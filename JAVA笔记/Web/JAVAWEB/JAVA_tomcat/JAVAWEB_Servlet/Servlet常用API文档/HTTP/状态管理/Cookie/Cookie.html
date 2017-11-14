@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cookie</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<p>javax.servlet.http</p>
+<h1>Class Cookie</h1>
+<ul>
+<li>java.lang.Object</li>
+<li>javax.servlet.http.Cookie</li>
+<li>All Implemented Interfaces:</li>
+<li>java.io.Serializable, java.lang.Cloneable</li>
+</ul>
+<hr />
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="../demo/cookieANDsession/day08.html">点击查看Cookie和session相关文档</a></li>
+</ul>
+<hr />
+<ul>
+<li>public class Cookie</li>
+<li>extends java.lang.Object</li>
+<li>实现 java.lang.Cloneable, java.io.Serializable</li>
+<li>创建一个cookie,少量的信息由一个servlet发送到一个Web浏览器,浏览器保存,后来发送回服务器。</li>
+<li>一个cookie的值能唯一地标识一个客户,所以Cookies是常用的会话管理,一种浏览器一个Cookie。</li>
+<li>Cookie有一个名字,一个单一的值,和可选属性,如评论,路径和域限定符,最高年龄和版本号。</li>
+<li>一些Web浏览器缺陷在他们如何处理可选属性,所以要谨慎使用它们来提高互操作性的servlet。</li>
+<li>servlet使用HttpServletResponse.addCookie向浏览器发送cookie(javax.servlet.http.Cookie)方法,</li>
+<li>将字段添加到HTTP响应头向浏览器发送cookie,一次一个。</li>
+<li>浏览器将为每个Web服务器支持20个cookie,可能会限制每个cookie大小为4 KB。</li>
+<li>浏览器返回cookie，servlet通过添加到HTTP请求头字段。</li>
+<li>cookie可以从请求检索利用HttpServletRequest.getCookies()方法。cookie可能有相同的名字,但路径属性不同。</li>
+<li>使用cookie影响网页的缓存。</li>
+<li>HTTP 1.0不使用cookie创建这个类的缓存页面。这个类不支持HTTP 1.1缓存控制定义。</li>
+<li>这门课同时支持版本0(Netscape)和版本1(RFC 2109)cookie规范。默认情况下,创建cookie使用版本0,以确保最佳的互操作性。</li>
+<li>参见:</li>
+<li>Serialized Form(序列化形式)</li>
+</ul>
+<h1>Constructor Summary(构造函数的总结)</h1>
+<hr />
+<h2>1、Cookie(java.lang.String name, java.lang.String value)</h2>
+<ul>
+<li>构造一个cookie与指定的名称和值。</li>
+<li>名称必须符合RFC 2109。这意味着它可以只包含ASCII字母数字字符,不能包含逗号,分号,或空白或从一个$字符开始。</li>
+<li>cookie的名字创建后不能更改。</li>
+<li>值可以是任何服务器选择发送。它的价值才感兴趣的可能是服务器。</li>
+<li>cookie的值创建使用setValue方法后可以改变。</li>
+<li>参数:</li>
+<li>名称——一个字符串指定cookie的名称</li>
+<li>价值——一个字符串指定cookie的值</li>
+<li>抛出:</li>
+<li>java.lang.IllegalArgumentException——如果cookie的名称包含非法字符(例如,逗号,空间,或分号)或是一个令牌用于cookie使用协议</li>
+<li>参见:</li>
+<li>setValue(java.lang.String), setVersion(int)</li>
+</ul>
+<h1>Method Summary(方法总结)</h1>
+<hr />
+<h2>1、java.lang.Object	clone()</h2>
+<ul>
+<li>克隆：覆盖了标准的java.lang.Object.clone。克隆方法返回一个副本的cookie。</li>
+</ul>
+<h2>2、java.lang.String	getComment()</h2>
+<ul>
+<li>返回的评论描述这个cookie的目的,如果cookie没有发表评论返回null。</li>
+<li>返回:</li>
+<li>一个字符串包含评论,或者null如果没有</li>
+<li>参见:</li>
+<li>setComment(以)</li>
+</ul>
+<h2>3、public void setComment(java.lang.String purpose)</h2>
+<ul>
+<li>指定了一个评论,描述一个cookie的目的。</li>
+<li>评论是有用的,如果浏览器向用户介绍了cookie。评论是不支持Netscape(浏览器)版本0 的cookie。</li>
+<li>参数:</li>
+<li>目的——一个字符串指定评论显示给用户</li>
+<li>参见:</li>
+<li>getComment()</li>
+</ul>
+<h2>4、public java.lang.String getDomain()</h2>
+<ul>
+<li>返回设置cookie的域名。域名的形式由RFC 2109。</li>
+<li>返回:</li>
+<li>一个字符串包含域名</li>
+<li>参见:</li>
+<li>setDomain(java.lang.String)</li>
+</ul>
+<h2>5、public void setMaxAge(int expiry)</h2>
+<ul>
+<li>设置Cookie的过期时间设置Cookie的过期时间</li>
+<li>默认情况下，Cookie会被浏览器保存在内存中，</li>
+<li>此时Cookie的生命周期由浏览器决定，只要不关闭浏览器Cookie就会一直存在。</li>
+<li>如果希望关闭浏览器后Cookie仍存在，则可以通过设置过期时间使得Cookie存在硬盘上得以保存更长的时间。</li>
+<li>该方法是Cookie提供的实例方法。参数seconds的单位为秒，但精度不是很高。</li>
+</ul>
+<div class = "bg-blue">
+  <il>	
+	<li>seconds > 0 ：代表Cookie保存在硬盘上的时长</br></li>
+	<li>seconds = 0 ： 代表Cookie的生命时长为现在，而这一刻稍纵即逝，所以马上Cookie就等同于过了生存时间，所以会被立即删除,这也是删除、Cookie的实现方式。</li>
+	<li>seconds < 0 ：缺省值，浏览器会将Cookie保存在内存中(浏览器关闭后消失)。</li>
+</il>	
+</div>
+<ul>
+<li>参见(See Also):</li>
+<li>getMaxAge()</li>
+</ul>
+<h2>6、public int getMaxAge()</h2>
+<p>返回:
+整数指定cookie的最高年龄在几秒钟内,如果负数,意味着Cookie一直持续,直到浏览器关闭
+参见:
+setMaxAge(int)</p>
+<h2>7、public void setPath(java.lang.String uri)</h2>
+<ul>
+<li>设置Cookie的路径</li>
+<li>这样所有资源路径要么与此路径相等，要么是子路径，从而实现了客户端发送任何请求时都会发送Cookie。</li>
+<li>Parameters:</li>
+<li>uri - a String specifying a path</li>
+<li>参见:</li>
+<li>getPath()</li>
+</ul>
+<h2>8、public java.lang.String getPath()</h2>
+<ul>
+<li>返回:</li>
+<li>字符串包含一个servlet名称指定一个路径,例如,&quot;/目录&quot;</li>
+<li>参见:</li>
+<li>setPath(java.lang.String)</li>
+</ul>
+<h2>9、public void setSecure(boolean flag)</h2>
+<ul>
+<li>显示到浏览器cookie是否只能使用一个安全协议,比如HTTPS和SSL。</li>
+<li>默认值是false。</li>
+<li>参数:</li>
+<li>flag——如果这是true,只能使用一个安全协议把cookie从浏览器到服务器,如果false,发送任何协议</li>
+<li>参见:</li>
+<li>getSecure()</li>
+</ul>
+<h2>10、public boolean getSecure()</h2>
+<ul>
+<li>如果浏览器发送cookie只在一个安全的协议返回true,</li>
+<li>如果浏览器可以使用任何协议发送cookie返回false。</li>
+<li>返回:</li>
+<li>如果浏览器使用安全协议;false,true</li>
+<li>参见:</li>
+<li>setSecure(boolean flag)</li>
+</ul>
+<h2>11、public java.lang.String getName()</h2>
+<ul>
+<li>返回cookie的名称。这个名字创建后不能更改。</li>
+<li>返回:</li>
+<li>一个字符串指定cookie的名称</li>
+</ul>
+<h2><div class = "bg-blue">例:<div></h2>
+<ul>
+<li><a href="../Cookie/demo/setValue/setValue.html">点击查看</a></li>
+</ul>
+<h2>12、public void setValue(java.lang.String newValue)</h2>
+<ul>
+<li>值不应包含空格,括号,括号,等号,逗号,双引号,斜杠,问号,迹象,冒号,分号。</li>
+<li>空值可能不会在所有浏览器上的表现一样。</li>
+</ul>
+<hr />
+<ul>
+<li>所谓Cookie的修改，本质是获取到要变更值的Cookie，</li>
+<li>通过setValue方法将新的数据存入到cookie中，</li>
+<li>然后由response响应对象发回到客户端，对原有旧值覆盖后即实现了修改。</li>
+</ul>
+<h2><div class = "bg-blue">例:<div></h2>
+<ul>
+<li><a href="../Cookie/demo/setValue/setValue.html">点击查看</a></li>
+</ul>
+<h2>13、public java.lang.String getValue()</h2>
+<ul>
+<li>取Cookie的value</li>
+</ul>
+<h2><div class = "bg-blue">例:<div></h2>
+<ul>
+<li><a href="../Cookie/demo/如何查询Cookie/如何查询Cookie.html">点击查看</a></li>
+</ul>
+<h2>14、public int getVersion()</h2>
+<ul>
+<li>返回此cookie符合协议的版本。</li>
+<li>由浏览器提供使用和识别浏览器的cookie的版本。</li>
+<li>返回:</li>
+<li>如果Cookie符合原网景规范返回0;如果Cookie符合RFC 2109返回1</li>
+<li>参见:</li>
+<li>setVersion(int)</li>
+</ul>
+<h2>15、public void setVersion(int v)</h2>
+<ul>
+<li>设置版本的曲奇饼干符合协议。0版本符合原网景饼干规范。版本1符合RFC 2109。</li>
+<li>由于RFC 2109仍是有点新,不建议使用它。</li>
+<li>参数:</li>
+<li>0：Cookie应该遵循原网景规范;</li>
+<li>1：饼干应符合RFC 2109</li>
+<li>参见:</li>
+<li>getVersion()</li>
+</ul>
+<h2>16、public void setHttpOnly(boolean httpOnly)</h2>
+<ul>
+<li>设置cookie是否在客户端隐藏</li>
+<li>参数:</li>
+<li>自(Since):</li>
+<li>Servlet 3.0</li>
+</ul>
+<h2>17、public boolean isHttpOnly()</h2>
+<ul>
+<li>cookie是否在客户端隐藏。</li>
+<li>返回:</li>
+<li>true,false</li>
+<li>自(Since):</li>
+<li>Servlet 3.0</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

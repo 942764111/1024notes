@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day07</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>云笔记</h1>
+<h2>安全</h2>
+<p>如果不进行安全拦截编程，用户完全可以绕过页面请求到笔记信息数据。系统有安全隐患。</p>
+<ol>
+<li>
+<p>利用Servlet Filter 可以拦截 *.html *.mp3 *.jpg 等请求，检查用户是否登录，只有登录的用户才能访问这些资源。</p>
+</li>
+<li>
+<p>利用Spring MVC的拦截器可以拦截 Spring MVC 的请求（*.do），检查是否登录，只有登录的用户才能获取资源.</p>
+</li>
+</ol>
+<h3>Servlet Filter 解决 *.html 的安全问题</h3>
+<ol>
+<li>
+<p>编写Serlet Filter类：</p>
+<pre><code>public class AccessFilter implements Filter {
+
+    /**
+     * @see Filter#destroy()
+     */
+    public void destroy() {
+    }
+
+    /**
+     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+     */
+    public void doFilter(
+        ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        //类型转换
+        HttpServletRequest req = 
+            (HttpServletRequest) request;
+        HttpServletResponse res = 
+            (HttpServletResponse) response;
+        //1. 获取登录用户信息
+        //2. 如果没有登录用户信息，重定向到 log_in.html
+        String path = req.getRequestURI();
+        System.out.println(path); 
+
+
+        if(path.endsWith(&quot;log_in.html&quot;) ||
+            path.contains(&quot;/alert/&quot;)){ 
+            //设置HTTP协议头，避免浏览器缓存html页面
+            res.addHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
+            chain.doFilter(request, response);
+            return;
+        }
+
+        User user = (User)req.getSession()
+            .getAttribute(&quot;loginUser&quot;);
+        if(user==null){
+            //如果user为null则表示没有登录
+            //重定向到 log_in.html
+            //采用绝对路径重定向！可以避免错误
+            String login = 
+                req.getContextPath()+ 
+                &quot;/log_in.html&quot;;
+            // /note/log_in.html
+            res.sendRedirect(login);
+            return;
+        }
+        //设置HTTP协议头，避免浏览器缓存html页面
+        res.addHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
+        chain.doFilter(request, response);
+    }
+
+    /**
+     * @see Filter#init(FilterConfig)
+     */
+    public void init(FilterConfig fConfig) throws ServletException {
+    }
+
+}
+</code></pre>
+
+<blockquote>
+<p>拦截<em>.html 放过 log_in.html和alert/</em>
+res.addHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;) 用于通知浏览器不缓存html文件。</p>
+</blockquote>
+</li>
+<li>
+<p>配置 Servlet Filter， web.xml:</p>
+<pre><code>&lt;filter&gt;
+    &lt;display-name&gt;AccessFilter&lt;/display-name&gt;
+    &lt;filter-name&gt;AccessFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;cn.tedu.note.web.AccessFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;AccessFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;*.html&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</code></pre>
+
+</li>
+<li>
+<p>测试： 直接访问 edit.html 将转发到log_in.html</p>
+</li>
+</ol>
+<h3>利用Spring MVC 拦截器保护 *.do</h3>
+<ol>
+<li>
+<p>编写Spring MVC 拦截器：</p>
+<pre><code>@Component(&quot;accessInterceptor&quot;)
+public class AccessInterceptor implements HandlerInterceptor {
+
+    public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
+            throws Exception {
+    }
+
+    public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
+            throws Exception {
+    }
+
+    public boolean preHandle(
+            HttpServletRequest req, 
+            HttpServletResponse res, 
+            Object handler) throws Exception {
+        //查询session中是否保存了登录用户信息
+        //如果没有登录 返回一个JSON，包含“需要登录”消息
+        //如果已经登录，则通过 返回 true
+        User user=(User)req.getSession()
+                .getAttribute(&quot;loginUser&quot;);
+        System.out.println(&quot;user:&quot;+user);
+        if(user==null){
+            String json=
+                &quot;{\&quot;state\&quot;:1,\&quot;message\&quot;:\&quot;需要登录\&quot;}&quot;;
+            res.setContentType(&quot;text/html; charset=utf-8&quot;);
+            res.getWriter().print(json);
+            return false;
+        }
+        return true;
+    }
+}
+</code></pre>
+
+</li>
+<li>
+<p>配置 拦截器 spring-web.xml:</p>
+<pre><code>&lt;!-- 配置Spring MVC的拦截器 --&gt;
+&lt;mvc:interceptors&gt;
+    &lt;mvc:interceptor&gt;
+        &lt;mvc:mapping path=&quot;/note/*&quot;/&gt;
+        &lt;mvc:mapping path=&quot;/notebook/*&quot;/&gt;
+        &lt;mvc:exclude-mapping path=&quot;/user/*&quot;/&gt;
+        &lt;!-- ref 引用Bean 的 ID --&gt;
+        &lt;ref bean=&quot;accessInterceptor&quot;/&gt;
+    &lt;/mvc:interceptor&gt;
+&lt;/mvc:interceptors&gt; 
+</code></pre>
+
+</li>
+<li>
+<p>测试： 当用户离线时候，会提示：需要登录</p>
+</li>
+</ol>
+<h3>利用心跳检测，实现Session的保鲜</h3>
+<p>利用客户端脚本定时的向服务器发送http请求，保障服务器端的Session的“鲜活”，这样可以避免服务器Session超时过期，还可以利用心跳检测检测客户端是否“在线”。</p>
+<ol>
+<li>
+<p>添加控制器 方法 UserController.java:</p>
+<pre><code>@RequestMapping(&quot;/heartbeat.do&quot;)
+@ResponseBody
+//心跳检测控制器方法，目的保持session的新鲜
+public JsonResult&lt;String&gt; heartbeat(){
+    //System.out.println(&quot;OK&quot;); 
+    return new JsonResult&lt;String&gt;(&quot;OK&quot;);
+}
+</code></pre>
+
+</li>
+<li>
+<p>添加 heartbeat.js:</p>
+<pre><code>$(function(){
+    window.setInterval(function(){
+        //利用ajax 
+        //user/heartbeat.do
+        console.log(&quot;Test!&quot;);
+        var url = 'user/heartbeat.do';
+        //var data = {'t':new Date().getTime()};
+        $.post(url, function(result){
+            console.log(result);
+        });
+    }, 1000*5);
+});
+</code></pre>
+
+</li>
+<li>
+<p>在edit.html 中引用心跳检测脚本：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;
+    src=&quot;scripts/heartbeat.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+</li>
+<li>
+<p>测试： 登录转到edit.html, 客户端和服务器上能够看到定时通信的结果。</p>
+</li>
+</ol>
+<h2>AOP 面向切面编程</h2>
+<blockquote>
+<p>面向切面(儿)编程: 也称为横截面编程，类似于 Filter 和 拦截器
+Filter 和 拦截器 用于处理Web请求的“横截面拦截”编程。</p>
+</blockquote>
+<p>AOP 优点：在不改变原有业务情况下，为软件灵活扩展横向功能。</p>
+<p>性能测试：测试软件的性，为系统优化提供依据。</p>
+<p>Spring 提供了 AOP，其底层是AspectJ，AspectJ的底层是“反射包中的动态代理” 或者 CGLIB 动态代理</p>
+<p>简单的说：Spring AOP 是利用“动态代理”实现的。</p>
+<p>参考异常：</p>
+<pre><code>java.lang.NullPointerException
+at cn.tedu.note.service.impl.UserServiceImpl.login(UserServiceImpl.java:44)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:497)
+at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:317)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:51)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:204)
+at com.sun.proxy.$Proxy18.login(Unknown Source)
+at cn.tedu.note.web.UserController.login(UserController.java:32)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:497)
+at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:745)
+at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:686)
+at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:953)
+at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:855)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:650)
+at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:829)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:505)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:956)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:423)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1079)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:625)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:318)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+</code></pre>
+
+<h3>编写一个AOP</h3>
+<ol>
+<li>
+<p>导入AspectJ</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+  &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+  &lt;version&gt;1.8.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+  &lt;artifactId&gt;aspectjtools&lt;/artifactId&gt;
+  &lt;version&gt;1.8.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+  &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
+  &lt;version&gt;1.8.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+</li>
+<li>
+<p>创建切面组件</p>
+<pre><code>@Component
+@Aspect //切面儿
+public class DemoAspect {
+
+    //声明通知和切入点：在login方法之前插入Hello World 
+    //@Before: 通知, 切入点：bean(userService)
+    // 在userService的全部方法之前执行 test
+    @Before(&quot;bean(userService)&quot;)
+    public void test(){
+        System.out.println(&quot;Hello World!&quot;); 
+    }
+}
+</code></pre>
+
+<blockquote>
+<p>其中 @Aspect 和 @Before 来自Aspect的包。
+切面组件也是Bean，需要使用@Component 和配置组件扫描</p>
+</blockquote>
+</li>
+<li>
+<p>添加配置文件 spring-aop.xml:</p>
+<pre><code>&lt;!-- spring-aop.xml --&gt;
+&lt;context:component-scan 
+    base-package=&quot;cn.tedu.note.aop&quot;/&gt;
+&lt;!-- 如下配置的作用是启动 @Aspect 注解 --&gt;
+&lt;aop:aspectj-autoproxy/&gt;
+</code></pre>
+
+</li>
+<li>
+<p>测试： Hello World 会在 login之前执行。</p>
+</li>
+</ol>
+<h3>通知</h3>
+<p>通知是指切面方法执行的时机，常用的有5种：</p>
+<ul>
+<li>@Before</li>
+<li>@AfterReturning</li>
+<li>@AfterThrowing</li>
+<li>@After  </li>
+<li>@Around 环绕通知</li>
+</ul>
+<p>案例： 测试不同的通知：</p>
+<pre><code>@Component
+@Aspect //切面儿
+public class DemoAspect {
+
+    //@Before(&quot;bean(userService)&quot;)
+    //@AfterReturning(&quot;bean(userService)&quot;)
+    //@AfterThrowing(&quot;bean(userService)&quot;)
+    @After(&quot;bean(userService)&quot;)
+    public void test(){
+        System.out.println(&quot;Hello World!&quot;); 
+    }
+}
+</code></pre>
+
+<h3>@Around 环绕通知</h3>
+<p>类似于Servlet Filter</p>
+<p>案例：</p>
+<pre><code>@Component
+@Aspect
+public class AroundAspect {
+
+    @Around(&quot;bean(userService)&quot;)
+    public Object test(ProceedingJoinPoint jp)
+        throws Throwable{
+        try{
+            //业务方法之前
+            System.out.println(&quot;业务方法之前&quot;);
+            //调用目标的业务方法（利用反射实现invoke()）
+            Object val = jp.proceed();//login()
+            //val 是业务方法返回值
+            //业务方法执行之后
+            System.out.println(&quot;业务方法执行之后&quot;);
+            return val;
+        }catch(Throwable e){
+            //业务方法出现异常
+            System.out.println(&quot;业务方法出现异常&quot;);
+            e.printStackTrace();
+            throw e;//抛出业务异常
+        }finally{
+            System.out.println(&quot;finally业务方法之后&quot;);
+            //业务方法之后
+        }
+    }
+}
+</code></pre>
+
+<h3>性能测试 AOP:</h3>
+<p>案例：</p>
+<pre><code>@Component
+@Aspect
+public class TimeAspect {
+
+    @Around(&quot;bean(*Service)&quot;)
+    public Object test(ProceedingJoinPoint jp)
+        throws Throwable{
+        //使用jp的获取“方法签名”的方法获取方法信息
+        Signature sig=jp.getSignature();
+        //测试业务方法的性能：
+        long t1 = System.currentTimeMillis();
+        Object val = jp.proceed();//业务方法
+        long t2 = System.currentTimeMillis();
+        System.out.println(sig+&quot;耗时：&quot;+(t2-t1)); 
+        return val;
+    }
+
+}
+</code></pre>
+
+<hr />
+<h2>作业</h2>
+<ol>
+<li>实现性能测试AOP</li>
+<li>实现笔记删除功能</li>
+</ol>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

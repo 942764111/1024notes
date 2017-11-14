@@ -1,0 +1,44 @@
+package oo.day06;
+
+import org.omg.CORBA.ExceptionList;
+
+class MyException extends Exception{
+	public MyException(String Error) {
+	  super(Error);
+	}
+}
+public class catchDemo {
+   static int pop(int a,int b)throws  MyException{
+	   		if(a<=0){
+	   				throw new MyException("a不能<=0");
+	   			}
+	   		System.out.println("没有抛出异常"+a);
+	   		return a/b;
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try{
+				pop(3,0);
+		}catch(MyException e){//处理自定义异常
+			System.out.println("MyException:"+e.getMessage());
+		}catch(ArithmeticException e){//处理 ArithmeticException(算数异常) 异常
+			System.out.println("除数不能为0:");
+		}catch(Exception e){ //处理其他异常
+			System.out.println("程序发生了其他异常："+e);
+		}
+		finally{
+		}
+		System.out.println("Over");
+	}
+}
+/**
+ * 使用 throw 关键字抛出异常
+ * throw 关键字通常用于方法体中,并且抛出一个异常对象，程序在执行到throw语句时立即终止,
+ * 
+ *  它后面的语句都不执行。通过 throw抛出异常后，如果想在上一即代码中来捕获并处理异常，
+ *  
+ *  则需要在抛出异常的方法中使用throws关键字在方法的声明中指出要抛出的异常;如果要捕捉异常，
+ *  
+ *  则必须使用 try-catch语句块。
+ * */
+

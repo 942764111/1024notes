@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//1.将js封装为函数，在网页加载后，用户点击
+	//某按钮时调用此函数。
+	//2.不封装js，直接写js。这样的js在页面加载
+	//过程中被调用，甚至早于body被调用。
+	//alert(1);
+	console.log("控制台打印");
+	
+	//1.声明变量
+	var x;
+	console.log(x);
+	x = 1;
+	console.log(x);
+	var y = "hello";
+	console.log(y);
+	
+	//2.隐式转换
+	var s = "hi";
+	var n = 3.14;
+	var b = true;
+	console.log(s+n);
+	console.log(s+b);
+	console.log(n+b);
+	console.log(b+b);
+	
+	//3.强制转换
+	console.log(parseInt("123"));
+	console.log(parseInt("abc"));
+	console.log(typeof(b));
+	console.log(isNaN("56"));
+	console.log(isNaN("abc"));
+	//特殊情况
+	console.log(isNaN(""));
+	console.log(parseInt(""));
+	
+	//4.运算符
+	var p = "5";
+	var q = 5;
+	console.log(p==q);
+	console.log(p===q);
+	
+	//5.条件表达式
+	//在JS中可以用任意数据做条件，
+	//当数据为空时相当于false，
+	//当数据非空时相当于true。
+	//空值:undefined/null/0/""/NaN
+	//这样设计的目的是为了简化条件表达式。
+	var k = "";
+	if(k) {
+		console.log("ok");
+	}
+	var w = 0;
+	w && console.log("haha");
+	
+</script>
+</head>
+<body>
+	<p>JS的基本语法和Java很相似</p>
+</body>
+</html>
+
+
+
+
+

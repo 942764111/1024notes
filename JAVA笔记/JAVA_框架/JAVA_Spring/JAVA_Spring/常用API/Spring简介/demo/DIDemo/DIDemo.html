@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DIDemo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>依赖注入Demo</h1>
+<h2>一、applicationContext.xml中配置</h2>
+<pre><code>&lt;bean id = &quot;b1&quot; class=&quot;ioc.B&quot;/&gt;
+&lt;bean id = &quot;c1&quot; class=&quot;ioc.C&quot;/&gt;
+&lt;bean id = &quot;a1&quot; class=&quot;ioc.A&quot;&gt;
+    &lt;!--  
+    property属性
+           name：调用a1中set方法并将set后面的首字母转为大写
+
+           ref：调用有依赖关系的类 参数为beanID
+    --&gt;
+    &lt;property name=&quot;b&quot; ref=&quot;c1&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<hr />
+<h1>二、JAVA代码：</h1>
+<ul>
+<li>
+<p>一、接口：</p>
+<p>package ioc;</p>
+<p>public interface IB {
+	public void f1();
+}</p>
+</li>
+<li>
+<p>二、声明B和C类</p>
+<p>package ioc;</p>
+<p>public class B implements IB{</p>
+<pre><code>public B() {
+    System.out.println(this.getClass().getName());
+}
+public void f1(){
+    System.out.println(this.getClass().getName()+&quot;::f1()&quot;);
+}
+</code></pre>
+
+<p>}</p>
+<pre><code>package ioc;
+
+public class C   implements IB{
+    public C() {
+        System.out.println(this.getClass().getName());
+    }
+    public void f1(){
+        System.out.println(this.getClass().getName()+&quot;::f1()&quot;);
+    }
+}
+</code></pre>
+
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>三、在A类调用调用接口利用向上造型</p>
+<pre><code>package ioc;
+
+public class A {
+
+    private IB b;
+
+    public A() {
+        System.out.println(this.getClass().getName());
+    }
+    public void execute(){
+        System.out.println(this.getClass().getName()+&quot;::execute()&quot;);
+        //需要调用B的f1()方法
+        b.f1();
+
+    }
+    public void setB(IB b) {
+        System.out.println(this.getClass().getName()+&quot;::setB()&quot;);
+        this.b = b;
+    }
+    public void setC(IB c) {
+        System.out.println(this.getClass().getName()+&quot;::setC()&quot;);
+        this.b = c;
+    }
+}
+</code></pre>
+
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

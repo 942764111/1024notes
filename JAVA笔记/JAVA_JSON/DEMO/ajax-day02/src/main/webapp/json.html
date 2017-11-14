@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	//使用json语法表示一个对象
+	function f1(){
+		var obj = {"code":"600877",
+				"name":"中国嘉陵","price":8};
+		alert(obj.name);
+	}
+	function f2(){
+		var obj = {"name":"达内科技",
+				"address":{
+					"city":"北京",
+					"street":"北三环西路",
+					"room":1708
+				}
+		};
+		alert(obj.address.street);
+	}
+	
+	//使用json语法表示一个由对象组成的数组
+	function f3(){
+		var arr = [{"name":"Sally","age":22},
+		           {"name":"Eric","age":32}];
+		alert(arr[1].name);
+	}
+	
+	//将json字符串转换成javascript对象
+	function f4(){
+		var str = '{"name":"Sally","age":22}';
+		//使用JSON对象提供的方法来转换
+		var obj = JSON.parse(str);
+		alert(obj.name);
+	}
+	
+	function f5(){
+		var str = '[{"name":"Sally","age":22},' 
+		        + '{"name":"Eric","age":32}]';
+		//使用JSON对象提供的方法来转换
+		//注意：这儿返回的是一个由js对象组成的数组
+		var arr = JSON.parse(str);
+		alert(arr[1].name);
+	}
+	
+</script>
+</head>
+<body style="font-size:30px;">
+	<a href="javascript:f5();">ClickMe</a>
+</body>
+</html>
+
+
+

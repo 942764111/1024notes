@@ -1,0 +1,5 @@
+	
+
+	* 406状态码：
+	 *  1、没有导入jackson包：由于设置了@ResponseBody,要把对象转换成json格式，缺少转换依赖的jar包，故此错 
+	 *  2、javaBean里没有get或set方法

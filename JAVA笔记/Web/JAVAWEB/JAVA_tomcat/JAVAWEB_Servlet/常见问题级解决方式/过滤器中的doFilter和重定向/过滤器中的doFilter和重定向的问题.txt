@@ -1,0 +1,1 @@
+sendRedirect和doFilter俩者不能同时执行只能调用其中一个

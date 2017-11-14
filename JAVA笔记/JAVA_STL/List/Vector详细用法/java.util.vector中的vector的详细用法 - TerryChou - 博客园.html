@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>java.util.vector中的vector的详细用法 - TerryChou - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/bundle-Cogitation.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/bundle-Cogitation-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/strivers/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/strivers/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/strivers/wlwmanifest.xml">
+<script src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'strivers', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="top">
+	
+<div>
+	<table>
+		<tbody><tr>
+			<td class="HeaderTitles">
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/strivers/">TerryChou</a></h1>
+				<p id="tagline"></p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="HeaderBar">
+	<table id="HeaderBar" class="HeaderBar" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td class="HeaderBarTab" nowrap="">
+&nbsp;
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a> ::
+<a id="blog_nav_myhome" href="http://www.cnblogs.com/strivers/">首页</a> ::
+<a href="http://q.cnblogs.com/" class="menu">博问</a> ::
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> ::
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> ::
+<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/TerryChou">联系</a> ::
+<a id="blog_nav_rss" href="http://www.cnblogs.com/strivers/rss">订阅</a>
+<a id="blog_nav_rss_image" class="XMLLink" href="http://www.cnblogs.com/strivers/rss"><img src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/xml.gif" alt="订阅"></a> ::
+<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a> ::
+
+</td>
+			<td><img id="Header1_BlueTab" src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/BlueTabRight.gif" align="absmiddle"></td>
+			<td class="HeaderBarTabBack" nowrap="" width="100%">
+				<div id="blog_stats">
+<div class="BlogStatsBar">
+	<table class="BlogStatsBar">
+		<tbody><tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap="">
+				&nbsp;
+				65 
+				随笔&nbsp;::
+				1 文章
+				::
+				53 评论
+				::
+				0 引用
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<div id="leftmenu">	
+
+	    <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/12/01&#39;);return false;">&lt;</a></td><td align="center">2017年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalTodayDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/strivers/">TerryChou</a><br>园龄：<a href="http://home.cnblogs.com/u/strivers/" title="入园时间：2009-12-11">7年</a><br>粉丝：<a href="http://home.cnblogs.com/u/strivers/followers/">97</a><br>关注：<a href="http://home.cnblogs.com/u/strivers/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;a9653955-37e6-de11-ba8f-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/strivers/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/strivers/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/strivers/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/strivers/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/strivers/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+		<h3>随笔档案<span style="font-size:11px;font-weight:normal">(65)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/strivers/archive/2012/11.html">2012年11月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/strivers/archive/2012/03.html">2012年3月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/strivers/archive/2011/10.html">2011年10月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/strivers/archive/2011/08.html">2011年8月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/strivers/archive/2011/07.html">2011年7月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/strivers/archive/2011/02.html">2011年2月 (5)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/strivers/archive/2011/01.html">2011年1月 (11)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/strivers/archive/2010/12.html">2010年12月 (27)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/strivers/archive/2010/11.html">2010年11月 (11)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/strivers/archive/2010/10.html">2010年10月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/strivers/archive/2010/08.html">2010年8月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/strivers/archive/2010/06.html">2010年6月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/strivers/archive/2010/02.html">2010年2月 (1)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>文章分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/strivers/category/267575.html">.net技术</a> </li>
+			
+				</ul>
+			
+	
+		<h3>相册<span style="font-size:11px;font-weight:normal">(1)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/strivers/gallery/249906.html" rel="nofollow">找自己(1)</a> </li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html#3542079">1. Re:MyEclipse快捷键大全</a></li>
+        <li class="recent_comment_body">很好，很实用</li>
+        <li class="recent_comment_author">--一只会飞的企鹅</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/strivers/archive/2010/12/09/1900951.html#3518448">2. Re:线性表的链式存储——链表（带源码）</a></li>
+        <li class="recent_comment_body">为什么不用LinkList   ？？能回答一下吗？谢谢</li>
+        <li class="recent_comment_author">--zyysun</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html#3496378">3. Re:MyEclipse快捷键大全</a></li>
+        <li class="recent_comment_body">Ctrl+Shift+X  把当前选中的文本全部变为小写 <br><br>此次应该改成 大写吧？</li>
+        <li class="recent_comment_author">--一只勤奋的胖子</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/strivers/archive/2011/07/23/2115128.html#3473219">4. Re:一个月以来的实习总结</a></li>
+        <li class="recent_comment_body">我也是，你现在做什么？还在做吗？</li>
+        <li class="recent_comment_author">--少司命XO</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html#3458039">5. Re:MyEclipse快捷键大全</a></li>
+        <li class="recent_comment_body">很全面</li>
+        <li class="recent_comment_author">--不二过</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html">1. MyEclipse快捷键大全(221163)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html">2. java.util.vector中的vector的详细用法(123484)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/01/28/1947160.html">3. QQ在线客服代码 飘浮在右侧的QQ客服js特效演示(52905)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/12/12/1903848.html">4. css实现背景图拉伸(47088)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/01/04/1925826.html">5. bit、byte、位、字节、汉字、字符之间的区别(28088)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html">1. MyEclipse快捷键大全(21)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/11/1951731.html">2. winform中窗体之间跳转如何传值(4)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/12/12/1903863.html">3. asp.net中Eval()和Bind()的区别(3)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/12/30/1921343.html">4. ASP.NET2.0 文本编辑器FCKeditor用法(2)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html">5. java.util.vector中的vector的详细用法(2)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949477.html">1. MyEclipse快捷键大全(44)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/11/1951712.html">2. C#文件复制小工具(2)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/02/06/1949479.html">3. Eclipse快捷键大全(2)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2011/01/04/1925826.html">4. bit、byte、位、字节、汉字、字符之间的区别(2)</a></li><li><a href="http://www.cnblogs.com/strivers/archive/2010/11/28/1890080.html">5. asp.net三层架构详解(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+<div id="main">
+	
+<div id="post_detail">
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html">java.util.vector中的vector的详细用法</a>
+	</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><p>ArrayList会比Vector快，他是非同步的，如果设计涉及到多线程，还是用Vector比较好一些 <br>import java.util.*; </p>
+<p>&nbsp;</p>
+<p>/** <br>* 演示Vector的使用。包括Vector的创建、向Vector中添加元素、从Vector中删除元素、 <br>* 统计Vector中元素的个数和遍历Vector中的元素。 <br>*/ </p>
+<p>public class VectorDemo{ <br>public static void main(String[] args){ </p>
+<p>//Vector的创建 <br>//使用Vector的构造方法进行创建 <br>Vector v = new Vector(4); </p>
+<p>//向Vector中添加元素 <br>//使用add方法直接添加元素 <br>v.add("Test0"); <br>v.add("Test1"); <br>v.add("Test0"); <br>v.add("Test2"); <br>v.add("Test2"); </p>
+<p>//从Vector中删除元素 <br>v.remove("Test0"); //删除指定内容的元素 <br>v.remove(0); //按照索引号删除元素 </p>
+<p>//获得Vector中已有元素的个数 <br>int size = v.size(); <br>System.out.println("size:" + size); </p>
+<p>//遍历Vector中的元素 <br>for(int i = 0;i &lt; v.size();i++){ <br>System.out.println(v.get(i)); <br>} <br>} <br>} <br>------------- <br>Vector 类提供了实现可增长数组的功能，随着更多元素加入其中，数组变的更大。在删除一些元素之后，数组变小。 <br>Vector 有三个构造函数， <br>public Vector(int initialCapacity,int capacityIncrement) 　　　　　　　　　public Vector(int initialCapacity) 　　　　　　　　　public Vector() 　　Vector 运行时创建一个初始的存储容量initialCapacity，存储容量是以capacityIncrement 变量定义的增量增长。初始的存储容量和capacityIncrement 可以在Vector 的构造函数中定义。第二个构造函数只创建初始存储容量。第三个构造函数既不指定初始的存储容量也不指定capacityIncrement。 　　Vector 类提供的访问方法支持类似数组运算和与Vector 大小相关的运算。类似数组的运算允许向量中增加，删除和插入元素。它们也允许测试矢量的内容和检索指定的元素，与大小相关的运算允许判定字节大小和矢量中元素不数目。 　　现针对经常用到的对向量增，删，插功能举例描述： <br>addElement(Object obj)　　 　　把组件加到向量尾部，同时大小加1，向量容量比以前大1 　 <br>insertElementAt(Object obj, int index)　　 　　把组件加到所定索引处，此后的内容向后移动1 个单位 　 <br>setElementAt(Object obj, int index) 　　把组件加到所定索引处，此处的内容被代替。 　　removeElement(Object obj) 把向量中含有本组件内容移走。 　　removeAllElements() 把向量中所有组件移走，向量大小为0。 　　</p>
+<p>例如：</p>
+<p>import java.lang.System; </p>
+<p>import java.util.Vector;</p>
+<p>import java.util.Emumeration; </p>
+<p>public class Avector{ 　　　　　　　　　　　　　　　　 </p>
+<p>public static void main(String args[]) { <br>　　0.Vector v=new Vector(); <br>　　1. v.addElement("one"); <br>　　2. addElement("two"); <br>　　3. v.addElement("three"); <br>　　4. v.insertElementAt("zero",0); <br>　　5. v.insertElementAt("oop",3); <br>　　6. v.setElementAt("three",3); <br>　　7. v.setElementAt("four",4); <br>　　8. v.removeAllElements(); <br>&nbsp; } <br>} <br>Vector中的变化情况： <br>1. one　　 2. one　　 3. one　　 4. zero　　 5.zero　　 6. zero　　7. zero 8. 　　　　　 two　　 two　 one　　 one　　 one　　 one 　　　　　　　　　　　three　　 two　　 two　　 two　　 two 　three　　 oop　　 three　　three 　three　　 three　　four 　 　　另外，Vector 在参数传递中发挥着举足轻重的作用。在Applet 中有一块画布(Canvas) 和一个(Panel), 而Panel 中放着用户要输入的信息，根据这些信息把参数传递到canvas 中，这时在Java 中用一个接口（Interface）, 而在接口中需用一个Vector 去传递这些参数。另外，在一个类向另一个类参数传递就可以用这种方法。 　　例如： 　 <br>import java.util.Vector <br>interface codeselect{ Vector codeselect=new Vector(); } 显示数学信息 <br>Vector(0)存入学生编号 <br>Vector(1)存入学科 　 　　在Panel 中当用户在TextField 和Choice 中选择自己所要求的内容，程序中通过事件响应把值传到向量Vector 中。 </p>
+<p>&nbsp;</p>
+<p>同步是个很大的问题,尤其多线程,和进程中,因此,我们在多线程中同时对某个数组操作时,支持同步的vector无疑是个很好的选择，一般在需要将多个元素存在一个集合里的时候用。<br>java.util 类 Vector&lt;E&gt; <br>boolean add(E o) <br>将指定元素追加到此向量的末尾。 <br>void add(int index, E element) <br>在此向量的指定位置插入指定的元素。 <br>boolean addAll(Collection&lt;? extends E&gt; c) <br>将指定 Collection 中的所有元素追加到此向量的末尾，按照指定集合的迭代器所返回的顺序追加这些元素。 <br>boolean addAll(int index, Collection&lt;? extends E&gt; c) <br>在指定位置将指定 Collection 中的所有元素插入到此向量中。 <br>void addElement(E obj) <br>将指定的组件添加到此向量的末尾，将其大小增加 1。 <br>int capacity() <br>返回此向量的当前容量。 <br>void clear() <br>从此向量中移除所有元素。 <br>Object clone() <br>返回向量的一个副本。 <br>boolean contains(Object elem) <br>测试指定的对象是否为此向量中的组件。 <br>boolean containsAll(Collection&lt;?&gt; c) <br>如果此向量包含指定 Collection 中的所有元素，则返回 true。 <br>void copyInto(Object[] anArray) <br>将此向量的组件复制到指定的数组中。 <br>E elementAt(int index) <br>返回指定索引处的组件。 <br>Enumeration&lt;E&gt; elements() <br>返回此向量的组件的枚举。 <br>void ensureCapacity(int minCapacity) <br>增加此向量的容量（如有必要），以确保其至少能够保存最小容量参数指定的组件数。 <br>boolean equals(Object o) <br>比较指定对象与此向量的相等性。 <br>E firstElement() <br>返回此向量的第一个组件（位于索引 0 处的项）。 <br>E get(int index) <br>返回向量中指定位置的元素。 <br>int hashCode() <br>返回此向量的哈希码值。 <br>int indexOf(Object elem) <br>搜索给定参数的第一个匹配项，使用 equals 方法测试相等性。 <br>int indexOf(Object elem, int index) <br>搜索给定参数的第一个匹配项，从 index 处开始搜索，并使用 equals 方法测试其相等性。 <br>void insertElementAt(E obj, int index) <br>将指定对象作为此向量中的组件插入到指定的 index 处。 <br>boolean isEmpty() <br>测试此向量是否不包含组件。 <br>E lastElement() <br>返回此向量的最后一个组件。 <br>int lastIndexOf(Object elem) <br>返回指定的对象在此向量中最后一个匹配项的索引。 <br>int lastIndexOf(Object elem, int index) <br>向后搜索指定的对象，从指定的索引处开始搜索，并返回一个索引。 <br>E remove(int index) <br>移除此向量中指定位置的元素。 <br>boolean remove(Object o) <br>移除此向量中指定元素的第一个匹配项，如果向量不包含该元素，则元素保持不变。 <br>boolean removeAll(Collection&lt;?&gt; c) <br>从此向量中移除包含在指定 Collection 中的所有元素。 <br>void removeAllElements() <br>从此向量中移除全部组件，并将其大小设置为零。 <br>boolean removeElement(Object obj) <br>从此向量中移除变量的第一个（索引最小的）匹配项。 <br>void removeElementAt(int index) <br>删除指定索引处的组件。 <br>protected void removeRange(int fromIndex, int toIndex) <br>从此 List 中移除其索引位于 fromIndex（包括）与 toIndex（不包括）之间的所有元素。 <br>boolean retainAll(Collection&lt;?&gt; c) <br>在此向量中仅保留包含在指定 Collection 中的元素。 <br>E set(int index, E element) <br>用指定的元素替换此向量中指定位置处的元素。 <br>void setElementAt(E obj, int index) <br>将此向量指定 index 处的组件设置为指定的对象。 <br>void setSize(int newSize) <br>设置此向量的大小。 <br>int size() <br>返回此向量中的组件数。 <br>List&lt;E&gt; subList(int fromIndex, int toIndex) <br>返回此 List 的部分视图，元素范围为从 fromIndex（包括）到 toIndex（不包括）。 <br>Object[] toArray() <br>返回一个数组，包含此向量中以正确顺序存放的所有元素。 <br>&lt;T&gt; T[] <br>toArray(T[] a) <br>返回一个数组，包含此向量中以正确顺序存放的所有元素；返回数组的运行时类型为指定数组的类型。 <br>String toString() <br>返回此向量的字符串表示形式，其中包含每个元素的 String 表示形式。 <br>void trimToSize() <br>对此向量的容量进行微调，使其等于向量的当前大小。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1918877,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;a9653955-37e6-de11-ba8f-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/strivers/" target="_blank"><img src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/u103349.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/strivers/">TerryChou</a><br>
+            <a href="http://home.cnblogs.com/u/strivers/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/strivers/followers">粉丝 - 97</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;a9653955-37e6-de11-ba8f-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1918877,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(1918877,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">2</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/strivers/archive/2010/12/22/1913384.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/strivers/archive/2010/12/22/1913384.html" title="发布于2010-12-22 09:26">System.InvalidCastException: 无法将类型为“DEduSys.SqlServerDal.sysManageUser”的对象强制转换为类型“DEduSys.IDal.IsysManageUser</a><br><a href="http://www.cnblogs.com/strivers/archive/2010/12/30/1921343.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/strivers/archive/2010/12/30/1921343.html" title="发布于2010-12-30 09:17">ASP.NET2.0 文本编辑器FCKeditor用法</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2010-12-28 15:20</span> <a href="http://www.cnblogs.com/strivers/">TerryChou</a> 阅读(<span id="post_view_count">123484</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1918877" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#" onclick="AddToWz(1918877);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=66647,cb_entryId=1918877,cb_blogApp=currentBlogApp,cb_blogUserGuid='a9653955-37e6-de11-ba8f-001cf0cd104b',cb_entryCreatedDate='2010/12/28 15:20:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a name="comments"></a>
+<br>
+<div id="comments">
+<h3>评论</h3>
+
+
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#3309955" class="layer">#1楼</a><a name="3309955" id="comment_anchor_3309955"></a>
+					<span>
+						 <span class="comment_date">2015-11-19 14:13</span>
+					</span>
+				<a id="a_comment_author_3309955" href="http://home.cnblogs.com/u/840904/" target="_blank">Max151119</a> <a href="http://msg.cnblogs.com/send/Max151119" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3309955" class="blog_comment_body">首先，我觉得你写的非常好，很受用。<br>但是我查了api，发现Vector的构造方法其实有四个，而不是楼主说的三个。第四个为：<br>Vector(Collection&lt;extends E&gt; c) 生成的vector包含制定collection里的元素，并且元素顺序和collection一致。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3309955,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3309955,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#3416397" class="layer">#2楼</a><a name="3416397" id="comment_anchor_3416397"></a><span id="comment-maxId" style="display:none;">3416397</span><span id="comment-maxDate" style="display:none;">2016/4/24 20:08:53</span>
+					<span>
+						 <span class="comment_date">2016-04-24 20:08</span>
+					</span>
+				<a id="a_comment_author_3416397" href="http://home.cnblogs.com/u/668593/" target="_blank">xiaohuan1</a> <a href="http://msg.cnblogs.com/send/xiaohuan1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3416397" class="blog_comment_body"><a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#3309955" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3309955);">@</a>
+Max151119<br>在java编程思想《第四版》中，Vector是已经过时了的，作者不建议使用。但是又可以看到vector与arraylist在线程安全上面的讨论，如<a href="http://my.oschina.net/Barudisshu/blog/160422?p" target="_blank">http://my.oschina.net/Barudisshu/blog/160422?p</a>=1<br>那么我们应该优先不考虑使用vector，优先考虑arraylist</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3416397,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3416397,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+</div><div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/strivers/archive/2010/12/28/1918877.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://arcapp.anruichina.com/arctrac/trac?tid=smb_azure_1212_CNBlog" target="_blank">【福利】微软Azure给博客园的你专属双重好礼</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank">【推荐】BPM免费下载</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/24442-20161115165230123-1587531896.png" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/560363/" target="_blank">Surface Pro劲敌！戴尔发布新款二合一设备Latitude 5285</a><br> ·  <a href="http://news.cnblogs.com/n/560362/" target="_blank">丰田和福特结成汽车联盟 开发开源系统对抗CarPlay</a><br> ·  <a href="http://news.cnblogs.com/n/560361/" target="_blank">Mozilla Firefox 51 Beta 11发布</a><br> ·  <a href="http://news.cnblogs.com/n/560360/" target="_blank">人人影视宣布退出人人视频项目</a><br> ·  <a href="http://news.cnblogs.com/n/560359/" target="_blank">NASA记录北京雾霾15年 变化触目惊心</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./java.util.vector中的vector的详细用法 - TerryChou - 博客园_files/35695-20161213142353073-1602158633.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div class="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © TerryChou
+</p>
+</div>
+
+
+</body></html>

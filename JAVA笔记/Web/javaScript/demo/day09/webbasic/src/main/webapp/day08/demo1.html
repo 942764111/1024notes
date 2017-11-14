@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div {
+		border: 1px solid red;
+		width: 218px;
+		height: 218px;
+	}
+	.show {
+		display: inline-block;
+	}
+	.hide {
+		display: none;
+	}
+</style>
+<script>
+	//页面加载后
+	window.onload = function() {
+		start();
+	}
+	//开始轮播
+	var id;
+	var n = 0; //轮播次数
+	function start() {
+		//启动周期性定时器
+		id = setInterval(function(){
+			n++;
+			//获取所有图片
+			var imgs = 
+				document.getElementsByTagName("img");
+			//将他们都隐藏
+			for(var i=0;i<imgs.length;i++) {
+				imgs[i].className = "hide";
+			}
+			//将下一个图片显示
+			var next = n%imgs.length;
+			imgs[next].className = "show";
+		},2000);		
+	}
+	//停止轮播
+	function stop() {
+		clearInterval(id);
+	}
+</script>
+</head>
+<body>
+	<!-- 
+		hover是伪类选择器。
+		onmouseover是鼠标悬停事件。
+		onmouseout是鼠标离开事件。
+	 -->
+	<div onmouseover="stop();"
+		onmouseout="start();">
+		<img src="../images/01.jpg"/>
+		<img src="../images/02.jpg" class="hide"/>
+		<img src="../images/03.jpg" class="hide"/>
+		<img src="../images/04.jpg" class="hide"/>
+		<img src="../images/05.jpg" class="hide"/>
+		<img src="../images/06.jpg" class="hide"/>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+

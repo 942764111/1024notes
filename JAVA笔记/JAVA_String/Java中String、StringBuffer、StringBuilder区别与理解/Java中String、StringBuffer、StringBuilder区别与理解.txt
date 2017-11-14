@@ -1,0 +1,21 @@
+【1】、
+String变量连接新字符串会改变hashCode值，变量是在JVM中“连接——断开”；
+
+StringBuffer变量连接新字符串不会改变hashCode值，因为变量的堆地址不变。
+
+StringBuilder变量连接新字符串不会改变hashCode值，因为变量的堆地址不变。
+
+
+【2】、
+String类由于Java中的共享设计，在修改变量值时使其反复改变栈中的对于堆的引用地址，所以性能低。
+
+StringBuffer和StringBuilder类设计时改变其值，其堆内存的地址不变，避免了反复修改栈引用的地址，其性能高。
+
+其中StringBuilder是专门类似于StringBuffer类的非线性安全类，即StringBuffer是线性安全的，适合于多线程操作；
+
+StringBuilder是线性不安全的，适合于单线程操作，其性能比StringBuffer略高。
+
+【3】、
+当String使用引号创建字符串时，会先去字符串池中找，找到了就返回，找不到就在字符串池中增加一个然后返回，这样由于共享提高了性能。
+
+而new String()无论内容是否已经存在，都会开辟新的堆空间，栈中的堆内存也会改变。

@@ -1,0 +1,437 @@
+# Ajax + Spring MVC
+
+## Spring MVC 提供了对Ajax工作方式的支持
+
+在控制器方法上使用注解@ResponseBody, Spring就智能根据控制返回值,自动处理响应结果:
+
+- 如果控制器方法返回是JavaBean, 自动调用Jackson API 将JavaBean序列化为Json 字符串,将Json 字符串作为Response 返回.
+
+> @ResponseBody 是一个自动化控制器返回值处理注解,不仅仅支持JSON,还支持其他数据类型的下载.
+
+举个栗子:
+
+	@Controller
+	@RequestMapping("/demo")
+	public class DemoController{
+		@RequestMapping("/hello")
+		@ResponseBody
+		public DemoBean hello(){
+			return new DemoBean("Tom",10,"110");
+		} 
+	} 
+
+## 配置Spring MVC + jackson
+
+步骤:
+
+1. 创建Maven WEB项目, 导入Spring MVC和 Jackson API
+
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-webmvc</artifactId>
+		  <version>3.2.8.RELEASE</version>
+		</dependency> 
+		<dependency>
+		  <groupId>com.fasterxml.jackson.core</groupId>
+		  <artifactId>jackson-databind</artifactId>
+		  <version>2.5.4</version>
+		</dependency> 
+		<dependency>
+		  <groupId>com.fasterxml.jackson.core</groupId>
+		  <artifactId>jackson-annotations</artifactId>
+		  <version>2.5.4</version>
+		</dependency>
+
+2. 配置Spring MVC主控制器(web.xml)
+
+		  <servlet>
+		    <description></description>
+		    <display-name>DispatcherServlet</display-name>
+		    <servlet-name>DispatcherServlet</servlet-name>
+		    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		    <init-param>
+		      <description></description>
+		      <param-name>contextConfigLocation</param-name>
+		      <param-value>classpath:conf/spring-*.xml</param-value>
+		    </init-param>
+		    <load-on-startup>1</load-on-startup>
+		  </servlet>
+		  <servlet-mapping>
+		    <servlet-name>DispatcherServlet</servlet-name>
+		    <url-pattern>*.do</url-pattern>
+		  </servlet-mapping>
+
+3. 添加conf/spring-web.xml
+
+		<!-- 配置组件扫描 -->
+		<context:component-scan 
+			base-package="cn.tedu.web"/>
+		<!-- annotation-driven:注解驱动的MVC	@RequestMapping -->
+		<mvc:annotation-driven/>
+
+## 开发控制器
+
+开发控制器类,在控制器方法上使用@ResponseBody注解 
+	
+	@Controller
+	@RequestMapping("/demo")
+	public class DemoController {
+		
+		@RequestMapping("/hello")
+		@ResponseBody
+		//@ResponseBody 自动处理控制器返回值
+		//如果是JavaBean则自动序列化为Json对象
+		//需要Jackson API支持
+		public DemoBean hello(){
+			return new DemoBean("Tom", 10, "110");
+		}
+	
+		@RequestMapping("/ary.do")
+		@ResponseBody
+		public int[] arrayDemo(){
+			return new int[]{2,3,5,6,1,9};
+		}
+		
+		@RequestMapping("/list.do")
+		@ResponseBody
+		public List<String> listDemo(){
+			List<String> list=
+				new ArrayList<String>();
+			Collections.addAll(list,
+				"tom", "Jerry", "Mac", "Lee");
+			return list;
+		}
+		@RequestMapping("/map.do")
+		@ResponseBody
+		public Map<String, Object> mapDemo(){
+			Map<String, Object> map=
+				new HashMap<String, Object>();
+			map.put("name", "Tom");
+			map.put("age", 10);
+			map.put("phone", "110");
+			return map;		
+		}
+	}
+
+部署测试...
+
+## 开发Ajax客户端
+
+添加网页 demo.html
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" 
+		src="js/jquery-1.4.3.js"></script>
+	<script type="text/javascript">
+		//调用 Spring MVC 
+		function helloAjax(){
+			//请求 demo/hello.do
+			var url = "demo/hello.do";
+			$.ajax({
+				url:url,
+				type:"get",
+				dataType:"json",
+				success:function(json){
+					//json : DemoBean name, age, phone
+					console.log(json);
+					var name=json.name;
+					var age = json.age;
+					var phone = json.phone;
+					$("#demo").empty().append(
+						$("<ul></ul>").append(
+							$("<li></li>").append(name)
+						).append(
+							$("<li></li>").append(age)
+						).append(
+							$("<li></li>").append(phone)
+						)
+					);
+				}
+			});
+		}
+		
+		function aryDemo(){
+			var url='demo/ary.do';
+			$.getJSON(url, function(json){
+				console.log(json);
+				// $('#demo').append() ....
+				$("#demo").empty();
+				for(var i=0; i<json.length; i++){
+					$("#demo").append(json[i]+" ");
+				}
+			});
+		}
+		
+		function listDemo(){
+			var url='demo/list.do';
+			$.getJSON(url, function(json){
+				console.log(json);
+				$('#demo').empty();
+				//服务器发送的List到了浏览器中是数组
+				for(var i=0; i<json.length; i++){
+					$('#demo').append(json[i]+" ");
+				}
+			});
+		}
+		
+		function mapDemo(){
+			var url='demo/map.do';
+			$.getJSON(url, function(json){
+				console.log(json);
+				//服务器发送到客户端的Map, 在客户端可以
+				//看做是JSON对象. map的key是json对象属性
+				var name=json.name;
+				var age = json.age;
+				var phone = json.phone;
+				$('#demo').empty()
+					.append(name+' ')
+					.append(age+' ')
+					.append(phone);
+			});
+		}
+		
+	</script>
+	</head>
+	<body>
+		<h1>Spring MVC Ajax Demo</h1>
+		<input type="button" onclick="helloAjax()" 
+			value="Hello">
+		<input type="button" onclick="aryDemo()" 
+			value="ary">
+		<input type="button" onclick="listDemo()" 
+			value="list">
+		<input type="button" onclick="mapDemo()" 
+			value="map">
+		<div id="demo">
+		
+		</div>
+		
+	</body>
+	</html>
+
+部署测试...
+
+## Ajax Post 数据到服务器
+
+在网页中添加 html 控件
+
+	<input id="age" type="text" name="age" >
+	<input type="button" onclick="postData()"
+	   value="post"> 
+
+添加JS代码:
+
+	//将数据发送到服务器
+	function postData(){
+		var age=$('#age').val();
+		var data = {"age":age,
+				"names":["Tom","Jerry"]};
+		var url = 'demo/post.do';
+		//向服务器发起post请求将数据提交到服务器
+		//data: 向服务器发送的数据
+		$.post(url, data, function(json){
+			console.log(json);
+			$('#demo').append(json.toString());
+		});
+	}
+
+> 提示: $.post() 方法是JQuery提供的简化版的$.ajax()方法, 只能向服务器发送post请求, 用于将数据发送到服务器. 其中参数data中的属性就是发送到服务器的数据.
+
+
+开发控制器方法接收参数:
+
+	@RequestMapping("/post.do")
+	@ResponseBody
+	//接收参数名与 JQuery发送端的参数属性名匹配
+	//Jquery发送数组时候发送了 names[], 
+	//接收参数时候需要 @RequestParam("names[]")
+	//与发送端进行匹配接收.
+	public Map<String, Object> postDemo(
+			int age, 
+			@RequestParam("names[]")
+			String[] names){
+		//显示服务器收到的数据
+		System.out.println(age);
+		System.out.println(
+				Arrays.toString(names));
+		Map<String, Object> map = 
+			new HashMap<String, Object>();
+		map.put("state", "success");
+		map.put("age", age);
+		map.put("names", names);
+		return map;
+	}
+
+测试...
+
+
+## MySQL 的使用
+
+### 连接到MySQL
+
+Linux:
+	
+	mysql -uroot -p
+	
+	mysql 命令  
+	-u User Name 用户名, root 是MySQL管理员用户名
+	-p Password 
+
+Windows 使用 MySQL Client 图标, 然后输入安装MySQL时候的root用户密码.
+
+### 列出全部的数据库
+
+	show databases;
+
+案例:
+
+	> show databases;
+	+--------------------+
+	| Database           |
+	+--------------------+
+	| information_schema |
+	| mysql              |
+	| performance_schema |
+	| test               |
+	+--------------------+
+	4 rows in set (0.01 sec)
+
+### 切换当前数据库
+
+	use 数据库名
+
+	> use mysql
+	Database changed
+
+### 显示当前数据库中全部的表
+
+	show tables;	
+	
+	> show tables;
+	+---------------------------+
+	| Tables_in_mysql           |
+	+---------------------------+
+	| columns_priv              |
+	| db                        |
+	| event                     |
+	| func                      |
+	| general_log               |
+	| help_category             |
+	| help_keyword              |
+	| help_relation             |
+	| help_topic                |
+	| host                      |
+	| ndb_binlog_index          |
+	| plugin                    |
+	| proc                      |
+	| procs_priv                |
+	| proxies_priv              |
+	| servers                   |
+	| slow_log                  |
+	| tables_priv               |
+	| time_zone                 |
+	| time_zone_leap_second     |
+	| time_zone_name            |
+	| time_zone_transition      |
+	| time_zone_transition_type |
+	| user                      |
+	+---------------------------+
+	24 rows in set (0.01 sec)
+
+### 创建数据库
+
+	create database 数据库名
+	
+	create database demo; //创建数据库 demo
+	use demo;			  //切换数据库
+	create table myuser(id int, name varchar(100));//建表
+	show tables;		  //显示当前数据库中的表
+
+	//insert 
+	//update 
+	//delete
+
+	drop table myuser;  //删除表
+
+### 删除数据库
+
+	drop database 数据库名
+
+	drop database demo;
+
+### 离开命令
+
+	exit
+
+
+### 成批执行SQL命令
+
+步骤:
+	
+1. 创建文本文件 
+	- init.sql
+	- 文件内容是需要执行的SQL
+		create database mydatabase;
+		use mydatabase;
+		create table person(
+			id int,
+			name varchar(100),
+			age int
+		);
+		insert into person (id, name, age) values (1, 'Tom', 10);
+		insert into person (id, name, age) values (2, 'Jerry', 20);
+2. 在MySQL窗口中执行	source 命令
+	- source init.sql 
+
+	source D:/tts9/workspace/SpringAjax/init.sql
+
+
+### 设置客户端字符编码
+
+	set names utf8
+	
+
+### 初始化云笔记数据库
+
+
+	set names utf8;
+	source D:/note/note_ziliao/cloud_note.sql;
+	use cloud_note;
+	show tabels;
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

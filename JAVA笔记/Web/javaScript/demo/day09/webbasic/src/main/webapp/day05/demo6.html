@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function jc() {
+		var n = 
+			document.getElementById("num").value;
+		var span = 
+			document.getElementById("result");
+		if(isNaN(n)) {
+			span.innerHTML = "请输入数字";
+		} else {
+			console.log("1-----");
+			//"0"
+			console.log(n);
+			n = parseInt(n);
+			if(n<0) {
+				span.innerHTML = "负数没有阶乘";
+			} else if(n) {
+				console.log("2-----");
+				//n>0
+				var c = 1;
+				for(var i=n;i;i--) {
+					c *= i;
+				}
+				span.innerHTML = c;
+			} else {
+				//n=0
+				span.innerHTML = 1;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<p>1.负数没有阶乘</p>
+	<p>2.0的阶乘是1</p>
+	<p>3.正整数n的阶乘=1*2*3*...*n</p>
+	<p>
+		<input type="text" id="num"/>
+		<input type="button" value="阶乘"
+			onclick="jc();"/>
+		= <span id="result"></span>
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

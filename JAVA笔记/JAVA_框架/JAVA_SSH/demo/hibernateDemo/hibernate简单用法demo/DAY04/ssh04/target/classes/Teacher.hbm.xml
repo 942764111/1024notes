@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tedu.entity.Teacher"
+			 table="teacher" >
+		<!-- 定义主键映射 -->
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<!-- 定义非主键映射 -->
+		<property name="name" column="name"
+					 type="string" />
+	</class>
+</hibernate-mapping>
+
+
+
+

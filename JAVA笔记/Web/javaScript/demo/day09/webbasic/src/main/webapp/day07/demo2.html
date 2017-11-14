@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#watch {
+		border: 1px solid red;
+		width: 150px;
+		text-align: center;
+		font-size: 20px;
+		height: 30px;
+		line-height: 30px;
+	}
+</style>
+<script>
+	var id;
+	function start() {
+		if(id) {
+			//id非空，说明定时器已启动，不必再次启动
+			return;
+		}
+		//启动定时器
+		id = setInterval(function(){
+			//获取当前时间
+			var date = new Date();
+			//将其写入段落
+			var p = document.getElementById("watch");
+			p.innerHTML = date.toLocaleTimeString();
+		},1000);
+	}
+	function stop() {
+		clearInterval(id);
+		//清空id，以便于下次启动定时器
+		id = null;
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="开始"
+		onclick="start();"/>
+	<input type="button" value="停止"
+		onclick="stop();"/>
+	<p id="watch"></p>
+</body>
+</html>
+
+
+
+
+
+
+
+

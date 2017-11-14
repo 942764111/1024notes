@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://www.cnblogs.com/viviman/archive/2013/01/14/2860198.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/id.php" charset="utf-8"></script><script async="" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/widget"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/bundle-Cogitation.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/bundle-Cogitation-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/viviman/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/viviman/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/viviman/wlwmanifest.xml">
+<script src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'viviman', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body><link href="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/jiathis_share.css" rel="stylesheet" type="text/css"><div class="jiathis_style" style="height: auto; position: fixed; z-index: 100000000; top: 150px; right: 0px; overflow: hidden; width: 26px;"><table cellpadding="0" cellspacing="0"><tbody style="background:transparent"><tr><td style="background:transparent"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/r.gif" style="cursor:pointer;" onmouseover="$CKE.over()" onclick="$CKE.center(this)"></td><td><div><div class="jiadiv_01"><div style="width:100%;background:#F2F2F2;border-bottom:1px solid #E5E5E5;line-height:200%;padding-left:5px;font-size:12px"><table width="100%"><tbody><tr class="jt_sharetitle"><td align="left" style="text-align:left;line-height:25px;font-size:14px;font-weight:bold;color:#000000;">分享到...</td><td align="right" style="text-align:right;"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/img_exit.gif" border="0" style="opacity:0.5;filter:alpha(opacity=50);margin:0 10px;cursor:pointer;" onclick="$CKE.shareClose();"></td></tr></tbody></table></div><div class="jiadiv_02" style="width:100%;" id="jiathis_sers"><a href="javascript:;" onclick="jiathis_sendto(&#39;weixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_weixin">微信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">微博</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_cqq">QQ好友</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">印象笔记</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">领英</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ishare&#39;);return false;" class="jiatitle"><span class="jtico jtico_ishare">一键分享</span></a><a href="javascript:;" onclick="$CKE.center(this);return false;" class="jiatitle"><span class="jtico jtico_jiathis">查看更多(96)</span></a><div style="clear:both"></div></div><div class="ckepopBottom" style="width:100%;"><div style="float:left;font-size:10px"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;display:none;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 5px 0 0;"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/img_012.gif" align="absmiddle" border="0"><a href="http://www.jiathis.com/index2" style="color:#333333;padding:0 3px;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></td></tr></tbody></table></div><iframe frameborder="0" style="position: absolute; display: none;" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/saved_resource.html"></iframe><div class="jiathis_style" style="height: auto; position: absolute; z-index: 100000000; display: none; top: 50%; left: 50%; overflow: auto;"><div style="border:10px solid #7F7F7F; width:300px;"><div class="jiadiv_01" style="width:300px;"><div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;"><table width="100%" style="margin:5px 0 0 0;"><tbody><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"></td></tr></tbody></table></div><div class="searchTxtCont"><div style="background:url(http://v3.jiathis.com/code/images/img_so.gif) no-repeat center;height:30px; width:281px"><form onsubmit="return false;"><input class="searchTxt" name="" type="text" onclick="this.value=&#39;&#39;;this.style.color=&#39;#000&#39;;" value="输入网站名或拼音缩写" onkeyup="$CKE.choose(this);"></form></div></div><div id="jiathis_sharelist" class="jiadiv_02" style="width:300px;height:300px;overflow-y:auto;"><a href="javascript:;" onclick="jiathis_sendto(&#39;weixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_weixin">微信</span><input type="hidden" value="weixin,微信,wx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">微博</span><input type="hidden" value="tsina,微博,xlwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_cqq">QQ好友</span><input type="hidden" value="cqq,QQ好友,cqq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span><input type="hidden" value="qzone,QQ空间,qqkj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span><input type="hidden" value="copy,复制网址,fzwz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fav&#39;);return false;" class="jiatitle"><span class="jtico jtico_fav">收藏夹</span><input type="hidden" value="fav,收藏夹,scj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;print&#39;);return false;" class="jiatitle"><span class="jtico jtico_print">打印</span><input type="hidden" value="print,打印,dy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span><input type="hidden" value="email,邮件,yj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span><input type="hidden" value="renren,人人网,rrw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span><input type="hidden" value="kaixin001,开心网,kxw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">印象笔记</span><input type="hidden" value="evernote,印象笔记,evernote"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">领英</span><input type="hidden" value="linkedin,领英,linkedin"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span><input type="hidden" value="feixin,飞信,fx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span><input type="hidden" value="douban,豆瓣,db"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span><input type="hidden" value="twitter,Twitter,twitter"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span><input type="hidden" value="fb,Facebook,facebook"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ishare&#39;);return false;" class="jiatitle"><span class="jtico jtico_ishare">一键分享</span><input type="hidden" value="ishare,一键分享,yjfx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ujian&#39;);return false;" class="jiatitle"><span class="jtico jtico_ujian">猜你喜欢</span><input type="hidden" value="ujian,猜你喜欢,cnxh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;yixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_yixin">易信</span><input type="hidden" value="yixin,易信,yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;huaban&#39;);return false;" class="jiatitle"><span class="jtico jtico_huaban">花瓣网</span><input type="hidden" value="huaban,花瓣网,hbw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_tqq">腾讯微博</span><input type="hidden" value="tqq,腾讯微博,txwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;googleplus&#39;);return false;" class="jiatitle"><span class="jtico jtico_googleplus">Google+</span><input type="hidden" value="googleplus,Google+,googlej"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;alibaba&#39;);return false;" class="jiatitle"><span class="jtico jtico_alibaba">阿里巴巴</span><input type="hidden" value="alibaba,阿里巴巴,albb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;xiaoyou&#39;);return false;" class="jiatitle"><span class="jtico jtico_xiaoyou">朋友网</span><input type="hidden" value="xiaoyou,朋友网,pyw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;sdonote&#39;);return false;" class="jiatitle"><span class="jtico jtico_sdonote">麦库记事</span><input type="hidden" value="sdonote,麦库记事,mkjs"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;baidu&#39;);return false;" class="jiatitle"><span class="jtico jtico_baidu">百度搜藏</span><input type="hidden" value="baidu,百度搜藏,bdsc"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;gmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_gmail">Gmail邮箱</span><input type="hidden" value="gmail,Gmail邮箱,gmailyx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ydnote&#39;);return false;" class="jiatitle"><span class="jtico jtico_ydnote">有道云笔记</span><input type="hidden" value="ydnote,有道云笔记,ydybj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tianya&#39;);return false;" class="jiatitle"><span class="jtico jtico_tianya">天涯社区</span><input type="hidden" value="tianya,天涯社区,tysq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tieba&#39;);return false;" class="jiatitle"><span class="jtico jtico_tieba">百度贴吧</span><input type="hidden" value="tieba,百度贴吧,bdtb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qingbiji&#39;);return false;" class="jiatitle"><span class="jtico jtico_qingbiji">轻笔记</span><input type="hidden" value="qingbiji,轻笔记,qbj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tifeng&#39;);return false;" class="jiatitle"><span class="jtico jtico_tifeng">凤凰微博</span><input type="hidden" value="tifeng,凤凰微博,fhwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;fanfou&#39;);return false;" class="jiatitle"><span class="jtico jtico_fanfou">饭否</span><input type="hidden" value="fanfou,饭否,ff"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mingdao&#39;);return false;" class="jiatitle"><span class="jtico jtico_mingdao">明道</span><input type="hidden" value="mingdao,明道,md"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;douban9dian&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban9dian">豆瓣9点</span><input type="hidden" value="douban9dian,豆瓣9点,db9d"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;google&#39;);return false;" class="jiatitle"><span class="jtico jtico_google">谷歌</span><input type="hidden" value="google,谷歌,gg"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;buzz&#39;);return false;" class="jiatitle"><span class="jtico jtico_buzz">谷歌Buzz</span><input type="hidden" value="buzz,谷歌Buzz,ggbuzz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;youdao&#39;);return false;" class="jiatitle"><span class="jtico jtico_youdao">有道书签</span><input type="hidden" value="youdao,有道书签,ydsq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;qq&#39;);return false;" class="jiatitle"><span class="jtico jtico_qq">QQ书签</span><input type="hidden" value="qq,QQ书签,qqsq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;msn&#39;);return false;" class="jiatitle"><span class="jtico jtico_msn">MSN</span><input type="hidden" value="msn,MSN,msn"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pinterest&#39;);return false;" class="jiatitle"><span class="jtico jtico_pinterest">Pinterest</span><input type="hidden" value="pinterest,Pinterest,pinterest"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;duitang&#39;);return false;" class="jiatitle"><span class="jtico jtico_duitang">堆糖</span><input type="hidden" value="duitang,堆糖,dt"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tyaolan&#39;);return false;" class="jiatitle"><span class="jtico jtico_tyaolan">摇篮微博</span><input type="hidden" value="tyaolan,摇篮微博,ylwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hi&#39;);return false;" class="jiatitle"><span class="jtico jtico_hi">百度空间</span><input type="hidden" value="hi,百度空间,bdkj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hotmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_hotmail">Hotmail邮箱</span><input type="hidden" value="hotmail,Hotmail邮箱,hotmailyx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;xqw&#39;);return false;" class="jiatitle"><span class="jtico jtico_xqw">雪球</span><input type="hidden" value="xqw,雪球,xqw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;hexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_hexun">和讯</span><input type="hidden" value="hexun,和讯,hx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;139mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_139mail">139邮箱</span><input type="hidden" value="139mail,139邮箱,139yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;189mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_189mail">189邮箱</span><input type="hidden" value="189mail,189邮箱,189yx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;189cn&#39;);return false;" class="jiatitle"><span class="jtico jtico_189cn">翼友圈</span><input type="hidden" value="189cn,翼友圈,yyq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tpeople&#39;);return false;" class="jiatitle"><span class="jtico jtico_tpeople">人民微博</span><input type="hidden" value="tpeople,人民微博,rmwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;txinhua&#39;);return false;" class="jiatitle"><span class="jtico jtico_txinhua">新华微博</span><input type="hidden" value="txinhua,新华微博,xhwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;translate&#39;);return false;" class="jiatitle"><span class="jtico jtico_translate">谷歌翻译</span><input type="hidden" value="translate,谷歌翻译,ggfy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tuita&#39;);return false;" class="jiatitle"><span class="jtico jtico_tuita">推他</span><input type="hidden" value="tuita,推他,tt"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mop&#39;);return false;" class="jiatitle"><span class="jtico jtico_mop">猫扑推客</span><input type="hidden" value="mop,猫扑推客,mptk"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;meilishuo&#39;);return false;" class="jiatitle"><span class="jtico jtico_meilishuo">美丽说</span><input type="hidden" value="meilishuo,美丽说,mls"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mogujie&#39;);return false;" class="jiatitle"><span class="jtico jtico_mogujie">蘑菇街</span><input type="hidden" value="mogujie,蘑菇街,mgj"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;ganniu&#39;);return false;" class="jiatitle"><span class="jtico jtico_ganniu">赶牛网</span><input type="hidden" value="ganniu,赶牛网,gnw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;poco&#39;);return false;" class="jiatitle"><span class="jtico jtico_poco">Poco网</span><input type="hidden" value="poco,Poco网,pocow"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;leihou&#39;);return false;" class="jiatitle"><span class="jtico jtico_leihou">雷猴网</span><input type="hidden" value="leihou,雷猴网,lhw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;thexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_thexun">和讯微博</span><input type="hidden" value="thexun,和讯微博,hxwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;dream163&#39;);return false;" class="jiatitle"><span class="jtico jtico_dream163">游戏江湖</span><input type="hidden" value="dream163,游戏江湖,yxjh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;jcrb&#39;);return false;" class="jiatitle"><span class="jtico jtico_jcrb">法律微博</span><input type="hidden" value="jcrb,法律微博,flwb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;tumblr&#39;);return false;" class="jiatitle"><span class="jtico jtico_tumblr">Tumblr</span><input type="hidden" value="tumblr,Tumblr,tumblr"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;reddit&#39;);return false;" class="jiatitle"><span class="jtico jtico_reddit">Reddit</span><input type="hidden" value="reddit,Reddit,reddit"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;instapaper&#39;);return false;" class="jiatitle"><span class="jtico jtico_instapaper">Instapaper</span><input type="hidden" value="instapaper,Instapaper,instapaper"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pocket&#39;);return false;" class="jiatitle"><span class="jtico jtico_pocket">Pocket</span><input type="hidden" value="pocket,Pocket,pocket"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;caimi&#39;);return false;" class="jiatitle"><span class="jtico jtico_caimi">财迷</span><input type="hidden" value="caimi,财迷,cm"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;iwo&#39;);return false;" class="jiatitle"><span class="jtico jtico_iwo">WO+分享</span><input type="hidden" value="iwo,WO+分享,iwo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;waakee&#39;);return false;" class="jiatitle"><span class="jtico jtico_waakee">挖客网</span><input type="hidden" value="waakee,挖客网,wkw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;cyzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_cyzone">创业邦</span><input type="hidden" value="cyzone,创业邦,cyb"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;99earth&#39;);return false;" class="jiatitle"><span class="jtico jtico_99earth">救救地球</span><input type="hidden" value="99earth,救救地球,jjdq"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;chouti&#39;);return false;" class="jiatitle"><span class="jtico jtico_chouti">抽屉网</span><input type="hidden" value="chouti,抽屉网,ctw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;dig24&#39;);return false;" class="jiatitle"><span class="jtico jtico_dig24">递客网</span><input type="hidden" value="dig24,递客网,dkw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;yijee&#39;);return false;" class="jiatitle"><span class="jtico jtico_yijee">易集网</span><input type="hidden" value="yijee,易集网,yjw"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pdfonline&#39;);return false;" class="jiatitle"><span class="jtico jtico_pdfonline">Pdf在线转换</span><input type="hidden" value="pdfonline,Pdf在线转换,pdfzxzh"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;printfriendly&#39;);return false;" class="jiatitle"><span class="jtico jtico_printfriendly">友好打印</span><input type="hidden" value="printfriendly,友好打印,yhdy"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;w3c&#39;);return false;" class="jiatitle"><span class="jtico jtico_w3c">W3c验证</span><input type="hidden" value="w3c,W3c验证,w3cyz"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;bitly&#39;);return false;" class="jiatitle"><span class="jtico jtico_bitly">Bit.ly</span><input type="hidden" value="bitly,Bit.ly,bitly"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;digg&#39;);return false;" class="jiatitle"><span class="jtico jtico_digg">Digg</span><input type="hidden" value="digg,Digg,digg"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mailru&#39;);return false;" class="jiatitle"><span class="jtico jtico_mailru">Mail.ru</span><input type="hidden" value="mailru,Mail.ru,mail.ru"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;diigo&#39;);return false;" class="jiatitle"><span class="jtico jtico_diigo">Diigo</span><input type="hidden" value="diigo,Diigo,diigo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;friendfeed&#39;);return false;" class="jiatitle"><span class="jtico jtico_friendfeed">FriendFeed</span><input type="hidden" value="friendfeed,FriendFeed,friendfeed"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;myspace&#39;);return false;" class="jiatitle"><span class="jtico jtico_myspace">Myspace</span><input type="hidden" value="myspace,Myspace,myspace"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;mixx&#39;);return false;" class="jiatitle"><span class="jtico jtico_mixx">Mixx</span><input type="hidden" value="mixx,Mixx,mixx"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;netlog&#39;);return false;" class="jiatitle"><span class="jtico jtico_netlog">NetLog</span><input type="hidden" value="netlog,NetLog,netlog"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;netvibes&#39;);return false;" class="jiatitle"><span class="jtico jtico_netvibes">Netvibes</span><input type="hidden" value="netvibes,Netvibes,netvibes"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;phonefavs&#39;);return false;" class="jiatitle"><span class="jtico jtico_phonefavs">Phonefavs</span><input type="hidden" value="phonefavs,Phonefavs,phonefavs"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;pingfm&#39;);return false;" class="jiatitle"><span class="jtico jtico_pingfm">Ping.fm</span><input type="hidden" value="pingfm,Ping.fm,ping.fm"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;plaxo&#39;);return false;" class="jiatitle"><span class="jtico jtico_plaxo">Plaxo</span><input type="hidden" value="plaxo,Plaxo,plaxo"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;delicious&#39;);return false;" class="jiatitle"><span class="jtico jtico_delicious">Delicious</span><input type="hidden" value="delicious,Delicious,delicious"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;wong&#39;);return false;" class="jiatitle"><span class="jtico jtico_wong">Mister Wong</span><input type="hidden" value="wong,Mister Wong,misterwong"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;stumbleupon&#39;);return false;" class="jiatitle"><span class="jtico jtico_stumbleupon">Stumbleupon</span><input type="hidden" value="stumbleupon,Stumbleupon,stumbleupon"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;plurk&#39;);return false;" class="jiatitle"><span class="jtico jtico_plurk">Plurk</span><input type="hidden" value="plurk,Plurk,plurk"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;funp&#39;);return false;" class="jiatitle"><span class="jtico jtico_funp">Funp</span><input type="hidden" value="funp,Funp,funp"></a><a href="javascript:;" onclick="jiathis_sendto(&#39;myshare&#39;);return false;" class="jiatitle"><span class="jtico jtico_myshare">Myshare</span><input type="hidden" value="myshare,Myshare,myshare"></a><div style="clear:both"></div></div><div class="centerBottom"><div style="float:left;font-size:10px;"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;display:none;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 10px 0 0;"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/img_012.gif" align="absmiddle" border="none">&nbsp;<a href="http://www.jiathis.com/index2" style="color:#333333;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></div><iframe frameborder="0" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/jiathis_utility.html" style="display: none;"></iframe>
+<a name="top"></a>
+<div id="page_begin_html"><!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END --></div><script>load_page_begin_html();</script>
+
+<div id="top">
+	
+<div>
+	<table>
+		<tbody><tr>
+			<td class="HeaderTitles">
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/viviman/">智慧的老鸟</a></h1>
+				<p id="tagline">一个程序员需要有一棵Gank的心，Dota能培养我。</p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="HeaderBar">
+	<table id="HeaderBar" class="HeaderBar" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td class="HeaderBarTab" nowrap="">
+&nbsp;
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a> ::
+<a id="blog_nav_myhome" href="http://www.cnblogs.com/viviman/">首页</a> ::
+<a href="http://q.cnblogs.com/" class="menu">博问</a> ::
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> ::
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> ::
+<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%99%BA%E6%85%A7%E7%9A%84%E8%80%81%E9%B8%9F">联系</a> ::
+<a id="blog_nav_rss" href="http://www.cnblogs.com/viviman/rss">订阅</a>
+<a id="blog_nav_rss_image" class="XMLLink" href="http://www.cnblogs.com/viviman/rss"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/xml.gif" alt="订阅"></a> ::
+<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a> ::
+
+</td>
+			<td><img id="Header1_BlueTab" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/BlueTabRight.gif" align="absmiddle"></td>
+			<td class="HeaderBarTabBack" nowrap="" width="100%">
+				<div id="blog_stats">
+<div class="BlogStatsBar">
+	<table class="BlogStatsBar">
+		<tbody><tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap="">
+				&nbsp;
+				83 
+				随笔&nbsp;::
+				0 文章
+				::
+				10 评论
+				::
+				0 引用
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<div id="leftmenu">	
+
+	    <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/12/01&#39;);return false;">&lt;</a></td><td align="center">2017年1月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/02/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalTodayDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"><!-- 博客园新闻频道引用代码 num-显示条数 -->
+<a href="http://news.cnblogs.com/">IT新闻:</a><br><div style="display: none" id="__document_write_ajax_div-1"></div><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/viviman/">智慧的老鸟</a><br>园龄：<a href="http://home.cnblogs.com/u/viviman/" title="入园时间：2011-12-01">5年1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/viviman/followers/">28</a><br>关注：<a href="http://home.cnblogs.com/u/viviman/followees/">0</a><div id="p_b_follow"></div><div style="display: none" id="__document_write_ajax_div-2"></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_recentposts" class="sidebar-block">
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/viviman/archive/2013/03/27/2983937.html">1. Java和eclipse常用操作</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/26/2982681.html">2. 我在csdn有一个新家啦</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/21/2973539.html">3. hbase配置详解</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/20/2971141.html">4. Java 程序打包安装过程</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/20/2970475.html">5. zookeeper c api 常见变量注释</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/18/2966632.html">6. zoo_add_auth 参数无效问题</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/14/2959431.html">7. zookeeper c api 之Stat结构</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/12/2955107.html">8. zookeeper C API 的安装和使用指南</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954118.html">9. zookeeper如何永久监听</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954106.html">10. zookeeper安装配置</a></li>
+</ul>
+</div>
+</div><div id="sidebar_categories">
+		<h3>随笔分类<span style="font-size:11px;font-weight:normal">(82)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/viviman/category/429967.html">c++(7)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/viviman/category/444566.html">java(5)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/viviman/category/339651.html">javascript(4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/viviman/category/429966.html">linux(11)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/viviman/category/429968.html">linux服务器(4)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/viviman/category/429973.html">web</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/viviman/category/429969.html">并行计算/cuda(20)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/viviman/category/444565.html">分布式计算/hadoop(12)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/viviman/category/429970.html">嵌入式系统(2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/viviman/category/429974.html">生活随笔(5)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/viviman/category/429975.html">数据库(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/viviman/category/429971.html">算法(6)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/viviman/category/429972.html">应用技术(3)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案<span style="font-size:11px;font-weight:normal">(83)</span></h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/viviman/archive/2013/03.html">2013年3月 (10)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/viviman/archive/2013/02.html">2013年2月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/viviman/archive/2013/01.html">2013年1月 (10)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/viviman/archive/2012/12.html">2012年12月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/viviman/archive/2012/11.html">2012年11月 (27)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/viviman/archive/2012/10.html">2012年10月 (29)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/viviman/archive/2011/12.html">2011年12月 (4)</a> </li>
+			
+				</ul>
+			
+	</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		88479
+	</li><li>
+		排名 -
+		2649
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/viviman/archive/2012/12/24/2830610.html#3536113">1. Re:从CUDA开始读OpenCL</a></li>
+        <li class="recent_comment_body">虽然，仅仅一个helloword可能没什么意义，但是，象征性的程序必须写起来。</li>
+        <li class="recent_comment_author">--一晌贪欢</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/viviman/archive/2013/01/29/2881784.html#3423496">2. Re:hive数据仓库摘录和总结</a></li>
+        <li class="recent_comment_body">垃圾</li>
+        <li class="recent_comment_author">--萌悦</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/viviman/archive/2013/02/06/2907631.html#3345444">3. Re:Hive操作语句的使用实例讲解</a></li>
+        <li class="recent_comment_body">ESCAPED BY '\\'   <br>请问这是什么意思</li>
+        <li class="recent_comment_author">--乔戈里</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/viviman/archive/2013/01/15/2861725.html#3039690">4. Re:如何在eclipse上调试hadoop的笔记</a></li>
+        <li class="recent_comment_body">你好，请问我在debug wordcount的时候，在程序进入到JobTracker执行时，由于这部分用到了动态代理，所以没法看到作业在JobTracker中的执行过程。这种情况我该怎么debug呢？......</li>
+        <li class="recent_comment_author">--有无之中</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954118.html#2939356">5. Re:zookeeper如何永久监听</a></li>
+        <li class="recent_comment_body">@瀑布飞鹰要注意的是监听到后，需要继续监听，不然第二次就无法捕捉到事件了...</li>
+        <li class="recent_comment_author">--智慧的老鸟</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/viviman/archive/2012/11/21/2780562.html">1. mongodb的查询语句学习摘要(35171)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/02/06/2907631.html">2. Hive操作语句的使用实例讲解(27464)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954118.html">3. zookeeper如何永久监听(18538)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/21/2973539.html">4. hbase配置详解(16182)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954106.html">5. zookeeper安装配置(10727)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/viviman/archive/2012/11/05/2775100.html">1. win7+vs2008+cuda5.x 环境配置二(3)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/03/11/2954118.html">2. zookeeper如何永久监听(3)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/02/06/2907631.html">3. Hive操作语句的使用实例讲解(1)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/01/29/2881784.html">4. hive数据仓库摘录和总结(1)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2013/01/15/2861725.html">5. 如何在eclipse上调试hadoop的笔记(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/viviman/archive/2012/11/21/2780562.html">1. mongodb的查询语句学习摘要(3)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2012/11/28/2792524.html">2. 从0开始学习《GPU高性能运算之CUDA》——3(2)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2012/11/28/2792521.html">3. 从0开始学习《GPU高性能运算之CUDA》——2(2)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2012/10/16/2775117.html">4. linux服务器开发浅谈(2)</a></li><li><a href="http://www.cnblogs.com/viviman/archive/2012/10/11/2775124.html">5. [转载]linux下 open() write() read() close函数(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+<div id="main">
+	
+<div id="post_detail">
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860198.html">Java容器——JSTL学习笔记</a>
+	</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><p class="p0">Java<span style="font-family: 宋体;">容器类包含</span><a href="http://baike.baidu.com/view/986776.htm">List</a>、<a href="http://baike.baidu.com/view/1827383.htm">ArrayList</a>、<a href="http://baike.baidu.com/view/184178.htm">Vector</a>及<a href="http://baike.baidu.com/view/95826.htm">map</a>、<a href="http://baike.baidu.com/view/1641943.htm">HashTable</a>、<a href="http://baike.baidu.com/view/1487140.htm">HashMap</a>、<span style="font-family: Tahoma;">Hashset</span></p>
+<p class="p0"><a href="http://baike.baidu.com/view/1827383.htm">ArrayList</a>和<a href="http://baike.baidu.com/view/1487140.htm">HashMap</a>是异步的，<a href="http://baike.baidu.com/view/184178.htm">Vector</a>和<a href="http://baike.baidu.com/view/1641943.htm">HashTable</a>是同步的，所以<a href="http://baike.baidu.com/view/184178.htm">Vector</a>和<a href="http://baike.baidu.com/view/1641943.htm">HashTable</a>是<a href="http://baike.baidu.com/view/1053.htm">线程</a>安全的，而&nbsp;<a href="http://baike.baidu.com/view/1827383.htm">ArrayList</a>和<a href="http://baike.baidu.com/view/1487140.htm">HashMap</a>并不是线程安全的。因为同步需要花费机器时间，所以<span style="font-family: Tahoma;">Vector</span><span style="font-family: 宋体;">和</span><span style="font-family: Tahoma;">HashTable</span><span style="font-family: 宋体;">的执行效率要低于&nbsp;</span><span style="font-family: Tahoma;">ArrayList</span><span style="font-family: 宋体;">和</span><span style="font-family: Tahoma;">HashMap</span><span style="font-family: 宋体;">。</span></p>
+<p class="p0">由<span style="font-family: Tahoma;">Collection</span><span style="font-family: 宋体;">接口派生的两个接口是</span><span style="font-family: Tahoma;">List</span><span style="font-family: 宋体;">和</span><span style="font-family: Tahoma;">Set</span><span style="font-family: 宋体;">。</span></p>
+<p class="p0">List<span style="font-family: 宋体;">是有序、重复的集合，</span><span style="font-family: Tahoma;">set</span><span style="font-family: 宋体;">是无需不可重复的集合。</span></p>
+<p class="p0">Java<span style="font-family: 宋体;">中的“</span><span style="font-family: Tahoma;">STL</span><span style="font-family: 宋体;">”可以从</span><span style="font-family: Tahoma;">C++</span><span style="font-family: 宋体;">中进行衍生理解，</span><span style="font-family: Tahoma;">Java</span><span style="font-family: 宋体;">拥有了</span><span style="font-family: Tahoma;">C++</span><span style="font-family: 宋体;">的</span><span style="font-family: Tahoma;">STL</span><span style="font-family: 宋体;">功能，这些功能类被封装在</span><span style="font-family: Tahoma;">java.util</span><span style="font-family: 宋体;">包内，以下简称这些类的统称为</span><span style="font-family: Tahoma;">J-STL</span><span style="font-family: 宋体;">。</span></p>
+<p class="p0">util<span style="font-family: 宋体;">定义了如下接口，</span><span style="font-family: Tahoma;">J-STL</span><span style="font-family: 宋体;">主要实现了以下几个接口——斜体字表示</span></p>
+<p class="p0">Collection&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">List&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">Observer</p>
+<p class="p0">Comparator&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">ListIterator&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">Set&nbsp;(Java&nbsp;2)</p>
+<p class="p0">Enumeration&nbsp;Map&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">SortedMap&nbsp;(Java&nbsp;2)</p>
+<p class="p0">EventListener&nbsp;</p>
+<p class="p0">Map.Entry&nbsp;(Java&nbsp;2)&nbsp;</p>
+<p class="p0">SortedSet&nbsp;(Java&nbsp;2)</p>
+<p class="p0">Iterator&nbsp;(Java&nbsp;2)</p>
+<p class="p0">我们所使用的J-STL<span style="font-family: 宋体;">类都是这些接口的某个实现。下面是简单的部分介绍。</span></p>
+<h2>Collection接口</h2>
+<p class="p0">Collection&nbsp;能使你操作对象组，它位于类集层次结构的顶层。Collection接口是构造类集框架的基础。它声明所有类集都将拥有的核心方法。</p>
+<p class="p0">一个类集不能直接存储类型int，char，double等的值，如果要使用这些类型，则使用对象，比如new&nbsp;Integer(1)。</p>
+<p class="p0">常用的使用方法如下：</p>
+<p class="p0">boolean&nbsp;add(Object&nbsp;obj)&nbsp;将obj加入到调用类集中。如果obj被加入到类集中了，则返回true；如果obj已经是类集中的一个成员或类集不能被复制时，则返回false</p>
+<p class="p0">boolean&nbsp;addAll(Collection&nbsp;c)&nbsp;将c中的所有元素都加入到调用类集中，如果操作成功（也就是说元素被加入了），则返回true；否则返回false</p>
+<p class="p0">void&nbsp;clear(&nbsp;)&nbsp;从调用类集中删除所有元素</p>
+<p class="p0">boolean&nbsp;contains(Object&nbsp;obj)&nbsp;如果obj是调用类集的一个元素，则返回true，否则，返回false</p>
+<p class="p0">boolean&nbsp;containsAll(Collection&nbsp;c)&nbsp;如果调用类集包含了c中的所有元素，则返回true；否则，返回false</p>
+<p class="p0">boolean&nbsp;equals(Object&nbsp;obj)&nbsp;如果调用类集与obj相等，则返回true；否则返回false</p>
+<p class="p0">int&nbsp;hashCode(&nbsp;)&nbsp;返回调用类集的散列码</p>
+<p class="p0">boolean&nbsp;isEmpty(&nbsp;)&nbsp;如果调用类集是空的，则返回true；否则返回false</p>
+<p class="p0">Iterator&nbsp;iterator(&nbsp;)&nbsp;返回调用类集的迭代程序</p>
+<p class="p0">Boolean&nbsp;remove(Object&nbsp;obj)&nbsp;从调用类集中删除obj的一个实例。如果这个元素被删除了，则返回true；否则返回false</p>
+<p class="p0">Boolean&nbsp;removeAll(Collection&nbsp;c)&nbsp;从调用类集中删除c的所有元素。如果类集被改变了（也就是说元素被删除了），则返回true；否则返回false</p>
+<p class="p0">Boolean&nbsp;retainAll(Collection&nbsp;c)&nbsp;删除调用类集中除了包含在c中的元素之外的全部元素。如果类集被改变了（也就是说元素被删除了），则返回true，否则返回false</p>
+<p class="p0">int&nbsp;size(&nbsp;)&nbsp;返回调用类集中元素的个数</p>
+<h2>List<span style="font-family: 黑体;">接口</span></h2>
+<p class="p0">List<span style="font-family: 宋体;">接口相当于链表，无序、可重复。</span></p>
+<h3>&nbsp;ArrayList类</h3>
+<p class="p0">ArrayList类扩展AbstractList并执行List接口。ArrayList支持可随需要而增长的动态数</p>
+<p class="p0">组。在Java中，标准数组是定长的。在数组创建之后，它们不能被加长或缩短，这也就意</p>
+<p class="p0">味着你必须事先知道数组可以容纳多少元素。但是，你直到运行时才能知道需要多大的数</p>
+<p class="p0">组。为了解决这个问题，类集框架定义了ArrayList。本质上，ArrayList是对象引用的一个</p>
+<p class="p0">变长数组。也就是说，ArrayList能够动态地增加或减小其大小。数组列表以一个原始大小</p>
+<p class="p0">被创建。当超过了它的大小，类集自动增大。当对象被删除后，数组就可以缩小。</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">Vector类</p>
+<p class="p0">Vector实现动态数组。这与ArrayList相似，但两者不同的是：Vector是同步的，并且它</p>
+<p class="p0">包含了许多不属于类集框架的从以前版本遗留下来的方法。随着Java&nbsp;2的公布，Vector被重</p>
+<p class="p0">新设计来扩展AbstractList和实现List接口。如果没有指定增量，在每个分配周期，矢量的大小增一倍。</p>
+<p class="p0">Stack类</p>
+<p class="p0">Stack是Vector的一个子类，它实现标准的后进先出堆栈</p>
+<h3>LinkedList类</h3>
+<p class="p0">LinkedList类扩展AbstractSequentialList并执行List接口。它提供了一个链接列表数据结</p>
+<p class="p0">构。</p>
+<p class="p0">显然要理解ArrayList和LinkedList这两种数据结构，可以类比到链表和数组的异同。</p>
+<p class="p0">前者插入到中间的元素对后面的元素造成了移位，效率低，而后者不需要。例子：</p>
+<p class="p0">private&nbsp;static&nbsp;void&nbsp;testArrayListandLinkedList(){</p>
+<p class="p0">long&nbsp;start&nbsp;=&nbsp;System.currentTimeMillis();</p>
+<p class="p0">List&lt;String&gt;&nbsp;list1&nbsp;=&nbsp;new&nbsp;ArrayList&lt;String&gt;();</p>
+<p class="p0">for(int&nbsp;i=0;i&lt;10000;i++){</p>
+<p class="p0">list1.add(0,"hello");</p>
+<p class="p0">}</p>
+<p class="p0">long&nbsp;end&nbsp;=&nbsp;System.currentTimeMillis();</p>
+<p class="p0">System.out.println("start:"+&nbsp;start&nbsp;+&nbsp;"&nbsp;end:"+end+"&nbsp;time&nbsp;use&nbsp;:"+&nbsp;(end-start)+"ms");</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">start&nbsp;=&nbsp;System.currentTimeMillis();</p>
+<p class="p0">List&lt;String&gt;&nbsp;list2&nbsp;=&nbsp;new&nbsp;LinkedList&lt;String&gt;();</p>
+<p class="p0">for(int&nbsp;i=0;i&lt;10000;i++){</p>
+<p class="p0">list2.add(0,"hello");</p>
+<p class="p0">}</p>
+<p class="p0">end&nbsp;=&nbsp;System.currentTimeMillis();</p>
+<p class="p0">System.out.println("start:"+&nbsp;start&nbsp;+&nbsp;"&nbsp;end:"+end+"&nbsp;time&nbsp;use&nbsp;:"+&nbsp;(end-start)+"ms");</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">}</p>
+<p class="p0">同样都插入到第一个元素，LinkedList的效率高的多：</p>
+<p class="p0">start:1358144834832&nbsp;end:1358144834874&nbsp;time&nbsp;use&nbsp;:42ms</p>
+<p class="p0">start:1358144834875&nbsp;end:1358144834877&nbsp;time&nbsp;use&nbsp;:2ms</p>
+<h2>Set<span style="font-family: 黑体;">接口</span></h2>
+<p class="p0">Set<span style="font-family: 宋体;">接口相当于集合，无序、不可重复。</span></p>
+<p class="p0">SortedSet接口相当于有序的集合，有序、不可重复。SortedSet接口扩展了Set并说明了按升序排列的集合的特性。</p>
+<p class="p0">&nbsp;</p>
+<h2>J-STL<span style="font-family: 黑体;">迭代器</span></h2>
+<p class="p0">1.&nbsp;通过调用类集的iterator(&nbsp;)方法获得对类集头的迭代函数。</p>
+<p class="p0">2.&nbsp;建立一个调用hasNext(&nbsp;)方法的循环，只要hasNext(&nbsp;)返回true，就进行循环迭代。</p>
+<p class="p0">3.&nbsp;在循环内部，通过调用next(&nbsp;)方法来得到每一个元素。</p>
+<p class="p0">boolean&nbsp;hasNext(&nbsp;)&nbsp;如果存在更多的元素，则返回true，否则返回false</p>
+<p class="p0">Object&nbsp;next(&nbsp;)&nbsp;返回下一个元素。如果没有下一个元素，则引发NoSuchElementException异常</p>
+<p class="p0">void&nbsp;remove(&nbsp;)&nbsp;删除当前元素，如果试图在调用next(&nbsp;)方法之后，调用remove(&nbsp;)方法，则引发IllegalStateException异常</p>
+<p class="p0">void&nbsp;add(Object&nbsp;obj)&nbsp;将obj插入列表中的一个元素之前，该元素在下一次调用next(&nbsp;)方法时，被返回</p>
+<p class="p0">boolean&nbsp;hasNext(&nbsp;)&nbsp;如果存在下一个元素，则返回true；否则返回false</p>
+<p class="p0">boolean&nbsp;hasPrevious(&nbsp;)&nbsp;如果存在前一个元素，则返回true；否则返回false</p>
+<p class="p0">Object&nbsp;next(&nbsp;)&nbsp;返回下一个元素，如果不存在下一个元素，则引发一个NoSuchElementException异常</p>
+<p class="p0">int&nbsp;nextIndex(&nbsp;)&nbsp;返回下一个元素的下标，如果不存在下一个元素，则返回列表的大小</p>
+<p class="p0">Object&nbsp;previous(&nbsp;)&nbsp;返回前一个元素，如果前一个元素不存在，则引发一个NoSuchElementException异常</p>
+<p class="p0">int&nbsp;previousIndex(&nbsp;)&nbsp;返回前一个元素的下标，如果前一个元素不存在，则返回-1</p>
+<p class="p0">void&nbsp;remove(&nbsp;)&nbsp;从列表中删除当前元素。如果remove(&nbsp;)方法在next(&nbsp;)方法或previous(&nbsp;)方法调用之前被调用，则引发一个IllegalStateException异常</p>
+<p class="p0">void&nbsp;set(Object&nbsp;obj)&nbsp;将obj赋给当前元素。这是上一次调用next(&nbsp;)方法或previous(&nbsp;)方法最后返回的元素</p>
+<p class="p0">和C++STL有一个很明显的不同，J-STL不用++和--来移动，而是用next和previous。</p>
+<p class="p0">Iterator&nbsp;it&nbsp;=&nbsp;l.iterator();&nbsp;//&nbsp;获得一个迭代子</p>
+<p class="p0">while&nbsp;(it.hasNext())&nbsp;{</p>
+<p class="p0">String&nbsp;s&nbsp;=&nbsp;(String)&nbsp;it.next();</p>
+<p class="p0">System.out.println(s);</p>
+<p class="p0">}</p>
+<p class="p0">&nbsp;</p>
+<h2>Map<span style="font-family: 黑体;">接口</span></h2>
+<p class="p0">Map接口</p>
+<p class="p0">映射循环使用两个基本操作：get(&nbsp;)和put(&nbsp;)。使用put(&nbsp;)方法可以将一个指定了关键字和</p>
+<p class="p0">值的值加入映射。为了得到值，可以通过将关键字作为参数来调用get(&nbsp;)方法。调用返回该</p>
+<p class="p0">值。正如前面谈到的，映射不是类集，但可以获得映射的类集“视图”。为了实现这种功</p>
+<p class="p0">能，可以使用entrySet(&nbsp;)方法，它返回一个包含了映射中元素的集合（Set）。为了得到关键</p>
+<p class="p0">字的类集“视图”，可以使用keySet(&nbsp;)方法。为了得到值的类集“视图”，可以使用values(&nbsp;)</p>
+<p class="p0">方法。类集“视图”是将映射集成到类集框架内的手段。</p>
+<p class="p0">SortedMap接口</p>
+<p class="p0">SortedMap接口扩展了Map，它确保了各项按关键字升序排序。由SortedMap说明的方法总结在表15-7中。当调用映射中没有的项时，其中的几种方法引发一个NoSuchElementException异常。当对象与映射中的元素不兼容时，则引发一个ClassCastException异常。当试图使用映射不允许使用的null对象时，则引发一个NullPointerException异常。</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">字典（Dictionary）是一个表示关键字/值存储库的抽象类，同时它的操作也很像映射（Map）,散列表（Hashtable）是原始java.util中的一部分同时也是Dictionary的一个具体实现。</p>
+<p class="p0">&nbsp;</p>
+<h3>TreeMap&nbsp;类</h3>
+<p class="p0">TreeMap类通过使用树实现Map接口。TreeMap提供了按排序顺序存储关键字/值对的有</p>
+<p class="p0">效手段，同时允许快速检索。应该注意的是，不像散列映射，树映射保证它的元素按照关</p>
+<p class="p0">键字升序排序。显然，TreeMap类显示出很好的排序优异。</p>
+<p class="p0">注意对关键字进行了排序。然而，在这种情况下，它们用名字而不是用姓进行了排序。</p>
+<p class="p0">可以通过在创建映射时，指定一个比较函数来改变这种排序</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">比较函数</p>
+<p class="p0">TreeSet和TreeMap都按排序顺序存储元素。然而，精确定义采用何种“排序顺序”的</p>
+<p class="p0">是比较函数。通常在默认的情况下，这些类通过使用被Java称之为“自然顺序”的顺序存</p>
+<p class="p0">储它们的元素，而这种顺序通常也是你所需要的（A在B的前面，1在2的前面，等等）。如</p>
+<p class="p0">果需要用不同的方法对元素进行排序，可以在构造集合或映射时，指定一个Comparator对</p>
+<p class="p0">象。这样做为你提供了一种精确控制如何将元素储存到排序类集和映射中的能力。</p>
+<p class="p0">Comparator接口定义了两个方法：compare(&nbsp;)和equals(&nbsp;)。</p>
+<p class="p0">class&nbsp;MyComp&nbsp;implements&nbsp;Comparator&lt;Object&gt;&nbsp;{</p>
+<p class="p0">public&nbsp;int&nbsp;compare(Object&nbsp;a,&nbsp;Object&nbsp;b)&nbsp;{</p>
+<p class="p0">//String&nbsp;aStr,&nbsp;bStr;</p>
+<p class="p0">//aStr&nbsp;=&nbsp;(String)&nbsp;a;</p>
+<p class="p0">//bStr&nbsp;=&nbsp;(String)&nbsp;b;</p>
+<p class="p0">//return&nbsp;bStr.compareTo(aStr);</p>
+<p class="p0">Integer&nbsp;ai,&nbsp;bi;</p>
+<p class="p0">ai&nbsp;=&nbsp;(Integer)&nbsp;a;</p>
+<p class="p0">bi&nbsp;=&nbsp;(Integer)&nbsp;b;</p>
+<p class="p0">return&nbsp;bi.compareTo(ai);</p>
+<p class="p0">}</p>
+<p class="p0">//&nbsp;no&nbsp;need&nbsp;to&nbsp;override&nbsp;equals</p>
+<p class="p0">}</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">Map&lt;Integer,&nbsp;String&gt;&nbsp;treemap&nbsp;=&nbsp;new&nbsp;TreeMap&lt;Integer,&nbsp;String&gt;(new&nbsp;MyComp());</p>
+<h3>HashMap&nbsp;类</h3>
+<p class="p0">HashMap类使用散列表实现Map接口。这允许一些基本操作如get(&nbsp;)和put(&nbsp;)的运行时间</p>
+<p class="p0">保持恒定，即便对大型集合，也是这样的。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/viviman/category/444566.html" target="_blank">java</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2860198,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;6f342783-d41b-e111-b422-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/viviman/" target="_blank"><img src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/u356510.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/viviman/">智慧的老鸟</a><br>
+            <a href="http://home.cnblogs.com/u/viviman/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/viviman/followers">粉丝 - 28</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;6f342783-d41b-e111-b422-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2860198,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(2860198,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/viviman/archive/2013/01/09/2853165.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/viviman/archive/2013/01/09/2853165.html" title="发布于2013-01-09 16:28">eclipse安装插件</a><br><a href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860201.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860201.html" title="发布于2013-01-14 18:44">ubantu下安装hadoop+hive全解</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2013-01-14 18:41</span> <a href="http://www.cnblogs.com/viviman/">智慧的老鸟</a> 阅读(<span id="post_view_count">3048</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2860198" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860198.html#" onclick="AddToWz(2860198);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=103413,cb_entryId=2860198,cb_blogApp=currentBlogApp,cb_blogUserGuid='6f342783-d41b-e111-b422-842b2b196315',cb_entryCreatedDate='2013/1/14 18:41:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860198.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/viviman/archive/2013/01/14/2860198.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://arcapp.anruichina.com/arctrac/trac?tid=smb_azure_1212_CNBlog" target="_blank">【福利】微软Azure给博客园的你专属双重好礼</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank">【推荐】BPM免费下载</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/24442-20161115165230123-1587531896.png" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/560363/" target="_blank">Surface Pro劲敌！戴尔发布新款二合一设备Latitude 5285</a><br> ·  <a href="http://news.cnblogs.com/n/560362/" target="_blank">丰田和福特结成汽车联盟 开发开源系统对抗CarPlay</a><br> ·  <a href="http://news.cnblogs.com/n/560361/" target="_blank">Mozilla Firefox 51 Beta 11发布</a><br> ·  <a href="http://news.cnblogs.com/n/560360/" target="_blank">人人影视宣布退出人人视频项目</a><br> ·  <a href="http://news.cnblogs.com/n/560359/" target="_blank">NASA记录北京雾霾15年 变化触目惊心</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./Java容器——JSTL学习笔记 - 智慧的老鸟 - 博客园_files/35695-20161213142353073-1602158633.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div class="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © 智慧的老鸟
+</p>
+</div>
+
+
+</body></html>

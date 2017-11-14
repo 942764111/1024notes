@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>注解标签</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>一、自动扫描的注解标记</h1>
+<h2>1、@Component</h2>
+<ul>
+<li>通用注解</li>
+<li>参数：<div class="bg-blue">@Component(beanID)默认beanid为小写开头的类名,也可以自定义beanid</li>
+</ul>
+<h2>2、@Named</h2>
+<ul>
+<li>通用注解 </li>
+<li>和Component一样</li>
+</ul>
+<h2>3、@Repository</h2>
+<ul>
+<li>持久化层组件注解</li>
+</ul>
+<h2>4、@Service</h2>
+<ul>
+<li>业务层组件注解</li>
+</ul>
+<h2>5、@Controller</h2>
+<ul>
+<li>控制层组件注解</li>
+</ul>
+<hr />
+<h1>二、功能注解</h1>
+<h2>1、@Scope(&quot;&quot;)</h2>
+<ul>
+<li>指定某类的作用域</li>
+</ul>
+<h2>2、@PostConstruct</h2>
+<ul>
+<li>指定初始化方法</li>
+</ul>
+<h2>3、@PreDestroy</h2>
+<ul>
+<li>指定销毁方法</li>
+</ul>
+<h2>4、@Lazy(boolean)</h2>
+<h2>- 指定类是否延时加载</h2>
+<h2><div class="bg-blue">例：</div></h2>
+<p><a href="demo/功能注解demo/功能注解demo.html">点击查看</a></p>
+<hr />
+<h1>三、指定依赖关系注入</h1>
+<h2>1、@Autowired/@Qualifier</h2>
+<ul>
+<li>可以处理构造器注入和set注入</li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="demo/Autowired/Autowired.html">点击查看</a></li>
+</ul>
+<h2>2、@Inject/@Named</h2>
+<ul>
+<li>和@Autowired用法一致需要额外导包</li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="demo/Inject/Inject.html">点击查看</a></li>
+</ul>
+<h2>3、@Resource</h2>
+<ul>
+<li>只能处理set注入,但大部分情况都是set注入</li>
+<li><div class="bg-blue">注意：构造器注入建议使用@Autowired,set注入建议使用@Resource</div></li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="demo/Resource/Resource.html">点击查看</a></li>
+</ul>
+<hr />
+<h1>四、注入Spring表达式</h1>
+<ul>
+<li>使用注解,通过表达式给一个bean注入数据</li>
+</ul>
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="demo/Value/Value.html">点击查看</a></li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

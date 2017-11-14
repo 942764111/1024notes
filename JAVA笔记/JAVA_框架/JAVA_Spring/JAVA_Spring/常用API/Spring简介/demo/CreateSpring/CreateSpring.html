@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CreateSpring</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>创建对象</h1>
+<h2>一、applicationContext.xml中配置</h2>
+<pre><code>&lt;!-- 
+    使用无参构造器来创建对象。
+    id属性：是bean的名称，要求唯一。
+    class属性：要写类的完整的名字
+    (包名和类名都得写)
+ --&gt;
+&lt;bean id=&quot;stu1&quot; class=&quot;first.Student&quot;&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;date1&quot; class=&quot;java.util.Date&quot;&gt;
+&lt;/bean&gt;
+
+&lt;!-- 使用静态工厂方法创建对象 
+    注:
+        factory-method属性：指定一个静态方法。
+    容器会调用该类的静态方法来创建对象。
+--&gt;
+&lt;bean id=&quot;cal1&quot; class=&quot;java.util.Calendar&quot;
+    factory-method=&quot;getInstance&quot;&gt;
+&lt;/bean&gt;
+
+&lt;!-- 
+    使用实例工厂方法创建对象。
+    注：
+        factory-bean属性：值为一个bean的id。
+        factory-method属性：要调用的实例方法。
+        容器会调用该bean的实例方法来创建对象。
+ --&gt;
+&lt;bean id=&quot;time1&quot; factory-bean=&quot;cal1&quot; 
+    factory-method=&quot;getTime&quot;&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<h2>二、JAVA代码：</h2>
+<p>package first;</p>
+<p>import java.util.Date;</p>
+<p>import org.springframework.context.ApplicationContext;</br>
+import org.springframework.context.support.ClassPathXmlApplicationContext;</p>
+<p>public class FirstSpring {</p>
+<pre><code>public static void main(String[] args) {
+    String config = 
+            &quot;applicationContext.xml&quot;;
+    //启动Spring容器
+    /*
+     * 注：
+     * a. ApplicationContext是接口。
+     * b. ClassPathXmlApplicationContext
+     * 是一个具体类，实现了上述接口。
+     * c. config是配置文件的位置及文件名。
+     */
+    ApplicationContext ac = 
+        new ClassPathXmlApplicationContext(
+                config);
+    //System.out.println(ac);
+
+
+    //调用容器提供的getBean方法来获得对象
+    /*
+     *  Student.class: Student类对应的class对象。
+     *  注： 
+     *      类加载器负责读取.class文件的内容，
+     *  然后将这些内容存放到方法区对应的
+     *  一个class对象里面。
+     *  
+     */
+
+一、使用无参构造器来创建对象。
+    Student stu = ac.getBean(&quot;stu1&quot;,
+            Student.class);
+    System.out.println(stu);
+
+    ·
+    Date date1 = 
+            ac.getBean(&quot;date1&quot;,Date.class);
+    System.out.println(date1);
+
+
+
+二、使用静态工厂方法创建对象 
+    Calendar cal1 = 
+            ac.getBean(&quot;cal1&quot;,
+                    Calendar.class);
+    System.out.println(cal1);
+
+
+
+三、使用实例工厂方法创建对象。
+    Date time1 = 
+            ac.getBean(&quot;time1&quot;,Date.class);
+    System.out.println(time1);
+
+}
+</code></pre>
+
+<p>}</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

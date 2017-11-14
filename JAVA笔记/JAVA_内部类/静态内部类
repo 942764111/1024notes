@@ -1,0 +1,26 @@
+package oo.day04;
+
+class A{
+	static int x = 100;
+	static public class B{
+		public static void test(){
+			System.out.println(x);
+		}
+	}	
+}
+public class instanceofDemo{
+	public static void main(String[] args) {
+      A a = new A();
+      A.B.test();
+	}
+}
+/*
+ * 静态内部类
+ * 
+ * 在内部类前面加修饰符static,这个内部类就变为静态内部类了
+ * 
+ * 如果创建静态内部类的对象,不许要其外部类的对象
+ * 
+ * 不能从静态内部类的对象中访问非静态外部类的对象
+ * 
+ * */

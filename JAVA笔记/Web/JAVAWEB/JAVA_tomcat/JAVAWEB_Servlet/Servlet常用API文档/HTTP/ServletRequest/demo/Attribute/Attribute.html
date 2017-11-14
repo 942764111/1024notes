@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>JAVA</h1>
+<ul>
+<li>
+<p>package web;</p>
+</li>
+<li>
+<p>import java.io.IOException;</p>
+</li>
+<li>
+<p>import java.util.List;</p>
+</li>
+<li>
+<p>import javax.servlet.ServletException;</p>
+</li>
+<li>import javax.servlet.http.HttpServlet;</li>
+<li>import javax.servlet.http.HttpServletRequest;</li>
+<li>
+<p>import javax.servlet.http.HttpServletResponse;</p>
+</li>
+<li>
+<p>import dao.EmpDao;</p>
+</li>
+<li>import entity.Emp;</li>
+</ul>
+<p>public class FindEmpServlet extends HttpServlet {</p>
+<pre><code>@Override
+protected void service(
+    HttpServletRequest req, 
+    HttpServletResponse res) throws ServletException, IOException {
+    //查询所有的员工
+    EmpDao dao = new EmpDao();
+    List&lt;Emp&gt; list = dao.findAll();
+    //将请求转发给JSP
+    //将数据存入request
+</code></pre>
+
+<ul>
+<li>
+<div class="bg-blue">例：
+	<p>req.setAttribute("emps", list);</p>
+	//当前：/jsp2/findEmp</p>
+	//目标：/jsp2/emp_list.jsp</p>
+	req.getRequestDispatcher(
+		"emp_list.jsp").forward(req, res);</div>
+}
+</li>
+</ul>
+<p>}</p>
+<h1>JSP</h1>
+<ul>
+<li>
+<div class="bg-blue">例：
+		"${emps}" </div>
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

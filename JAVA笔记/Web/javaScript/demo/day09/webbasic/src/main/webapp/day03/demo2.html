@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*1.设置背景图*/
+	body {
+		background-image:
+			url(../images/background.png);
+		background-repeat: repeat-y;
+		background-position: center;
+	}
+	div {
+		width: 125px;
+		height: 125px;
+		border: 1px solid red;
+		margin: 10px auto;
+	}
+	/*2.采用简化的方式设置背景:
+	 background: 颜色  图片  平铺  位置;
+	 上述值可以酌情省略，但至少要保留颜色或图片之一。 */
+	.enemy {
+		background: 
+			url(../images/airplane.png)
+			no-repeat center;
+	}
+	.hero {
+		background:
+			url(../images/hero0.png)
+			no-repeat center;
+	}
+	/*3.背景图固定*/
+	body {
+		background-attachment: fixed;
+	}
+</style>
+</head>
+<body>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="enemy"></div>
+	<div class="hero"></div>
+	<div class="hero"></div>
+</body>
+</html>
+
+
+
+
+

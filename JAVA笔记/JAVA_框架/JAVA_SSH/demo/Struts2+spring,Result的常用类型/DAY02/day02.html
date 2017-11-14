@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day02</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>正课内容</h1>
+<p>Struts2+spring/Result的常用类型/拦截器</p>
+<h1>servlet与filter</h1>
+<h2>概念：</h2>
+<p>servlet：运行在服务器的程序，可以动态生成web页面</p>
+<p>filter：一段可以复用的代码，不能产生请求和响应，但可以对其进行处理</p>
+<h2>生命周期：</h2>
+<p>servlet：web服务器启动或接收到请求时，初始化；对每次请求调用doGet()或doPost();停止服务器时，调用destroy()销毁实例。</p>
+<p>filter：服务器启动时直接加载过滤器；每次请求都会调用doFilter();停止服务器时调用destroy()销毁实例；</p>
+<h1>面试题：</h1>
+<h2>为什么编码?</h2>
+<p>服务器内存中char是16位的(比较大)，网络传输单位8位的byte（比较小），我们必须对内存中的数据进行拆分，才能传输，拆分的过程叫做编码。</p>
+<h2>描述utf-8和gbk的特点？</h2>
+<p>UTF-8是国际化的最优方案，可表示10万+，中文占3个字节</p>
+<p>GBK是本土的最优方案，可表示2万+ ，中文占2个字节</p>
+<h1>Struts2+spring整合</h1>
+<h2>为什么要整合Spring？</h2>
+<p>通过Spring管理组件，实现注入。</p>
+<h2>如何整合？</h2>
+<p>1、导包：Struts2-spring-plugin.jar</p>
+<p>2、配置文件:web.xml spirng-*.xml struts.xml</p>
+<h2>案例：HelloWorld</h2>
+<p>1、创建项目-导包：Struts2-core2.3.8 Struts2-spring-plugin 2.3.8</p>
+<p>2、配置web.xml spring-context.xml struts.xml</p>
+<p>3、实现Action 注入service</p>
+<h2>注解回顾：</h2>
+<p>@Component ：通用，不推荐</p>
+<p>@Controller：作用于表现层bean</p>
+<p>@Service ：作用于业务层bean</p>
+<p>@Repository：作用于持久层</p>
+<p>@Resource ：通知Spring需要注入</p>
+<h1>Result的常用类型</h1>
+<h2>什么是？结果，服务器处理后的结果。处理结果的组件。</h2>
+<h2>常用类型：</h2>
+<p>dispatcher：转发（默认）</p>
+<p>redirectAction：重定向Action</p>
+<p>redirect：重定向URL</p>
+<p>stream：流，处理图片或下载</p>
+<p>json  ：处理ajax请求 Struts2-json-plugin</p>
+<h3>redirectAction</h3>
+<pre><code>语法：
+&lt;result name=&quot;&quot; type=&quot;redirectAction&quot;&gt;hello&lt;/result&gt;
+或
+&lt;result name=&quot;&quot; type=&quot;redirectAction&quot;&gt;
+    &lt;param name=&quot;namespace&quot;&gt;/demo&lt;/param&gt;
+    &lt;param name=&quot;actionName&quot;&gt;hello&lt;/param&gt;
+&lt;/result&gt;
+</code></pre>
+
+<h3>redirect</h3>
+<pre><code>语法：
+&lt;result type=&quot;redirect&quot;&gt;
+    http://doc.tedu.cn
+&lt;/result&gt;
+或
+&lt;result type=&quot;redirect&quot;&gt;
+    &lt;param name=&quot;location&quot;&gt;
+            http://doc.tedu.cn
+    &lt;/param&gt;
+&lt;/result&gt;
+</code></pre>
+
+<p>处理请求时，默认调用execute()方法。当需要指定具体方法时，</p>
+<p>可以通method属性实现。</p>
+<p>案例：switchAction</p>
+<h3>stream</h3>
+<pre><code>语法：
+&lt;result name=&quot;success&quot; type=&quot;stream&quot;&gt;
+   &lt;param name=&quot;contentType&quot;&gt;image/jpeg&lt;/param&gt;
+   &lt;param name=&quot;inputName&quot;&gt;imageStream&lt;/param&gt;
+   &lt;param name=&quot;contentDisposition&quot;&gt;attachment;filename=&quot;document.pdf&quot;&lt;/param&gt;
+   &lt;param name=&quot;bufferSize&quot;&gt;1024&lt;/param&gt;
+&lt;/result&gt;
+</code></pre>
+
+<h3>json</h3>
+<pre><code>语法：
+返回Action的所有属性
+&lt;result type=&quot;json&quot;&gt;&lt;/result&gt;
+或
+返回指定的Action属性
+&lt;result type=&quot;json&quot;&gt;
+    &lt;param name=&quot;root&quot;&gt;
+        value
+    &lt;/param&gt;
+&lt;/result&gt;
+</code></pre>
+
+<h1>作业</h1>
+<p>1、Struts2+spring环境搭建</p>
+<p>2、result类型练习（redirectAction/json）</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

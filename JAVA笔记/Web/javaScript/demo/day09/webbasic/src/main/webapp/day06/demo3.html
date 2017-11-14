@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function cal() {
+		//获取文本框
+		var input = document.getElementById("ss");
+		//取框内的值
+		var ss = input.value;
+		try {
+			//计算并将结果写回文本框
+			input.value = eval(ss);
+		} catch(e) {
+			input.value = "Error";
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="text" id="ss"/>
+	<input type="button" value="="
+		onclick="cal();"/>
+</body>
+</html>
+
+
+
+
+
+
+
+

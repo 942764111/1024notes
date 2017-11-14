@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.big {
+		font-size: 30px;
+	}
+	.important {
+		color: red;
+	}
+</style>
+<script src="../js/jquery-1.11.1.js"></script>
+<script>
+	$(function(){
+		//1.追加样式
+		$("p:first").addClass("big").addClass("important");
+		//2.删除样式
+		$("p:first").removeClass("big").removeClass("important");
+		//3.判断是否包含某样式
+		console.log($("p:first").hasClass("big"));
+	});
+	//切换样式
+	function f1() {
+		$("p:first").toggleClass("important");
+	}
+</script>
+</head>
+<body>
+	<p>jQuery单独支持样式操作</p>
+	<p>
+		<input type="button" value="按钮"
+			onclick="f1();"/>
+	</p>
+</body>
+</html>
+
+
+
+
+

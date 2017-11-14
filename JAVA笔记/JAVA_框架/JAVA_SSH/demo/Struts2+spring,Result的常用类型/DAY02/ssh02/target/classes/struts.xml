@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="test"
+				namespace="/test"
+				extends="struts-default">
+		<!-- 整合spring以后，action的class属性值
+		可以使用Spring组件 ID-->
+		<action name="hello" class="helloAction">
+			<result name="success">
+				/WEB-INF/msg.jsp
+			</result>		
+		</action>
+	</package>
+	<package name="result"
+				namespace="/result"
+				extends="struts-default">
+		<action name="hello" class="helloAction">
+			<result name="success">
+				/WEB-INF/msg.jsp
+			</result>		
+		</action>
+		<action name="test1">
+			<result type="redirectAction">
+				hello
+			</result>
+		</action>
+		<action name="test2">
+			<result type="redirectAction">
+				<param name="namespace">/test</param>
+				<param name="actionName">hello</param>
+			</result>
+		</action>
+		<action name="test3">
+			<result type="redirect">
+				http://doc.tedu.cn
+			</result>
+		</action>
+		<action name="test4">
+			<result type="redirect">
+				<param name="location">
+					http://doc.tedu.cn
+				</param>
+			</result>
+		</action>
+		<action name="sw" class="switchAction"
+				  method="doSwitch">
+			<!-- 转发 -->
+			<result name="1" type="dispatcher">
+				/WEB-INF/msg.jsp
+			</result>
+			<!-- 重定向URL -->
+			<result name="2" type="redirect">
+				http://doc.tedu.cn
+			</result>
+			<!-- 重定向Action -->
+			<result name="3" type="redirectAction">
+				hello
+			</result>
+			<result name="4" type="redirectAction">
+				<param name="namespace">/test</param>
+				<param name="actionName">hello</param>
+			</result>
+		</action>
+		<action name="image" class="imageAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/png</param>
+   			<param name="inputName">image</param>
+			</result>
+		</action>
+	</package>
+	<package name="json" namespace="/json"
+				extends="json-default">
+		<action name="demo" class="jsonAction">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="test" class="jsAction">
+			<result name="success" type="json">
+			<!-- value还Action中的属性名 -->
+				<param name="root">value</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+var OX_b445f375 = '';
+OX_b445f375 += "<"+"a href=\'//gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=df75fcf16a__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou\' target=\'_blank\'><"+"font color=\'red\'>2016年备战软考-重难点解析<"+"/font><"+"/a><"+"div id=\'beacon_df75fcf16a\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg1.51cto.com/www/delivery/lg.php?bannerid=3549&amp;campaignid=780&amp;zoneid=636&amp;loc=1&amp;referer=http%3A%2F%2Fdeveloper.51cto.com%2Fart%2F200906%2F130215.htm&amp;cb=df75fcf16a\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_b445f375);

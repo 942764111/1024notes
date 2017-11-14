@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-1.11.1.js"></script>
+<script>
+	//作用等价于
+	//window.onload = function(){}
+	$(function(){
+		//1.基本选择器(略)
+		//2.层次选择器
+		console.log($("#gz+"));
+		//3.过滤选择器(*)
+		//3.1基本过滤选择器(*)
+		console.log($("li:first"));
+		console.log($("li:odd"));
+		console.log($("li:lt(2)"));
+		console.log($("li:not(#gz)"));
+		//3.2内容过滤选择器
+		console.log($("li:contains('州')"));
+		//3.3可见性过滤选择器
+		console.log($("li:hidden"));
+		//3.4属性过滤选择器
+		console.log($("li[id]"));
+		//3.5状态过滤选择器
+		console.log($("input:disabled"));
+		console.log($("input:checked"));
+		//4.表单选择器
+		console.log($(":radio"));
+	});
+</script>
+</head>
+<body>
+	<ul>
+		<li>北京</li>
+		<li>上海</li>
+		<li id="gz">广州</li>
+		<li>深圳</li>
+		<li>杭州</li>
+		<li style="display:none;">石家庄</li>
+	</ul>
+	<!-- 
+		readonly：只读，数据依然可以提交给服务器。
+		disabled：禁用，数据无法提交给服务器。
+	 -->
+	<p>
+		账号:<input type="text" disabled/>
+	</p>
+	<p>
+		密码:<input type="password"/>
+	</p>
+	<p>
+		性别:
+		<input type="radio" name="sex" checked/>男
+		<input type="radio" name="sex"/>女
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+

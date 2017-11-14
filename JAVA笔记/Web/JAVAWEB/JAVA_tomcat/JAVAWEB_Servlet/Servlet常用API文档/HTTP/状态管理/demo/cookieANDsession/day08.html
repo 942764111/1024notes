@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day08</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>一.完善登录功能</h1>
+<p><img src="1.png" /></p>
+<h1>二.cookie和session</h1>
+<h2>1.业务场景</h2>
+<ul>
+<li>登录时要记录账号</li>
+<li>后续查询、增加、修改等页面上显示此账号</li>
+</ul>
+<h2>2.错误的做法</h2>
+<h3>1)request</h3>
+<ul>
+<li>登录、查询是不同的请求，使用不同的request</li>
+</ul>
+<blockquote>
+<p>不同的请求无法通过request共享数据</p>
+</blockquote>
+<h3>2)config</h3>
+<ul>
+<li>可能一个Servlet处理一个请求</li>
+<li>登录是一个Servlet,它对应一个config</li>
+<li>查询是另一个Servlet,它对应另一个config</li>
+</ul>
+<blockquote>
+<p>不同的Servlet无法通过config共享数据</p>
+</blockquote>
+<h3>3)context</h3>
+<ul>
+<li>浏览器和服务器是多对一的关系</li>
+<li>每个浏览器传入的账号变量名都是code</li>
+<li>服务器中每个项目内只有一个context</li>
+<li>用唯一的对象存储多份同名数据有冲突</li>
+</ul>
+<h2>3.正确的做法(*)</h2>
+<ul>
+<li>使用cookie/session来存储这样的数据</li>
+<li>多个请求可以共享此对象中的数据</li>
+<li>多个Servlet可以共享此对象中的数据</li>
+<li>服务器会给每个浏览器创建一份cookie/session</li>
+</ul>
+<blockquote>
+<p>上述条件由Tomcat来保障</p>
+</blockquote>
+<h2>4.cookie和session的区别(面试题)</h2>
+<ul>
+<li>cookie存储在浏览器上,服务器压力小,不安全</li>
+<li>session存储在服务器上,服务器压力大,安全</li>
+</ul>
+<h2>5.使用建议</h2>
+<ul>
+<li>重要数据保存到session内</li>
+<li>其他数据保存到cookie内</li>
+</ul>
+<p><img src="2.png" /></p>
+<h1>三.cookie</h1>
+<h2>1.案例</h2>
+<p><img src="3.png" /></p>
+<h2>2.要点</h2>
+<h3>1)基本语法</h3>
+<ul>
+<li>创建cookie: new Cookie(key,value)</li>
+<li>发送cookie: response.addCookie(c)</li>
+<li>获取cookie: request.getCookies()</li>
+<li>读取cookie: c.getName()/c.getValue()</li>
+</ul>
+<h3>2)扩展内容</h3>
+<ul>
+<li>设置生存时间: setMaxAge(n)</li>
+<li>保存中文: URLEncoder.encode()/URLDecorder.decode()</li>
+<li>设置生效路径: c.setPath(&quot;&quot;)</li>
+</ul>
+<h1>四.session</h1>
+<h2>1.案例</h2>
+<p><img src="4.png" />
+<img src="5.png" /></p>
+<h2>2.要点</h2>
+<h3>1)基本语法</h3>
+<ul>
+<li>获取session: request.getSession()</li>
+<li>存入数据: session.setAttribute(String,Object)</li>
+<li>获取数据: session.getAttribute(String)</li>
+<li>销毁session: session.invalidate()</li>
+</ul>
+<h3>2)扩展内容</h3>
+<ul>
+<li>session超时: 在web.xml中进行配置</li>
+<li>浏览器禁用cookie时: URL重写</li>
+</ul>
+<h1>四.cookie和session的作用</h1>
+<h2>1.通俗的理解(*)</h2>
+<ul>
+<li>存储在cookie或session对象中的数据,满足如下特征:</li>
+<li>多个请求可以共享此对象内的数据</li>
+<li>多个Servlet可以共享此对象内的数据</li>
+<li>服务器自动给每个浏览器创建一组cookie,创建一个session</li>
+</ul>
+<blockquote>
+<p>cookie存储在浏览器上,session存储在服务器上</p>
+</blockquote>
+<h2>2.专业的理解</h2>
+<ul>
+<li>HTTP协议是无状态协议,即服务器默认没有记住浏览器</li>
+<li>cookie和session就是用来管理这个状态的</li>
+</ul>
+<blockquote>
+<p>状态:就是服务器记住浏览器的证据(数据)</p>
+</blockquote>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

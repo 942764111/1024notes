@@ -1,0 +1,3 @@
+var OX_b36652c2 = '';
+OX_b36652c2 += "<"+"a href=\'//gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=4ecb7fb752__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan\' target=\'_blank\'><"+"font color=\'red\'>网络安全一个大写的反“作死”<"+"/font><"+"/a><"+"div id=\'beacon_4ecb7fb752\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg3.51cto.com/www/delivery/lg.php?bannerid=3933&amp;campaignid=780&amp;zoneid=270&amp;loc=1&amp;referer=http%3A%2F%2Fdeveloper.51cto.com%2Fart%2F200906%2F130215.htm&amp;cb=4ecb7fb752\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_b36652c2);

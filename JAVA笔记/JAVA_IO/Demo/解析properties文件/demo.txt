@@ -1,0 +1,11 @@
+			
+			
+			import java.util.Properties;
+			
+			Properties prop = new Properties();
+			prop.load(new FileInputStream("config.properties"));
+			
+			String driver = prop.getProperty("driver");
+			String host = prop.getProperty("host");
+			String user = prop.getProperty("user");
+			String password = prop.getProperty("password");

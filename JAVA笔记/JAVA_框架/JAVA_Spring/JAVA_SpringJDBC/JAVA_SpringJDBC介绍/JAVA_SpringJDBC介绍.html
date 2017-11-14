@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>day06</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>1. SpringJdbc</h1>
+<h2>(1)SpringJdbc是什么?</h2>
+<p>Spring对jdbc的封装。<br/>
+注：使用SpringJdbc访问数据库，代码更简洁。（比如不用考虑如何
+获取连接与关闭连接等）。<br/></p>
+<h2>(2)编程步骤</h2>
+<p>step1. 导包。<br/>
+spring-webmvc,spring-jdbc,ojdbc,dbcp,junit。<br/>
+<img src="jars.png" /></p>
+<p>step2.添加spring配置文件。<br/>
+step3.配置JdbcTemplate。<br/>
+<img src="jt.png" /></p>
+<p>注：JdbcTemplate对常见的一些数据库操作做了封装。<br/>
+step4.调用JdbcTemplate提供的方法来访问数据库。<br/>
+<img src="jt2.png" />
+注：通常会将JdbcTemplate注入到DAO。<br/></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

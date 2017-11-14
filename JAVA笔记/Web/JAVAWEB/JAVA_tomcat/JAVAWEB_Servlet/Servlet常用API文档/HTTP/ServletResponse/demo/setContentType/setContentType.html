@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>setContentType</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<h1>res.setContentType(&quot;text/html;charset=utf-8&quot;);</h1>
+<p>package web;</p>
+<p>import java.io.IOException;
+import java.io.PrintWriter;</p>
+<p>import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;</p>
+<p>public class RegServlet extends HttpServlet {</p>
+<pre><code>@Override
+protected void service(
+    HttpServletRequest req, 
+    HttpServletResponse res) throws ServletException, IOException {
+    req.setCharacterEncoding(&quot;utf-8&quot;);
+    //1.接收请求中的数据
+    String user = req.getParameter(&quot;userName&quot;);
+    String pwd = req.getParameter(&quot;pwd&quot;);
+    String sex = req.getParameter(&quot;sex&quot;);
+    String[] interests = 
+        req.getParameterValues(&quot;interest&quot;);
+
+    //采用第一种方案解决请求乱码问题
+    //byte[] bs = user.getBytes(&quot;iso8859-1&quot;);
+    //user = new String(bs, &quot;utf-8&quot;);
+
+    //2.利用这些数据处理业务
+    System.out.println(user);
+    System.out.println(pwd);
+    System.out.println(sex);
+    if(interests != null) {
+        for(String interest : interests) {
+            System.out.println(interest);
+        }
+    }
+    //3.给浏览器返回响应信息
+    res.setContentType(
+        &quot;text/html;charset=utf-8&quot;);
+    PrintWriter out = res.getWriter();
+    out.println(&quot;&lt;p&gt;Congratulations,注册成功。&lt;/p&gt;&quot;);
+    out.close();
+}
+</code></pre>
+
+<p>}</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

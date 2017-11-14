@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>处理异常02</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<p><img src="1.png" /></p>
+<hr />
+<pre><code>&lt;!--处理系统异常 --&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleMappingExceptionResolver&quot;&gt;
+    &lt;property name=&quot;exceptionMappings&quot;&gt;
+&lt;props&gt;        
+&lt;prop key=&quot;java.lang.Exception&quot;&gt;jsp/error&lt;/prop&gt;
+&lt;/props&gt;
+&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

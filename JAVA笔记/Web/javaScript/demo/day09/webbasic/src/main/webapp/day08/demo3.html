@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var cities;
+	window.onload = function(){
+		//模拟查询所有的城市
+		cities = [
+			["石家庄","廊坊","保定"],
+			["沈阳","大连","铁岭"],
+			["济南","青岛","烟台"]
+		];
+	}
+	function chg() {
+		console.log(1);
+		//获取省份
+		var sel1 = 
+			document.getElementById("province");
+		var index = sel1.value;
+		//获取该省份的城市
+		var pcities = cities[index];
+		//获取城市，删除它们
+		var sel2 = 
+			document.getElementById("city");
+		//var options = 
+		//	sel2.getElementsByTagName("option");
+		//for(var i=options.length-1;i>0;i--) {
+		//	sel2.removeChild(options[i]);
+		//}
+		sel2.innerHTML = "<option>请选择</option>";
+		//追加新的城市
+		if(pcities) {
+			for(var i=0;i<pcities.length;i++) {
+				var option = 
+					document.createElement("option");
+				option.innerHTML = pcities[i];
+				sel2.appendChild(option);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	省:
+	<select onchange="chg();" id="province">
+		<option value="-1">请选择</option>
+		<option value="0">河北省</option>
+		<option value="1">辽宁省</option>
+		<option value="2">山东省</option>
+	</select>
+	市:
+	<select id="city">
+		<option>请选择</option>
+	</select>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

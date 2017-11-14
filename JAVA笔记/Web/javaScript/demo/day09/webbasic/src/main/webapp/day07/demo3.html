@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#msg {
+		border: 1px solid red;
+		width: 150px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		font-size: 20px;
+	}
+</style>
+<script>
+	var id;
+	function send() {
+		if(id) {
+			//非空，说明定时器已启动，不必再次启动
+			return;
+		}
+		//显示正在发送
+		var p = document.getElementById("msg");
+		p.innerHTML = "正在发送...";
+		//启动定时器
+		id = setTimeout(function(){
+			p.innerHTML = "已发送";
+			//清空id以便下次启动定时器
+			id = null;
+		},3000);
+	}
+	function cancel() {
+		if(id) {
+			//id非空，说明定时器已启动，可以取消			
+			var p = document.getElementById("msg");
+			p.innerHTML = "已取消";
+			clearTimeout(id);
+			//清空id以便下次启动定时器
+			id = null;
+		}
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="发送"
+		onclick="send();"/>
+	<input type="button" value="取消"
+		onclick="cancel();"/>
+	<p id="msg"></p>
+</body>
+</html>
+
+
+
+
+
+
+
+

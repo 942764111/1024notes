@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+    
+  <description>这是我自己的标签库</description>
+  <display-name>My Tag</display-name>
+  <tlib-version>3.1</tlib-version>
+  <short-name>s</short-name>
+  <uri>/lhh-tags</uri>   
+  
+  <tag>
+  	 <description>用来输出服务器的时间</description>
+  	 <name>sysdate</name>
+  	 <tag-class>web.SysdateTag</tag-class>
+  	 <!-- 声明该标签可以包含哪些内容 -->
+  	 <body-content>empty</body-content>
+  	 <attribute>
+  	 	<description>用来设置时间的格式</description>
+  	 	<name>format</name>
+  	 	<!-- 是否必须给这个属性赋值 -->
+  	 	<required>false</required>
+  	 	<!-- 是否可以用EL给此属性赋值 -->
+  	 	<rtexprvalue>true</rtexprvalue>
+  	 </attribute>
+  </tag> 
+    
+</taglib>  
+
+
+
+
+  
+
+
+
+

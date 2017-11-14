@@ -1,0 +1,40 @@
+package oo.day06;
+
+class MyException extends Exception{
+	public MyException(String Error) {
+	  super(Error);
+	}
+}
+public class catchDemo {
+   static int avg(int number_1,int number_2)throws MyException{
+    		if(number_1<0||number_2<0){
+    			throw new MyException("不可使用负数");
+    		}	
+    		if(number_1>100||number_2>100){
+    			throw new MyException("数值太大了");
+    		}
+    		return (number_1+number_2)/2;
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try{
+			int a = avg(102,150);
+			System.out.println(a);
+		}catch(MyException e){
+			System.out.println(e);
+		}
+		finally{
+			System.out.println("finally");
+		}
+		System.out.println("Over");
+	}
+}
+/**
+ * 自定义异常
+ * 
+ * 使用java内置的异常类可以描述在编程时出现的大部分异常情况,
+ * 
+ * 除此之外用户只需要继承 Exception 类即可自定义异常类
+ * 
+ * */
+

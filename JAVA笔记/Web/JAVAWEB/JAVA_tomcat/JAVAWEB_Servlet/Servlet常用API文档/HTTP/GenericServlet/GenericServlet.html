@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GenericServlet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.bg-blue{
+	color:red
+}
+</style>
+</head>
+<body>
+<p>javax.servlet</p>
+<h2>公共抽象类GenericServlet</h2>
+<ul>
+<li>java.lang.object</li>
+<li>javax.servlet.GenericServlet</li>
+<li>实现接口:</li>
+<li>ServletConfig java.io.Serializable,Servlet</li>
+<li>已知子类:</li>
+<li>HttpServlet</li>
+</ul>
+<hr />
+<h2><div class="bg-blue">例：</div></h2>
+<ul>
+<li><a href="../GenericServlet/demo/GenericServlet.html">点击查看子类继承例子</a></li>
+</ul>
+<hr />
+<ul>
+<li>公共抽象类GenericServlet</li>
+<li>扩展了java . lang . object</li>
+<li>实现了Servlet，ServletConfig，java.io.Serializable</li>
+<li>定义了一个通用的、独立于协议的servlet。</li>
+<li>写一个HTTP servlet在Web上使用,扩展HttpServlet来代替。</li>
+<li>GenericServlet实现Servlet和ServletConfig接口。</li>
+<li>GenericServlet可能直接延长一个servlet,不过更常见的扩展HttpServlet等特定于协议的子类。</li>
+<li>GenericServlet使得编写servlet变得更加容易。</li>
+<li>它提供了简单的版本的生命周期方法初始化和销毁,在ServletConfig接口的方法。GenericServlet还实现了日志方法,在ServletContext接口中声明。</li>
+<li>编写一个通用的servlet,您只需要重写抽象的服务方法。</li>
+<li>参见:</li>
+<li>Serialized Form(序列化形式)</li>
+</ul>
+<h1>Constructor Summary(构造函数的总结)</h1>
+<h2>1、GenericServlet()</h2>
+<ul>
+<li>Does nothing(什么也不做)</li>
+</ul>
+<h1>Method Summary(方法总结)</h1>
+<h2>1、public void destroy()</h2>
+<ul>
+<li>结束摧毁Servlet方法</li>
+</ul>
+<h2>2、java.lang.String	getInitParameter(java.lang.String name)</h2>
+<ul>
+<li>返回一个字符串,其中包含指定的初始化参数的值,或null如果参数不存在。</li>
+</ul>
+<h2>3、java.util.Enumeration&lt;java.lang.String&gt;	getInitParameterNames()</h2>
+<ul>
+<li>返回servlet的名称作为枚举字符串对象的初始化参数,或一个空枚举如果servlet没有初始化参数。</li>
+</ul>
+<h2>4、ServletConfig	getServletConfig()</h2>
+<ul>
+<li>返回这个servlet的ServletConfig对象。</li>
+</ul>
+<h2>5、ServletContext	getServletContext()</h2>
+<ul>
+<li>返回这个servlet的ServletContext对象。</li>
+</ul>
+<h2>6、java.lang.String	getServletInfo()</h2>
+<ul>
+<li>servlet返回信息,比如作者、版本和版权。</li>
+</ul>
+<h2>7、java.lang.String	getServletName()</h2>
+<ul>
+<li>返回这个servlet实例的名称。</li>
+</ul>
+<h2>8、public void init()</h2>
+<pre><code>      throws ServletException
+</code></pre>
+
+<ul>
+<li>Servlet初始化方法</li>
+<li>方便可以覆盖方法,没有必要叫super.init(配置)。</li>
+<li>而不是覆盖init(ServletConfig),只需覆盖这个方法,它会被称为GenericServlet.init(ServletConfig配置)。</li>
+<li>ServletConfig对象仍然可以通过检索getServletConfig()。</li>
+<li>抛出:</li>
+<li>ServletException——如果发生异常中断servlet的正常运行</li>
+</ul>
+<h2>9、public void init(ServletConfig config)</h2>
+<pre><code>      throws ServletException
+</code></pre>
+
+<ul>
+<li>由servlet容器来表示一个servlet调用servlet被放置在服务。看到Servlet.init(javax.servlet.ServletConfig)。</li>
+<li>这个实现存储ServletConfig对象接收从servlet容器供以后使用。当覆盖这种形式的方法,调用super.init(配置)。</li>
+<li>规定:</li>
+<li>在界面初始化Servlet</li>
+<li>参数:</li>
+<li>配置——ServletConfig对象包含这个servlet的配置信息</li>
+<li>抛出:</li>
+<li>ServletException——如果发生异常中断servlet的正常运行</li>
+<li>参见:</li>
+<li>UnavailableException</li>
+</ul>
+<h2>10、public void log(java.lang.String msg)</h2>
+<ul>
+<li>写到指定的消息一个servlet日志文件,按servlet的名称。看到ServletContext.log(字符串)。</li>
+<li>参数:</li>
+<li>log——一个字符串指定消息写入到日志文件中</li>
+</ul>
+<h2>11、public void log(java.lang.String message,</h2>
+<pre><code>   java.lang.Throwable t)
+</code></pre>
+
+<ul>
+<li>按servlet的名称写一个解释性消息和堆栈跟踪给定Throwable异常servlet日志文件。看到ServletContext.log(字符串)。</li>
+<li>参数:</li>
+<li>消息——一个字符串描述错误或异常</li>
+<li>t - 可抛出错误或异常</li>
+</ul>
+<h2>12、public abstract void service(ServletRequest req,</h2>
+<pre><code>       ServletResponse res)
+                  throws ServletException,
+                         java.io.IOException
+</code></pre>
+
+<ul>
+<li>由servlet容器允许调用servlet响应一个请求。看到Servlet.servic(javax.servlet.ServletRequest ,javax.servlet.ServletResponse)。</li>
+<li>此方法声明为抽象子类,如HttpServlet,必须覆盖它。</li>
+<li>规定:</li>
+<li>服务接口Servlet</li>
+<li>参数:</li>
+<li>req——ServletRequest对象包含客户机的请求</li>
+<li>res——ServletResponse对象将包含servlet的响应</li>
+<li>抛出:</li>
+<li>ServletException——如果发生异常干扰servlet的正常运行</li>
+<li>. io .IOException。如果一个输入或输出异常发生</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
