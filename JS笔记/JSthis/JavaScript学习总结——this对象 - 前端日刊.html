@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://funteas.com/topic/5a1b9cdb53d73f04189c763c -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>JavaScript学习总结——this对象 - 前端日刊</title>
+  <link rel="canonical" href="https://funteas.com/topic/5a1b9cdb53d73f04189c763c">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="JavaScript学习总结——this对象 - 前端日刊">
+  <meta name="description" content="JavaScript学习总结——this对象 - 前端日刊">
+  
+  <meta name="referrer" content="always">
+  <meta content="_csrf" name="csrf-param">
+  <meta content="5W12df57-JaoFKRcZTuaJZStiT5qXeXLXHuE" name="csrf-token">
+  <meta name="baidu-site-verification" content="bOihC3jlsv">
+  
+  <meta name="author" content="story">
+  
+  <link title="RSS" type="application/rss+xml" rel="alternate" href="https://funteas.com/rss">
+  
+  <link rel="stylesheet" href="./JavaScript学习总结——this对象 - 前端日刊_files/index.min.b2d3cfa0.min.css" media="all">
+
+  <!-- scripts -->
+  <script src="./JavaScript学习总结——this对象 - 前端日刊_files/hm.js.下载"></script><script src="./JavaScript学习总结——this对象 - 前端日刊_files/index.min.ddbef2f8.min.js.下载"></script>
+
+<!-- <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> -->
+
+<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3022188773089142",
+    enable_page_level_ads: true
+  });
+</script> -->
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="https://funteas.com/">
+        
+          前端日刊
+        
+      </a>
+      <form id="search_form" class="navbar-search" action="https://funteas.com/search">
+        <input type="text" id="q" name="q" class="search-query span3" value="">
+      </form>
+      <ul class="nav pull-right">
+        
+        <!-- 
+        <li><a href="/about" target="">关于</a></li>
+         -->
+        <li><a href="https://funteas.com/about">关于</a></li>
+        
+        <li><a href="https://funteas.com/topic/5a1b9cdb53d73f04189c763c#myModal" data-toggle="modal" rel="nofollow">登录</a></li>
+        
+      </ul>
+      <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div id="main">
+  <style type="text/css">
+.goldcontent,#footer_main{ max-width: 720px ; min-width: auto}
+@media (max-width: 600px) {
+  #main{ margin-top: 0px!important }
+  #content .topic_full_title{ width: 100% }
+  .login_tip p{ margin-top: 60px }
+}
+.source{padding-top: 0!important}
+.source .topic_content>h2{ margin-top: 10px; margin-bottom: 10px }
+.sinfo{ color: #999!important; margin-bottom: 10px; margin-top: -3px; line-height: 1}
+.panel .inner a.span-primary{ color: #fff }
+.panel .inner.innerp0{ padding-left: 0; padding-right: 0 }
+</style>
+<div id="sidebar">
+  
+
+  <div class="panel">
+    <div class="header">
+      <span class="col_fade">相关文章</span>
+    </div>
+    <div class="inner innerp0">
+      
+      <ul class="unstyled">
+        <li>
+  <div>
+  	<a class="dark topic_title" href="https://funteas.com/topic/5a17857fd7e6621a2067b101" title="JavaScript函数柯里化">JavaScript函数柯里化</a>
+  </div>
+</li>
+
+<li>
+  <div>
+  	<a class="dark topic_title" href="https://funteas.com/topic/5a14e5dba8355d3c2270f548" title="深入了解 JavaScript 中的 for 循环">深入了解 JavaScript 中的 for 循环</a>
+  </div>
+</li>
+
+<li>
+  <div>
+  	<a class="dark topic_title" href="https://funteas.com/topic/5a1407acfd1dcfa0037dfb57" title="JavaScript常用方法">JavaScript常用方法</a>
+  </div>
+</li>
+
+<li>
+  <div>
+  	<a class="dark topic_title" href="https://funteas.com/topic/5a0d892de3fcc8f155a54e70" title="JavaScript 异步与 Promise 实现">JavaScript 异步与 Promise 实现</a>
+  </div>
+</li>
+
+<li>
+  <div>
+  	<a class="dark topic_title" href="https://funteas.com/topic/5a0d87a0e3fcc8f155a54e6a" title="JavaScript API 设计原则详解">JavaScript API 设计原则详解</a>
+  </div>
+</li>
+
+
+      </ul>
+      
+    </div>
+  </div>
+
+  
+</div>
+
+<div id="content" class="goldcontent2">
+  <div class="panel">
+    <div class="header topic_header">
+      <h1 class="topic_full_title">
+JavaScript学习总结——this对象</h1>
+      
+      <div class="user_mini_card">
+          <a class="user_avatar" href="https://funteas.com/user/story">
+            <img src="./JavaScript学习总结——this对象 - 前端日刊_files/0" title="story">
+          </a>
+          <div class="info">
+            <span class="user_name"><a class="dark" href="https://funteas.com/user/story">story</a></span>
+            <div class="user_changes">
+              11-27
+              阅读 389
+              收藏 1
+
+              
+              
+            </div>
+          </div>
+          
+          <a href="https://funteas.com/topic/5a1b9cdb53d73f04189c763c#myModal" data-toggle="modal" rel="nofollow" class="mt4 span-common span-success pull-right collect_btn">收藏</a>
+          
+      </div>
+      
+      
+      <div>
+        <div class="pr">
+        <div>在 JavaScript 中，this 关键字是动态绑定的，或称为运行期绑定，这极大地增强的我们程序的灵活性，同时也给初学者带来了很多困惑。本文总结了 this 的几个使用场景和常见误区</div>
+
+        <a href="http://link.funteas.com/?target=https%3A%2F%2Fsegmentfault.com%2Fa%2F1190000004938787" target="_blank" rel="nofollow noopener noreferrer">阅读原文</a>
+        <a class="read-beta pull-right">折叠收起</a>
+        </div>  
+      </div>
+      
+      
+    </div>
+    <!-- topic.content && topic.type === 'share' -->
+    
+    <div class="inner topic source">
+      <div class="topic_content">
+        <h3>JavaScript学习总结——this对象</h3>
+        <div class="sinfo">来源：<a href="http://link.funteas.com/?target=https%3A%2F%2Fsegmentfault.com%2Fa%2F1190000004938787" target="_blank" rel="nofollow noopener noreferrer">segmentfault.com</a></div>
+        
+<p><a class="ad" data-link="https://cn.udacity.com/course/front-end-web-developer-nanodegree--nd001-cn-advanced/?utm_source=funteas&amp;utm_medium=KOL&amp;utm_campaign=fend1" href="https://cn.udacity.com/course/front-end-web-developer-nanodegree--nd001-cn-advanced/?utm_source=funteas&amp;utm_medium=KOL&amp;utm_campaign=fend1" target="_blank" rel="nofollow noopener noreferrer">「Google X GitHub 前端课程」硅谷实战项目，一对一中文导师，席位有限，立即抢座 &gt;&gt;&gt;</a></p>
+
+
+        <div class="markdown-text"><blockquote>
+<p>在JavaScript中，this关键字是动态绑定的，或称为运行期绑定，这极大地增强的我们程序的灵活性，同时也给初学者带来了很多困惑。本文总结了this的几个使用场景和常见误区。</p>
+</blockquote>
+<h2>全局环境</h2>
+<p>在全局环境中使用<code>this</code>，它会指向全局对象。在web游览器中，也就是window对象。</p>
+<pre class="prettyprint"><code><span class="pln">alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> window</span><span class="pun">);</span><span class="pln">    </span><span class="com">// true</span></code></pre><h2>函数调用</h2>
+<p>当作为普通函数被调用时，函数内部的的<code>this</code>也会指向全局对象。</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> sayName</span><span class="pun">(){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"fun"</span><span class="pun">;</span><span class="pln">
+    alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "window"</span></code></pre><h2>作为对象的方法调用</h2>
+<p>当作为对象内部的方法被调用时，这里<code>this</code>指向这个方法所在的对象。</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"obj"</span><span class="pun">,</span><span class="pln">
+  sayName</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+obj</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "obj"</span></code></pre><h2>作为构造函数调用</h2>
+<p>JavaScript 中的构造函数很特殊，如果不使用 new 调用，则和普通函数一样。作为又一项约定俗成的准则，构造函数以大写字母开头，提醒调用者使用正确的方式调用。如果调用正确，<code>this</code> 绑定到新创建的对象上。</p>
+<pre class="prettyprint"><code><span class="kwd">function</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="pln">name</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">,</span><span class="pln">
+    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">sayName </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+        alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> person1 </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Person</span><span class="pun">(</span><span class="str">"daoko"</span><span class="pun">);</span><span class="pln">
+person1</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "darko"</span></code></pre><h2>apply和call调用</h2>
+<p><code>apply</code>和<code>call</code>是函数对象的的两个方法，它们可以修改函数执行的上下文环境，即<code>this</code>绑定的对象。<code>apply</code>和<code>call</code>的第一个参数就是this绑定的对象，若<code>apply</code>和<code>call</code>的参数为空，则默认调用全局对象。</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"object"</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> sayName</span><span class="pun">(){</span><span class="pln">
+  alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// 直接调用函数sayName</span><span class="pln">
+sayName</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">);</span><span class="pln">    </span><span class="com">// 用call方法修改this的指向</span><span class="pln">
+sayName</span><span class="pun">.</span><span class="pln">call</span><span class="pun">();</span><span class="pln">    </span><span class="com">// 当call方法的参数为空时，默认调用全局对象</span></code></pre><h2>特殊情况</h2>
+<h3>常见错误</h3>
+<p>我们首先来看这样一个栗子：</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"obj"</span><span class="pun">,</span><span class="pln">
+  sayName</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> test </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">    </span><span class="com">// this绑定到全局对象上</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    test</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+obj</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "window"</span><span class="pln">
+</span></code></pre><p>是不是和上面说的<code>作为对象的方法调用</code>情况很像，按照我们的理解此时的<code>this</code>应该指向<code>obj</code>对象，但是实际情况不是这样的，此时的<code>this</code>指向全局对象。</p>
+<p>这属于 JavaScript 的设计缺陷，正确的设计方式是内部函数的 this 应该绑定到其外层函数对应的对象上，为了规避这一缺陷，我们可以使用变量替代的方法，约定俗成，该变量一般被命名为 that。 在这个栗子中，这样我们创建了一个局部变量<code>that</code>来指向<code>obj</code>对象。</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"obj"</span><span class="pun">,</span><span class="pln">
+  sayName</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> that </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">    </span><span class="com">// that指向对象obj</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> test </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+      alert</span><span class="pun">(</span><span class="pln">that</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    test</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+obj</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "obj"</span></code></pre><h3>方法的赋值表达式</h3>
+<p>当我们把一个对象的方法赋值给一个变量时，它的<code>this</code>会发生什么变化呢? 看个栗子:</p>
+<pre class="prettyprint"><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"window"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> obj </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"obj"</span><span class="pun">,</span><span class="pln">
+  sayName</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    alert</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> test </span><span class="pun">=</span><span class="pln"> obj</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">;</span><span class="pln">
+obj</span><span class="pun">.</span><span class="pln">sayName</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "obj"</span><span class="pln">
+test</span><span class="pun">();</span><span class="pln">    </span><span class="com">// "window"</span></code></pre><p>从上面这个栗子中我们可以看到，当把对象<code>obj</code>的方法赋值给一个新的变量<code>test</code>时，它的this指向发生了变化，<code>test</code>就向一个普通的函数一样被调用，此时指向全局对象。</p>
+</div>
+      </div>
+    </div>
+    
+    <div class="inner topic inner-nopad">
+        
+            
+                <a class="tag_selectable" data-id="5943a87cbc5c6d2575ab64ab" href="https://funteas.com/tag/JavaScript">JavaScript</a>
+            
+                <a class="tag_selectable" data-id="595c88bf18511f4f567c03a2" href="https://funteas.com/tag/%E5%AF%B9%E8%B1%A1">对象</a>
+            
+                <a class="tag_selectable" data-id="595c8fa818511f4f567c03ac" href="https://funteas.com/tag/this">this</a>
+            
+        
+    </div>
+    
+  </div>
+
+  
+  <div class="panel space">
+    <div class="header">
+      <span class="col_fade">评论</span>
+    </div>
+    <div class="inner reply">
+      
+        <div class="markdown_editor in_editor">
+          <div class="markdown_in_editor">
+            <textarea class=" form-control-com" name="r_content"></textarea>
+
+            <div class="editor_buttons">
+              <a href="https://funteas.com/topic/5a1b9cdb53d73f04189c763c#myModal" data-toggle="modal" rel="nofollow" class="span-primary ">评论</a>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="_csrf" id="_csrf" value="5W12df57-JaoFKRcZTuaJZStiT5qXeXLXHuE">
+        <input type="hidden" name="topicType" value="share">
+    </div>
+  </div>
+  
+
+  
+</div>
+
+
+<!-- markdown editor -->
+<script src="./JavaScript学习总结——this对象 - 前端日刊_files/jquery.atwho.js.下载"></script>
+<script>
+  $(document).ready(function () {
+    // $("h2,h3,h4,h5,h6").each(function(i,item){
+    //   var tag = $(item).get(0).localName;
+    //   $(item).attr("id","wow"+i);
+    //   $("#category").append('<a class="new'+tag+'" href="#wow'+i+'">'+$(this).text()+'</a></br>');
+    //   $(".newh2").css("margin-left",0);
+    //   $(".newh3").css("margin-left",20);
+    //   $(".newh4").css("margin-left",40);
+    //   $(".newh5").css("margin-left",60);
+    //   $(".newh6").css("margin-left",80);
+    // });
+
+
+    $('.read-beta').on('click', function(event) {
+      event.preventDefault();
+      if($('.source').is(':hidden')){
+        $('.source').show()
+        $(this).html('折叠收起')
+      }else{
+        $('.source').hide()
+        $(this).html('进入阅读模式')
+      }
+    });
+
+    // 获取所有评论者name
+    var allNames = $('.reply_author').map(function (idx, ele) {
+      return $(ele).text().trim();
+    }).toArray();
+
+    allNames.push($('.user_card .user_name').text())
+    allNames = $.unique(allNames);
+    
+    // 编辑器相关
+    var $input = $('#reply_form textarea')
+    $input.keydown(function(event){
+      if (event.keyCode === 13 && (event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        $el.closest('form').submit();
+      }
+    });
+
+    $input.atwho({
+      at: '@',
+      data: allNames
+    })
+
+    // 评论评论
+    $('#content').on('click', '.reply2_btn', function (event) {
+      var user = $(this).parents('.author_content').find('.reply_author').text().trim();
+      $('#reply_form textarea').val($('#reply_form textarea').val() + '@'+ user + ' ').focus();
+    });
+
+    // 加入收藏
+    $('.collect_btn').click(function () {
+      var $me = $(this);
+      var action = $me.attr('action');
+      var data = {
+        topic_id: '5a1b9cdb53d73f04189c763c',
+        _csrf: '5W12df57-JaoFKRcZTuaJZStiT5qXeXLXHuE'
+      };
+      var $countSpan = $('.collect-topic-count');
+      $.post('/topic/' + action, data, function (data) {
+        if (data.status === 'success') {
+          if (action == 'collect') {
+            $me.val('已收藏');
+            $me.attr('action', 'de_collect');
+          } else {
+            $me.val('收藏');
+            $me.attr('action', 'collect');
+          }
+          $me.toggleClass('span-success');
+        }
+      }, 'json');
+    });
+    // END 加入收藏
+
+    // 删除评论
+    $('#content').on('click', '.delete_reply_btn, .delete_reply2_btn', function (event) {
+      var $me = $(event.currentTarget);
+      if (confirm('确定要删除此评论吗？')) {
+        var reply_id = null;
+        if ($me.hasClass('delete_reply_btn')) {
+          reply_id = $me.closest('.reply_item').attr('reply_id');
+        }
+        
+        var data = {
+          reply_id: reply_id,
+          _csrf: "5W12df57-JaoFKRcZTuaJZStiT5qXeXLXHuE"
+        };
+        $.post('/reply/' + reply_id + '/delete', data, function (data) {
+          if (data.status === 'success') {
+            if ($me.hasClass('delete_reply_btn')) {
+              $me.closest('.reply_item').remove();
+            }
+           
+          }
+        }, 'json');
+      }
+      return false;
+    });
+    // END 删除评论
+
+    // 删除话题
+    $('.delete_topic_btn').click(function () {
+      var topicId = $(this).data('id');
+      if (topicId && confirm('确定要删除此话题吗？')) {
+        $.post('/topic/' + topicId + '/delete', { _csrf: $('#_csrf').val() }, function (result) {
+          if (!result.success) {
+            alert(result.message);
+          } else {
+            location.href = '/';
+          }
+        });
+      }
+      return false;
+    });
+    // END 删除话题
+
+    // 用户 hover 在评论框时才显示点赞按钮
+    $('.reply_area').hover(
+      function () {
+        $(this).find('.up_btn').removeClass('invisible');
+      },
+      function () {
+        var $this = $(this);
+        if ($this.find('.up-count').text().trim() === '') {
+          $this.find('.up_btn').addClass('invisible');
+        }
+      });
+    // END 用户 hover 在评论框时才显示点赞按钮
+  });
+  
+  // 点赞
+  $('.up_btn').click(function (e) {
+    var $this = $(this);
+    var replyId = $this.closest('.reply_area').attr('reply_id');
+    $.ajax({
+      url: '/reply/' + replyId + '/up',
+      method: 'POST',
+    }).done(function (data) {
+      if (data.success) {
+        $this.removeClass('invisible');
+        var currentCount = Number($this.next('.up-count').text().trim()) || 0;
+        if (data.action === 'up') {
+          $this.next('.up-count').text(currentCount + 1);
+          $this.addClass('uped');
+        } else {
+          if (data.action === 'down') {
+            $this.next('.up-count').text(currentCount - 1);
+            $this.removeClass('uped');
+          }
+        }
+      } else {
+        alert(data.message);
+      }
+    }).fail(function (xhr) {
+      if (xhr.status === 403) {
+        alert('请先登录，登陆后即可点赞。');
+      }
+    });
+  });
+  // END 点赞
+  $(document).on('click', '.ad', function(event) {
+    $.get('/ad');
+  });
+</script>
+
+</div>
+<div id="container2"></div>
+<div id="footer">
+  <div id="footer_main">
+    <div class="links">
+      <a class="dark" href="https://funteas.com/rss">RSS</a> / <a href="https://funteas.com/about" class="dark">关于</a>
+      
+    </div>
+    <div class="col_fade">
+  <p class="gray">
+  	© 2017-2017 前端日刊 <br>
+  	
+  </p>
+</div>
+  </div>
+</div>
+<div id="backtotop" style="display: block;">回到顶部</div>
+
+<div id="myModal" class="modal hide" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 style="display: inline-block;">登录</h4>
+  </div>
+  <div class="modal-body login-form">
+    <div class="pageindex">
+      <form id="signin_form" action="https://funteas.com/signin" method="post">
+        <div class="control-group">
+          <div class="controls">
+            <input class="input-xlarge" id="name" name="name" size="30" type="text" placeholder="用户名">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <input class="input-xlarge" id="pass" name="pass" size="30" type="password" placeholder="密码">
+          </div>
+        </div>
+        <input type="hidden" name="_csrf" value="5W12df57-JaoFKRcZTuaJZStiT5qXeXLXHuE">
+        <div class="form-actions">
+          <input type="submit" class="span-primary btn-block" value="登录">
+        </div>
+        <div>
+          <span>没有账号？</span><a href="https://funteas.com/signup">注册</a><a href="https://funteas.com/search_pass" class="pull-right">忘记密码了?</a>
+        </div>
+      </form>
+      <div class="e-flex auth-list-min e-flex-cross-center">
+        <span>第三方账号登录：</span>
+        <div>
+          <a href="https://funteas.com/auth/weibo" class="e-flex e-flex-cross-center auth_weibo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAMCAYAAAC9QufkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUVJREFUeNpi/P//PwMh8HKyiAKQSoByD4jnvjkAYjAxEAdgmuuBeD/QsAkgQUZ0m6/paDdAFcoDsaHWlasXoLYvAFL3gFgDiCOB2JEFSZMAyElArI9kVgBQHEQLCISz/GAW+FMEZPdB5RzANuPQiAGE018WQr2QD8SNMJsXoGk8iMS2hzG+n+Nez2n09SOQ+QGILzBe1dZyAAUCVL4x/9HjdQc+f3aC8jdc1Nb6ADXcH4hBGh1g4QCy2QGqsFD/6rUNIBOBmB8q1gBUKAD0FigAH0DFJ8D0IEfVAqS4vAil+VkZGQ2ABnyAOhUFMEFtYoBqfABVJAAz5Pf//xeg0ScPFZsA0wwL7QZoAmiMuHuP+/qPH6ZcTEzXFykqHlHlYE+FBhrIvwVAVyxA0QyNZ1AUNED9I4/kuovQaJwA1PgA2dkAAQYAx8Z0+LKRdJwAAAAASUVORK5CYII="></a>
+        </div>
+        <div>
+          <a href="https://funteas.com/auth/github" class="e-flex e-flex-cross-center auth_github"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAspJREFUeNrsWL1OwzAQTtoFwRIkhNhon4CwsZE8AeEN2o2tYmSCPgHlCVpGJngDysZG3oB2QxVDliKY4A5dpSjY53PiiA45yWoV/30+f/58Z89rrLHGGnNpvsvBdnd3IvgJoQSK6hmUdLF4T9cCOIDtwc8JlETYBRcwhXJTZRF+RcCXUDoV1o0LGMICprUDB8BIhTFRwpWNaAFZLcDJy9caDlc1pM0pgJ85BU6gxzWLBXo8lnDfXyPQefBdE218IadfNFsbOgCZKQ44yuYh17ElGPxeJWk08DaUPkmcrZogJVb9ixaCw65Ke5w6XyqqJjBpX9F2BcpbSRx8D2hn0KvHUG6L8gdtvjUQurrD6jOgccJXjYKgdF05vHF1wP84SEKVhJG9A4egOWnt6eo54AOmzqWOm25eZSjRZrwwYgaLl8uPzAVqGOdta2sTKRsxbe6kHudkbiK93SyvfJ0jIhuqRMwkt65vHLpsHnS0VPG8VWKe1KvH5kxdKAW+b/DOv1vLdvUUAqwt8CryVdaO6wZ+UhPwkKHnVAqcS6USw21XNg0MmBxV7PHUcGuOHYIOKKvybJzYKqGrK6+PHYBGejwaQogn2+iwmPVkijgFt3GIi7SRSRgbD3iP4qGgTDZkisdfcyqC9IlpwmvNlqa6bJ0eiwa52Fxi2vDZpCrDwqnHhUwK3/NhQsB4PqU2UtAZF+i1DZFbCpFbfrINKHsA7hy+dxQS1sdoTzPWJ/TZg79HQuAX3EORL+TjS4GLvykV1CU58JjgPpRMBYuGZ+bUxfNERKc/v+2xbdwiBC4auy0M9mewzfNcNoJbfoZbD+ULaQMlgXbP3DhEu6gqaKuXLInuwoR+BY8jzfrSXbSKVehprGu4nMo8Cp0jp22oZx1k4eB0cGJDTCMxlNZDGG9k29HFw35I3M9MAEihBhTvT9YlKWmsscYc2o8AAwBQlSLpR1ITywAAAABJRU5ErkJggg=="></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?81b4ee628d753e8cc167e56439f91ffa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+</body></html>
