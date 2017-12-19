@@ -1,0 +1,49 @@
+#home{
+width: 80%;
+}
+#div_digg{
+position:fixed;
+bottom: 50px;
+right: 500px;
+}
+#bury_count:after{
+content: "0";
+    /* float: left; */
+    width: 46px;
+    height: 32px;
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#main h2{
+background: #1f7b9b;
+    border-radius: 6px 6px 6px 6px;
+    color: #FFFFFF;
+    font-family: "微软雅黑", "宋体", "黑体", Arial;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    margin: 15px 0 !important;
+    padding: 10px;
+    text-shadow: 2px 2px 3px #222222;
+}
+
+code.sourceCode.javascript.hljs{
+    background-color: white;
+    border-radius: 8px;
+    transition: all 1.5s;
+    background-color: #f5f5f5;
+    font-family: Courier New!important;
+    font-size: 12px!important;
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: auto;
+    margin: 5px 0;
+    color: #000;
+}
+code.sourceCode.javascript.hljs:hover{
+border-color: #9EE0F8!important;
+    box-shadow: #C0EBFB 0px 0px 20px 0px;
+}

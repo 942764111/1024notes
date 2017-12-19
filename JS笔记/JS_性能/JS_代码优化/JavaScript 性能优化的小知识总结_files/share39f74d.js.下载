@@ -1,0 +1,122 @@
+define("appmsg/share.js",["biz_common/utils/string/html.js","appmsg/cdn_img_lib.js","biz_common/dom/event.js","biz_common/utils/url/parse.js","biz_wap/utils/mmversion.js","biz_wap/utils/ajax.js","biz_wap/jsapi/core.js"],function(e){
+"use strict";
+function i(e,i){
+var n="",o="";
+try{
+""!=tid&&(o="tid="+tid+"&aid=54");
+var t=e.split("?")[1]||"";
+if(t=t.split("#")[0],""==t);else{
+var s=[t,"mpshare=1","scene="+i,"srcid="+srcid];
+""!=o&&s.push(o),t=s.join("&"),n=e.split("?")[0]+"?"+t+"#"+(e.split("#")[1]||"");
+}
+}catch(m){
+n="";
+}
+return n||(n=location.href+"#wechat_redirect",(new Image).src=location.protocol+"//mp.weixin.qq.com/mp/jsmonitor?idkey=28307_47_1&lc=1&log0=[share_link]["+encodeURIComponent(location.href)+"]["+encodeURIComponent(e)+"]["+encodeURIComponent(msg_link)+"]"),
+n;
+}
+function n(e,i,n){
+var o=e.split("?").pop();
+if(o=o.split("#").shift(),""!=o){
+var t=[o,"action=share","action_type="+n,"scene="+window.source,"ascene="+(window.ascene||-1),"req_id="+(window.req_id||""),"vid="+("undefined"!=typeof window.reportVid?window.reportVid.join(";"):""),"musicid="+("undefined"!=typeof window.reportMid?window.reportMid.join(";"):""),"voiceid="+("undefined"!=typeof window.reportVoiceid?window.reportVoiceid.join(";"):""),"weappid="+("undefined"!=typeof window.reportWeappid?window.reportWeappid.join(";"):"")].join("&");
+m({
+url:"/mp/appmsgreport",
+type:"POST",
+data:t
+});
+}
+}
+function o(e,i){
+return e.isCDN()&&(e=t.addParam(e,"wxfrom",i,!0)),e;
+}
+e("biz_common/utils/string/html.js"),e("appmsg/cdn_img_lib.js");
+var t=(e("biz_common/dom/event.js"),e("biz_common/utils/url/parse.js")),s=e("biz_wap/utils/mmversion.js"),m=e("biz_wap/utils/ajax.js"),r={
+90041:"此标题包含夸大误导信息",
+20012:"此标题包含低俗恶俗性内容"
+},a={
+90041:"标题使用夸大、煽动、低俗等词语造成误导或引人不适。",
+20012:"标题使用低俗或恶俗性词语造成不正当影响或引人不适。"
+},c=e("biz_wap/jsapi/core.js");
+c.call("hideToolbar"),c.call("showOptionMenu");
+var l=msg_title.htmlDecode(),d=(msg_source_url.htmlDecode(),""),p=msg_cdn_url||ori_head_img_url||round_head_img,u=p,_=msg_link.htmlDecode(),l=msg_title.htmlDecode(),h=msg_desc.htmlDecode();
+h=h||_,h=h.replace(/<br\/>/g,"\n"),idx>1&&document.getElementById("js_content")&&1446652800>ct&&(h=document.getElementById("js_content").innerHTML.replace(/<\/?[^>]*\/?>/g,"").htmlDecode().replace(/^(\s*)|(\s*)$/g,"").substr(0,54)),
+p.isCDN()&&(p=p.replace(/\/0$/,"/300"),p=p.replace(/\/0\?/,"/300?")),u.isCDN()&&(u=u.replace(/\/0$/,"/640"),
+u=u.replace(/\/0\?/,"/640?")),malicious_title_reason_id&&(l=r[malicious_title_reason_id],
+h=a[malicious_title_reason_id],p="https://mmbiz.qlogo.cn/mmbiz_png/cVgP5bCElFiayFgbgEB9iaDt7hLicfz9RrXGM0LpaQ0TUic2gP7lbbqU3jCD8ibonicgIa3p99yjx1f1P26HChraeRUg/0?wx_fmt=png"),
+"1"==is_limit_user&&c.call("hideOptionMenu"),window.is_temp_url&&c.invoke("hideMenuItems",{
+menuList:["menuItem:share:timeline","menuItem:share:qq","menuItem:share:weiboApp","menuItem:share:facebook","menuItem:share:qzone","menuitem:share:weibo","menuItem:share:WeiboApp","menuItem:share:QZone","menuitem:facebook","menuItem:copyUrl","menuItem:share:email","menuitem:copy_url"]
+},function(){}),c.on("menu:share:appmessage",function(e){
+var t=1,s=o(p,"1");
+e&&"favorite"==e.scene&&(t=24,s=o(p,"4")),c.invoke("sendAppMessage",{
+appid:d,
+img_url:s,
+img_width:"640",
+img_height:"640",
+link:i(_,t),
+desc:h,
+title:l
+},function(){
+n(_,fakeid,t);
+});
+}),c.on("menu:share:timeline",function(){
+var e=p;
+s.isIOS||(e=o(p,"2")),n(_,fakeid,2),c.invoke("shareTimeline",{
+img_url:e,
+img_width:"640",
+img_height:"640",
+link:i(_,2),
+desc:h,
+title:l
+},function(){});
+});
+c.on("menu:share:weiboApp",function(){
+c.invoke("shareWeiboApp",{
+img_url:p,
+link:i(_,3),
+title:l
+},function(){
+n(_,fakeid,3);
+});
+}),c.on("menu:share:facebook",function(){
+n(_,fakeid,7),c.invoke("shareFB",{
+img_url:u,
+img_width:"640",
+img_height:"640",
+link:i(_,43),
+desc:h,
+title:l
+},function(){});
+}),c.on("menu:share:QZone",function(){
+var e=o(p,"6");
+n(_,fakeid,5),c.invoke("shareQZone",{
+img_url:e,
+img_width:"640",
+img_height:"640",
+link:i(_,22),
+desc:h,
+title:l
+},function(){});
+}),c.on("menu:share:qq",function(){
+var e=o(p,"7");
+n(_,fakeid,5),c.invoke("shareQQ",{
+img_url:e,
+img_width:"640",
+img_height:"640",
+link:i(_,23),
+desc:h,
+title:l
+},function(){});
+}),c.on("menu:share:email",function(){
+n(_,fakeid,5),c.invoke("sendEmail",{
+content:i(_,5),
+title:l
+},function(){});
+}),c.on("sys:record",function(){
+c.invoke("recordHistory",{
+link:_,
+title:l,
+source:nickname,
+img_url:p
+},function(){});
+});
+});

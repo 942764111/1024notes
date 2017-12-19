@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/dojo-lzz/p/3983335.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML渲染过程详解 - 木的树 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./HTML渲染过程详解 - 木的树 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./HTML渲染过程详解 - 木的树 - 博客园_files/bundle-SimpleMemory.css">
+<link type="text/css" rel="stylesheet" href="./HTML渲染过程详解 - 木的树 - 博客园_files/118404.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./HTML渲染过程详解 - 木的树 - 博客园_files/bundle-SimpleMemory-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/dojo-lzz/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/dojo-lzz/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/dojo-lzz/wlwmanifest.xml">
+<script async="" src="./HTML渲染过程详解 - 木的树 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./HTML渲染过程详解 - 木的树 - 博客园_files/encoder.js.下载"></script><script src="./HTML渲染过程详解 - 木的树 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'dojo-lzz', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./HTML渲染过程详解 - 木的树 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/dojo-lzz/"><img id="blogLogo" src="./HTML渲染过程详解 - 木的树 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/dojo-lzz/">我的小树林</a></h1>
+<h2>褪一分浮躁，守一分宁静，握一份真诚，携一份善良，简单程序员。。。
+专注于webGIS、dojo、Node.js欢迎各位道友前来论道</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/dojo-lzz/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 115&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 684</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/dojo-lzz/p/3983335.html">HTML渲染过程详解</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>　　无意中看到寒冬关于前端的<a href="http://www.weibo.com/1196343093/Bhj510t50#_loginLayer_1411048014706" target="_blank">九个问题</a>，细细想来我也只是对第一、二、九问有所了解，正好也趁着这个机会梳理一下自己的知识体系。由于本人对http协议以及dns对url的解析问题并不了解，<span style="text-decoration: line-through;">所以这里之探讨url请求加载到浏览器端时，浏览器对html的解析到呈现过程，</span>后来经过几位道友分享，整理了一下<a href="http://www.cnblogs.com/wenanry/archive/2010/02/25/1673368.html" target="_blank">url解析的过程</a>，如下：</p>
+<ol>
+<li>用户输入url地址，浏览器根据域名寻找IP地址</li>
+<li>浏览器向服务器发送http请求，如果服务器段返回以301之类的重定向，浏览器根据相应头中的location再次发送请求</li>
+<li>服务器端接受请求，处理请求生成html代码，返回给浏览器，这时的html页面代码可能是经过压缩的</li>
+<li>浏览器接收服务器响应结果，如果有压缩则首先进行解压处理，紧接着就是页面解析渲染</li>
+</ol>
+<p>　　解析渲染该过程主要分为以下步骤：</p>
+<ol>
+<li>解析HTML</li>
+<li>构建DOM树</li>
+<li>DOM树与CSS样式进行附着构造呈现树</li>
+<li>布局</li>
+<li>绘制</li>
+</ol>
+<p style="text-align: left;"><span style="font-size: 15px;"><strong><span style="color: #0000ff;">解析与构建DOM树</span></strong></span></p>
+<p>　　前两步我们放在一起讨论，浏览器的实际工作也是将他们放在一起进行的。对于HTML浏览器有专门的<a href="https://html.spec.whatwg.org/multipage/syntax.html#parsing" target="_blank">html解析器</a>来解析HTML，并在解析的过程中构建<a href="http://www.w3.org/DOM/DOMTR" target="_blank">DOM树</a>。在这里我们讨论两种DOM元素的解析，即样式（link、style）与脚本文件（script）。由于浏览器采用自上而下的方式解析，在遇到这两种元素时都会阻塞浏览器的解析，直到外部资源加载并解析或执行完毕后才会继续向下解析html。对于样式与脚本的先后顺序同样也会影响到浏览器的解析过程，究其原因主要在于：script脚本执行过程中可能会修改html界面（如document.write函数）；DOM节点的CSS样式会影响js的执行结果。在我的测试中得到以下四条结论：</p>
+<p>　　1）外部样式会阻塞后续脚本执行，直到外部样式加载并解析完毕。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;e1695a8f-4f15-4608-9168-907a4a829010&#39;)"><img id="code_img_closed_e1695a8f-4f15-4608-9168-907a4a829010" class="code_img_closed" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_e1695a8f-4f15-4608-9168-907a4a829010" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;e1695a8f-4f15-4608-9168-907a4a829010&#39;,event)" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_e1695a8f-4f15-4608-9168-907a4a829010" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>JS Bin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> start </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="http://udacity-crp.herokuapp.com/style.css?rtt=2"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="result"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+    <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> end </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;
+    document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">result</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">).innerHTML </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> (end</span><span style="background-color: #f5f5f5; color: #000000;">-</span><span style="background-color: #f5f5f5; color: #000000;">start);
+  </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201357415969516.jpg" alt=""></p>
+<p>　　2）外部样式不会阻塞后续外部脚本的加载，但会阻塞外部脚本的执行。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;86598f84-45b2-4ae6-80f4-84c1ffdfbeab&#39;)"><img id="code_img_closed_86598f84-45b2-4ae6-80f4-84c1ffdfbeab" class="code_img_closed" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_86598f84-45b2-4ae6-80f4-84c1ffdfbeab" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;86598f84-45b2-4ae6-80f4-84c1ffdfbeab&#39;,event)" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_86598f84-45b2-4ae6-80f4-84c1ffdfbeab" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>JS Bin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> start </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="http://udacity-crp.herokuapp.com/style.css?rtt=2"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+  test
+  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="http://udacity-crp.herokuapp.com/time.js?rtt=1&amp;a"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="result"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> end </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">result</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">).innerHTML </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> end</span><span style="background-color: #f5f5f5; color: #000000;">-</span><span style="background-color: #f5f5f5; color: #000000;">start;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">主页代码</span></div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;6dac4b73-64b7-4f31-8d98-2c4e44f5296b&#39;)"><img id="code_img_closed_6dac4b73-64b7-4f31-8d98-2c4e44f5296b" class="code_img_closed" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_6dac4b73-64b7-4f31-8d98-2c4e44f5296b" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;6dac4b73-64b7-4f31-8d98-2c4e44f5296b&#39;,event)" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_6dac4b73-64b7-4f31-8d98-2c4e44f5296b" class="cnblogs_code_hide">
+<pre><span style="color: #000000;">var loadTime = document.createElement('div');
+loadTime.innerText = document.currentScript.src + ' executed @ ' + window.performance.now();
+loadTime.style.color = 'blue';
+document.body.appendChild(loadTime);</span></pre>
+</div>
+<span class="cnblogs_code_collapse">外部脚本</span></div>
+<p>　　从瀑布图中我们可以看到，外部脚本与外部样式是并行加载，但直到外部样式加载完毕，外部脚本才开始执行</p>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201407227214213.jpg" alt=""></p>
+<p>　　3）如果后续外部脚本含有async属性（IE下为defer），则外部样式不会阻塞该脚本的加载与执行</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;fdca5dc9-3b81-4af9-8872-e7d766585bef&#39;)"><img id="code_img_closed_fdca5dc9-3b81-4af9-8872-e7d766585bef" class="code_img_closed" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_fdca5dc9-3b81-4af9-8872-e7d766585bef" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;fdca5dc9-3b81-4af9-8872-e7d766585bef&#39;,event)" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_fdca5dc9-3b81-4af9-8872-e7d766585bef" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>JS Bin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> start </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="http://udacity-crp.herokuapp.com/style.css?rtt=2"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+  test
+  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="http://udacity-crp.herokuapp.com/time.js?rtt=1&amp;a"</span><span style="color: #ff0000;"> async</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="result"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> end </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">result</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">).innerHTML </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> end</span><span style="background-color: #f5f5f5; color: #000000;">-</span><span style="background-color: #f5f5f5; color: #000000;">start;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　从瀑布图中可以看到外部脚本的加载与执行并不受link的阻塞</p>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201417036284209.jpg" alt=""></p>
+<p>　　4）对于动态创建的link标签不会阻塞其后动态创建的script的加载与执行，不管script标签是否具有async属性，但对于其他非动态创建的script，以上三条结论仍适用</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;719c3f12-32eb-4f50-b6ee-2eb4f6351e49&#39;)"><img id="code_img_closed_719c3f12-32eb-4f50-b6ee-2eb4f6351e49" class="code_img_closed" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_719c3f12-32eb-4f50-b6ee-2eb4f6351e49" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;719c3f12-32eb-4f50-b6ee-2eb4f6351e49&#39;,event)" src="./HTML渲染过程详解 - 木的树 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_719c3f12-32eb-4f50-b6ee-2eb4f6351e49" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>JS Bin<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> start </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+  test
+  </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span> 
+    <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> link </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> document.createElement(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">link</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+    link.href </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">http://udacity-crp.herokuapp.com/style.css?rtt=2</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+    link.rel </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">stylesheet</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+    document.head.appendChild(link);
+    </span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> script </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> document.createElement(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">script</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+    script.src </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">http://udacity-crp.herokuapp.com/time.js?rtt=1&amp;a</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+    document.head.appendChild(script);
+  </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="result"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> end </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> Date;document.getElementById(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">result</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">).innerHTML </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> end</span><span style="background-color: #f5f5f5; color: #000000;">-</span><span style="background-color: #f5f5f5; color: #000000;">start;</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+  
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>　　这是最终页面结构</p>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201427440654419.jpg" alt=""></p>
+<p>　　通过瀑布图与页面结果可以看到动态创建的外部脚本并未受link的阻塞。</p>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201429598156546.jpg" alt=""></p>
+<p>　　link或style标签都会被解析成DOM节点。浏览器对于样式表还会生成CSSStyleSheet对象(C++代码)，他集成子CSSStyle，指标是样式表对象而不管该对象来自于Style还是link。该对象主要包含以下几个重要属性和方法</p>
+<ul>
+<li>CSSRules 即css样式代码</li>
+<li>type&nbsp;表示样式表类型的字符串。对CSS样式表而言，这个字符串是“type/css”。</li>
+<li>href 通过link生成的为样式链接，否则为undefined</li>
+<li>insertRule(rule,index)：向cssRules集合中指定的位置插入rule字符串。IE不支持这个方法，但支持一个类似的addRule()方法。</li>
+<li>deleteRule(index)：删除cssRules集合中指定的位置的规则。IE不支持这个方法，但支持一个类似的removeRule()方法。</li>
+</ul>
+<p>　　文档中对于所有的样式表集合可以通过document.styleSheets来访问。同时对于style或link DOM元素可以通过element.sheet来访问CSSStyleSheet对象，IE中则通过element.styleSheet来访问。</p>
+<p>　　html解析完毕，DOM树创建完成后DOMContentLoaded事件即触发，这时候可以用过script来操作DOM节点。</p>
+<p>&nbsp;</p>
+<p style="text-align: left;"><span style="font-size: 15px;"><strong><span style="color: #0000ff;">构建呈现树　</span></strong></span>　</p>
+<p>　　HTML解析完毕后，开始构建呈现树RenderTree，这一步的主要工作在于将css样式应用到DOM节点上，WebKit内核将这一过程称为附着，其他浏览器有不同的概念。对前端工程师而言这个过程会涉及到CSS层叠问题。</p>
+<p>　　首先将根据样式重要性排序，由低到高依次为：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>浏览器声明</li>
+<li>用户普通声明</li>
+<li>作者普通声明</li>
+<li>作者重要声明</li>
+<li>用户重要声明</li>
+</ol></li>
+</ol>
+<p>　　对于同一重要级别，则是根据CSS选择符的特指度来判定优先级；一条样式声明的特指度由以下四个部分决定：S-I-C-E</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>声明来自内联的style属性则 S+1；</li>
+<li>声明中含有id属性则 I+1；</li>
+<li>声明中含有类、伪类、属性选择器则 C+1；</li>
+<li>生命中含有元素、伪元素选择器则 E+1；</li>
+</ol></li>
+</ol>
+<p>　　特指度的比较类似于两个字符串之间比较大小。</p>
+<p>　　呈现树的每一个节点即为与其相对应的DOM节点的CSS框，框的类型与DOM节点的display属性有关，block元素生成block框，inline元素生成inline框。每一个呈现树节点都有与之相对应的DOM节点，但DOM节点不一定有与之相对应的呈现树节点，比如display属性为none的DOM节点，而且呈现树节点在呈现树中的位置与他们在DOM树中的位置不一定相同，比如float与绝对定位元素。</p>
+<p>　　下图为呈现树与其相对应的DOM树节点</p>
+<p><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/201506295501803.jpg" alt="" width="605" height="353"></p>
+<p style="text-align: left;"><span style="font-size: 15px;"><strong><span style="color: #0000ff;">布局</span></strong></span></p>
+<p>　　呈现树构造完成后浏览器便进行布局处理，及计算每个呈现树节点的大小和位置信息。有道友可能要问，前面已将样式附着到DOM节点上，不是已经有了样式信息为何还要计算大小。这里可以这样理解，以上包含大小的样式信息只是存在内存里，并没有实际使用，浏览器要根据窗口的实际大小来处理呈现树节点的实际显示大小和位置，比如对于margin为auto的处理。</p>
+<p>　　布局是一个递归过程，从跟呈现节点开始，递归遍历子节点，计算集合几何信息。具体过程还是比较复杂偶也不甚了解，道友们还是查阅其他资料吧。</p>
+<p>&nbsp;</p>
+<p style="text-align: left;"><span style="font-size: 15px;"><strong><span style="color: #0000ff;">绘制</span></strong></span></p>
+<p>&nbsp;　　布局完成后，便是将呈现树绘制出来显示在屏幕上。对于每一个呈现树节点来说，主要绘制顺序如下：</p>
+<ol>
+<li>背景颜色</li>
+<li>背景图片</li>
+<li>边框</li>
+<li>子呈现树节点</li>
+<li>轮廓</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;参考资料：</p>
+<ul>
+<li><a href="http://velocity.oreilly.com.cn/2010/ppts/limufromTaobao.pdf">http://velocity.oreilly.com.cn/2010/ppts/limufromTaobao.pdf</a></li>
+<li><a href="http://lifesinger.wordpress.com/">http://lifesinger.wordpress.com/</a></li>
+<li><a href="http://hikejun.com/blog/2012/02/02/js%E5%92%8Ccss%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB/">http://hikejun.com/blog/2012/02/02/js%E5%92%8Ccss%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB/</a></li>
+<li><a href="http://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">http://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/</a></li>
+<li><a href="http://www.2cto.com/kf/201406/305852.html">http://www.2cto.com/kf/201406/305852.html</a></li>
+<li><a href="http://www.w3cmm.com/dom/document-stylesheets-getstylesheet.html">http://www.w3cmm.com/dom/document-stylesheets-getstylesheet.html</a></li>
+<li>http://www.cnblogs.com/wenanry/archive/2010/02/25/1673368.html</li>
+</ul>
+<p>文章有错误之处欢迎各位道友不吝指正</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/dojo-lzz/tag/javascript/">javascript</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3983335,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;d4a4b9ee-c6a4-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dojo-lzz/" target="_blank"><img src="./HTML渲染过程详解 - 木的树 - 博客园_files/20160315154755.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/dojo-lzz/">木的树</a><br>
+            <a href="http://home.cnblogs.com/u/dojo-lzz/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/dojo-lzz/followers">粉丝 - 708</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;d4a4b9ee-c6a4-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3983335,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">59</span>
+    </div>
+    <div class="buryit" onclick="votePost(3983335,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/dojo-lzz/p/3758179.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/dojo-lzz/p/3758179.html" title="发布于2014-05-29 09:10">javascript中this指针探讨</a><br><a href="http://www.cnblogs.com/dojo-lzz/p/3999013.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/dojo-lzz/p/3999013.html" title="发布于2014-09-29 21:23">我对BFC的理解</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-09-20 15:22</span> <a href="http://www.cnblogs.com/dojo-lzz/">木的树</a> 阅读(<span id="post_view_count">26504</span>) 评论(<span id="post_comment_count">40</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3983335" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#" onclick="AddToWz(3983335);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=118404,cb_entryId=3983335,cb_blogApp=currentBlogApp,cb_blogUserGuid='d4a4b9ee-c6a4-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/9/20 15:22:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3031790" class="layer">#1楼</a><a name="3031790" id="comment_anchor_3031790"></a>  <span class="comment_date">2014-09-21 18:33</span> <a id="a_comment_author_3031790" href="http://www.cnblogs.com/theks/" target="_blank">s似水流年</a> <a href="http://msg.cnblogs.com/send/s%E4%BC%BC%E6%B0%B4%E6%B5%81%E5%B9%B4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3031790" class="blog_comment_body">非常好的文章，已推荐。。<br><fieldset class="comment_quote"><legend>引用</legend>有道友可能要问，前面已将杨师傅捉到DOM节点上</fieldset><br>哈哈，拼音输入法之痛。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3031790,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3031790,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3031817" class="layer">#2楼</a><a name="3031817" id="comment_anchor_3031817"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-21 20:35</span> <a id="a_comment_author_3031817" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3031817" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3031790" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3031790);">@</a>
+s似水流年<br>已修改，多谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3031817,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3031817,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3031817_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3031952" class="layer">#3楼</a><a name="3031952" id="comment_anchor_3031952"></a>  <span class="comment_date">2014-09-22 09:17</span> <a id="a_comment_author_3031952" href="http://www.cnblogs.com/xishuai/" target="_blank">田园里的蟋蟀</a> <a href="http://msg.cnblogs.com/send/%E7%94%B0%E5%9B%AD%E9%87%8C%E7%9A%84%E8%9F%8B%E8%9F%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3031952" class="blog_comment_body"><a href="http://www.cnblogs.com/wenanry/archive/2010/02/25/1673368.html" target="_blank">当你输入一个网址的时候，实际会发生什么?</a><br>给兄台推荐一篇类似的博文。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3031952,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3031952,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3031952_avatar" style="display:none;">http://pic.cnblogs.com/face/435188/20130715165802.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032012" class="layer">#4楼</a><a name="3032012" id="comment_anchor_3032012"></a>  <span class="comment_date">2014-09-22 10:10</span> <a id="a_comment_author_3032012" href="http://www.cnblogs.com/rookiebob/" target="_blank">rookiebob</a> <a href="http://msg.cnblogs.com/send/rookiebob" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032012" class="blog_comment_body">不错，有自己的一些总结，赞一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032012,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032012,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032012_avatar" style="display:none;">http://pic.cnblogs.com/face/623996/20140720163603.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032014" class="layer">#5楼</a><a name="3032014" id="comment_anchor_3032014"></a>  <span class="comment_date">2014-09-22 10:10</span> <a id="a_comment_author_3032014" href="http://www.cnblogs.com/longware/" target="_blank">longware</a> <a href="http://msg.cnblogs.com/send/longware" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032014" class="blog_comment_body">少了域名解析、虚拟主机解析 环节了哦</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032014,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032014,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032014_avatar" style="display:none;">http://pic.cnblogs.com/face/u79428.gif</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032041" class="layer">#6楼</a><a name="3032041" id="comment_anchor_3032041"></a>  <span class="comment_date">2014-09-22 10:36</span> <a id="a_comment_author_3032041" href="http://www.cnblogs.com/zzuIvy/" target="_blank">zzuIvy</a> <a href="http://msg.cnblogs.com/send/zzuIvy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032041" class="blog_comment_body">挺好，对我帮助很大，终于知道为什么以前写的js脚本不起作用了……</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032041,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032041,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032041_avatar" style="display:none;">http://pic.cnblogs.com/face/u316395.jpg?id=22145500</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032044" class="layer">#7楼</a><a name="3032044" id="comment_anchor_3032044"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 10:42</span> <a id="a_comment_author_3032044" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032044" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3031952" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3031952);">@</a>
+田园里的蟋蟀<br>哈哈，多谢道友，正好补充了我缺失的部分</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032044,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032044,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032044_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032045" class="layer">#8楼</a><a name="3032045" id="comment_anchor_3032045"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 10:42</span> <a id="a_comment_author_3032045" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032045" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032014" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032014);">@</a>
+longware<br>是的，是的，俺对这块不了解。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032045,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032045,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032045_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032046" class="layer">#9楼</a><a name="3032046" id="comment_anchor_3032046"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 10:43</span> <a id="a_comment_author_3032046" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032046" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032041" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032041);">@</a>
+zzuIvy<br>共同进步</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032046,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032046,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032046_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032095" class="layer">#10楼</a><a name="3032095" id="comment_anchor_3032095"></a>  <span class="comment_date">2014-09-22 12:08</span> <a id="a_comment_author_3032095" href="http://www.cnblogs.com/joy2code/" target="_blank">卓酷</a> <a href="http://msg.cnblogs.com/send/%E5%8D%93%E9%85%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032095" class="blog_comment_body">1、先发请求给DNS进行域名解析获取服务器IP<br>2、向步骤1获取的服务器IP发送HTTP请求<br>3、服务器接收请求后，解析主机头对应的站点，把请求传送给站点<br>4、站点接受转发的请求作出回应并返回HTTP回应<br>5、浏览器接到返回的HTTP回应，解析头信息和HTML主体<br>6、根据解析的头信息设置必要的数据，如cookie，编码，语言等声明的处理<br>7、在6的基础上对HTML主体进行渲染展现<br><br>博主所解析的其实是最后步骤7的详细过程。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032095,&#39;Digg&#39;,this)">支持(4)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032095,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032095_avatar" style="display:none;">http://pic.cnblogs.com/face/u359171.jpg?id=08093534</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032100" class="layer">#11楼</a><a name="3032100" id="comment_anchor_3032100"></a>  <span class="comment_date">2014-09-22 12:28</span> <a id="a_comment_author_3032100" href="http://home.cnblogs.com/u/586883/" target="_blank">癡迷</a> <a href="http://msg.cnblogs.com/send/%E7%99%A1%E8%BF%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032100" class="blog_comment_body">拼音黨之痛。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032100,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032100,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032110" class="layer">#12楼</a><a name="3032110" id="comment_anchor_3032110"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 12:42</span> <a id="a_comment_author_3032110" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032110" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032095" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032095);">@</a>
+码道程工<br>好嘞，哈哈，又长知识了，多谢道友指点</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032110,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032110,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032110_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032111" class="layer">#13楼</a><a name="3032111" id="comment_anchor_3032111"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 12:43</span> <a id="a_comment_author_3032111" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032111" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032100" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032100);">@</a>
+癡迷<br>where，where，请指出</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032111,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032111,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032111_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032135" class="layer">#14楼</a><a name="3032135" id="comment_anchor_3032135"></a>  <span class="comment_date">2014-09-22 13:16</span> <a id="a_comment_author_3032135" href="http://www.cnblogs.com/RSmountain/" target="_blank">老田，醒了没？</a> <a href="http://msg.cnblogs.com/send/%E8%80%81%E7%94%B0%EF%BC%8C%E9%86%92%E4%BA%86%E6%B2%A1%EF%BC%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032135" class="blog_comment_body">好文章</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032135,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032135,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032135_avatar" style="display:none;">http://pic.cnblogs.com/face/314360/20160302141944.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032312" class="layer">#15楼</a><a name="3032312" id="comment_anchor_3032312"></a>  <span class="comment_date">2014-09-22 16:09</span> <a id="a_comment_author_3032312" href="http://www.cnblogs.com/betterlife/" target="_blank">去海边生活</a> <a href="http://msg.cnblogs.com/send/%E5%8E%BB%E6%B5%B7%E8%BE%B9%E7%94%9F%E6%B4%BB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032312" class="blog_comment_body">涨姿势！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032312,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032312,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032312_avatar" style="display:none;">http://pic.cnblogs.com/face/656769/20161013154359.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032383" class="layer">#16楼</a><a name="3032383" id="comment_anchor_3032383"></a>  <span class="comment_date">2014-09-22 17:05</span> <a id="a_comment_author_3032383" href="http://home.cnblogs.com/u/657357/" target="_blank">lcm123</a> <a href="http://msg.cnblogs.com/send/lcm123" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032383" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032383,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032383,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032415" class="layer">#17楼</a><a name="3032415" id="comment_anchor_3032415"></a>  <span class="comment_date">2014-09-22 17:42</span> <a id="a_comment_author_3032415" href="http://www.cnblogs.com/sunqun/" target="_blank">iSpring</a> <a href="http://msg.cnblogs.com/send/iSpring" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032415" class="blog_comment_body">写的不错，mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032415,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032415,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032415_avatar" style="display:none;">http://pic.cnblogs.com/face/u301420.png?id=25105616</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032494" class="layer">#18楼</a><a name="3032494" id="comment_anchor_3032494"></a>  <span class="comment_date">2014-09-22 21:00</span> <a id="a_comment_author_3032494" href="http://www.cnblogs.com/icez/" target="_blank">艾斯泽</a> <a href="http://msg.cnblogs.com/send/%E8%89%BE%E6%96%AF%E6%B3%BD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032494" class="blog_comment_body">寒冬大大肯定没有用过我大chrome。<br>由于chrome对DNS和连接管理进行了优化。<br>在还没有按回车键之前就开始根据预测进行DNS解析了，还有可能进行了预加载！！<br><a href="http://tech.uc.cn/?p=2092&amp;utm_campaign=Manong_Weekly_Issue_9&amp;utm_medium=EDM&amp;utm_source=Manong_Weekly" target="_blank">http://tech.uc.cn/?p=2092&amp;utm_campaign=Manong_Weekly_Issue_9&amp;utm_medium=EDM&amp;utm_source=Manong_Weekly</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032494,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032494,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032494_avatar" style="display:none;">http://pic.cnblogs.com/face/503399/20130320163345.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032553" class="layer">#19楼</a><a name="3032553" id="comment_anchor_3032553"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-22 23:14</span> <a id="a_comment_author_3032553" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032553" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032494" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032494);">@</a>
+艾斯泽<br>话不能这么说，同一个实验不同人做也会得到不同结果。技术一直在变，今天的测试结果可能明天就是错误的，关键是掌握测试的方法。<br>不过感谢道友分享文章，哈哈，与诸位道友论道其乐也无穷</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032553,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032553,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032553_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032647" class="layer">#20楼</a><a name="3032647" id="comment_anchor_3032647"></a>  <span class="comment_date">2014-09-23 09:15</span> <a id="a_comment_author_3032647" href="http://www.cnblogs.com/amumu/" target="_blank">Amumu.</a> <a href="http://msg.cnblogs.com/send/Amumu." title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032647" class="blog_comment_body">怎么收藏文章啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032647,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032647,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032647_avatar" style="display:none;">http://pic.cnblogs.com/face/220792/20140917234523.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032726" class="layer">#21楼</a><a name="3032726" id="comment_anchor_3032726"></a>  <span class="comment_date">2014-09-23 10:30</span> <a id="a_comment_author_3032726" href="http://www.cnblogs.com/YrXzJ1026/" target="_blank">奔跑の黑马</a> <a href="http://msg.cnblogs.com/send/%E5%A5%94%E8%B7%91%E3%81%AE%E9%BB%91%E9%A9%AC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032726" class="blog_comment_body">浏览器渲染部分</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032726,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032726,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032726_avatar" style="display:none;">http://pic.cnblogs.com/face/u344864.jpg?id=02231918</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032745" class="layer">#22楼</a><a name="3032745" id="comment_anchor_3032745"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-23 10:58</span> <a id="a_comment_author_3032745" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032745" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032647" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032647);">@</a>
+Amumu.<br>绿色通道</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032745,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032745,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032745_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032746" class="layer">#23楼</a><a name="3032746" id="comment_anchor_3032746"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2014-09-23 10:59</span> <a id="a_comment_author_3032746" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3032746" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032726" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032726);">@</a>
+奔跑の黑马<br>哈哈，确实是，题目有点大了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3032746,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3032746,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3032746_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3033222" class="layer">#24楼</a><a name="3033222" id="comment_anchor_3033222"></a>  <span class="comment_date">2014-09-23 21:18</span> <a id="a_comment_author_3033222" href="http://home.cnblogs.com/u/658034/" target="_blank">取个牛逼的名字真难</a> <a href="http://msg.cnblogs.com/send/%E5%8F%96%E4%B8%AA%E7%89%9B%E9%80%BC%E7%9A%84%E5%90%8D%E5%AD%97%E7%9C%9F%E9%9A%BE" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3033222" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3033222,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3033222,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3035647" class="layer">#25楼</a><a name="3035647" id="comment_anchor_3035647"></a>  <span class="comment_date">2014-09-27 11:12</span> <a id="a_comment_author_3035647" href="http://home.cnblogs.com/u/434505/" target="_blank">力菜</a> <a href="http://msg.cnblogs.com/send/%E5%8A%9B%E8%8F%9C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3035647" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3035647,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3035647,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3035808" class="layer">#26楼</a><a name="3035808" id="comment_anchor_3035808"></a>  <span class="comment_date">2014-09-27 19:41</span> <a id="a_comment_author_3035808" href="http://www.cnblogs.com/ccww/" target="_blank">小吴99</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%90%B499" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3035808" class="blog_comment_body">学习了 谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3035808,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3035808,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3035808_avatar" style="display:none;">http://pic.cnblogs.com/face/u370670.jpg?id=09004237</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3037282" class="layer">#27楼</a><a name="3037282" id="comment_anchor_3037282"></a>  <span class="comment_date">2014-09-29 21:50</span> <a id="a_comment_author_3037282" href="http://home.cnblogs.com/u/677487/" target="_blank">sciencedoris</a> <a href="http://msg.cnblogs.com/send/sciencedoris" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3037282" class="blog_comment_body"><b>很好，讲解的很清楚，赞</b></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3037282,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3037282,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3038113" class="layer">#28楼</a><a name="3038113" id="comment_anchor_3038113"></a>  <span class="comment_date">2014-09-30 23:55</span> <a id="a_comment_author_3038113" href="http://home.cnblogs.com/u/620470/" target="_blank">七彩泡泡</a> <a href="http://msg.cnblogs.com/send/%E4%B8%83%E5%BD%A9%E6%B3%A1%E6%B3%A1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3038113" class="blog_comment_body">长知识了，收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3038113,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3038113,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3042450" class="layer">#29楼</a><a name="3042450" id="comment_anchor_3042450"></a>  <span class="comment_date">2014-10-12 22:23</span> <a id="a_comment_author_3042450" href="http://www.cnblogs.com/tom-and-jerry/" target="_blank">jerry_0824</a> <a href="http://msg.cnblogs.com/send/jerry_0824" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3042450" class="blog_comment_body">浏览器的解析还是比较复杂的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3042450,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3042450,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3055509" class="layer">#30楼</a><a name="3055509" id="comment_anchor_3055509"></a>  <span class="comment_date">2014-11-01 13:24</span> <a id="a_comment_author_3055509" href="http://www.cnblogs.com/ytj2006/" target="_blank">生命之河</a> <a href="http://msg.cnblogs.com/send/%E7%94%9F%E5%91%BD%E4%B9%8B%E6%B2%B3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3055509" class="blog_comment_body">不错，我很喜欢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3055509,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3055509,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3089607" class="layer">#31楼</a><a name="3089607" id="comment_anchor_3089607"></a>  <span class="comment_date">2014-12-19 10:30</span> <a id="a_comment_author_3089607" href="http://www.cnblogs.com/cnblogs/" target="_blank">袁腾波</a> <a href="http://msg.cnblogs.com/send/%E8%A2%81%E8%85%BE%E6%B3%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3089607" class="blog_comment_body">Mark~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3089607,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3089607,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3089607_avatar" style="display:none;">http://pic.cnblogs.com/face/u51484.jpg?id=07161904</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3109822" class="layer">#32楼</a><a name="3109822" id="comment_anchor_3109822"></a>  <span class="comment_date">2015-01-19 15:29</span> <a id="a_comment_author_3109822" href="http://www.cnblogs.com/kamibaba/" target="_blank">青春无语</a> <a href="http://msg.cnblogs.com/send/%E9%9D%92%E6%98%A5%E6%97%A0%E8%AF%AD" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3109822" class="blog_comment_body">写得很不错，刚刚用豆约翰博客备份专家下载了您的全部博文。 豆约翰博客备份专家支持一键批量下载绝大多数主流博客网站任意博主的全部博文（包括图片），并可以在下载完成后导出成各种数据格式（PDF，CHM，TXT等）。目前支持的博客站点包括（新浪微博，腾讯说说，QQ日志，新浪博客，宝宝树博客，豆瓣日记，天涯博客，简书，博客园，和讯博客，CSDN博客，Iteye博客，搜狐博客，51CTO，Itpub博客，网易博客，Chinaunix，雪球网等）。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3109822,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3109822,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3161004" class="layer">#33楼</a><a name="3161004" id="comment_anchor_3161004"></a>  <span class="comment_date">2015-04-12 18:44</span> <a id="a_comment_author_3161004" href="http://www.cnblogs.com/Mrxiedh/" target="_blank">Mrxie</a> <a href="http://msg.cnblogs.com/send/Mrxie" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3161004" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3032095" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3032095);">@</a>
+卓酷<br>谢谢  有收获</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3161004,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3161004,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3161004_avatar" style="display:none;">http://pic.cnblogs.com/face/740044/20150606102230.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3161005" class="layer">#34楼</a><a name="3161005" id="comment_anchor_3161005"></a>  <span class="comment_date">2015-04-12 18:45</span> <a id="a_comment_author_3161005" href="http://www.cnblogs.com/Mrxiedh/" target="_blank">Mrxie</a> <a href="http://msg.cnblogs.com/send/Mrxie" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3161005" class="blog_comment_body">谢谢你的样式表 = +</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3161005,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3161005,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3161005_avatar" style="display:none;">http://pic.cnblogs.com/face/740044/20150606102230.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3161074" class="layer">#35楼</a><a name="3161074" id="comment_anchor_3161074"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-04-12 21:55</span> <a id="a_comment_author_3161074" href="http://www.cnblogs.com/dojo-lzz/" target="_blank">木的树</a> <a href="http://msg.cnblogs.com/send/%E6%9C%A8%E7%9A%84%E6%A0%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3161074" class="blog_comment_body"><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3161005" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3161005);">@</a>
+Mrxie<br>？？没看懂</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3161074,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3161074,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3161074_avatar" style="display:none;">http://pic.cnblogs.com/face/412020/20160315154755.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3274710" class="layer">#36楼</a><a name="3274710" id="comment_anchor_3274710"></a>  <span class="comment_date">2015-09-25 17:06</span> <a id="a_comment_author_3274710" href="http://www.cnblogs.com/xlaoyu/" target="_blank">Christmas./</a> <a href="http://msg.cnblogs.com/send/Christmas.%2F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3274710" class="blog_comment_body">css样式 !important的优先级比内联的高~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3274710,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3274710,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3414579" class="layer">#37楼</a><a name="3414579" id="comment_anchor_3414579"></a>  <span class="comment_date">2016-04-21 20:51</span> <a id="a_comment_author_3414579" href="http://www.cnblogs.com/alsy/" target="_blank">阿林十一</a> <a href="http://msg.cnblogs.com/send/%E9%98%BF%E6%9E%97%E5%8D%81%E4%B8%80" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3414579" class="blog_comment_body">非常好的文章！大赞！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3414579,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3414579,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3414579_avatar" style="display:none;">http://pic.cnblogs.com/face/752429/20160227143825.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3437281" class="layer">#38楼</a><a name="3437281" id="comment_anchor_3437281"></a>  <span class="comment_date">2016-05-23 13:07</span> <a id="a_comment_author_3437281" href="http://www.cnblogs.com/Ghunter/" target="_blank">闲鱼~</a> <a href="http://msg.cnblogs.com/send/%E9%97%B2%E9%B1%BC~" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3437281" class="blog_comment_body">谢谢楼主，辛苦了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3437281,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3437281,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3437281_avatar" style="display:none;">http://pic.cnblogs.com/face/658296/20140731213526.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3582497" class="layer">#39楼</a><a name="3582497" id="comment_anchor_3582497"></a>  <span class="comment_date">2016-12-16 12:34</span> <a id="a_comment_author_3582497" href="http://home.cnblogs.com/u/1081772/" target="_blank">梦豆</a> <a href="http://msg.cnblogs.com/send/%E6%A2%A6%E8%B1%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3582497" class="blog_comment_body">HTML5免费入门视频教程：ke.qq.com/course/175220#tuin=3057d001</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3582497,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3582497,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#3784639" class="layer">#40楼</a><a name="3784639" id="comment_anchor_3784639"></a><span id="comment-maxId" style="display:none;">3784639</span><span id="comment-maxDate" style="display:none;">2017/9/14 23:36:22</span>  <span class="comment_date">2017-09-14 23:36</span> <a id="a_comment_author_3784639" href="http://home.cnblogs.com/u/1228093/" target="_blank">omyBug</a> <a href="http://msg.cnblogs.com/send/omyBug" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3784639" class="blog_comment_body">多谢楼主分享。<br><a href="http://t.cn/RKSsoCW" target="_blank">http://t.cn/RKSsoCW</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3784639,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3784639,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/dojo-lzz/p/3983335.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://news.cnblogs.com/n/582971/" target="_blank">【新闻】H3 BPM体验平台全面上线</a><br><a href="http://www.hubwiz.com/course/?type=Vue.js&amp;affid=cnblogs" target="_blank">【推荐】Vue.js 2.x 快速入门，大量高效实战示例</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.628319.628319.628319" target="_blank">【推荐】搭建微信小程序，新用户体验3元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadjs/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./HTML渲染过程详解 - 木的树 - 博客园_files/24442-20171031213013029-1265843211.jpg" alt="葡萄城1101"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/583486/" target="_blank">AcFun网站持续三天无法打开 回应称网站遭受入侵</a><br> ·  <a href="http://news.cnblogs.com/n/583485/" target="_blank">DeepMind联合创始人Mustafa谈AI能否带来平等（附有声版）</a><br> ·  <a href="http://news.cnblogs.com/n/583484/" target="_blank">高德地图Q3交通报告：79%城市拥堵同比持平或下降</a><br> ·  <a href="http://news.cnblogs.com/n/583483/" target="_blank">运满满货车帮战略合并，滴滴投资人王刚任CEO</a><br> ·  <a href="http://news.cnblogs.com/n/583482/" target="_blank">百度外卖代理商再发信：全国数百家代理商血本无归</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34771/" target="_blank"><img width="468" height="60" src="./HTML渲染过程详解 - 木的树 - 博客园_files/24442-20171113120112796-634832761.jpg" alt="阿里云1113"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/141729/" target="_blank">软件测试转型之路</a><br> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br> ·  <a href="http://kb.cnblogs.com/page/581467/" target="_blank">改善程序员生活质量的 3+10 习惯</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><h3 class="catListTitle">友情链接</h3>
+<strong><a href="http://www.cnblogs.com/vajoy/" target="_blank">vajoy</a></strong>
+<br>
+<strong><a href="http://www.cnblogs.com/silin6/" target="_blank">linkFly</a></strong>
+<br>
+<strong><a href="http://www.giser.net/" target="_blank">barry的后院</a></strong>
+<br>
+<strong><a href="http://www.igis.me/" target="_blank">iGIS</a></strong>
+<br>
+<strong><a href="http://www.cnblogs.com/coco1s/" target="_blank">ChokCoco</a></strong>
+<br>
+<strong><a href="http://www.cnblogs.com/aaronjs/" target="_blank">艾伦 Aaron</a></strong><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/dojo-lzz/">木的树</a><br>园龄：<a href="http://home.cnblogs.com/u/dojo-lzz/" title="入园时间：2012-05-23">5年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/dojo-lzz/followers/">708</a><br>关注：<a href="http://home.cnblogs.com/u/dojo-lzz/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;d4a4b9ee-c6a4-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td class="CalTodayDay" align="center"><a href="http://www.cnblogs.com/dojo-lzz/archive/2017/11/27.html"><u>27</u></a></td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/dojo-lzz/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/dojo-lzz/p/7899283.html">1. WebWorker实战使用</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7642520.html">2. 定制Three.js中Material属性</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7409902.html">3. Three.js使用局部纹理更新</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7401769.html">4. webgl自学笔记——矩阵变换</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7223364.html">5. webgl开发第一道坎——矩阵与坐标变换</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7190216.html">6. webgl自学笔记——光照</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7183251.html">7. webgl自学笔记——几何图形</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/7143276.html">8. Threejs 开发3D地图实践总结</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/6870106.html">9. nodejs6下使用koa2</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/6683036.html">10. 你真的了解像素吗</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/dojo-lzz/tag/javascript/">javascript</a>(61)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/dojo/">dojo</a>(32)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/css/">css</a>(10)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/webgl/">webgl</a>(7)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/angular2/">angular2</a>(6)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/ArcServer/">ArcServer</a>(5)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/SOE/">SOE</a>(5)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/ajax/">ajax</a>(3)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/backbone/">backbone</a>(3)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/dijit/">dijit</a>(3)</li><li><a href="http://www.cnblogs.com/dojo-lzz/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(116)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/dojo-lzz/archive/2017/11.html">2017年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/dojo-lzz/archive/2017/10.html">2017年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/dojo-lzz/archive/2017/08.html">2017年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/dojo-lzz/archive/2017/07.html">2017年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/dojo-lzz/archive/2017/05.html">2017年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/dojo-lzz/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/dojo-lzz/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/dojo-lzz/archive/2017/01.html">2017年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/dojo-lzz/archive/2016/09.html">2016年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/dojo-lzz/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/dojo-lzz/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/dojo-lzz/archive/2016/05.html">2016年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/dojo-lzz/archive/2016/04.html">2016年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/dojo-lzz/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/dojo-lzz/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/dojo-lzz/archive/2016/01.html">2016年1月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/dojo-lzz/archive/2015/12.html">2015年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/dojo-lzz/archive/2015/11.html">2015年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/dojo-lzz/archive/2015/10.html">2015年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/dojo-lzz/archive/2015/09.html">2015年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/dojo-lzz/archive/2015/08.html">2015年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/dojo-lzz/archive/2015/07.html">2015年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/dojo-lzz/archive/2015/06.html">2015年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/dojo-lzz/archive/2015/05.html">2015年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/dojo-lzz/archive/2015/04.html">2015年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/dojo-lzz/archive/2015/03.html">2015年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/dojo-lzz/archive/2015/02.html">2015年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/dojo-lzz/archive/2014/09.html">2014年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/dojo-lzz/archive/2014/05.html">2014年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/dojo-lzz/archive/2014/04.html">2014年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/dojo-lzz/archive/2014/03.html">2014年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/dojo-lzz/archive/2013/03.html">2013年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/dojo-lzz/archive/2013/01.html">2013年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/dojo-lzz/archive/2012/11.html">2012年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/dojo-lzz/archive/2012/09.html">2012年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/dojo-lzz/archive/2012/08.html">2012年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/dojo-lzz/archive/2012/07.html">2012年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/dojo-lzz/archive/2012/06.html">2012年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/dojo-lzz/archive/2012/05.html">2012年5月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	199226
+	</li>
+	<li class="liRank">
+		排名 -	1136
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dojo-lzz/p/7899283.html#3851606">1. Re:WebWorker实战使用</a></li>
+        <li class="recent_comment_body">zan</li>
+        <li class="recent_comment_author">--skymvp</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dojo-lzz/p/7899283.html#3851382">2. Re:WebWorker实战使用</a></li>
+        <li class="recent_comment_body">大佬研究的好高深</li>
+        <li class="recent_comment_author">--上位者的怜悯</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dojo-lzz/p/7899283.html#3851271">3. Re:WebWorker实战使用</a></li>
+        <li class="recent_comment_body">66666</li>
+        <li class="recent_comment_author">--linkFly</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dojo-lzz/p/7899283.html#3851235">4. Re:WebWorker实战使用</a></li>
+        <li class="recent_comment_body">支持一个~</li>
+        <li class="recent_comment_author">--ChokCoco</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/dojo-lzz/p/4964364.html#3815451">5. Re:dojo/dom-class源码学习</a></li>
+        <li class="recent_comment_body">总结的不错，受益匪浅</li>
+        <li class="recent_comment_author">--Taner</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/dojo-lzz/p/4265637.html">1. 探讨跨域请求资源的几种方式(103823)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/5125619.html">2. jenkins + Git 搭建持续集成环境(28944)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/3983335.html">3. HTML渲染过程详解(26504)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4621627.html">4. CSS：谈谈栅格布局(25380)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/3999013.html">5. 我对BFC的理解(20695)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4340897.html">6. 闲话Promise机制(19093)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/5878073.html">7. Angular2学习笔记——NgModule(17004)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4707725.html">8. 以代码爱好者角度来看AMD与CMD(16748)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4591446.html">9. Web性能优化：What? Why? How?(13816)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4419596.html">10. CSS垂直居中总结(13249)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/dojo-lzz/p/4265637.html">1. 探讨跨域请求资源的几种方式(49)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/3983335.html">2. HTML渲染过程详解(40)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/5059316.html">3. 戏说HTML5(37)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4591446.html">4. Web性能优化：What? Why? How?(33)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4707725.html">5. 以代码爱好者角度来看AMD与CMD(30)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/dojo-lzz/p/5059316.html">1. 戏说HTML5(72)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4265637.html">2. 探讨跨域请求资源的几种方式(72)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4591446.html">3. Web性能优化：What? Why? How?(70)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/6260648.html">4. 手把手教你DIY一个春运迁徙图(一)(67)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/5515839.html">5. 作为前端应当了解的Web缓存知识(64)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/3983335.html">6. HTML渲染过程详解(59)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4707725.html">7. 以代码爱好者角度来看AMD与CMD(43)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/4324208.html">8. Javascript事件机制兼容性解决方案(40)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/3999013.html">9. 我对BFC的理解(35)</a></li><li><a href="http://www.cnblogs.com/dojo-lzz/p/5518474.html">10. 浅谈模板引擎(32)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 木的树
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
