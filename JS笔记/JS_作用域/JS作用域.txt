@@ -1,0 +1,11 @@
+1、JavaScript中无块级作用域
+
+2、JavaScript采用函数作用域
+
+3、JavaScript的作用域链
+ 由于JavaScript中的每个函数作为一个作用域，如果出现函数嵌套函数，则就会出现作用域链。
+
+4、JavaScript的作用域链执行前已创建
+JavaScript的作用域在被执行之前已经创建，日后再去执行时只需要按照作用域链去寻找即可。
+
+JavaScript的函数在被执行之前，会将其中的变量全部声明，而不赋值
